@@ -1,0 +1,20 @@
+@import 'tailwindcss';
+
+@theme {
+	--spacing-gap: 1rem;
+	--spacing-gap-y: 0.7rem;
+}
+
+html {
+	font-family: 'Temp';
+}
+
+.grid-12 {
+	display: grid;
+	grid-template-columns: repeat(12, minmax(0, 1fr));
+	gap: var(--spacing-gap);
+}
+
+.text-2 {
+	color: rgb(112, 112, 112);
+}
