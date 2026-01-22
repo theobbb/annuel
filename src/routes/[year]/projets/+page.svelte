@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Student from '$lib/components/student.svelte';
 	import { get_chunk } from './data';
 
 	const { data } = $props();
@@ -26,8 +27,7 @@
 			<a class="aspect-square bg-black/10" href="/{year}/projets/{project.id}"></a>
 			<div class="mt-1 text-xs/3.5">
 				<div>{project.name}</div>
-				<a href="/{year}/finissant-e-s/{project.expand.student.id}">{project.expand.student.name}</a
-				>
+				<Student student={project.expand.student} />
 			</div>
 		</div>
 	{/each}

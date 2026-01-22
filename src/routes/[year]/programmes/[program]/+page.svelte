@@ -1,13 +1,13 @@
 <script lang="ts">
-	import Program from '$lib/components/program.svelte';
+	import ProgramName from '$lib/components/program-name.svelte';
 
 	const { data } = $props();
-	const { students, program, year } = data;
+	const { students, program, year } = $derived(data);
 </script>
 
 <div class="border-b">
-	<div class="mb-gap-y text-xl"><Program name={program.name} /></div>
-	<div class="max-w-lg text-balance">{program.description}</div>
+	<div class="mb-gap-y text-xl"><ProgramName {program} /></div>
+	<div class="max-w-3xl text-balance">{program.description}</div>
 	<div class="mt-12 max-w-3xl">
 		<div class="flex justify-between gap-x-2">
 			<div class="text-2">Finissant-e-s</div>

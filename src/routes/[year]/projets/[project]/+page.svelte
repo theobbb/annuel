@@ -1,5 +1,7 @@
 <script lang="ts">
+	import { page } from '$app/state';
 	import Program from '$lib/components/program.svelte';
+	import Student from '$lib/components/student.svelte';
 	import { string_to_1_8 } from '$lib/utils/seed';
 
 	const { data } = $props();
@@ -11,6 +13,8 @@
 		project.expand.student.expand['projects(student)'].filter((p) => p.id != project.id)
 	);
 	const program = $derived(project.expand.student.expand.program);
+
+	const callback = $derived(page.url.searchParams.get('callback'));
 </script>
 
 <div>
@@ -20,13 +24,13 @@
 	<div class="max-w-lg text-balance">{project.description}</div>
 
 	<div class="mt-gap-y max-w-3xl">
-		<a class="flex justify-between gap-x-2 border-b" href="/{year}/finissant-e-s/{project.student}">
+		<div class="flex justify-between gap-x-2 border-b">
 			<div class="text-2">Finissant.e</div>
-			<div class="">{project.expand.student.name}</div>
-		</a>
+			<Student student={project.expand.student} />
+		</div>
 		<div class="flex justify-between gap-x-2 border-b">
 			<div class="text-2">Programme</div>
-			<a href="/{year}/programmes/{program.id}" class=""><Program name={program.name} /></a>
+			<Program {program} />
 		</div>
 		<div class="flex justify-between gap-x-2">
 			<div class="text-2">Catégorie</div>
@@ -44,9 +48,7 @@
 	<div class="mt-gap-y">
 		<div class="border-b">
 			Autres projets par
-			<a href="/{year}/finissant-e-s/{project.student}">
-				{project.expand.student.name}
-			</a>
+			<Student student={project.expand.student} />
 		</div>
 		<div class="flex flex-col">
 			{#each other_projects as other_project}

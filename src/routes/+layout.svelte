@@ -2,7 +2,6 @@
 	import './layout.css';
 	import '$lib/style/fonts.css';
 	import favicon from '$lib/assets/favicon.svg';
-	import Header from './header.svelte';
 
 	let { children } = $props();
 </script>

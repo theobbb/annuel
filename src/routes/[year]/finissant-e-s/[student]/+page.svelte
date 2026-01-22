@@ -4,7 +4,8 @@
 </script>
 
 <div class="mb-gap-y text-xl">
-	{student.name}
+	{student.first_name}
+	{student.last_name}
 </div>
 <div class="max-w-md text-balance">{student.description}</div>
 

@@ -108,7 +108,7 @@ export type ProgramsRecord = {
 	created: IsoAutoDateString
 	description?: string
 	id: string
-	name?: string
+	name: string
 	updated: IsoAutoDateString
 }
 
@@ -135,7 +135,6 @@ export type StudentsRecord = {
 	first_name: string
 	id: string
 	last_name: string
-	name?: string
 	program: RecordIdString
 	scholarship?: boolean
 	socials?: string

@@ -6,7 +6,7 @@ export async function get_chunk(year: string, page: number) {
 	const pagination: PaginationResult<ProjectsRecord & { expand: { student: StudentsRecord } }> =
 		await pocketbase
 			.collection('projects')
-			.getList(page, 64, { filter: `student.year = "${year}"`, expand: 'student' });
+			.getList(page, 72, { filter: `student.year = "${year}"`, expand: 'student' });
 
 	return pagination;
 }

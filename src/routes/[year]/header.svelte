@@ -4,9 +4,12 @@
 	const year = $derived(page.params.year);
 </script>
 
-<header class="mb-12 flex gap-x-gap">
-	<a href="/{year}">Accueil + remerciements</a>
-	<a href="/{year}/projets">Projets</a>
-	<a href="/{year}/finissant-e-s">Finissant-e-s</a>
+<header class="justify-between- mb-12 flex gap-x-gap">
+	<div class="flex gap-x-gap">
+		<a href="/{year}">Accueil + remerciements</a>
+		<a href="/{year}/projets">Projets</a>
+		<a href="/{year}/finissant-e-s">Finissant-e-s</a>
+	</div>
+
 	<a href="/annees?callback={encodeURIComponent(page.url.pathname)}">Années</a>
 </header>

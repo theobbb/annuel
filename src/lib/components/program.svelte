@@ -1,7 +1,11 @@
-<script>
-	const { name } = $props();
+<script lang="ts">
+	import { page } from '$app/state';
+	import type { ProgramsRecord } from '$lib/pocketbase.types';
+	import ProgramName from './program-name.svelte';
 
-	const splitted = name.split(',').join(' *');
+	const { program }: { program: ProgramsRecord } = $props();
 </script>
 
-{splitted}
+<a href="/{page.params.year}/programmes/{program.id}">
+	<ProgramName {program} />
+</a>
