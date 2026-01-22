@@ -33,8 +33,12 @@
 			<Program {program} />
 		</div>
 		<div class="flex justify-between gap-x-2">
-			<div class="text-2">Catégorie</div>
-			<div class=""></div>
+			<div class="text-2">Catégories</div>
+			<div class="flex gap-gap">
+				{#each project.expand.tags as tag}
+					<a href="/{year}/projets?categorie={tag.id}">{tag.name}</a>
+				{/each}
+			</div>
 		</div>
 	</div>
 </div>

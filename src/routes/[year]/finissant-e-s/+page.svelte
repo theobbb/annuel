@@ -15,7 +15,7 @@
 	</div>
 	<div>* Récipiendaire de bourse</div>
 </div>
-
+<div>{students.length} finissant-e-s</div>
 <div class="">
 	{#each students as student, i}
 		<div class="grid grid-cols-12 gap-x-gap">

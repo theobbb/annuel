@@ -2,6 +2,7 @@ import { pocketbase } from '$lib/pocketbase';
 import type {
 	ProgramsRecord,
 	ProjectsRecord,
+	ProjectTagsRecord,
 	StudentsRecord,
 	YearsRecord
 } from '$lib/pocketbase.types';
@@ -16,10 +17,11 @@ export async function load({ params }) {
 					'projects(student)': ProjectsRecord[];
 				};
 			};
+			tags: ProjectTagsRecord[];
 		};
 	} = await pocketbase
 		.collection('projects')
-		.getOne(params.project, { expand: 'student,student.program,student.projects(student)' });
+		.getOne(params.project, { expand: 'tags,student,student.program,student.projects(student)' });
 
 	if (!project) error(404);
 	return { project };

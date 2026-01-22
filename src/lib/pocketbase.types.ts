@@ -115,7 +115,7 @@ export type ProgramsRecord = {
 export type ProjectTagsRecord = {
 	created: IsoAutoDateString
 	id: string
-	name?: string
+	name: string
 	updated: IsoAutoDateString
 }
 
@@ -126,6 +126,7 @@ export type ProjectsRecord = {
 	id: string
 	name: string
 	student: RecordIdString
+	tags?: RecordIdString[]
 	updated: IsoAutoDateString
 }
 

@@ -16,5 +16,9 @@ html {
 }
 
 .text-2 {
-	color: rgb(112, 112, 112);
+	color: rgb(138, 138, 138);
+}
+
+a:hover {
+	text-decoration: underline;
 }
