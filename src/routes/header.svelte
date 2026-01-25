@@ -7,8 +7,8 @@
 
 	const { year, programs, socials } = $derived(page.data);
 
-	let pop_years_open = $state(true);
-	let menu_mobile_open = $state(true);
+	let pop_years_open = $state(false);
+	let menu_mobile_open = $state(false);
 
 	function open_menu_mobile() {
 		menu_mobile_open = true;
