@@ -1,8 +1,5 @@
 <script lang="ts">
-	import { goto } from '$app/navigation';
-	import { page } from '$app/state';
 	import Lightbox from '$lib/components/lightbox.svelte';
-	import Program from '$lib/components/program.svelte';
 	import Relations from '$lib/components/relations.svelte';
 	import Student from '$lib/components/student.svelte';
 	import { string_to_1_8 } from '$lib/utils/seed';
@@ -16,9 +13,6 @@
 		project.expand.student.expand['projects(student)'].filter((p) => p.id != project.id)
 	);
 	const program = $derived(project.expand.student.expand.program);
-
-	const callback = $derived(page.url.searchParams.get('callback'));
-
 	let lightbox_file: string | null = $state(null);
 </script>
 
@@ -28,7 +22,7 @@
 	</div>
 	<div class="max-w-lg text-balance">{project.description}</div>
 
-	<div class="mt-gap-y">
+	<div class="grid-12 mt-gap-y">
 		<Relations
 			relations={[
 				{ type: 'student', ref: project.expand.student },
@@ -41,7 +35,10 @@
 
 <div class="grid-12 mt-gap-y">
 	{#each { length: n_files } as file, i}
-		<button class="col-span-4 aspect-square bg-black/10" onclick={() => (lightbox_file = String(i))}
+		<button
+			class="col-span-4 aspect-square bg-black/10"
+			onclick={() => (lightbox_file = String(i))}
+			aria-label="open lightbox {i}"
 		></button>
 	{/each}
 </div>

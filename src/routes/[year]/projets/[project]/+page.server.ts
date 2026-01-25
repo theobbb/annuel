@@ -3,8 +3,7 @@ import type {
 	ProgramsRecord,
 	ProjectsRecord,
 	ProjectTagsRecord,
-	StudentsRecord,
-	YearsRecord
+	StudentsRecord
 } from '$lib/pocketbase.types';
 import { error } from '@sveltejs/kit';
 

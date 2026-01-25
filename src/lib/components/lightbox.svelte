@@ -37,11 +37,12 @@
 
 		<div class="col-span-3 flex flex-col justify-between" style="--color-text-2: rgb(94, 94, 94);">
 			<div class="pointer-events-auto flex items-center justify-between gap-gap text-2xl">
-				<button onclick={onclose} class="icon-[ri--close-fill]"></button>
+				<button aria-label="close" onclick={onclose} class="icon-[ri--close-fill]"></button>
 
 				<div class="flex justify-between gap-x-gap">
-					<button onclick={previous} class="icon-[ri--arrow-left-line]"> </button>
-					<button onclick={next} class="icon-[ri--arrow-right-line]"> </button>
+					<button aria-label="previous" onclick={previous} class="icon-[ri--arrow-left-line]">
+					</button>
+					<button aria-label="next" onclick={next} class="icon-[ri--arrow-right-line]"> </button>
 				</div>
 			</div>
 			{#if children}

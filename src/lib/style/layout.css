@@ -5,7 +5,11 @@
 	--spacing-gap: 1rem;
 	--spacing-gap-y: 0.7rem;
 
-	--color-bg: rgb(248, 248, 248);
+	--color-bg: rgb(244, 244, 244);
+	--color-bg-2: white;
+
+	--color-placeholder: rgb(222, 222, 222);
+
 	--color-text: rgb(38, 38, 38);
 	--color-text-2: rgb(138, 138, 138);
 }
@@ -54,6 +58,21 @@ a.active::after {
 }
 
 body:has(header.menu-open) {
+	overflow: hidden;
+}
+
+.corner {
+	--cut: 15px;
+
+	background-color: var(--color-bg-2);
+	/* background: linear-gradient(315deg, var(--color-bg-2) calc(100% - var(--cut)), transparent 0); */
+	clip-path: polygon(
+		0 0,
+		100% 0,
+		100% calc(100% - var(--cut)),
+		calc(100% - var(--cut)) 100%,
+		0 100%
+	);
 	overflow: hidden;
 }
 

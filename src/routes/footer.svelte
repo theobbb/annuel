@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state';
+	import Logo from '$lib/components/logo.svelte';
 	import Program from '$lib/components/program.svelte';
 	import SelectYear from './select-year.svelte';
 
@@ -15,10 +16,11 @@
 	<div class="col-span-2 md:col-span-1">
 		<div class="relative w-fit"><SelectYear /></div>
 	</div>
+
 	<div class="col-span-full md:col-span-6">
-		<div class="mb-gap-y py-0.5">Programmes</div>
+		<div class="mb-gap-y py-0.5">Description des programmes</div>
 		{#each programs as program}
-			<div class="ml-gap -indent-gap underline"><Program {program} /></div>
+			<div class="ml-gap- -indent-gap- underline"><Program {program} /></div>
 		{/each}
 	</div>
 	{#if year}

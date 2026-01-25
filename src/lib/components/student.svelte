@@ -5,7 +5,7 @@
 	const { student, reverse = false }: { student: StudentsRecord; reverse?: boolean } = $props();
 </script>
 
-<a href="/{page.params.year}/finissant-e-s/{student.id}">
+<a href="/{page.params.year}/finissant-e-s/{student.id}" class="pointer-events-auto">
 	{#if reverse}
 		{student.last_name}, {student.first_name}
 	{:else}

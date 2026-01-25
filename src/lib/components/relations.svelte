@@ -34,7 +34,7 @@
 	const { relations }: { relations: Relations[] } = $props();
 </script>
 
-<div class="max-w-3xl">
+<div class="col-span-full lg:col-span-6">
 	{#each relations as relation}
 		<div
 			class="whitespace-nowrap- flex justify-between gap-x-gap border-b py-px text-right last:border-b-0"

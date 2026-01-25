@@ -6,7 +6,7 @@
 
 	const { program, filter = false }: { program: ProgramsRecord; filter?: boolean } = $props();
 
-	const year = $derived(page.params.year);
+	const year = $derived(page.data.year);
 	const url_search_program = $derived(page.url.searchParams.get('programme') || '');
 
 	const href: string = $derived.by(() => {

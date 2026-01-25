@@ -9,6 +9,7 @@
 	import Tag from '$lib/components/tag.svelte';
 	import Filter from '$lib/components/filter.svelte';
 	import Program from '$lib/components/program.svelte';
+	import ProjectCard from '$lib/components/project-card.svelte';
 
 	const { data } = $props();
 	const { pagination, programs, tags, year } = $derived(data);
@@ -38,8 +39,6 @@
 	});
 </script>
 
-<!-- <Search /> -->
-
 <div class="grid-12 mb-gap-y">
 	<Filter name="Programmes" param="programme">
 		{#each programs as program}
@@ -53,24 +52,26 @@
 	</Filter>
 </div>
 
-<div class="mb-1 flex gap-x-gap">
+<div class="mb-1 flex justify-between gap-x-gap">
 	<!-- {#if url_program || url_tag}
 		<div>
 			Filtre: {programs_map.get(url_program)?.name || tags_map.get(url_tag)?.name}
 		</div>
 	{/if} -->
-	{pagination.totalItems} projets
+	<div>{pagination.totalItems} projets</div>
+	<!-- <div><Search /></div> -->
 </div>
 
 <div class="grid-12">
 	{#each projects as project}
-		<div class="col-span-6 flex flex-col sm:col-span-4 md:col-span-3 xl:col-span-2">
-			<a class="aspect-square bg-black/10" href="/{year}/projets/{project.id}"> </a>
+		<ProjectCard {project} student={project.expand.student} />
+		<!-- <div class="bg-bg-2 px-1.5 py-1.5 corner col-span-6 flex flex-col sm:col-span-4 md:col-span-3 xl:col-span-2">
+			<div class=" aspect-square flex"><a class="aspect-square bg-placeholder " href="/{year}/projets/{project.id}"> </a></div>
 			<div class="mt-1 text-xs/3.5">
 				<div>{project.name}</div>
-				<Student student={project.expand.student} />
+				<div class="underline"><Student student={project.expand.student} /></div>
 			</div>
-		</div>
+		</div> -->
 	{/each}
 </div>
 {#if current_page < pagination.totalPages}

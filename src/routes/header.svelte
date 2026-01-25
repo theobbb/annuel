@@ -1,13 +1,14 @@
 <script lang="ts">
 	import { onNavigate } from '$app/navigation';
 	import { page } from '$app/state';
+	import Logo from '$lib/components/logo.svelte';
 	import Program from '$lib/components/program.svelte';
 	import SelectYear from './select-year.svelte';
 
 	const { year, programs, socials } = $derived(page.data);
 
-	let pop_years_open = $state(false);
-	let menu_mobile_open = $state(false);
+	let pop_years_open = $state(true);
+	let menu_mobile_open = $state(true);
 
 	function open_menu_mobile() {
 		menu_mobile_open = true;
@@ -78,35 +79,34 @@
 		</div>
 	</div>
 
-	{#if year}
-		<div class="flex gap-x-gap max-md:hidden">
-			{@render links()}
-		</div>
-		{#if menu_mobile_open}
-			<div class="fixed inset-0 z-50 border-r border-b bg-bg md:hidden">
-				<div class="mx-gap mt-16">
-					<div class="">
-						<div class="text-2">Pages</div>
-						<div class="text-lg">
-							{@render links()}
-						</div>
+	<div class="flex gap-x-gap max-md:hidden">
+		{@render links()}
+	</div>
+	{#if menu_mobile_open}
+		<div class="fixed inset-0 z-50 overflow-y-scroll border-r border-b bg-bg md:hidden">
+			<div class="mx-gap mt-16">
+				<Logo />
+				<div class="">
+					<div class="text-2">Pages</div>
+					<div class="text-lg font-thin!">
+						{@render links()}
 					</div>
-					<div class="mt-24">
-						<div class="col-span-full md:col-span-6">
-							<div class="text-2 mb-gap-y py-0.5">Programmes</div>
-							{#each programs as program}
-								<div class="ml-gap -indent-gap underline"><Program {program} /></div>
-							{/each}
-						</div>
-					</div>
-					<div class="mt-12">
-						<div class="text-2 mb-gap-y py-0.5">Réseaux</div>
-						{#each socials as { url, name }}
-							<div><a class="underline" href={url} target="_blank">{name}</a></div>
+				</div>
+				<div class="mt-24">
+					<div class="col-span-full md:col-span-6">
+						<div class="text-2 mb-gap-y py-0.5">Programmes</div>
+						{#each programs as program}
+							<div class="ml-gap -indent-gap underline"><Program {program} /></div>
 						{/each}
 					</div>
 				</div>
+				<div class="mt-12">
+					<div class="text-2 mb-gap-y py-0.5">Réseaux</div>
+					{#each socials as { url, name }}
+						<div><a class="underline" href={url} target="_blank">{name}</a></div>
+					{/each}
+				</div>
 			</div>
-		{/if}
+		</div>
 	{/if}
 </header>
