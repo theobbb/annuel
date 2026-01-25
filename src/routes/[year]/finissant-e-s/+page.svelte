@@ -1,33 +1,30 @@
 <script lang="ts">
+	import { page } from '$app/state';
+	import Filter from '$lib/components/filter.svelte';
 	import Program from '$lib/components/program.svelte';
+	import Students from '$lib/components/students.svelte';
 
 	const { data } = $props();
-	const { students, programs, year } = $derived(data);
+	const { students, programs } = $derived(data);
 
-	const programs_map = new Map(programs.map((program) => [program.id, program]));
+	const url_search_program = $derived(page.url.searchParams.get('programme') || '');
+
+	const filtered_students = $derived(
+		url_search_program
+			? students.filter((student) => student.program == url_search_program)
+			: students
+	);
 </script>
 
-<div class="border-b- flex items-end justify-between pb-gap-y">
-	<div class="text-right- flex flex-col">
+<!-- <Search /> -->
+<!-- <div class="mb-gap-y"><FilterProgram {programs} /></div> -->
+
+<div class="mb-gap-y">
+	<Filter name="Programmes" param="programme">
 		{#each programs as program}
-			<Program {program} />
+			<div><Program {program} filter /></div>
 		{/each}
-	</div>
-	<div>* Récipiendaire de bourse</div>
+	</Filter>
 </div>
-<div>{students.length} finissant-e-s</div>
-<div class="">
-	{#each students as student, i}
-		<div class="grid grid-cols-12 gap-x-gap">
-			<div class="col-start-3">
-				{#if student.last_name[0] != students[i - 1]?.last_name[0]}
-					<div>{student.last_name[0]}</div>
-				{/if}
-			</div>
-			<div class="col-span-6 col-start-4 flex gap-0.5">
-				<span class={[student.scholarship ? '' : 'invisible']}>*</span>
-				<a href="/{year}/finissant-e-s/{student.id}">{student.last_name}, {student.first_name}</a>
-			</div>
-		</div>
-	{/each}
-</div>
+
+<Students students={filtered_students} />

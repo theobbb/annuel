@@ -1,6 +1,7 @@
 import { pocketbase } from '$lib/pocketbase';
 import type { ProgramsRecord } from '$lib/pocketbase.types';
 import type { ProjectsRecord, StudentsRecord, YearsRecord } from '$lib/pocketbase.types';
+import type { StudentsRecordExpanded } from '$lib/types.js';
 import { error } from '@sveltejs/kit';
 
 export async function load({ params }) {
@@ -8,9 +9,10 @@ export async function load({ params }) {
 
 	if (!program) error(404);
 
-	const students: StudentsRecord[] = await pocketbase.collection('students').getFullList({
+	const students: StudentsRecordExpanded[] = await pocketbase.collection('students').getFullList({
 		filter: `year = "${params.year}" && program = "${params.program}"`,
-		sort: 'last_name'
+		sort: 'last_name',
+		expand: 'program,projects(student)'
 	});
 
 	return { students, program };

@@ -1,28 +1,34 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import ProgramName from '$lib/components/program-name.svelte';
-	import Program from '$lib/components/program.svelte';
 	import Student from '$lib/components/student.svelte';
+	import Search from '$lib/ui/search.svelte';
+	import { SvelteURLSearchParams } from 'svelte/reactivity';
 	import { get_chunk } from './data';
+
+	import Tag from '$lib/components/tag.svelte';
+	import Filter from '$lib/components/filter.svelte';
+	import Program from '$lib/components/program.svelte';
 
 	const { data } = $props();
 	const { pagination, programs, tags, year } = $derived(data);
 
-	const program = page.url.searchParams.get('programme') || '';
-	const tag = page.url.searchParams.get('categorie') || '';
+	const search_params = new SvelteURLSearchParams();
 
-	let extra_projects = $state([]);
+	const url_program = $derived(page.url.searchParams.get('programme') || '');
+	const url_tag = $derived(page.url.searchParams.get('categorie') || '');
+
+	const programs_map = $derived(new Map(programs.map((program) => [program.id, program])));
+	const tags_map = $derived(new Map(tags.map((tag) => [tag.id, tag])));
+
 	let projects = $state(pagination.items);
 
 	let current_page = $state(pagination.page);
 
 	async function load_more() {
 		if (current_page == pagination.totalPages) return;
-
-		const chunk = await get_chunk(year, current_page + 1, program, tag);
-
+		const chunk = await get_chunk(year, current_page + 1, url_program, url_tag);
 		projects.push(...chunk.items);
-
 		current_page++;
 	}
 
@@ -32,35 +38,33 @@
 	});
 </script>
 
-<div class="mb-gap-y"><a href="/{year}/projets">Tous les projets</a></div>
+<!-- <Search /> -->
+
 <div class="grid-12 mb-gap-y">
-	<div class="col-span-6">
-		<div class="text-2 border-b">Programmes</div>
+	<Filter name="Programmes" param="programme">
 		{#each programs as program}
-			<div>
-				<a href="/{year}/projets?programme={program.id}">
-					<ProgramName {program} />
-				</a>
-			</div>
+			<div><Program {program} filter /></div>
 		{/each}
-	</div>
-	<div class="col-span-6">
-		<div class="text-2 border-b">Catégories</div>
-		<div class="">
-			{#each tags as tag}
-				<div>
-					<a href="/{year}/projets?categorie={tag.id}">
-						{tag.name}
-					</a>
-				</div>
-			{/each}
-		</div>
-	</div>
+	</Filter>
+	<Filter name="Catégories" param="categorie">
+		{#each tags as tag}
+			<div><Tag {tag} /></div>
+		{/each}
+	</Filter>
 </div>
-<div class="mb-1">{pagination.totalItems} projets</div>
+
+<div class="mb-1 flex gap-x-gap">
+	<!-- {#if url_program || url_tag}
+		<div>
+			Filtre: {programs_map.get(url_program)?.name || tags_map.get(url_tag)?.name}
+		</div>
+	{/if} -->
+	{pagination.totalItems} projets
+</div>
+
 <div class="grid-12">
 	{#each projects as project}
-		<div class="col-span-2 flex flex-col">
+		<div class="col-span-6 flex flex-col sm:col-span-4 md:col-span-3 xl:col-span-2">
 			<a class="aspect-square bg-black/10" href="/{year}/projets/{project.id}"> </a>
 			<div class="mt-1 text-xs/3.5">
 				<div>{project.name}</div>
@@ -71,6 +75,6 @@
 </div>
 {#if current_page < pagination.totalPages}
 	<button class="link-hover mt-36 cursor-pointer" onclick={load_more}>
-		Load more <span class="inline-flex translate-y-px">+</span>
+		Charger plus <span class="inline-flex translate-y-px">+</span>
 	</button>
 {/if}

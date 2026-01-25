@@ -15,6 +15,7 @@ export enum Collections {
 	Programs = "programs",
 	ProjectTags = "project_tags",
 	Projects = "projects",
+	Socials = "socials",
 	Students = "students",
 	Users = "users",
 	Years = "years",
@@ -130,6 +131,14 @@ export type ProjectsRecord = {
 	updated: IsoAutoDateString
 }
 
+export type SocialsRecord = {
+	created: IsoAutoDateString
+	id: string
+	name?: string
+	updated: IsoAutoDateString
+	url?: string
+}
+
 export type StudentsRecord = {
 	created: IsoAutoDateString
 	description?: string
@@ -172,6 +181,7 @@ export type GlobalsResponse<Texpand = unknown> = Required<GlobalsRecord> & BaseS
 export type ProgramsResponse<Texpand = unknown> = Required<ProgramsRecord> & BaseSystemFields<Texpand>
 export type ProjectTagsResponse<Texpand = unknown> = Required<ProjectTagsRecord> & BaseSystemFields<Texpand>
 export type ProjectsResponse<Texpand = unknown> = Required<ProjectsRecord> & BaseSystemFields<Texpand>
+export type SocialsResponse<Texpand = unknown> = Required<SocialsRecord> & BaseSystemFields<Texpand>
 export type StudentsResponse<Texpand = unknown> = Required<StudentsRecord> & BaseSystemFields<Texpand>
 export type UsersResponse<Texpand = unknown> = Required<UsersRecord> & AuthSystemFields<Texpand>
 export type YearsResponse<Texpand = unknown> = Required<YearsRecord> & BaseSystemFields<Texpand>
@@ -188,6 +198,7 @@ export type CollectionRecords = {
 	programs: ProgramsRecord
 	project_tags: ProjectTagsRecord
 	projects: ProjectsRecord
+	socials: SocialsRecord
 	students: StudentsRecord
 	users: UsersRecord
 	years: YearsRecord
@@ -203,6 +214,7 @@ export type CollectionResponses = {
 	programs: ProgramsResponse
 	project_tags: ProjectTagsResponse
 	projects: ProjectsResponse
+	socials: SocialsResponse
 	students: StudentsResponse
 	users: UsersResponse
 	years: YearsResponse
