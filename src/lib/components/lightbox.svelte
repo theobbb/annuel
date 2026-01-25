@@ -1,7 +1,4 @@
 <script lang="ts">
-	import IconArrowLeft from '$lib/ui/icons/icon-arrow-left.svelte';
-	import IconArrowRight from '$lib/ui/icons/icon-arrow-right.svelte';
-	import IconClose from '$lib/ui/icons/icon-close.svelte';
 	import type { Snippet } from 'svelte';
 
 	const {
@@ -40,15 +37,11 @@
 
 		<div class="col-span-3 flex flex-col justify-between" style="--color-text-2: rgb(94, 94, 94);">
 			<div class="pointer-events-auto flex items-center justify-between gap-gap text-2xl">
-				<button onclick={onclose}><IconClose /></button>
+				<button onclick={onclose} class="icon-[ri--close-fill]"></button>
 
 				<div class="flex justify-between gap-x-gap">
-					<button onclick={previous}>
-						<IconArrowLeft />
-					</button>
-					<button onclick={next}>
-						<IconArrowRight />
-					</button>
+					<button onclick={previous} class="icon-[ri--arrow-left-line]"> </button>
+					<button onclick={next} class="icon-[ri--arrow-right-line]"> </button>
 				</div>
 			</div>
 			{#if children}
