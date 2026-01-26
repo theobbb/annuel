@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Image from '$lib/components/image.svelte';
 	import Lightbox from '$lib/components/lightbox.svelte';
 	import PreviewStudent from '$lib/components/preview-student.svelte';
 	import ProjectRow from '$lib/components/project-row.svelte';
@@ -65,10 +66,12 @@
 <div class="grid-12 mt-gap-y">
 	{#each { length: n_files } as file, i}
 		<button
-			class="col-span-4 aspect-square bg-placeholder"
+			class="col-span-4 aspect-square"
 			onclick={() => (lightbox_file = String(i))}
 			aria-label="open lightbox {i}"
-		></button>
+		>
+			<Image id={project.id} index={i} />
+		</button>
 	{/each}
 </div>
 {#if related_projects.length}

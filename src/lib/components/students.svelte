@@ -12,8 +12,6 @@
 	const store_student_projects = use_store_student_projects();
 	const preview = $derived(store_student_projects.current);
 	setContext('preview_context', props_id);
-
-	// $inspect(preview);
 </script>
 
 <div class="relative inline-flex">

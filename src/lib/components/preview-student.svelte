@@ -3,6 +3,7 @@
 	import Relations from '$lib/components/relations.svelte';
 	import type { ProjectsRecord, StudentsRecord } from '$lib/pocketbase.types';
 	import { use_store_student_projects } from '$lib/store/store-preview-student.svelte';
+	import Image from './image.svelte';
 
 	const { student, class: cx }: { student: StudentsRecord; class?: string } = $props();
 
@@ -42,7 +43,7 @@
 				>
 					{#if projects[i]}
 						<a class="relative block bg-bg-2 p-1.5" href="/{year}/projets/{projects[i].id}">
-							<div class="aspect-square bg-placeholder"></div>
+							<Image id={projects[i].id} index={i} />
 						</a>
 					{/if}
 				</div>

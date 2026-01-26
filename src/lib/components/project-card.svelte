@@ -5,6 +5,7 @@
 	import { setContext } from 'svelte';
 	import PreviewStudent from './preview-student.svelte';
 	import Student from './student.svelte';
+	import Image from './image.svelte';
 
 	const { project, students }: { project: ProjectsRecord; students?: StudentsRecord[] } = $props();
 	const props_id = $props.id();
@@ -29,7 +30,7 @@
 			aria-label="link to {project.name}"
 		></a>
 		<div class="flex aspect-square">
-			<div class="aspect-square bg-placeholder"></div>
+			<Image id={project.id} index={1} />
 		</div>
 		<div class="invisible relative peer-hover:visible">
 			<div

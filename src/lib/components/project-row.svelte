@@ -8,6 +8,7 @@
 
 	import Student from './student.svelte';
 	import Tag from './tag.svelte';
+	import Image from './image.svelte';
 
 	const { project, students }: { project: ProjectsRecord; students: StudentsRecord[] } = $props();
 	const props_id = $props.id();
@@ -53,15 +54,15 @@
 		<div class="absolute bg-red-500"></div>
 		<div class="mt-1">
 			{#each students as student}
-				<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 				<div class="pointer-events-none relative z-10" role="contentinfo">
 					<Student {student} underline />
 					{#if preview?.context_key == props_id && preview.student.id == student.id}
-						<!-- <div class="absolute -top-24 z-100 w-full translate-x-1/2">
-							<PreviewStudent student={preview.student} />
-						</div> -->
-
-						<div class="relative translate-x-1/2">
+						<div
+							class={[
+								'relative translate-x-1/2',
+								preview.anchor[0] == 'top' ? '' : '-translate-y-4'
+							]}
+						>
 							<PreviewStudent student={preview.student} class="w-md" />
 						</div>
 					{/if}
@@ -71,8 +72,8 @@
 	</div>
 
 	<div class="col-span-6 grid grid-cols-6 gap-x-gap">
-		{#each { length: Math.min(6, n_files) } as file}
-			<div class="aspect-square bg-placeholder"></div>
+		{#each { length: Math.min(6, n_files) } as file, i}
+			<Image id={project.id} index={i} />
 		{/each}
 	</div>
 </div>
