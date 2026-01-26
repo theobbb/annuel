@@ -12,17 +12,19 @@
 
 	let projects: ProjectsRecord[] = $state([]);
 
-	const store_student_projects = use_store_student_projects();
+	const store = use_store_student_projects();
 	async function get_projects() {
-		projects = await store_student_projects.get_projects(student.id);
+		projects = await store.get_projects(student.id);
 	}
 	$effect(() => {
 		get_projects();
 	});
 
-	const [anchor_y, anchor_x] = $derived(store_student_projects.current?.anchor || ['top', 'left']);
+	const [anchor_y, anchor_x] = $derived(store.current?.anchor || ['top', 'left']);
 </script>
 
+<!-- svelte-ignore attribute_global_event_reference -->
+<!-- svelte-ignore a11y_no_static_element_interactions -->
 <div
 	class={[
 		cx,
@@ -30,6 +32,8 @@
 		anchor_y == 'top' ? 'top-0 -translate-y-full' : 'bottom-0 translate-y-full',
 		anchor_x == 'left' ? 'right-0' : 'left-0'
 	]}
+	onmouseenter={() => store.cancel_timer()}
+	onmouseleave={() => store.start_timer()}
 >
 	<div class="mb-gap-y">
 		<div class="grid w-full grid-cols-3 gap-1">
@@ -50,7 +54,9 @@
 			{/each}
 		</div>
 		{#if projects.length > 3}
-			<div class="mt-0.5 px-1 text-right">+ {projects.length - 3}</div>
+			<div class="mt-0.5 px-1 text-right">
+				<div>+ {projects.length - 3}</div>
+			</div>
 		{/if}
 	</div>
 	<div class="px-1">

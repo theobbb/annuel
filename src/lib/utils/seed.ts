@@ -23,11 +23,11 @@ export function seed_placeholder_color(str: string, index: number) {
 
 	// 2. Adjust Saturation based on the index (range: 40% - 90%)
 	// This ensures that image 1 looks different from image 8
-	const saturation = 40 + ((index * 7) % 51);
+	const saturation = 20 + ((index * 7) % 51);
 
 	// 3. Adjust Lightness (range: 45% - 65%)
 	// Keeping it in the middle prevents colors from being too dark or white
-	const lightness = 45 + ((index * 3) % 21);
+	const lightness = 80 + ((index * 3) % 21);
 
 	return `background: hsl(${hue}, ${saturation}%, ${lightness}%)`;
 }

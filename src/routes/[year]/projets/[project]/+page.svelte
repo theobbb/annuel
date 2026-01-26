@@ -51,7 +51,7 @@
 <div class="mb-gap-y text-xl">
 	{project.name}
 </div>
-<div class="grid-12 relative">
+<div class="grid-12 relative mb-12">
 	<div class="col-span-6 max-w-xl">{project.description}</div>
 
 	<Relations
@@ -63,7 +63,7 @@
 	/>
 </div>
 
-<div class="grid-12 mt-gap-y">
+<div class="grid-12">
 	{#each { length: n_files } as file, i}
 		<button
 			class="col-span-4 aspect-square"

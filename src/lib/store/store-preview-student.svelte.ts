@@ -1,4 +1,3 @@
-// comments-service.svelte.ts
 import { page } from '$app/state';
 import { pocketbase } from '$lib/pocketbase';
 import type { ProjectsRecord, StudentsRecord } from '$lib/pocketbase.types';
@@ -13,6 +12,31 @@ export class StoreStudentProjects {
 	#loading = new Map<string, Promise<ProjectsRecord[]>>();
 
 	year = $derived(page.params.year);
+
+	#timer_id: ReturnType<typeof setTimeout> | null = null;
+	#delay = 1000; // Time in ms before closing
+	is_closing = $state(false);
+
+	set_current(data: NonNullable<typeof this.current>) {
+		this.cancel_timer();
+		this.current = data;
+	}
+
+	start_timer() {
+		this.cancel_timer(); // Clear existing to prevent multiple timers
+		this.is_closing = true;
+		this.#timer_id = setTimeout(() => {
+			this.current = null;
+			this.is_closing = false;
+		}, this.#delay);
+	}
+	cancel_timer() {
+		if (this.#timer_id) {
+			clearTimeout(this.#timer_id);
+			this.#timer_id = null;
+		}
+		this.is_closing = false;
+	}
 
 	async get_projects(id: string): Promise<ProjectsRecord[]> {
 		// 1. Check Cache

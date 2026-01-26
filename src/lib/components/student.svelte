@@ -27,11 +27,14 @@
 		if (!trigger_preview) return;
 		const rect = event.currentTarget.getBoundingClientRect();
 		const anchor = get_anchor_pos(rect);
-		store_student_projects.current = {
+		store_student_projects.set_current({
 			student,
 			anchor,
 			context_key: preview_context
-		};
+		});
+	}
+	function onmouseleave() {
+		store_student_projects.start_timer();
 	}
 </script>
 
@@ -52,6 +55,7 @@
 		href="/{page.params.year}/finissant-e-s/{student.id}"
 		class={['pointer-events-auto', underline && 'underline']}
 		{onmouseenter}
+		{onmouseleave}
 	>
 		{@render content()}
 	</a>
