@@ -8,8 +8,14 @@
 	const {
 		student,
 		reverse = false,
-		underline = false
-	}: { student: StudentsRecord; reverse?: boolean; underline?: boolean } = $props();
+		underline = false,
+		trigger_preview = true
+	}: {
+		student: StudentsRecord;
+		reverse?: boolean;
+		underline?: boolean;
+		trigger_preview?: boolean;
+	} = $props();
 
 	const store_student_projects = use_store_student_projects();
 
@@ -18,6 +24,7 @@
 	const is_student_page = $derived(page.params.student == student.id);
 
 	function onmouseenter(event: MouseEvent & { currentTarget: EventTarget & HTMLAnchorElement }) {
+		if (!trigger_preview) return;
 		const rect = event.currentTarget.getBoundingClientRect();
 		const anchor = get_anchor_pos(rect);
 		store_student_projects.current = {

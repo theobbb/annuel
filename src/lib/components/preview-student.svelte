@@ -3,7 +3,6 @@
 	import Relations from '$lib/components/relations.svelte';
 	import type { ProjectsRecord, StudentsRecord } from '$lib/pocketbase.types';
 	import { use_store_student_projects } from '$lib/store/store-preview-student.svelte';
-	import { get_anchor_pos } from '$lib/utils/anchor';
 
 	const { student, class: cx }: { student: StudentsRecord; class?: string } = $props();
 
@@ -56,7 +55,7 @@
 	<div class="px-1">
 		<Relations
 			relations={[
-				{ type: 'student', ref: student },
+				{ type: 'student', ref: student, trigger_preview: false },
 				{ type: 'program', ref: program }
 			]}
 		/>

@@ -20,6 +20,7 @@
 		| {
 				type: 'student';
 				ref: StudentsRecord;
+				trigger_preview?: boolean;
 		  }
 		| {
 				type: 'students';
@@ -49,7 +50,10 @@
 				<Project project={relation.ref} />
 			{:else if relation.type == 'student'}
 				<div class="text-2">Finissant-e</div>
-				<Student student={relation.ref} />
+				<Student
+					student={relation.ref}
+					trigger_preview={relation.trigger_preview == undefined ? true : relation.trigger_preview}
+				/>
 			{:else if relation.type == 'students'}
 				<div class="text-2">Finissant-e-s</div>
 				<Students students={relation.ref} />
