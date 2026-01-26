@@ -1,15 +1,51 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import type { StudentsRecord } from '$lib/pocketbase.types';
+	import { use_store_student_projects } from '$lib/store/store-preview-student.svelte';
+	import { get_anchor_pos } from '$lib/utils/anchor';
+	import { getContext } from 'svelte';
 
-	const { student, reverse = false }: { student: StudentsRecord; reverse?: boolean } = $props();
+	const {
+		student,
+		reverse = false,
+		underline = false
+	}: { student: StudentsRecord; reverse?: boolean; underline?: boolean } = $props();
+
+	const store_student_projects = use_store_student_projects();
+
+	const preview_context: string | null = getContext('preview_context');
+
+	const is_student_page = $derived(page.params.student == student.id);
+
+	function onmouseenter(event: MouseEvent & { currentTarget: EventTarget & HTMLAnchorElement }) {
+		const rect = event.currentTarget.getBoundingClientRect();
+		const anchor = get_anchor_pos(rect);
+		store_student_projects.current = {
+			student,
+			anchor,
+			context_key: preview_context
+		};
+	}
 </script>
 
-<a href="/{page.params.year}/finissant-e-s/{student.id}" class="pointer-events-auto">
+{#snippet content()}
 	{#if reverse}
 		{student.last_name}, {student.first_name}
 	{:else}
 		{student.first_name}
 		{student.last_name}
 	{/if}
-</a>
+{/snippet}
+{#if is_student_page}
+	<span class="pointer-events-auto">
+		{@render content()}
+	</span>
+{:else}
+	<a
+		href="/{page.params.year}/finissant-e-s/{student.id}"
+		class={['pointer-events-auto', underline && 'underline']}
+		{onmouseenter}
+	>
+		{@render content()}
+	</a>
+{/if}

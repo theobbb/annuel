@@ -11,6 +11,7 @@
 	--color-placeholder: rgb(222, 222, 222);
 
 	--color-text: rgb(38, 38, 38);
+	--color-text-1: rgb(48, 48, 48);
 	--color-text-2: rgb(138, 138, 138);
 }
 
@@ -23,6 +24,21 @@ html {
 	-webkit-tap-highlight-color: unset;
 	/* Optional: Prevents layout shift (page jump) caused by the scrollbar disappearing */
 	scrollbar-gutter: stable;
+
+	--cut: 15px;
+}
+
+.mono {
+	font-variation-settings: 'MONO' 80;
+	color: rgb(76, 76, 76);
+}
+
+.text-xs {
+	line-height: calc(var(--spacing) * 3.5);
+}
+.text-xl {
+	line-height: 1.15em;
+	color: rgb(48, 48, 48);
 }
 
 .grid-12 {
@@ -35,6 +51,11 @@ html {
 	color: var(--color-text-2);
 }
 
+/* a,
+.underline {
+	text-decoration-style: wavy !important;
+	text-decoration-color: rgba(0, 0, 0, 0.2) !important;
+} */
 a:hover {
 	text-decoration: underline;
 }
@@ -62,10 +83,13 @@ body:has(header.menu-open) {
 }
 
 .corner {
-	--cut: 15px;
-
+	background: linear-gradient(135deg, var(--color-bg-2) calc(100% - var(--cut)), transparent 0);
+}
+.corner.left {
+	background: linear-gradient(225deg, var(--color-bg-2) calc(100% - var(--cut)), transparent 0);
+}
+/* .corner {
 	background-color: var(--color-bg-2);
-	/* background: linear-gradient(315deg, var(--color-bg-2) calc(100% - var(--cut)), transparent 0); */
 	clip-path: polygon(
 		0 0,
 		100% 0,
@@ -75,6 +99,9 @@ body:has(header.menu-open) {
 	);
 	overflow: hidden;
 }
+.corner.left {
+	clip-path: polygon(0 0, 100% 0, 100% 100%, var(--cut) 100%, 0 calc(100% - var(--cut)), 0 100%);
+} */
 
 /* @media (max-width: 48rem) {
 	html {

@@ -32,8 +32,8 @@
 		{#each years as y}
 			<a
 				class={[
-					'px-gap text-center hover:bg-black/10 max-md:py-1',
-					y.id == year ? 'active bg-black/10 ' : '',
+					'px-gap text-center hover:bg-white max-md:py-1',
+					y.id == year ? 'active bg-white ' : '',
 					''
 				]}
 				href="/{y.id}{other_year_href}">{y.id}</a

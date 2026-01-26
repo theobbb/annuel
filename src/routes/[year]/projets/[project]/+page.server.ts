@@ -1,26 +1,23 @@
 import { pocketbase } from '$lib/pocketbase';
-import type {
-	ProgramsRecord,
-	ProjectsRecord,
-	ProjectTagsRecord,
-	StudentsRecord
-} from '$lib/pocketbase.types';
+import type { ProjectsRecord, StudentsRecord } from '$lib/pocketbase.types';
 import { error } from '@sveltejs/kit';
 
 export async function load({ params }) {
 	const project: ProjectsRecord & {
 		expand: {
-			student: StudentsRecord & {
+			students: (StudentsRecord & {
 				expand: {
-					program: ProgramsRecord;
-					'projects(student)': ProjectsRecord[];
+					'projects(students)': (ProjectsRecord & {
+						expand: {
+							students: StudentsRecord[];
+						};
+					})[];
 				};
-			};
-			tags: ProjectTagsRecord[];
+			})[];
 		};
 	} = await pocketbase
 		.collection('projects')
-		.getOne(params.project, { expand: 'tags,student,student.program,student.projects(student)' });
+		.getOne(params.project, { expand: 'students,students.projects(students).students' });
 
 	if (!project) error(404);
 	return { project };

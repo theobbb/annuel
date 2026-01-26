@@ -4,12 +4,12 @@ import type { PaginationResult } from '$lib/types';
 import type { RecordListOptions } from 'pocketbase';
 
 export async function get_chunk(year: string, page: number, program: string, tag: string) {
-	const options: RecordListOptions = { filter: `student.year = "${year}"`, expand: 'student' };
+	const options: RecordListOptions = { filter: `year = "${year}"`, expand: 'students' };
 
-	if (program) options.filter += ` && student.program = "${program}"`;
+	if (program) options.filter += ` && students.program = "${program}"`;
 	if (tag) options.filter += ` && tags ~ "${tag}"`;
 
-	const pagination: PaginationResult<ProjectsRecord & { expand: { student: StudentsRecord } }> =
+	const pagination: PaginationResult<ProjectsRecord & { expand: { students: StudentsRecord[] } }> =
 		await pocketbase.collection('projects').getList(page, 72, options);
 
 	return pagination;

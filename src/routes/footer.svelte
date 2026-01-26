@@ -19,9 +19,11 @@
 
 	<div class="col-span-full md:col-span-6">
 		<div class="mb-gap-y py-0.5">Description des programmes</div>
-		{#each programs as program}
-			<div class="ml-gap- -indent-gap- underline"><Program {program} /></div>
-		{/each}
+		<div class="">
+			{#each programs as program}
+				<div class="ml-gap- -indent-gap- underline"><Program {program} /></div>
+			{/each}
+		</div>
 	</div>
 	{#if year}
 		<div class="col-span-8 max-md:mt-gap-y md:col-span-2">

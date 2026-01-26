@@ -13,5 +13,5 @@
 	<div class="border-b pb-0.5">
 		<a {href} class={[!url_search_program && 'active', 'text-2']}> {name} </a>
 	</div>
-	<div class="ml-gap- -indent-gap-">{@render children()}</div>
+	<div class="ml-gap- -indent-gap- py-px">{@render children()}</div>
 </div>

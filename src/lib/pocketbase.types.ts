@@ -105,10 +105,11 @@ export type GlobalsRecord = {
 	updated: IsoAutoDateString
 }
 
-export type ProgramsRecord = {
+export type ProgramsRecord<Tmetadata = unknown> = {
 	created: IsoAutoDateString
 	description?: string
 	id: string
+	metadata?: null | Tmetadata
 	name: string
 	updated: IsoAutoDateString
 }
@@ -126,9 +127,10 @@ export type ProjectsRecord = {
 	files?: FileNameString[]
 	id: string
 	name: string
-	student: RecordIdString
+	students: RecordIdString[]
 	tags?: RecordIdString[]
 	updated: IsoAutoDateString
+	year: RecordIdString
 }
 
 export type SocialsRecord = {
@@ -178,7 +180,7 @@ export type MfasResponse<Texpand = unknown> = Required<MfasRecord> & BaseSystemF
 export type OtpsResponse<Texpand = unknown> = Required<OtpsRecord> & BaseSystemFields<Texpand>
 export type SuperusersResponse<Texpand = unknown> = Required<SuperusersRecord> & AuthSystemFields<Texpand>
 export type GlobalsResponse<Texpand = unknown> = Required<GlobalsRecord> & BaseSystemFields<Texpand>
-export type ProgramsResponse<Texpand = unknown> = Required<ProgramsRecord> & BaseSystemFields<Texpand>
+export type ProgramsResponse<Tmetadata = unknown, Texpand = unknown> = Required<ProgramsRecord<Tmetadata>> & BaseSystemFields<Texpand>
 export type ProjectTagsResponse<Texpand = unknown> = Required<ProjectTagsRecord> & BaseSystemFields<Texpand>
 export type ProjectsResponse<Texpand = unknown> = Required<ProjectsRecord> & BaseSystemFields<Texpand>
 export type SocialsResponse<Texpand = unknown> = Required<SocialsRecord> & BaseSystemFields<Texpand>

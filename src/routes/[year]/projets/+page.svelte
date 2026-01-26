@@ -39,6 +39,7 @@
 	});
 </script>
 
+<!-- <div class="mb-gap-y size-180 bg-placeholder"></div> -->
 <div class="grid-12 mb-gap-y">
 	<Filter name="Programmes" param="programme">
 		{#each programs as program}
@@ -64,7 +65,7 @@
 
 <div class="grid-12">
 	{#each projects as project}
-		<ProjectCard {project} student={project.expand.student} />
+		<ProjectCard {project} students={project.expand.students} />
 		<!-- <div class="bg-bg-2 px-1.5 py-1.5 corner col-span-6 flex flex-col sm:col-span-4 md:col-span-3 xl:col-span-2">
 			<div class=" aspect-square flex"><a class="aspect-square bg-placeholder " href="/{year}/projets/{project.id}"> </a></div>
 			<div class="mt-1 text-xs/3.5">
@@ -75,7 +76,7 @@
 	{/each}
 </div>
 {#if current_page < pagination.totalPages}
-	<button class="link-hover mt-36 cursor-pointer" onclick={load_more}>
+	<button class="link-hover corner mt-24 w-full cursor-pointer py-2 text-lg" onclick={load_more}>
 		Charger plus <span class="inline-flex translate-y-px">+</span>
 	</button>
 {/if}
