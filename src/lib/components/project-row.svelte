@@ -27,7 +27,7 @@
 
 <div
 	class={[
-		'corner group left grid-12 relative col-span-6 mb-1.5 flex-col bg-bg-2 px-3 py-1.5',
+		'corner group left grid-12 relative mb-1.5 flex-col bg-bg-2 px-3 py-1.5',
 		preview?.context_key == props_id && 'z-50'
 	]}
 >
@@ -39,11 +39,11 @@
 	<div
 		class="invisible absolute bottom-2 left-2 icon-[ri--arrow-right-up-line] text-xl peer-hover:visible"
 	></div>
-	<div class="title col-span-3 pr-gap">
+	<div class="title col-span-full pr-gap lg:col-span-3">
 		<div class="pointer-events-none relative block text-xl/6">
 			{project.name}
 		</div>
-		<div class="mt-1 mb-gap-y flex gap-2">
+		<div class="mt-1 mb-gap-y flex gap-1.5">
 			{#each tags as tag}
 				<div class="pointer-events-none relative z-10"><Tag {tag} /></div>
 			{/each}
@@ -71,9 +71,9 @@
 		</div>
 	</div>
 
-	<div class="col-span-6 grid grid-cols-6 gap-x-gap">
+	<div class="col-span-full grid grid-cols-3 gap-gap lg:col-span-6 lg:grid-cols-6">
 		{#each { length: Math.min(6, n_files) } as file, i}
-			<Image id={project.id} index={i} />
+			<div class={[i >= 3 && 'max-lg:hidden-']}><Image id={project.id} index={i} /></div>
 		{/each}
 	</div>
 </div>

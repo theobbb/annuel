@@ -1,20 +1,21 @@
 <script lang="ts">
 	import Image from '$lib/components/image.svelte';
-	import Lightbox from '$lib/components/lightbox.svelte';
-	import PreviewStudent from '$lib/components/preview-student.svelte';
+	import SingleHeader from '$lib/components/layout/single-header.svelte';
 	import ProjectRow from '$lib/components/project-row.svelte';
 	import Relations from '$lib/components/relations.svelte';
 	import Students from '$lib/components/students.svelte';
-	import type { ProjectTagsRecord, StudentsRecord } from '$lib/pocketbase.types';
-	import { use_store_student_projects } from '$lib/store/store-preview-student.svelte.js';
+	import type { ProgramsRecord, ProjectTagsRecord } from '$lib/pocketbase.types';
 	import { string_to_1_8 } from '$lib/utils/seed';
-	import { setContext } from 'svelte';
 
 	const { data } = $props();
 
-	const { project, tags_map } = $derived(data);
+	const { project, tags_map, programs_map } = $derived(data);
 
 	const n_files = $derived(string_to_1_8(project.name));
+
+	const program: ProgramsRecord = $derived(
+		programs_map.get(project.expand.students[0].program)
+	) as ProgramsRecord;
 
 	const tags: ProjectTagsRecord[] = $derived(
 		project.tags
@@ -48,20 +49,23 @@
 	let lightbox_file: string | null = $state(null);
 </script>
 
-<div class="mb-gap-y text-xl">
-	{project.name}
-</div>
-<div class="grid-12 relative mb-12">
-	<div class="col-span-6 max-w-xl">{project.description}</div>
-
-	<Relations
-		relations={[
-			{ type: 'students', ref: project.expand.students },
-			// { type: 'program', ref: program },
-			{ type: 'tags', ref: tags }
-		]}
-	/>
-</div>
+<SingleHeader>
+	{#snippet title()}
+		{project.name}
+	{/snippet}
+	{#snippet description()}
+		{project.description}
+	{/snippet}
+	{#snippet relations()}
+		<Relations
+			relations={[
+				{ type: 'students', ref: project.expand.students },
+				{ type: 'program', ref: program },
+				{ type: 'tags', ref: tags }
+			]}
+		/>
+	{/snippet}
+</SingleHeader>
 
 <div class="grid-12">
 	{#each { length: n_files } as file, i}

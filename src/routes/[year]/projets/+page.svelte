@@ -10,6 +10,8 @@
 	import Filter from '$lib/components/filter.svelte';
 	import Program from '$lib/components/program.svelte';
 	import ProjectCard from '$lib/components/project-card.svelte';
+	import { url_query_param } from '$lib/utils/url';
+	import ProjectRow from '$lib/components/project-row.svelte';
 
 	const { data } = $props();
 	const { pagination, programs, tags, year } = $derived(data);
@@ -18,6 +20,8 @@
 
 	const url_program = $derived(page.url.searchParams.get('programme') || '');
 	const url_tag = $derived(page.url.searchParams.get('categorie') || '');
+
+	const url_search_view = $derived(page.url.searchParams.get('vue') || '');
 
 	const programs_map = $derived(new Map(programs.map((program) => [program.id, program])));
 	const tags_map = $derived(new Map(tags.map((tag) => [tag.id, tag])));
@@ -40,7 +44,7 @@
 </script>
 
 <!-- <div class="mb-gap-y size-180 bg-placeholder"></div> -->
-<div class="grid-12 mb-gap-y">
+<div class="grid-12 sticky- top-0 z-100 mb-gap-y">
 	<Filter name="Programmes" param="programme">
 		{#each programs as program}
 			<div><Program {program} filter /></div>
@@ -53,6 +57,11 @@
 	</Filter>
 </div>
 
+<div class="flex gap-2">
+	<a href={url_query_param(page.url.href, 'vue', 'grille')} class="">Grille</a>
+	<a href={url_query_param(page.url.href, 'vue', 'liste')} class="">Liste</a>
+</div>
+
 <div class="mb-1 flex justify-between gap-x-gap">
 	<!-- {#if url_program || url_tag}
 		<div>
@@ -63,16 +72,13 @@
 	<!-- <div><Search /></div> -->
 </div>
 
-<div class="grid-12">
+<div class={[url_search_view != 'liste' && 'grid-12']}>
 	{#each projects as project}
-		<ProjectCard {project} students={project.expand.students} />
-		<!-- <div class="bg-bg-2 px-1.5 py-1.5 corner col-span-6 flex flex-col sm:col-span-4 md:col-span-3 xl:col-span-2">
-			<div class=" aspect-square flex"><a class="aspect-square bg-placeholder " href="/{year}/projets/{project.id}"> </a></div>
-			<div class="mt-1 text-xs/3.5">
-				<div>{project.name}</div>
-				<div class="underline"><Student student={project.expand.student} /></div>
-			</div>
-		</div> -->
+		{#if url_search_view == 'liste'}
+			<ProjectRow {project} students={project.expand.students} />
+		{:else}
+			<ProjectCard {project} students={project.expand.students} />
+		{/if}
 	{/each}
 </div>
 {#if current_page < pagination.totalPages}

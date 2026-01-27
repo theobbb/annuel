@@ -32,9 +32,9 @@
 		<div class="flex aspect-square">
 			<Image id={project.id} index={1} />
 		</div>
-		<div class="invisible relative peer-hover:visible">
+		<div class="relative opacity-0 transition peer-hover:opacity-100">
 			<div
-				class="absolute right-0 -bottom-4.5 z-50 icon-[ri--arrow-right-up-line] translate-y-px"
+				class="absolute right-0 -bottom-4.5 z-10 icon-[ri--arrow-right-up-line] translate-y-px"
 			></div>
 		</div>
 

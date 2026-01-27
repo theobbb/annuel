@@ -42,7 +42,7 @@
 	const { relations }: { relations: Relations[] } = $props();
 </script>
 
-<div class="col-span-full lg:col-span-6">
+<div class="">
 	{#each relations as relation}
 		<div class="flex justify-between gap-x-gap border-b py-px text-right last:border-b-0">
 			{#if relation.type == 'project'}
