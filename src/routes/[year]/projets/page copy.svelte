@@ -12,9 +12,6 @@
 	import ProjectCard from '$lib/components/project-card.svelte';
 	import { url_query_param } from '$lib/utils/url';
 	import ProjectRow from '$lib/components/project-row.svelte';
-	import View from './view.svelte';
-	import { icons } from '$lib/ui/icons.js';
-	import { shuffle_array } from '$lib/utils/shuffle.js';
 
 	const { data } = $props();
 	const { pagination, programs, tags, year } = $derived(data);
@@ -44,44 +41,38 @@
 		projects = pagination.items;
 		current_page = pagination.page;
 	});
-
-	let filters_expanded = $state(false);
-
-	function shuffle() {
-		shuffle_array(projects);
-	}
 </script>
 
 <!-- <div class="mb-gap-y size-180 bg-placeholder"></div> -->
-<div class="grid-12 mb-gap-y">
+<div class="grid-12 sticky- top-0 z-100 mb-gap-y">
 	<Filter name="Programmes" param="programme">
 		{#each programs as program}
 			<div><Program {program} filter /></div>
 		{/each}
 	</Filter>
-	<div class="col-span-10 lg:col-span-6">
-		<Filter name="Catégories" param="categorie">
-			{#each tags as tag}
-				<div><Tag {tag} /></div>
-			{/each}
-		</Filter>
-	</div>
+	<Filter name="Catégories" param="categorie">
+		{#each tags as tag}
+			<div><Tag {tag} /></div>
+		{/each}
+	</Filter>
 </div>
 
-<div class="mb-2 flex items-end justify-between gap-x-gap">
+<a
+	class="flex w-fit border p-0.5"
+	href={url_query_param(page.url.href, 'vue', url_search_view == 'liste' ? 'grille' : 'liste')}
+>
+	<div class={['px-2 py-px', url_search_view != 'liste' ? 'bg-white' : 'text-2']}>Grille</div>
+	<div class={['px-2 py-px', url_search_view == 'liste' ? 'bg-white' : 'text-2']}>Liste</div>
+</a>
+
+<div class="mb-1 flex justify-between gap-x-gap">
 	<!-- {#if url_program || url_tag}
 		<div>
 			Filtre: {programs_map.get(url_program)?.name || tags_map.get(url_tag)?.name}
 		</div>
 	{/if} -->
-	<div class="ml-px">{pagination.totalItems} projets</div>
+	<div>{pagination.totalItems} projets</div>
 	<!-- <div><Search /></div> -->
-	<div class="flex items-center justify-end gap-2">
-		<button onclick={shuffle} class="icon-[ri--dice-5-line]- icon-[ri--shuffle-fill]-"
-			>Mélanger</button
-		>
-		<View />
-	</div>
 </div>
 
 <div class={[url_search_view != 'liste' && 'grid-12']}>

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state';
+	import { icons } from '$lib/ui/icons';
 
 	let { open = $bindable(false) } = $props();
 	const { year, years } = $derived(page.data);
@@ -22,7 +23,7 @@
 	class="flex cursor-pointer items-center gap-x-1 py-0.5 hover:underline"
 	onclick={() => (open = !open)}
 >
-	<span class="icon-[ri--expand-up-down-line]"></span>
+	<span class={icons.expand}></span>
 	{year}
 </button>
 {#if open}

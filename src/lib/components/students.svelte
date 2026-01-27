@@ -14,7 +14,7 @@
 	setContext('preview_context', props_id);
 </script>
 
-<div class="relative inline-flex">
+<div class="relative inline-flex flex-wrap justify-end whitespace-nowrap">
 	{#each students as student, i}
 		<div class="relative inline-flex">
 			<Student {student} />

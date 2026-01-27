@@ -10,7 +10,7 @@
 	const url_search_program = $derived(page.url.searchParams.get('programme') || '');
 
 	const href: string = $derived.by(() => {
-		//if (!filter) return `/${year}/programmes/${program.id}`;
+		if (!filter) return `/${year}/programmes/${program.id}`;
 
 		let route: string = page.route.id || '';
 		route = route.replace('/[year]', '');

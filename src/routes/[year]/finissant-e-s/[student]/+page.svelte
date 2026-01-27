@@ -36,7 +36,7 @@
 	{/snippet}
 </SingleHeader>
 
-<div class="divide-y- mt-gap-y">
+<div class="">
 	{#each student.expand['projects(students)'] as project}
 		<ProjectRow {project} students={project.expand.students} />
 		<!-- <ProjectCard {project} /> -->

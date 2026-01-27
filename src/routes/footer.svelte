@@ -1,13 +1,12 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import Logo from '$lib/components/logo.svelte';
 	import Program from '$lib/components/program.svelte';
 	import SelectYear from './select-year.svelte';
 
 	const { year, programs, socials } = $derived(page.data);
 </script>
 
-<footer class="grid-12 mt-12 mb-8 border-t">
+<footer class="grid-12 mt-section mb-section border-t">
 	<!-- <div class="col-span-3">
 		<div>Annuel de design</div>
 		Exposition des projets des finissant.es provenant des six programmes de l’École de design de l’UQAM.

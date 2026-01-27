@@ -70,7 +70,7 @@
 <div class="grid-12">
 	{#each { length: n_files } as file, i}
 		<button
-			class="col-span-4 aspect-square"
+			class="col-span-full aspect-square sm:col-span-6 lg:col-span-4"
 			onclick={() => (lightbox_file = String(i))}
 			aria-label="open lightbox {i}"
 		>
@@ -82,7 +82,9 @@
 	<div class="mt-24">
 		<div class=" pb-gap-y text-center">
 			<div>Autres projets par</div>
-			<div class="underline"><Students students={project.expand.students} /></div>
+			<div class="underline">
+				<Students students={project.expand.students} />
+			</div>
 		</div>
 		<div class="flex flex-col">
 			{#each related_projects as related_project}

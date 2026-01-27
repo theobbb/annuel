@@ -22,9 +22,10 @@
 	<!-- <div class="border-b pb-0.5">
 		<a {href} class={[!url_search_program && 'active', 'text-2']}> {name} </a>
 	</div> -->
-	{#if expanded}
-		<div class="">
-			{@render children()}
-		</div>
-	{/if}
+
+	<div
+		class="divide-y- absolute right-0 bottom-0 left-0 z-100 translate-y-full border bg-bg px-gap py-0.5"
+	>
+		{@render children()}
+	</div>
 </div>

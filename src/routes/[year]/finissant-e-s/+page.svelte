@@ -7,10 +7,12 @@
 	import PreviewStudent from '$lib/components/preview-student.svelte';
 	import { setContext } from 'svelte';
 	import { use_store_student_projects } from '$lib/store/store-preview-student.svelte.js';
+	import ProgramName from '$lib/components/program-name.svelte';
+	import { icons } from '$lib/ui/icons';
 
 	const { data } = $props();
 	const props_id = $props.id();
-	const { students, programs } = $derived(data);
+	const { students, programs, year } = $derived(data);
 
 	const url_search_program = $derived(page.url.searchParams.get('programme') || '');
 
@@ -43,8 +45,33 @@
 
 <!-- <Search /> -->
 <!-- <div class="mb-gap-y"><FilterProgram {programs} /></div> -->
-
-<div class="grid-12 mb-12">
+<div class="grid-12 mb-section">
+	<div class="col-span-full lg:col-span-6">
+		<a class={[!current_program && 'active']} href="/{year}/finissant-e-s">Tous les programmes</a>
+		{#each programs as program}
+			<div class="text-xl-"><Program {program} /></div>
+		{/each}
+	</div>
+	{#if current_program}
+		<div class="col-span-full border-b pb-gap-y lg:col-span-6">
+			<div class="mt-section">
+				<div class="pr-gap text-xl">
+					<div class="">{current_program.description}</div>
+				</div>
+				<div class="text-right- text-xs- mt-gap-y">Directeur: Sylvain Allard</div>
+			</div>
+			<div class="mt-[calc(2*var(--spacing-gap-y))] flex max-lg:justify-end">
+				<a
+					class=" flex w-fit items-center gap-1 bg-white px-3 py-1.5 pr-2 text-xl"
+					href="/{year}/projets?programme={current_program.id}"
+				>
+					Projets<span class={[icons.arrow_right_up, 'translate-y-px']}></span>
+				</a>
+			</div>
+		</div>
+	{/if}
+</div>
+<!-- <div class="grid-12 mb-12">
 	<Filter name="Programmes" param="programme">
 		{#each programs as program}
 			<div><Program {program} filter /></div>
@@ -58,19 +85,19 @@
 			</div>
 			<div class="text-right- text-xs- mt-gap-y">
 				Directeur: Sylvain Allard
-				<!-- {JSON.stringify(current_program.metadata)} -->
+				
 			</div>
 		</div>
 	{/if}
-</div>
+</div> -->
 
-<div class="sticky top-0 mb-1 flex justify-between gap-x-gap text-xs">
+<div class="mb-gap-y flex justify-between gap-x-gap text-xs lg:-mb-3.5">
 	<div>{filtered_students.length} finissant-e-s</div>
 	<div>* Récipiendaire de bourse</div>
 </div>
-<div class="grid-12">
+<div class="grid-12 mb-section">
 	{#each cols as col}
-		<div class="col-span-6">
+		<div class="col-span-full lg:col-span-6">
 			{#each col as student, i}
 				<div class="grid grid-cols-6 gap-x-gap">
 					<div class="col-start-2">

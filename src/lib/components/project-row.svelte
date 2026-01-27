@@ -50,7 +50,7 @@
 		</div>
 	</div>
 
-	<div class="relative col-span-3">
+	<div class="relative col-span-full lg:col-span-3">
 		<div class="absolute bg-red-500"></div>
 		<div class="mt-1">
 			{#each students as student}
@@ -71,7 +71,9 @@
 		</div>
 	</div>
 
-	<div class="col-span-full grid grid-cols-3 gap-gap lg:col-span-6 lg:grid-cols-6">
+	<div
+		class="col-span-full grid grid-cols-3 gap-[calc(0.5*var(--spacing-gap))] lg:col-span-6 lg:grid-cols-6 lg:gap-gap"
+	>
 		{#each { length: Math.min(6, n_files) } as file, i}
 			<div class={[i >= 3 && 'max-lg:hidden-']}><Image id={project.id} index={i} /></div>
 		{/each}

@@ -11,7 +11,7 @@
 <div class="mb-gap-y text-xl">
 	{@render title()}
 </div>
-<div class="grid-12 relative mb-12">
+<div class="grid-12 relative mb-section">
 	<div class="col-span-full max-w-xl lg:col-span-6">
 		{@render description()}
 	</div>

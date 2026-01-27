@@ -5,6 +5,8 @@
 	--spacing-gap: 1rem;
 	--spacing-gap-y: 0.7rem;
 
+	--spacing-section: 4rem;
+
 	--color-bg: rgb(244, 244, 244);
 	--color-bg-2: white;
 
@@ -46,6 +48,11 @@ html {
 	grid-template-columns: repeat(12, minmax(0, 1fr));
 	gap: var(--spacing-gap);
 }
+@media (max-width: 48rem) {
+	.grid-12 {
+		gap: calc(0.6 * var(--spacing-gap));
+	}
+}
 
 .text-2 {
 	color: var(--color-text-2);
@@ -56,7 +63,7 @@ html {
 	text-decoration-style: wavy !important;
 	text-decoration-color: rgba(0, 0, 0, 0.2) !important;
 } */
-a:hover {
+a:not(.no-hover):hover {
 	text-decoration: underline;
 }
 a.active {

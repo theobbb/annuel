@@ -59,7 +59,7 @@
 {/snippet}
 <header
 	class={[
-		'z-200 mb-8 pt-2 max-md:sticky max-md:inset-y-gap-y max-md:top-0 max-md:bg-bg',
+		'z-200 mb-[calc(0.5*var(--spacing-section))] pt-2 max-md:sticky max-md:inset-y-gap-y max-md:top-0 max-md:bg-bg',
 		menu_mobile_open && 'menu-open'
 	]}
 >
