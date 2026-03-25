@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import type { ProgramsRecord } from '$lib/pocketbase.types';
-	import ProgramLink from '../components/program-link.svelte';
+	import { url_query_param } from '$lib/utils/url';
+	import ProgramLink from '../program-link.svelte';
 
 	const { programs }: { programs: ProgramsRecord[] } = $derived(page.data);
 
@@ -72,8 +73,9 @@
 					'min-w-64- block px-6  py-3 text-center',
 					current_tab === param ? 'bg-black text-white' : ''
 				]}
-				href="/{page.params.year}/{param}{page.url.search}"
-				>{name} <sup>{length}</sup>
+				href={url_query_param(`/${page.params.year}/${param}`, { programme: current || null })}
+			>
+				{name} <sup>{length}</sup>
 			</a>
 		{/each}
 	</div>

@@ -121,7 +121,8 @@ export type SuperusersRecord = {
 	verified?: boolean
 }
 
-export type GlobalsRecord = {
+export type GlobalsRecord<Tbanner = unknown> = {
+	banner?: null | Tbanner
 	created: IsoAutoDateString
 	id: string
 	introduction: string
@@ -190,10 +191,12 @@ export type SocialsRecord = {
 export type SponsorsRecord = {
 	created: IsoAutoDateString
 	id: string
+	logo: FileNameString
 	name: string
 	size?: number
 	sort_order?: number
 	updated: IsoAutoDateString
+	year: RecordIdString
 }
 
 export type StudentsRecord<Tsocials = unknown> = {
@@ -244,7 +247,7 @@ export type OtpsResponse<Texpand = unknown> = Required<OtpsRecord> & BaseSystemF
 export type PasskeyInvitesResponse<Texpand = unknown> = Required<PasskeyInvitesRecord> & BaseSystemFields<Texpand>
 export type PasskeysResponse<Texpand = unknown> = Required<PasskeysRecord> & BaseSystemFields<Texpand>
 export type SuperusersResponse<Texpand = unknown> = Required<SuperusersRecord> & AuthSystemFields<Texpand>
-export type GlobalsResponse<Texpand = unknown> = Required<GlobalsRecord> & BaseSystemFields<Texpand>
+export type GlobalsResponse<Tbanner = unknown, Texpand = unknown> = Required<GlobalsRecord<Tbanner>> & BaseSystemFields<Texpand>
 export type MemberRolesResponse<Texpand = unknown> = Required<MemberRolesRecord> & BaseSystemFields<Texpand>
 export type MembersResponse<Texpand = unknown> = Required<MembersRecord> & BaseSystemFields<Texpand>
 export type ProgramTypesResponse<Texpand = unknown> = Required<ProgramTypesRecord> & BaseSystemFields<Texpand>

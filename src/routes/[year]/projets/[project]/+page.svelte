@@ -1,27 +1,25 @@
 <script lang="ts">
+	import { page } from '$app/state';
 	import Image from '$lib/components/image.svelte';
 	import SingleHeader from '$lib/components/layout/single-header.svelte';
 	import ProjectRow from '$lib/components/project-row.svelte';
 	import Relations from '$lib/components/relations.svelte';
+	import Student from '$lib/components/student.svelte';
 	import Students from '$lib/components/students.svelte';
-	import type { ProgramsRecord, ProjectTagsRecord } from '$lib/pocketbase.types';
+	import type { ProgramsRecord } from '$lib/pocketbase.types';
+	import RecordHeader from '$lib/ui/components/record/record-header.svelte';
+	import Title from '$lib/ui/components/title.svelte';
 	import { string_to_1_8 } from '$lib/utils/seed';
 
 	const { data } = $props();
 
-	const { project, tags_map, programs_map } = $derived(data);
+	const { project, program_map } = $derived(data);
 
 	const n_files = $derived(string_to_1_8(project.name));
 
 	const program: ProgramsRecord = $derived(
-		programs_map.get(project.expand.students[0].program)
+		program_map.get(project.expand.students[0].program)
 	) as ProgramsRecord;
-
-	const tags: ProjectTagsRecord[] = $derived(
-		project.tags
-			? project.tags.map((tag) => tags_map.get(tag)).filter((tag) => tag != undefined)
-			: []
-	);
 
 	const related_projects = $derived.by(() => {
 		// 1. Safety check: ensure we have students
@@ -49,7 +47,38 @@
 	let lightbox_file: string | null = $state(null);
 </script>
 
-<SingleHeader>
+<RecordHeader back_href="/{page.params.year}/projets">
+	{#snippet title()}
+		<div>
+			{project.name}
+		</div>
+	{/snippet}
+	{#snippet description()}
+		{project.description}
+	{/snippet}
+	<div>
+		<div class="text-right">
+			{#each project.expand.students as student}
+				<div><Student {student} /></div>
+			{/each}
+		</div>
+	</div>
+	<!-- {#snippet relations()}
+		<Relations
+			relations={[
+				{ type: 'program', ref: program },
+				{
+					type: 'contact',
+					ref: [
+						{ name: 'Instagram', href: '/' },
+						{ name: 'Facebook', href: '/' }
+					]
+				}
+			]}
+		/>
+	{/snippet} -->
+</RecordHeader>
+<!-- <SingleHeader>
 	{#snippet title()}
 		{project.name}
 	{/snippet}
@@ -65,7 +94,7 @@
 			]}
 		/>
 	{/snippet}
-</SingleHeader>
+</SingleHeader> -->
 
 <div class="grid-12">
 	{#each { length: n_files } as file, i}
@@ -80,13 +109,16 @@
 </div>
 {#if related_projects.length}
 	<div class="mt-24">
-		<div class=" pb-gap-y text-center">
+		<!-- <div class="pb-gap-y text-xl">
 			<div>Autres projets par</div>
 			<div class="underline">
 				<Students students={project.expand.students} />
 			</div>
-		</div>
-		<div class="flex flex-col">
+		</div> -->
+		<Title>
+			Autres projets <sup>{related_projects.length}</sup>
+		</Title>
+		<div>
 			{#each related_projects as related_project}
 				<ProjectRow project={related_project} students={related_project.expand.students} />
 			{/each}

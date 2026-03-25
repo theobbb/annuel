@@ -4,16 +4,10 @@
 	import { use_store_student_projects } from '$lib/store/store-preview-student.svelte';
 	import { string_to_1_8 } from '$lib/utils/seed';
 	import { setContext } from 'svelte';
-	import PreviewStudent from './preview-student.svelte';
-
 	import Student from './student.svelte';
-	import Tag from './tag.svelte';
-	import Image from './image.svelte';
 
 	const { project, students }: { project: ProjectsRecord; students: StudentsRecord[] } = $props();
 	const props_id = $props.id();
-
-	const { year } = $derived(page.data);
 
 	const n_files = $derived(string_to_1_8(project.name));
 
@@ -30,7 +24,7 @@
 >
 	<a
 		class="peer absolute inset-0 z-5"
-		href="/{year}/projets/{project.id}"
+		href="/{page.params.year}/projets/{project.id}"
 		aria-label="link to {project.name}"
 	></a>
 	<div class="col-span-6 grid grid-cols-5 gap-4">
@@ -42,10 +36,10 @@
 		{/each}
 	</div>
 
-	<div
+	<!-- <div
 		class="invisible absolute bottom-2 left-2 icon-[ri--arrow-right-up-line] peer-hover:visible"
-	></div>
-	<div class="title col-span-3">
+	></div> -->
+	<div class="title col-span-3 text-balance">
 		<div class="pointer-events-none relative mt-1 block">
 			{project.name}
 		</div>
@@ -55,7 +49,7 @@
 		<div class="mt-1.5 text-right text-xl">
 			{#each students as student}
 				<div class="pointer-events-none" role="contentinfo">
-					<Student {student} underline />
+					<Student {student} />
 					<!-- {#if preview?.context_key == props_id && preview.student.id == student.id}
 						<div
 							class={[

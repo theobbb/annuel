@@ -16,10 +16,13 @@
 		route = route.replace('/[year]', '');
 		route = route.split('[')[0];
 		route = route.substring(1);
-		const param: 'projets' | 'finissant-e-s' = route == 'projets' ? 'projets' : 'finissant-e-s';
+		const collection: 'projets' | 'finissant-e-s' =
+			route == 'projets' ? 'projets' : 'finissant-e-s';
 
-		const url = `${page.url.origin}/${year}/${param}${page.url.search}`;
-		return url_query_param(url, 'programme', url_search_program == program.id ? null : program.id);
+		const url = `/${page.params.year}/${collection}${page.url.search}`;
+		return url_query_param(url, {
+			programme: url_search_program == program.id ? null : program.id
+		});
 	});
 </script>
 

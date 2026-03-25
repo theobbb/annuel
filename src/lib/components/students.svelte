@@ -14,25 +14,12 @@
 	setContext('preview_context', props_id);
 </script>
 
-<div class="relative inline-flex flex-wrap justify-end whitespace-nowrap">
-	{#each students as student, i}
-		<div class="relative inline-flex">
-			<Student {student} />
-			{#if i < students.length - 1}
-				<span class="mr-1">,</span>
-			{/if}
-			{#if preview?.context_key == props_id && preview.student.id == student.id}
-				<!-- <div
-					class={[
-						'absolute top-11 right-0 z-1000 w-lg',
-						preview.rect.left > preview.rect.right ? 'left-0' : 'right-0'
-					]}
-				>
-					<PreviewStudent student={preview.student} class="w-md" />
-				</div> -->
+{#each students as student, i}
+	<div class="relative inline-flex">
+		<Student {student} />
 
+		<!-- {#if preview?.context_key == props_id && preview.student.id == student.id}
 				<PreviewStudent student={preview.student} class="w-md" />
-			{/if}
-		</div>
-	{/each}
-</div>
+			{/if} -->
+	</div>
+{/each}

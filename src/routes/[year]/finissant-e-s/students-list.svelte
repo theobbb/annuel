@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import Headshot from '$lib/components/face-card.svelte';
-	import Student from '$lib/components/student.svelte';
+	import Facecard from '$lib/components/face-card.svelte';
 	import type { StudentsRecord } from '$lib/pocketbase.types';
 
 	const { students }: { students: StudentsRecord[] } = $props();
@@ -16,8 +15,7 @@
 		return [col_1, col_2];
 	});
 
-	let headshot_visible = $state(false);
-	let hovered: StudentsRecord | null = $state(null);
+	let hovered: StudentsRecord | null = $state(students[0]);
 </script>
 
 <div class="grid-12 mt-24">
@@ -32,10 +30,7 @@
 					</div>
 					<div class="col-span-3 flex gap-0.5">
 						<a
-							onmouseenter={() => {
-								headshot_visible = true;
-								hovered = student;
-							}}
+							onmouseenter={() => (hovered = student)}
 							href="/{page.params.year}/finissant-e-s/{student.id}"
 						>
 							{student.last_name}, {student.first_name}
@@ -48,7 +43,11 @@
 	<div class="relative col-span-2 col-start-11">
 		<div class="sticky top-8">
 			{#if hovered}
-				<Headshot student={hovered} />
+				<Facecard student={hovered} />
+				<div class=" mt-4 text-right">
+					{hovered.first_name}
+					{hovered.last_name}
+				</div>
 			{/if}
 		</div>
 	</div>

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import Uqam from '$lib/assets/uqam.svelte';
-	import Header from '$lib/ui/templates/header.svelte';
+	import Header from '$lib/ui/components/header.svelte';
 
 	const { year, programs, socials } = $derived(page.data);
 </script>

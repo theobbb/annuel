@@ -13,10 +13,9 @@ export async function load({ params, setHeaders }) {
 		filter: `year = "${params.year}"`,
 		expand: 'students',
 		fields:
-			'files,id,name,students,expand.students.id,expand.students.first_name,expand.students.last_name'
+			'files, id, name, students, expand.students.id, expand.students.first_name, expand.students.last_name, expand.students.program'
 	});
 
-	console.log(projects);
 	// setHeaders({ca})
-	return { projects: shuffle_array(projects) };
+	return { projects };
 }

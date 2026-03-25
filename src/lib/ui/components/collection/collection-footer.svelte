@@ -1,19 +1,20 @@
 <script lang="ts">
 	import { page } from '$app/state';
+	import { use_seed } from '$lib/store/seed-ctx.svelte';
 	import { url_query_param } from '$lib/utils/url';
 
-	const { n_items } = $props();
+	const { view, n_items }: { view: 'grille' | 'liste'; n_items: number } = $props();
 
-	const url_search_view: 'grille' | 'liste' = $derived(
-		page.url.searchParams.get('vue') == 'liste' ? 'liste' : 'grille'
-	);
+	const seed = use_seed();
+	const project_collection = $derived(page.route.id?.split('/')[2] == 'projets');
+
 	const views = [
 		{ name: 'Grille', param: 'grille', icon: 'icon-[ri--layout-grid-line]' },
 		{ name: 'Liste', param: 'liste', icon: 'icon-[ri--list-check]' }
 	];
 </script>
 
-<div class="sticky bottom-0 z-200 bg-background">
+<div class="sticky bottom-0 z-20 bg-background">
 	<div class="">
 		<div class="grid-12 items-center border-t-2 py-3.5 text-xl">
 			<div class="col-span-3">
@@ -22,14 +23,19 @@
 						<a
 							class={[
 								'flex items-center gap-1.5 px-3 py-1',
-								url_search_view == param ? 'bg-black text-white' : ''
+								view == param ? 'bg-black text-white' : ''
 							]}
-							href={url_query_param(page.url.href, 'vue', param)}
+							href={url_query_param(page.url.href, { vue: param })}
 						>
 							<div class={[icon]}></div>
 							<div class="-mt-0.5">{name}</div>
 						</a>
 					{/each}
+					{#if project_collection}
+						<button class="ml-8 flex items-center" title="Mélanger" onclick={() => seed.shuffle()}>
+							<div class="icon-[ri--shuffle-line]"></div>
+						</button>
+					{/if}
 				</div>
 			</div>
 			<div class="col-span-7">Rechercher</div>

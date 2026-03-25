@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import Headshot from '$lib/components/face-card.svelte';
+	import Facecard from '$lib/components/face-card.svelte';
 	import type { MemberRolesRecord, MembersRecord } from '$lib/pocketbase.types';
 
 	const members: MembersRecord[] = $derived(page.data.members);
@@ -18,7 +18,7 @@
 <div class="grid-12 mb-8">
 	<div class="relative col-span-2 col-start-4 mt-8">
 		<div class="sticky top-8">
-			<!-- <Headshot /> -->
+			<!-- <Facecard /> -->
 		</div>
 	</div>
 	<div class="col-span-7 leading-8">
