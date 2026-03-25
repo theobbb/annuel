@@ -28,7 +28,7 @@
 <div
 	class={[
 		cx,
-		'pointer-events-auto absolute z-500 border bg-bg p-1 text-xs whitespace-normal',
+		'bg-bg pointer-events-auto absolute z-500 border p-1 text-xs whitespace-normal',
 		anchor_y == 'top' ? 'top-0 -translate-y-full' : 'bottom-0 translate-y-full',
 		anchor_x == 'left' ? 'right-0' : 'left-0'
 	]}
@@ -46,7 +46,7 @@
 					]}
 				>
 					{#if projects[i]}
-						<a class="relative block bg-bg-2 p-1.5" href="/{year}/projets/{projects[i].id}">
+						<a class="bg-bg-2 relative block p-1.5" href="/{year}/projets/{projects[i].id}">
 							<Image id={projects[i].id} index={i} />
 						</a>
 					{/if}

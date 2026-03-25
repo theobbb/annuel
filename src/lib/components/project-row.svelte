@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import type { ProjectsRecord, ProjectTagsRecord, StudentsRecord } from '$lib/pocketbase.types';
+	import type { ProjectsRecord, StudentsRecord } from '$lib/pocketbase.types';
 	import { use_store_student_projects } from '$lib/store/store-preview-student.svelte';
 	import { string_to_1_8 } from '$lib/utils/seed';
 	import { setContext } from 'svelte';
@@ -13,11 +13,8 @@
 	const { project, students }: { project: ProjectsRecord; students: StudentsRecord[] } = $props();
 	const props_id = $props.id();
 
-	const { year, tags_map } = $derived(page.data);
+	const { year } = $derived(page.data);
 
-	const tags: ProjectTagsRecord[] = $derived(
-		[...(project.tags || [])]?.map((tag) => tags_map.get(tag))
-	);
 	const n_files = $derived(string_to_1_8(project.name));
 
 	const store_student_projects = use_store_student_projects();
@@ -27,7 +24,7 @@
 
 <div
 	class={[
-		'corner group left grid-12 relative mb-1.5 flex-col bg-bg-2 px-3 py-1.5',
+		'group grid-12 relative flex-col border-t-2 py-4 first:border-t-0',
 		preview?.context_key == props_id && 'z-50'
 	]}
 >
@@ -36,27 +33,30 @@
 		href="/{year}/projets/{project.id}"
 		aria-label="link to {project.name}"
 	></a>
+	<div class="col-span-6 grid grid-cols-5 gap-4">
+		{#each { length: Math.min(5, n_files) } as file, i}
+			<div class={[i >= 3 && 'max-lg:hidden-']}>
+				<div class="aspect-4/5 bg-placeholder"></div>
+				<!-- <Image id={project.id} index={i} /> -->
+			</div>
+		{/each}
+	</div>
+
 	<div
-		class="invisible absolute bottom-2 left-2 icon-[ri--arrow-right-up-line] text-xl peer-hover:visible"
+		class="invisible absolute bottom-2 left-2 icon-[ri--arrow-right-up-line] peer-hover:visible"
 	></div>
-	<div class="title col-span-full pr-gap lg:col-span-3">
-		<div class="pointer-events-none relative block text-xl/6">
+	<div class="title col-span-3">
+		<div class="pointer-events-none relative mt-1 block">
 			{project.name}
-		</div>
-		<div class="mt-1 mb-gap-y flex gap-1.5">
-			{#each tags as tag}
-				<div class="pointer-events-none relative z-10"><Tag {tag} /></div>
-			{/each}
 		</div>
 	</div>
 
-	<div class="relative col-span-full lg:col-span-3">
-		<div class="absolute bg-red-500"></div>
-		<div class="mt-1">
+	<div class="relative col-span-3">
+		<div class="mt-1.5 text-right text-xl">
 			{#each students as student}
-				<div class="pointer-events-none relative z-10" role="contentinfo">
+				<div class="pointer-events-none" role="contentinfo">
 					<Student {student} underline />
-					{#if preview?.context_key == props_id && preview.student.id == student.id}
+					<!-- {#if preview?.context_key == props_id && preview.student.id == student.id}
 						<div
 							class={[
 								'relative translate-x-1/2',
@@ -65,18 +65,10 @@
 						>
 							<PreviewStudent student={preview.student} class="w-md" />
 						</div>
-					{/if}
+					{/if} -->
 				</div>
 			{/each}
 		</div>
-	</div>
-
-	<div
-		class="col-span-full grid grid-cols-3 gap-[calc(0.5*var(--spacing-gap))] lg:col-span-6 lg:grid-cols-6 lg:gap-gap"
-	>
-		{#each { length: Math.min(6, n_files) } as file, i}
-			<div class={[i >= 3 && 'max-lg:hidden-']}><Image id={project.id} index={i} /></div>
-		{/each}
 	</div>
 </div>
 

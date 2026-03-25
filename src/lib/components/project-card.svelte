@@ -17,20 +17,15 @@
 	setContext('preview_context', props_id);
 </script>
 
-<div
-	class={[
-		'relative col-span-6 sm:col-span-4 md:col-span-3 xl:col-span-2',
-		preview?.context_key == props_id && 'z-50'
-	]}
->
-	<div class="corner relative flex h-fit flex-col bg-bg-2 px-1.5 py-1.5">
+<div class={['relative', preview?.context_key == props_id && 'z-50']}>
+	<div class="relative flex flex-col">
 		<a
 			class="peer absolute inset-0"
 			href="/{year}/projets/{project.id}"
 			aria-label="link to {project.name}"
 		></a>
-		<div class="flex aspect-square">
-			<Image id={project.id} index={1} />
+		<div class="aspect-3/4 w-full bg-placeholder">
+			<!-- <Image id={project.id} index={1} /> -->
 		</div>
 		<div class="relative opacity-0 transition peer-hover:opacity-100">
 			<div
@@ -38,8 +33,8 @@
 			></div>
 		</div>
 
-		<div class="mt-1 pr-gap text-xs whitespace-nowrap">
-			<div class="pointer-events-none relative block min-w-0 overflow-hidden text-ellipsis">
+		<div class="mt-2 pr-4 text-lg/5.5">
+			<div class="pointer-events-none relative mb-4 block min-w-0 overflow-hidden text-ellipsis">
 				{project.name}
 			</div>
 			{#if students}
@@ -47,11 +42,11 @@
 					{#each students as student}
 						<div class="relative">
 							<Student {student} />
-							{#if preview?.context_key == props_id && preview.student.id == student.id}
+							<!-- {#if preview?.context_key == props_id && preview.student.id == student.id}
 								<div class={['absolute', preview.anchor[1] == 'left' ? '-left-gap' : 'right-gap']}>
 									<PreviewStudent student={preview.student} class="w-md" />
 								</div>
-							{/if}
+							{/if} -->
 						</div>
 					{/each}
 				</div>

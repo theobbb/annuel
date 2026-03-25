@@ -1,30 +1,29 @@
 import { pocketbase } from '$lib/pocketbase';
 import type {
 	ProgramsRecord,
-	ProjectTagsRecord,
+	ProgramTypesRecord,
 	SocialsRecord,
 	YearsRecord
 } from '$lib/pocketbase.types';
 
 export async function load() {
-	const [programs, socials, tags, years]: [
+	const [years, programs, program_types, socials]: [
+		YearsRecord[],
 		ProgramsRecord[],
-		SocialsRecord[],
-		ProjectTagsRecord[],
-		YearsRecord[]
+		ProgramTypesRecord[],
+		SocialsRecord[]
 	] = await Promise.all([
-		pocketbase.collection('programs').getFullList<ProgramsRecord>({ sort: 'name' }),
-		pocketbase.collection('socials').getFullList<SocialsRecord>({ sort: 'name' }),
-		pocketbase.collection('project_tags').getFullList<ProjectTagsRecord>({ sort: '-name' }),
-		pocketbase.collection('years').getFullList<YearsRecord>({ sort: '-id' })
+		pocketbase.collection('years').getFullList<YearsRecord>({ sort: '-id' }),
+		pocketbase.collection('programs').getFullList<ProgramsRecord>({ sort: 'sort_order' }),
+		pocketbase.collection('program_types').getFullList<ProgramTypesRecord>({ sort: 'sort_order' }),
+		pocketbase.collection('socials').getFullList<SocialsRecord>({ sort: 'name' })
 	]);
 
-	const tags_map: Map<string, ProjectTagsRecord> = new Map(tags.map((tag) => [tag.id, tag]));
-	const programs_map: Map<string, ProgramsRecord> = new Map(
+	const program_map: Map<string, ProgramsRecord> = new Map(
 		programs.map((program) => [program.id, program])
 	);
 
 	const year = years[0].id;
 
-	return { programs, programs_map, socials, tags, tags_map, years, year };
+	return { programs, program_types, program_map, socials, years, year };
 }

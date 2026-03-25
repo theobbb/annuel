@@ -1,60 +1,39 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import Program from '$lib/components/program.svelte';
-	import SelectYear from './select-year.svelte';
+	import Uqam from '$lib/assets/uqam.svelte';
+	import Header from '$lib/ui/templates/header.svelte';
 
 	const { year, programs, socials } = $derived(page.data);
 </script>
 
-<footer class="grid-12 mt-section mb-section border-t">
-	<!-- <div class="col-span-3">
-		<div>Annuel de design</div>
-		Exposition des projets des finissant.es provenant des six programmes de l’École de design de l’UQAM.
-	</div> -->
+<footer class="-mx-3x flex min-h-svh flex-col justify-between bg-black px-8 py-6 text-background">
+	<div>
+		<Header footer />
+		<div class="grid-12">
+			<!-- <div class="col-span-full md:col-span-6">
+				<div class="mb-gap-y py-0.5">Description des programmes</div>
+				<div class="">
+					{#each programs as program}
+						<div class="ml-gap- -indent-gap- underline"><Program {program} /></div>
+					{/each}
+				</div>
+			</div> -->
 
-	<div class="col-span-2 md:col-span-1">
-		<div class="relative w-fit"><SelectYear /></div>
-	</div>
-
-	<div class="col-span-full md:col-span-6">
-		<div class="mb-gap-y py-0.5">Description des programmes</div>
-		<div class="">
-			{#each programs as program}
-				<div class="ml-gap- -indent-gap- underline"><Program {program} /></div>
-			{/each}
-		</div>
-	</div>
-	{#if year}
-		<div class="col-span-8 max-md:mt-gap-y md:col-span-2">
-			<div class="mb-gap-y py-0.5">Pages</div>
-			<div class={['flex flex-col py-0.5']}>
-				<a href="/{year}" class={['underline', page.route.id == '/[year]' && 'active']}>
-					Accueil + remerciements
-				</a>
-				<a
-					href="/{year}/projets"
-					class={['underline', page.route.id?.startsWith('/[year]/projets') && 'active']}
-				>
-					Projets
-				</a>
-				<a
-					href="/{year}/finissant-e-s"
-					class={['underline', page.route.id?.startsWith('/[year]/finissant-e-s') && 'active']}
-				>
-					Finissant-e-s
-				</a>
+			<div class="col-span-2 col-start-8">
+				{#each socials as { url, name }}
+					<div><a class="underline" href={url} target="_blank">{name}</a></div>
+				{/each}
 			</div>
 		</div>
-	{/if}
-	<!-- <div class="col-span-2">
-		<div class="text-2 mb-gap-y">Contact</div>
-	</div> -->
-	<div class="col-span-4 max-md:mt-gap-y md:col-span-2">
-		<div class="text-2- mb-gap-y py-0.5">Réseaux</div>
-		<div class="">
-			{#each socials as { url, name }}
-				<div><a class="underline" href={url} target="_blank">{name}</a></div>
-			{/each}
+	</div>
+	<div class="grid-12 items-end">
+		<div class="col-span-7">
+			© {page.params.year} Annuel de design — Tous droits réservés <br />
+			Les œuvres présentées demeurent la propriété <br /> de leurs auteur.rice.s respectif.ve.s.
+		</div>
+		<div class="col-span-2">Crédits</div>
+		<div class="col-span-2 col-start-11 flex items-end justify-end">
+			<div><Uqam /></div>
 		</div>
 	</div>
 </footer>

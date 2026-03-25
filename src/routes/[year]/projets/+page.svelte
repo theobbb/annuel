@@ -1,100 +1,94 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import ProgramName from '$lib/components/program-name.svelte';
-	import Student from '$lib/components/student.svelte';
-	import Search from '$lib/ui/search.svelte';
-	import { SvelteURLSearchParams } from 'svelte/reactivity';
-	import { get_chunk } from './data';
-
-	import Tag from '$lib/components/tag.svelte';
 	import Filter from '$lib/components/filter.svelte';
 	import Program from '$lib/components/program.svelte';
 	import ProjectCard from '$lib/components/project-card.svelte';
-	import { url_query_param } from '$lib/utils/url';
 	import ProjectRow from '$lib/components/project-row.svelte';
 	import View from './view.svelte';
-	import { icons } from '$lib/ui/icons.js';
-	import { shuffle_array } from '$lib/utils/shuffle.js';
+	import { shuffle_array } from '$lib/utils/shuffle';
+	import type { ProjectsRecordExpanded } from './+page.server';
+	import HeaderPrograms from '$lib/ui/templates/header-programs.svelte';
+	import FooterFilters from '$lib/ui/templates/footer-filters.svelte';
+	import DualLayout from '$lib/ui/templates/dual-layout.svelte';
 
 	const { data } = $props();
-	const { pagination, programs, tags, year } = $derived(data);
+	const { projects, programs } = $derived(data);
 
-	const search_params = new SvelteURLSearchParams();
-
+	// 1. URL Params (Works on Server & Client)
 	const url_program = $derived(page.url.searchParams.get('programme') || '');
-	const url_tag = $derived(page.url.searchParams.get('categorie') || '');
-
 	const url_search_view = $derived(page.url.searchParams.get('vue') || '');
 
-	const programs_map = $derived(new Map(programs.map((program) => [program.id, program])));
-	const tags_map = $derived(new Map(tags.map((tag) => [tag.id, tag])));
+	const view: 'grille' | 'liste' = $derived(url_search_view == 'liste' ? 'liste' : 'grille');
+	// 2. The "Canonical" List
+	// This derived calculates the correct list for SSR and Client based on URL
+	const filtered_source = $derived(
+		projects.filter((p) => {
+			if (!url_program) return true;
+			return p.program === url_program;
+		})
+	);
 
-	let projects = $state(pagination.items);
+	// 3. The "Mutable" Pool (SSR Friendly)
+	const CHUNK_SIZE = 72;
 
-	let current_page = $state(pagination.page);
+	// FIX: Initialize with 'filtered_source' immediately so SSR generates HTML.
+	// Svelte unwraps the derived value here during initialization.
+	let display_pool = $state<ProjectsRecordExpanded[]>(filtered_source);
 
-	async function load_more() {
-		if (current_page == pagination.totalPages) return;
-		const chunk = await get_chunk(year, current_page + 1, url_program, url_tag);
-		projects.push(...chunk.items);
-		current_page++;
-	}
+	let visible_count = $state(CHUNK_SIZE);
 
+	// 4. Client-Side Sync
+	// We still need this! If the user clicks a filter link (client nav),
+	// 'display_pool' won't update automatically because it's a state copy.
+	// This effect forces the sync.
 	$effect(() => {
-		projects = pagination.items;
-		current_page = pagination.page;
+		// Reset pool when the source (URL/Data) changes
+		display_pool = [...filtered_source];
+		visible_count = CHUNK_SIZE;
 	});
 
-	let filters_expanded = $state(false);
+	// 5. Computed View
+	const visible_projects = $derived(display_pool.slice(0, visible_count));
+	const has_more = $derived(visible_count < display_pool.length);
+
+	function load_more() {
+		visible_count += CHUNK_SIZE;
+	}
 
 	function shuffle() {
-		shuffle_array(projects);
+		// Since we have a mutable copy (display_pool), we can shuffle safely
+		shuffle_array(display_pool);
 	}
 </script>
 
-<!-- <div class="mb-gap-y size-180 bg-placeholder"></div> -->
-<div class="grid-12 mb-gap-y">
-	<Filter name="Programmes" param="programme">
-		{#each programs as program}
-			<div><Program {program} filter /></div>
-		{/each}
-	</Filter>
-	<div class="col-span-10 lg:col-span-6">
-		<Filter name="Catégories" param="categorie">
-			{#each tags as tag}
-				<div><Tag {tag} /></div>
-			{/each}
-		</Filter>
-	</div>
-</div>
+<!-- <HeaderPrograms /> -->
 
-<div class="mb-2 flex items-end justify-between gap-x-gap">
-	<!-- {#if url_program || url_tag}
-		<div>
-			Filtre: {programs_map.get(url_program)?.name || tags_map.get(url_tag)?.name}
-		</div>
-	{/if} -->
-	<div class="ml-px">{pagination.totalItems} projets</div>
-	<!-- <div><Search /></div> -->
+<!-- <div class="gap-x-gap mb-2 flex items-end justify-between">
+	<div class="ml-px">
+		{display_pool.length} projets
+	</div>
+
 	<div class="flex items-center justify-end gap-2">
-		<button onclick={shuffle} class="icon-[ri--dice-5-line]- icon-[ri--shuffle-fill]-"
-			>Mélanger</button
-		>
+		<button onclick={shuffle} class="cursor-pointer hover:text-black"> Mélanger </button>
 		<View />
 	</div>
-</div>
+</div> -->
 
-<div class={[url_search_view != 'liste' && 'grid-12']}>
-	{#each projects as project}
-		{#if url_search_view == 'liste'}
-			<ProjectRow {project} students={project.expand.students} />
-		{:else}
-			<ProjectCard {project} students={project.expand.students} />
-		{/if}
-	{/each}
-</div>
-{#if current_page < pagination.totalPages}
-	<button class="link-hover corner mt-24 w-full cursor-pointer py-2 text-lg" onclick={load_more}>
-		Charger plus <span class="inline-flex translate-y-px">+</span>
-	</button>
-{/if}
+<DualLayout items={data.projects}>
+	<div class={['mt-24-', view == 'grille' ? 'mt-8 grid grid-cols-5 gap-8' : '']}>
+		{#each visible_projects as project (project.id)}
+			{#if url_search_view == 'liste'}
+				<ProjectRow {project} students={project.expand.students} />
+			{:else}
+				<ProjectCard {project} students={project.expand.students} />
+			{/if}
+		{/each}
+	</div>
+	{#if has_more}
+		<button class="link-hover corner mt-24 w-full cursor-pointer py-2 text-lg" onclick={load_more}>
+			Charger plus <span class="inline-flex translate-y-px">+</span>
+		</button>
+	{/if}
+</DualLayout>
+
+<!-- <FooterFilters n_items={data.n_projects} /> -->

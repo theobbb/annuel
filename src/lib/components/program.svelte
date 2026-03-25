@@ -2,7 +2,6 @@
 	import { page } from '$app/state';
 	import type { ProgramsRecord } from '$lib/pocketbase.types';
 	import { url_query_param } from '$lib/utils/url';
-	import ProgramName from './program-name.svelte';
 
 	const { program, filter = false }: { program: ProgramsRecord; filter?: boolean } = $props();
 
@@ -24,5 +23,5 @@
 </script>
 
 <a {href} class={[program.id == url_search_program && 'active']}>
-	<ProgramName {program} />
+	{program.code}
 </a>

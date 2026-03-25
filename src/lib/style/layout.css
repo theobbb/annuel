@@ -2,26 +2,30 @@
 @plugin '@iconify/tailwind4';
 
 @theme {
-	--spacing-gap: 1rem;
-	--spacing-gap-y: 0.7rem;
+	--spacing-1x: calc(var(--spacing) * 1);
+	--spacing-2x: calc(var(--spacing) * 4);
+	--spacing-3x: calc(var(--spacing) * 8);
+	--spacing-4x: calc(var(--spacing) * 8);
+	--spacing-5x: calc(var(--spacing) * 16);
 
-	--spacing-section: 4rem;
+	--color-background: oklch(90.67% 0.0001 271.152);
+	--color-foreground: oklch(28.094% 0.00003 271.152);
+	--foreground-muted: oklch(41.716% 0.00003 271.152);
 
-	--color-bg: rgb(244, 244, 244);
-	--color-bg-2: white;
+	--color-placeholder: rgb(181, 181, 181);
+}
 
-	--color-placeholder: rgb(222, 222, 222);
-
-	--color-text: rgb(38, 38, 38);
-	--color-text-1: rgb(48, 48, 48);
-	--color-text-2: rgb(138, 138, 138);
+@layer base {
+	* {
+		border-color: var(--border);
+	}
 }
 
 html {
-	font-family: 'Temp';
+	font-family: 'Switzer';
 
-	background-color: var(--color-bg);
-	color: var(--color-text);
+	background-color: var(--color-background);
+	color: var(--color-foreground);
 
 	-webkit-tap-highlight-color: unset;
 	/* Optional: Prevents layout shift (page jump) caused by the scrollbar disappearing */
@@ -30,27 +34,14 @@ html {
 	--cut: 15px;
 }
 
-.mono {
-	font-variation-settings: 'MONO' 80;
-	color: rgb(76, 76, 76);
-}
-
-.text-xs {
-	line-height: calc(var(--spacing) * 3.5);
-}
-.text-xl {
-	line-height: 1.15em;
-	color: rgb(48, 48, 48);
-}
-
 .grid-12 {
 	display: grid;
 	grid-template-columns: repeat(12, minmax(0, 1fr));
-	gap: var(--spacing-gap);
+	gap: calc(var(--spacing) * 8);
 }
 @media (max-width: 48rem) {
 	.grid-12 {
-		gap: calc(0.6 * var(--spacing-gap));
+		gap: calc(0.6 * var(--spacing-3x));
 	}
 }
 
@@ -88,31 +79,3 @@ a.active::after {
 body:has(header.menu-open) {
 	overflow: hidden;
 }
-
-.corner {
-	background: linear-gradient(135deg, var(--color-bg-2) calc(100% - var(--cut)), transparent 0);
-}
-.corner.left {
-	background: linear-gradient(225deg, var(--color-bg-2) calc(100% - var(--cut)), transparent 0);
-}
-/* .corner {
-	background-color: var(--color-bg-2);
-	clip-path: polygon(
-		0 0,
-		100% 0,
-		100% calc(100% - var(--cut)),
-		calc(100% - var(--cut)) 100%,
-		0 100%
-	);
-	overflow: hidden;
-}
-.corner.left {
-	clip-path: polygon(0 0, 100% 0, 100% 100%, var(--cut) 100%, 0 calc(100% - var(--cut)), 0 100%);
-} */
-
-/* @media (max-width: 48rem) {
-	html {
-		--spacing-gap: 1.1rem;
-		--spacing-gap-y: 0.8rem;
-	}
-} */

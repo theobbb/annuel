@@ -10,12 +10,17 @@ export enum Collections {
 	Externalauths = "_externalAuths",
 	Mfas = "_mfas",
 	Otps = "_otps",
+	PasskeyInvites = "_passkey_invites",
+	Passkeys = "_passkeys",
 	Superusers = "_superusers",
 	Globals = "globals",
+	MemberRoles = "member_roles",
+	Members = "members",
+	ProgramTypes = "program_types",
 	Programs = "programs",
-	ProjectTags = "project_tags",
 	Projects = "projects",
 	Socials = "socials",
+	Sponsors = "sponsors",
 	Students = "students",
 	Users = "users",
 	Years = "years",
@@ -88,6 +93,23 @@ export type OtpsRecord = {
 	updated: IsoAutoDateString
 }
 
+export type PasskeyInvitesRecord = {
+	created: IsoAutoDateString
+	id: string
+	updated: IsoAutoDateString
+	user: RecordIdString
+}
+
+export type PasskeysRecord = {
+	algorithm: string
+	created: IsoAutoDateString
+	credential_id: string
+	id: string
+	public_key: string
+	updated: IsoAutoDateString
+	user: RecordIdString
+}
+
 export type SuperusersRecord = {
 	created: IsoAutoDateString
 	email: string
@@ -102,33 +124,56 @@ export type SuperusersRecord = {
 export type GlobalsRecord = {
 	created: IsoAutoDateString
 	id: string
+	introduction: string
 	updated: IsoAutoDateString
 }
 
-export type ProgramsRecord<Tmetadata = unknown> = {
+export type MemberRolesRecord = {
 	created: IsoAutoDateString
-	description?: string
 	id: string
-	metadata?: null | Tmetadata
 	name: string
+	sort_order?: number
 	updated: IsoAutoDateString
 }
 
-export type ProjectTagsRecord = {
+export type MembersRecord = {
 	created: IsoAutoDateString
 	id: string
 	name: string
+	role: RecordIdString
+	updated: IsoAutoDateString
+	year: RecordIdString
+}
+
+export type ProgramTypesRecord = {
+	created: IsoAutoDateString
+	id: string
+	name: string
+	sort_order?: number
+	updated: IsoAutoDateString
+}
+
+export type ProgramsRecord = {
+	code: string
+	created: IsoAutoDateString
+	description: string
+	id: string
+	name: string
+	sort_order?: number
+	type: RecordIdString
 	updated: IsoAutoDateString
 }
 
 export type ProjectsRecord = {
 	created: IsoAutoDateString
 	description?: string
+	draft_of?: RecordIdString
+	draft_version?: number
 	files?: FileNameString[]
 	id: string
+	is_latest?: boolean
 	name: string
 	students: RecordIdString[]
-	tags?: RecordIdString[]
 	updated: IsoAutoDateString
 	year: RecordIdString
 }
@@ -136,32 +181,47 @@ export type ProjectsRecord = {
 export type SocialsRecord = {
 	created: IsoAutoDateString
 	id: string
-	name?: string
+	name: string
+	sort_order?: number
 	updated: IsoAutoDateString
-	url?: string
+	url: string
 }
 
-export type StudentsRecord = {
+export type SponsorsRecord = {
+	created: IsoAutoDateString
+	id: string
+	name: string
+	size?: number
+	sort_order?: number
+	updated: IsoAutoDateString
+}
+
+export type StudentsRecord<Tsocials = unknown> = {
 	created: IsoAutoDateString
 	description?: string
+	draft?: boolean
+	draft_of?: RecordIdString
+	draft_version?: number
 	first_name: string
+	headshot?: FileNameString
 	id: string
+	is_latest?: boolean
 	last_name: string
 	program: RecordIdString
-	scholarship?: boolean
-	socials?: string
+	pronouns?: string
+	socials?: null | Tsocials
 	updated: IsoAutoDateString
 	year: RecordIdString
 }
 
 export type UsersRecord = {
-	avatar?: FileNameString
 	created: IsoAutoDateString
-	email: string
+	email?: string
 	emailVisibility?: boolean
 	id: string
-	name?: string
+	name: string
 	password: string
+	role?: number
 	tokenKey: string
 	updated: IsoAutoDateString
 	verified?: boolean
@@ -169,8 +229,11 @@ export type UsersRecord = {
 
 export type YearsRecord = {
 	created: IsoAutoDateString
+	draft?: boolean
 	id: string
+	poster?: FileNameString
 	updated: IsoAutoDateString
+	video?: FileNameString
 }
 
 // Response types include system fields and match responses from the PocketBase API
@@ -178,13 +241,18 @@ export type AuthoriginsResponse<Texpand = unknown> = Required<AuthoriginsRecord>
 export type ExternalauthsResponse<Texpand = unknown> = Required<ExternalauthsRecord> & BaseSystemFields<Texpand>
 export type MfasResponse<Texpand = unknown> = Required<MfasRecord> & BaseSystemFields<Texpand>
 export type OtpsResponse<Texpand = unknown> = Required<OtpsRecord> & BaseSystemFields<Texpand>
+export type PasskeyInvitesResponse<Texpand = unknown> = Required<PasskeyInvitesRecord> & BaseSystemFields<Texpand>
+export type PasskeysResponse<Texpand = unknown> = Required<PasskeysRecord> & BaseSystemFields<Texpand>
 export type SuperusersResponse<Texpand = unknown> = Required<SuperusersRecord> & AuthSystemFields<Texpand>
 export type GlobalsResponse<Texpand = unknown> = Required<GlobalsRecord> & BaseSystemFields<Texpand>
-export type ProgramsResponse<Tmetadata = unknown, Texpand = unknown> = Required<ProgramsRecord<Tmetadata>> & BaseSystemFields<Texpand>
-export type ProjectTagsResponse<Texpand = unknown> = Required<ProjectTagsRecord> & BaseSystemFields<Texpand>
+export type MemberRolesResponse<Texpand = unknown> = Required<MemberRolesRecord> & BaseSystemFields<Texpand>
+export type MembersResponse<Texpand = unknown> = Required<MembersRecord> & BaseSystemFields<Texpand>
+export type ProgramTypesResponse<Texpand = unknown> = Required<ProgramTypesRecord> & BaseSystemFields<Texpand>
+export type ProgramsResponse<Texpand = unknown> = Required<ProgramsRecord> & BaseSystemFields<Texpand>
 export type ProjectsResponse<Texpand = unknown> = Required<ProjectsRecord> & BaseSystemFields<Texpand>
 export type SocialsResponse<Texpand = unknown> = Required<SocialsRecord> & BaseSystemFields<Texpand>
-export type StudentsResponse<Texpand = unknown> = Required<StudentsRecord> & BaseSystemFields<Texpand>
+export type SponsorsResponse<Texpand = unknown> = Required<SponsorsRecord> & BaseSystemFields<Texpand>
+export type StudentsResponse<Tsocials = unknown, Texpand = unknown> = Required<StudentsRecord<Tsocials>> & BaseSystemFields<Texpand>
 export type UsersResponse<Texpand = unknown> = Required<UsersRecord> & AuthSystemFields<Texpand>
 export type YearsResponse<Texpand = unknown> = Required<YearsRecord> & BaseSystemFields<Texpand>
 
@@ -195,12 +263,17 @@ export type CollectionRecords = {
 	_externalAuths: ExternalauthsRecord
 	_mfas: MfasRecord
 	_otps: OtpsRecord
+	_passkey_invites: PasskeyInvitesRecord
+	_passkeys: PasskeysRecord
 	_superusers: SuperusersRecord
 	globals: GlobalsRecord
+	member_roles: MemberRolesRecord
+	members: MembersRecord
+	program_types: ProgramTypesRecord
 	programs: ProgramsRecord
-	project_tags: ProjectTagsRecord
 	projects: ProjectsRecord
 	socials: SocialsRecord
+	sponsors: SponsorsRecord
 	students: StudentsRecord
 	users: UsersRecord
 	years: YearsRecord
@@ -211,12 +284,17 @@ export type CollectionResponses = {
 	_externalAuths: ExternalauthsResponse
 	_mfas: MfasResponse
 	_otps: OtpsResponse
+	_passkey_invites: PasskeyInvitesResponse
+	_passkeys: PasskeysResponse
 	_superusers: SuperusersResponse
 	globals: GlobalsResponse
+	member_roles: MemberRolesResponse
+	members: MembersResponse
+	program_types: ProgramTypesResponse
 	programs: ProgramsResponse
-	project_tags: ProjectTagsResponse
 	projects: ProjectsResponse
 	socials: SocialsResponse
+	sponsors: SponsorsResponse
 	students: StudentsResponse
 	users: UsersResponse
 	years: YearsResponse
