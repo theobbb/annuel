@@ -72,7 +72,7 @@
 
 {#snippet poster(year: YearsRecord)}
 	<div class="aspect-3/4 w-full bg-placeholder">
-		{#if year.poster}
+		{#if year?.poster}
 			<img
 				class="aspect-3/4 object-contain"
 				src="{PUBLIC_POCKETBASE_URL}/api/files/years/{year.id}/{year.poster}"

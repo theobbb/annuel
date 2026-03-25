@@ -24,7 +24,7 @@ interface IntersectionObserverOptions {
 	threshold?: number | number[];
 }
 
-export function useIntersectionObserver(
+export function use_intersection_observer(
 	targetElement: Target,
 	callback: IntersectionCallback,
 	options: IntersectionObserverOptions = {}

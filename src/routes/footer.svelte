@@ -6,7 +6,9 @@
 	const { year, programs, socials } = $derived(page.data);
 </script>
 
-<footer class="-mx-3x flex min-h-svh flex-col justify-between bg-black px-8 py-6 text-background">
+<footer
+	class="-mx-3x flex min-h-svh flex-col justify-between bg-dark-background px-8 py-5 text-dark-foreground"
+>
 	<div>
 		<Header footer />
 		<div class="grid-12">

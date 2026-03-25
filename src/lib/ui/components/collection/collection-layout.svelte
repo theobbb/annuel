@@ -12,7 +12,7 @@
 		$props();
 </script>
 
-<div class="relative">
+<div class="relative mb-36">
 	<CollectionHeader />
 
 	{@render children()}

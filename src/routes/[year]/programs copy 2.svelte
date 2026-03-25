@@ -5,7 +5,6 @@
 		ProgramStatsRecord,
 		ProgramTypesRecord
 	} from '$lib/pocketbase.types';
-	import Title from '$lib/ui/components/title.svelte';
 
 	const {
 		programs,
@@ -29,32 +28,26 @@
 </script>
 
 <div>
-	<Title>Programmes</Title>
-
-	<div class="mt-12 leading-10">
+	<div class="mb-8">Tous les programmes</div>
+	<div class="leading-10">
 		{#each groups as { type, children }}
-			<div class="grid-12 border-t-2- py-0.5 first:border-t-0">
+			<div class="grid-12 border-t-2 py-0.5">
 				<div class="col-span-3">
-					<div class="py-6 text-xl">{type.name}</div>
+					<div class="pt-2">{type.name}</div>
 				</div>
 				<div class="col-span-9">
 					{#each children as { id, name, code }}
 						{@const stats = program_stats.get(id)}
-						<a
-							href="/{page.params.year}/projets?programme={id}"
-							class="grid grid-cols-9 items-center justify-between gap-8 border-b-2 py-4 last:border-b-0"
-						>
-							<div class="col-span-5">{name}</div>
-
-							<div class="col-span-2 text-xl">
-								{#if stats}
+						<div class="first:border-t-2- border-b-2- flex justify-between gap-6 last:border-b-0">
+							<div class="">{name}</div>
+							<div class="">{code}</div>
+							{#if stats}
+								<div class="text-xl">
 									<div>{stats.project_count} projets</div>
 									<div>{stats.student_count} finissant.e.s</div>
-								{/if}
-							</div>
-
-							<div class="col-span-2 text-right">{code}</div>
-						</a>
+								</div>
+							{/if}
+						</div>
 					{/each}
 				</div>
 			</div>

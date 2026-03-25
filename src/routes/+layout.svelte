@@ -25,7 +25,7 @@
 	init_seed(data.seed);
 </script>
 
-<div class="font-medium- mx-8 mt-5 min-h-svh text-3xl font-[430]">
+<div class="font-medium- mx-8 mt-5 min-h-svh text-3xl font-[400]">
 	<div>
 		{@render children()}
 	</div>

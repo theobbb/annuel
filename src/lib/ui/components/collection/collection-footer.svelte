@@ -21,10 +21,7 @@
 				<div class="flex items-center gap-1">
 					{#each views as { name, param, icon }}
 						<a
-							class={[
-								'flex items-center gap-1.5 px-3 py-1',
-								view == param ? 'bg-black text-white' : ''
-							]}
+							class={['flex items-center gap-1.5 px-2 py-1', view == param ? 'ring-2' : '']}
 							href={url_query_param(page.url.href, { vue: param })}
 						>
 							<div class={[icon]}></div>

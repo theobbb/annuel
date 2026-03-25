@@ -16,6 +16,7 @@ export enum Collections {
 	Globals = "globals",
 	MemberRoles = "member_roles",
 	Members = "members",
+	ProgramStats = "program_stats",
 	ProgramTypes = "program_types",
 	Programs = "programs",
 	Projects = "projects",
@@ -146,6 +147,14 @@ export type MembersRecord = {
 	year: RecordIdString
 }
 
+export type ProgramStatsRecord<Tproject_count = unknown, Tstudent_count = unknown> = {
+	id: string
+	program?: RecordIdString
+	project_count?: null | Tproject_count
+	student_count?: null | Tstudent_count
+	year?: RecordIdString
+}
+
 export type ProgramTypesRecord = {
 	created: IsoAutoDateString
 	id: string
@@ -250,6 +259,7 @@ export type SuperusersResponse<Texpand = unknown> = Required<SuperusersRecord> &
 export type GlobalsResponse<Tbanner = unknown, Texpand = unknown> = Required<GlobalsRecord<Tbanner>> & BaseSystemFields<Texpand>
 export type MemberRolesResponse<Texpand = unknown> = Required<MemberRolesRecord> & BaseSystemFields<Texpand>
 export type MembersResponse<Texpand = unknown> = Required<MembersRecord> & BaseSystemFields<Texpand>
+export type ProgramStatsResponse<Tproject_count = unknown, Tstudent_count = unknown, Texpand = unknown> = Required<ProgramStatsRecord<Tproject_count, Tstudent_count>> & BaseSystemFields<Texpand>
 export type ProgramTypesResponse<Texpand = unknown> = Required<ProgramTypesRecord> & BaseSystemFields<Texpand>
 export type ProgramsResponse<Texpand = unknown> = Required<ProgramsRecord> & BaseSystemFields<Texpand>
 export type ProjectsResponse<Texpand = unknown> = Required<ProjectsRecord> & BaseSystemFields<Texpand>
@@ -272,6 +282,7 @@ export type CollectionRecords = {
 	globals: GlobalsRecord
 	member_roles: MemberRolesRecord
 	members: MembersRecord
+	program_stats: ProgramStatsRecord
 	program_types: ProgramTypesRecord
 	programs: ProgramsRecord
 	projects: ProjectsRecord
@@ -293,6 +304,7 @@ export type CollectionResponses = {
 	globals: GlobalsResponse
 	member_roles: MemberRolesResponse
 	members: MembersResponse
+	program_stats: ProgramStatsResponse
 	program_types: ProgramTypesResponse
 	programs: ProgramsResponse
 	projects: ProjectsResponse
