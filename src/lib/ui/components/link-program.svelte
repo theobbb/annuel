@@ -3,10 +3,14 @@
 	import type { ProgramsRecord } from '$lib/pocketbase.types';
 	import { url_query_param } from '$lib/utils/url';
 	import type { Snippet } from 'svelte';
+	import type { HTMLAnchorAttributes } from 'svelte/elements';
 
-	const { program, children }: { program: ProgramsRecord; children: Snippet } = $props();
+	const {
+		program,
+		children,
+		...props
+	}: HTMLAnchorAttributes & { program: ProgramsRecord; children: Snippet } = $props();
 
-	const year = $derived(page.data.year);
 	const url_search_program = $derived(page.url.searchParams.get('programme') || '');
 
 	const href: string = $derived.by(() => {
@@ -26,6 +30,6 @@
 	});
 </script>
 
-<a {href}>
+<a {href} {...props}>
 	{@render children()}
 </a>
