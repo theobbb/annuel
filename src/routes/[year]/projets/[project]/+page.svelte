@@ -96,7 +96,7 @@
 	{/snippet}
 </SingleHeader> -->
 
-<div class="grid-12">
+<!-- <div class="grid-12">
 	{#each { length: n_files } as file, i}
 		<button
 			class="col-span-full aspect-square sm:col-span-6 lg:col-span-4"
@@ -106,7 +106,8 @@
 			<Image id={project.id} index={i} />
 		</button>
 	{/each}
-</div>
+</div> -->
+<div class="h-[100svh]"></div>
 {#if related_projects.length}
 	<div class="mt-24">
 		<!-- <div class="pb-gap-y text-xl">

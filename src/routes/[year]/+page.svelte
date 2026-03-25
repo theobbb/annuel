@@ -6,6 +6,7 @@
 	import Programs from './programs.svelte';
 	import Sponsors from './sponsors.svelte';
 	import { use_intersection_observer } from '$lib/utils/intersection-observer.js';
+	import Banner from '$lib/ui/components/banner.svelte';
 
 	const { data } = $props();
 	const { programs, program_types, program_stats, n_projects, n_students } = $derived(data);
@@ -24,10 +25,8 @@
 
 		if (entry.isIntersecting) {
 			scroll_top = true;
-			console.log('At the top of the page');
 		} else {
 			scroll_top = false;
-			console.log('Scrolled away from top');
 		}
 	}
 
@@ -43,20 +42,23 @@
 	});
 </script>
 
+<Banner banner={data.globals.banner} />
 <div bind:this={sentinel}></div>
 <Header>
-	<div class="mb-8">
+	<div class="mb-8 text-5xl/13">
 		Les projets des finissant.es <br />
 		de l’École de design de l’UQAM.
-		<br />
-		Une diversité de démarches.
+
+		<!-- Une diversité de démarches. -->
 	</div>
 </Header>
 
-<div class="-mx-3x aspect-video bg-placeholder"></div>
-<div class="my-1x text-right text-xl/tight">
-	Vidéo par <br />
-	Kathrynf Mills, George Miller, <br />Heather Ruiz, Christina Griffith
+<div class="-mt-36-">
+	<div class="-mx-3x- aspect-video bg-placeholder"></div>
+	<div class="my-1x text-right text-xl/tight">
+		Vidéo par <br />
+		Kathrynf Mills, George Miller, <br />Heather Ruiz, Christina Griffith
+	</div>
 </div>
 
 <!-- <div class="mt-24 mb-64">

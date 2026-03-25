@@ -42,6 +42,7 @@
 	{#if reverse}
 		{student.last_name}, {student.first_name}
 	{:else}
+		—
 		{student.first_name}
 		{student.last_name}
 	{/if}
@@ -53,7 +54,7 @@
 {:else}
 	<a
 		href="/{page.params.year}/finissant-e-s/{student.id}"
-		class={['pointer-events-auto relative z-10', underline && 'underline']}
+		class={['pointer-events-auto relative z-10']}
 		{onmouseenter}
 		{onmouseleave}
 	>

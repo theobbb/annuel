@@ -22,6 +22,9 @@
 	* {
 		border-color: var(--border);
 	}
+	[class*='text-xl'] {
+		font-weight: 430;
+	}
 }
 
 html {
@@ -52,7 +55,7 @@ html {
 	color: var(--color-text-2);
 }
 
-.dark {
+.black {
 	background-color: var(--color-dark-background);
 	color: var(--color-dark-foreground);
 }

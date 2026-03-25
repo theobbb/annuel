@@ -2,9 +2,9 @@
 	import { page } from '$app/state';
 	import type { StudentsRecord } from '$lib/pocketbase.types';
 
-	const { student }: { student: StudentsRecord } = $props();
+	const { student }: { student?: StudentsRecord } = $props();
 
-	const program = $derived(page.data.program_map.get(student.program));
+	const program = $derived(student ? page.data.program_map.get(student.program) : null);
 </script>
 
 <div class="@container relative aspect-2/3 overflow-hidden">

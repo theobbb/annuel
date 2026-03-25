@@ -27,20 +27,20 @@
 		<div class="aspect-3/4 w-full bg-placeholder">
 			<!-- <Image id={project.id} index={1} /> -->
 		</div>
-		<div class="relative opacity-0 transition peer-hover:opacity-100">
+		<!-- <div class="relative opacity-0 transition peer-hover:opacity-100">
 			<div
 				class="absolute right-0 -bottom-4.5 z-10 icon-[ri--arrow-right-up-line] translate-y-px"
 			></div>
-		</div>
+		</div> -->
 
-		<div class="mt-2 pr-4 text-lg/5.5">
-			<div class="pointer-events-none relative mb-4 block min-w-0 overflow-hidden text-ellipsis">
+		<div class="mt-2.5 pr-4 text-balance">
+			<div class="pointer-events-none relative mb-2.5 block text-2xl/7 font-[430]">
 				{project.name}
 			</div>
 			{#if students}
-				<div class="pointer-events-none relative z-10 underline">
+				<div class="pointer-events-none relative z-10 text-xl/6.5">
 					{#each students as student}
-						<div class="relative">
+						<div class="relative font-normal">
 							<Student {student} />
 							<!-- {#if preview?.context_key == props_id && preview.student.id == student.id}
 								<div class={['absolute', preview.anchor[1] == 'left' ? '-left-gap' : 'right-gap']}>

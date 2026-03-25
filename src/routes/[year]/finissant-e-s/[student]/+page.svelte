@@ -1,16 +1,17 @@
 <script lang="ts">
+	import { page } from '$app/state';
 	import Facecard from '$lib/components/face-card.svelte';
 	import ProjectRow from '$lib/components/project-row.svelte';
 	import RecordHeader from '$lib/ui/components/record/record-header.svelte';
 	import Title from '$lib/ui/components/title.svelte';
 
 	const { data } = $props();
-	const { student, year } = $derived(data);
+	const { student } = $derived(data);
 
 	const projects = $derived(student.expand['projects(students)']);
 </script>
 
-<RecordHeader back_href="/{year}/finissant-e-s">
+<RecordHeader back_href="/{page.params.year}/finissant-e-s">
 	{#snippet title()}
 		<div>
 			{student.first_name}

@@ -45,8 +45,8 @@
 		</div>
 	</div>
 
-	<div class="relative col-span-3">
-		<div class="mt-1.5 text-right text-xl">
+	<div class="relative col-span-2 col-start-11">
+		<div class="text-right- mt-1.5 text-xl">
 			{#each students as student}
 				<div class="pointer-events-none" role="contentinfo">
 					<Student {student} />

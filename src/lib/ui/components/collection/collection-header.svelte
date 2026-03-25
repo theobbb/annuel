@@ -9,8 +9,8 @@
 
 	const current = $derived(page.url.searchParams.get('programme') || '');
 
-	let pop_visible = $state(true);
-	let hovered: ProgramsRecord | null = $state(programs[0]);
+	let pop_visible = $state(false);
+	let hovered: ProgramsRecord | null = $state(null);
 
 	const tabs = $derived([
 		{

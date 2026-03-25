@@ -18,7 +18,7 @@
 <div class="grid-12 mb-8">
 	<div class="relative col-span-2 col-start-4 mt-8">
 		<div class="sticky top-8">
-			<!-- <Facecard /> -->
+			<Facecard />
 		</div>
 	</div>
 	<div class="col-span-7 leading-8">
