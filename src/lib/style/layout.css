@@ -20,12 +20,13 @@
 
 @layer base {
 	* {
-		/*border-color: rgba(0, 0, 0, 0.2);*/
+		border-color: rgba(0, 0, 0, 0.2);
 	}
-	[class*='text-xl'] {
+	/* [class*='text-xl'] {
 		font-weight: 430;
-	}
+	} */
 }
+
 .border-dotted {
 	border-color: rgba(0, 0, 0, 0.2);
 }

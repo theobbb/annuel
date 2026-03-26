@@ -4,6 +4,6 @@
 	const { children }: { children: Snippet } = $props();
 </script>
 
-<div class="border-b-2 pb-4">
+<div class="border-b border-black/20 pb-4">
 	{@render children()}
 </div>

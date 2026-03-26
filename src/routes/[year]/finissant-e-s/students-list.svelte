@@ -22,7 +22,7 @@
 	{#each cols as col}
 		<div class="col-span-4">
 			{#each col as student, i}
-				<div class="my-0.5 grid grid-cols-4 gap-8">
+				<div class="my-1 grid grid-cols-4 gap-8">
 					<div class="text-right">
 						{#if student.last_name[0] != col[i - 1]?.last_name[0]}
 							<div>{student.last_name[0]}</div>

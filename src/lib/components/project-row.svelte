@@ -18,7 +18,7 @@
 
 <div
 	class={[
-		'group grid-12 relative flex-col border-t-2 py-4 first:border-t-0',
+		'group grid-12 relative flex-col border-t py-4 first:border-t-0',
 		preview?.context_key == props_id && 'z-50'
 	]}
 >
@@ -27,26 +27,13 @@
 		href="/{page.params.year}/projets/{project.id}"
 		aria-label="link to {project.name}"
 	></a>
-	<div class="col-span-6 grid grid-cols-5 gap-4">
-		{#each { length: Math.min(5, n_files) } as file, i}
-			<div class={[i >= 3 && 'max-lg:hidden-']}>
-				<div class="aspect-4/5 bg-placeholder"></div>
-				<!-- <Image id={project.id} index={i} /> -->
-			</div>
-		{/each}
-	</div>
-
-	<!-- <div
-		class="invisible absolute bottom-2 left-2 icon-[ri--arrow-right-up-line] peer-hover:visible"
-	></div> -->
 	<div class="title col-span-3 text-balance">
-		<div class="pointer-events-none relative mt-1 block">
+		<div class="pointer-events-none relative mt-1 block pr-16 text-2xl/7.5">
 			{project.name}
 		</div>
 	</div>
-
-	<div class="relative col-span-2 col-start-11">
-		<div class="text-right- mt-1.5 text-xl">
+	<div class="relative col-span-3">
+		<div class="mt-1.5">
 			{#each students as student}
 				<div class="pointer-events-none" role="contentinfo">
 					<Student {student} />
@@ -64,6 +51,18 @@
 			{/each}
 		</div>
 	</div>
+	<div class="col-span-6 grid grid-cols-5 gap-4">
+		{#each { length: Math.min(5, n_files) } as file, i}
+			<div class={[i >= 3 && 'max-lg:hidden-']}>
+				<div class="aspect-4/5 bg-placeholder"></div>
+				<!-- <Image id={project.id} index={i} /> -->
+			</div>
+		{/each}
+	</div>
+
+	<!-- <div
+		class="invisible absolute bottom-2 left-2 icon-[ri--arrow-right-up-line] peer-hover:visible"
+	></div> -->
 </div>
 
 <style>

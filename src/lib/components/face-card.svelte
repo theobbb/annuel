@@ -9,10 +9,10 @@
 
 <div class="@container relative aspect-2/3 overflow-hidden">
 	<div class="absolute inset-0 bg-placeholder">
-		<img src="/temp/head.png" class="h-full w-full object-cover" />
-		<!-- <div
+		<!-- <img src="/temp/head.png" class="h-full w-full object-cover" /> -->
+		<div
 			class="absolute inset-0 icon-[ri--user-fill] h-full w-full translate-y-1/6 scale-130"
-		></div> -->
+		></div>
 	</div>
 
 	<div class="absolute top-0 right-0">

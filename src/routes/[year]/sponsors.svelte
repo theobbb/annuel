@@ -7,7 +7,7 @@
 
 	const sponsors: SponsorsRecord[] = $derived(page.data.sponsors);
 
-	const sizes = ['w-[8vw]', 'w-[15vw]', 'w-[28vw]'];
+	const sizes = ['w-[8vw] p-[1vw]', 'w-[15vw] p-[2vw]', 'w-[28vw] p-[3vw]'];
 </script>
 
 <div>
@@ -24,12 +24,17 @@
 	</div> -->
 	<div class="mr-32 mb-32 flex flex-wrap gap-6 pt-8">
 		{#each sponsors as { id, name, size, logo }}
-			<div class={['border-2- h-fit p-3', sizes[size - 1]]}>
-				<img
-					class="h-full w-full"
-					src="{PUBLIC_POCKETBASE_URL}/api/files/sponsors/{id}/{logo}"
-					alt=""
-				/>
+			<div>
+				<div
+					class={['h-fit rounded border border-black/20 bg-white/20 shadow-xs', sizes[size - 1]]}
+				>
+					<img
+						class="h-full w-full"
+						src="{PUBLIC_POCKETBASE_URL}/api/files/sponsors/{id}/{logo}"
+						alt=""
+					/>
+				</div>
+				<div class="mt-1 text-sm">{name}</div>
 			</div>
 		{/each}
 	</div>

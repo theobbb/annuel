@@ -4,6 +4,7 @@
 	import { url_query_param } from '$lib/utils/url';
 	import LinkProgram from '../link-program.svelte';
 	import ProgramLink from '../link-program.svelte';
+	import CollectionHeaderFilters from './collection-filters.svelte';
 
 	const { programs }: { programs: ProgramsRecord[] } = $derived(page.data);
 
@@ -38,6 +39,9 @@
 			onmouseleave={() => (pop_visible = false)}
 			onblur={() => (pop_visible = false)}
 		>
+			<a class="-mx-3 -my-1 px-3 py-1" href={url_query_param(page.url.href, { programme: null })}
+				>Tous les programmes</a
+			>
 			{#each programs as program}
 				<div
 					class="peer"
@@ -51,34 +55,42 @@
 						hovered = program;
 					}}
 				>
-					<LinkProgram {program} onclick={() => (pop_visible = false)}>
+					<a
+						href={url_query_param(page.url.href, { programme: program.id })}
+						onclick={() => (pop_visible = false)}
+					>
 						<div
 							class={[
-								'rounded-full- -mx-4 -my-1.5 px-3 py-1',
-								current == program.id ? 'ring-2' : ''
+								'rounded-full- -mx-3 -my-1 px-3 py-1',
+								current == program.id ? 'ring-2- black' : ''
 							]}
 						>
 							{program.code}
 						</div>
-					</LinkProgram>
+					</a>
 				</div>
 			{/each}
 		</div>
 	</div>
 </div>
-<div class="mt-24 border-b-2">
-	<div class="flex whitespace-nowrap">
-		{#each tabs as { name, param, length }}
-			<a
-				class={[
-					'min-w-64- block px-4 py-1.5 pr-2.5 text-center',
-					current_tab === param ? 'ring-2' : ''
-				]}
-				href={url_query_param(`/${page.params.year}/${param}`, { programme: current || null })}
-			>
-				{name} <sup>{length}</sup>
-			</a>
-		{/each}
+<div class="mt-24 border-b py-2">
+	<div class="grid-12">
+		<div class="col-span-6 flex whitespace-nowrap">
+			{#each tabs as { name, param, length }}
+				<a
+					class={[
+						'min-w-64- block px-4 py-1.5 pr-2.5 text-center',
+						current_tab === param ? 'ring-2- black' : ''
+					]}
+					href={url_query_param(`/${page.params.year}/${param}`, { programme: current || null })}
+				>
+					{name} <sup>{length}</sup>
+				</a>
+			{/each}
+		</div>
+		<div class="col-span-3 col-start-10">
+			<input type="text" placeholder="Rechercher" class="w-full border px-2 py-0.5 text-base" />
+		</div>
 	</div>
 </div>
 
@@ -86,7 +98,7 @@
 	class={[
 		'pointer-events-none fixed top-0 right-0 left-0 z-20 h-20 bg-background mix-blend-difference',
 		pop_visible ? '' : '-translate-y-2 opacity-0',
-		'transition ease-in-out'
+		'transition duration-200 ease-in-out'
 	]}
 ></div>
 
@@ -94,7 +106,7 @@
 	class={[
 		'pointer-events-none fixed top-20 right-0 left-0 z-20',
 		pop_visible ? '' : '-translate-y-2 opacity-0',
-		'transition ease-in-out'
+		'transition duration-200 ease-in-out'
 	]}
 >
 	{#if hovered}

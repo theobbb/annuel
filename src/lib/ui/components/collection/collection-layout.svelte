@@ -3,6 +3,7 @@
 	import CollectionFooter from './collection-footer.svelte';
 	import type { ProjectsRecord, StudentsRecord } from '$lib/pocketbase.types';
 	import CollectionHeader from './collection-header.svelte';
+	import CollectionFilters from './collection-filters.svelte';
 
 	const {
 		items,
@@ -14,8 +15,6 @@
 
 <div class="relative mb-36">
 	<CollectionHeader />
-
+	<CollectionFilters {view} n_items={items.length} />
 	{@render children()}
-
-	<!-- <CollectionFooter {view} n_items={items.length} /> -->
 </div>
