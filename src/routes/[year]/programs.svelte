@@ -5,12 +5,10 @@
 		ProgramStatsRecord,
 		ProgramTypesRecord
 	} from '$lib/pocketbase.types';
-	import Title from '$lib/ui/components/title.svelte';
 
 	const {
 		programs,
-		program_types,
-		program_stats
+		program_types
 	}: {
 		programs: ProgramsRecord[];
 		program_types: ProgramTypesRecord[];
@@ -25,36 +23,22 @@
 			children: programs.filter((program) => program.type === type.id)
 		}));
 	});
-	$inspect(page.data);
 </script>
 
 <div>
-	<Title>Programmes</Title>
-
-	<div class="mt-12 leading-10">
+	<div class="mb-8">Tous les programmes</div>
+	<div class="leading-10">
 		{#each groups as { type, children }}
-			<div class="grid-12 border-t-2- py-0.5 first:border-t-0">
+			<div class="grid-12 border-t-2 py-0.5">
 				<div class="col-span-3">
-					<div class="py-6 text-xl">{type.name}</div>
+					{type.name}
 				</div>
 				<div class="col-span-9">
-					{#each children as { id, name, code }}
-						{@const stats = program_stats.get(id)}
-						<a
-							href="/{page.params.year}/projets?programme={id}"
-							class="grid grid-cols-9 items-center justify-between gap-8 border-b-2 py-4 last:border-b-0"
-						>
-							<div class="col-span-5">{name}</div>
-
-							<div class="col-span-2 text-xl">
-								{#if stats}
-									<div>{stats.project_count} projets</div>
-									<div>{stats.student_count} finissant.e.s</div>
-								{/if}
-							</div>
-
-							<div class="col-span-2 text-right">{code}</div>
-						</a>
+					{#each children as program}
+						<div class="flex justify-between gap-6">
+							<div>{program.name}</div>
+							<div class="">{program.code}</div>
+						</div>
 					{/each}
 				</div>
 			</div>

@@ -61,9 +61,9 @@
 	</div>
 </div>
 
-<!-- <div class="mt-24 mb-64">
+<div class="mt-24 mb-64">
 	<Programs {programs} {program_types} {program_stats} />
-</div> -->
+</div>
 <div class="mt-24 min-h-[80svh]">
 	<Sponsors />
 </div>
@@ -80,7 +80,7 @@
 		<div class="col-span-4"></div>
 		{#each buttons as { name, param, n }}
 			<a class="pointer-events-auto col-span-4" href="/{page.params.year}/{param}">
-				<div class="min-h-64 rounded-t-sm bg-black px-8 py-5 text-background">
+				<div class="min-h-32 rounded-t-sm bg-black px-8 py-5 text-background">
 					<div class="flex items-center justify-between gap-4">
 						<div>{name} <sup>{n}</sup></div>
 						<div class="icon-[ri--arrow-right-long-line]"></div>

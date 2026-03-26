@@ -17,5 +17,5 @@
 
 	{@render children()}
 
-	<CollectionFooter {view} n_items={items.length} />
+	<!-- <CollectionFooter {view} n_items={items.length} /> -->
 </div>

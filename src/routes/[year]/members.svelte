@@ -2,6 +2,7 @@
 	import { page } from '$app/state';
 	import Facecard from '$lib/components/face-card.svelte';
 	import type { MemberRolesRecord, MembersRecord } from '$lib/pocketbase.types';
+	import Title from '$lib/ui/components/title.svelte';
 
 	const members: MembersRecord[] = $derived(page.data.members);
 	const member_roles: MemberRolesRecord[] = $derived(page.data.member_roles);
@@ -14,14 +15,15 @@
 	});
 </script>
 
-<div class="border-b-2 pb-3">Équipe de l’Annuel</div>
+<Title>Équipe de l’Annuel</Title>
+
 <div class="grid-12 mb-8">
-	<div class="relative col-span-2 col-start-4 mt-8">
+	<div class="col-start-4- col-start-2- relative col-span-2 mt-8">
 		<div class="sticky top-8">
 			<Facecard />
 		</div>
 	</div>
-	<div class="col-span-7 leading-8">
+	<div class="col-span-7 col-start-6 leading-8">
 		{#each groups as { role, children }, i}
 			<div
 				class={[
@@ -30,8 +32,8 @@
 				]}
 			>
 				<div class="">
-					{#each children as program}
-						<div class="py-1 pb-1.5 text-balance">{program.name}</div>
+					{#each children as member}
+						<div class="py-1.5 pb-1.5 text-balance hover:bg-black">{member.name}</div>
 					{/each}
 				</div>
 				<div class="py-1 pb-1.5">{role.name}</div>

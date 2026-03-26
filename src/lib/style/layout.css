@@ -20,12 +20,18 @@
 
 @layer base {
 	* {
-		border-color: var(--border);
+		/*border-color: rgba(0, 0, 0, 0.2);*/
 	}
 	[class*='text-xl'] {
 		font-weight: 430;
 	}
 }
+.border-dotted {
+	border-color: rgba(0, 0, 0, 0.2);
+}
+/* [class*='border'] {
+	border-style: dotted;
+} */
 
 html {
 	font-family: 'Switzer';
