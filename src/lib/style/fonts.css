@@ -9,7 +9,7 @@
 @font-face {
 	font-family: 'Switzer';
 	src: url('/fonts/switzer-variable.woff2') format('woff2');
-	font-weight: 400 500;
+	font-weight: 300 900;
 	font-display: swap;
 
 	font-style: normal;

@@ -6,7 +6,9 @@ import type { ProgramsRecord, YearsRecord } from '$lib/pocketbase.types';
 declare global {
 	namespace App {
 		// interface Error {}
-		// interface Locals {}
+		interface Locals {
+			background: string;
+		}
 		interface PageData {
 			programs: ProgramsRecord[];
 			program_map: Map<string, ProgramsRecord>;

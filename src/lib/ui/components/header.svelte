@@ -32,11 +32,10 @@
 </script>
 
 <div class="grid-12 mb-3x">
-	<div class="col-span-7 flex flex-col justify-between">
+	<div class="col-span-3 flex flex-col justify-between">
 		<a href="/{root_year}">Annuel de design</a>
-
-		<div>{@render children?.()}</div>
 	</div>
+	<div class="col-span-4">{@render children?.()}</div>
 	<div class="col-span-2">
 		<div class="mt-2">
 			{#if !footer || !archive_page}

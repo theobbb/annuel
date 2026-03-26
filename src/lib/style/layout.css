@@ -66,6 +66,10 @@ html {
 	background-color: var(--color-dark-background);
 	color: var(--color-dark-foreground);
 }
+.hover-black:hover {
+	background-color: var(--color-dark-background);
+	color: var(--color-dark-foreground);
+}
 
 /* a,
 .underline {
@@ -74,6 +78,8 @@ html {
 } */
 a:not(.no-hover):hover {
 	text-decoration: underline;
+	text-underline-offset: 0.1em;
+	/* text-decoration-thickness: 2px; */
 }
 a.active {
 	color: black;

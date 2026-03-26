@@ -13,7 +13,7 @@
 		<Header footer>
 			<div class="col-span-2 col-start-8">
 				{#each socials as { url, name }}
-					<div><a class="underline" href={url} target="_blank">{name}</a></div>
+					<div><a class="underline-" href={url} target="_blank">{name}</a></div>
 				{/each}
 			</div>
 		</Header>
@@ -34,8 +34,8 @@
 			</div> -->
 		</div>
 	</div>
-	<div class="grid-12 items-end text-sm">
-		<div class="col-span-7">
+	<div class="grid-12 hidden items-end text-sm/4.5">
+		<div class="col-span-4">
 			© {page.params.year} Annuel de design — Tous droits réservés <br />
 			Les œuvres présentées demeurent la propriété <br /> de leurs auteur.rice.s respectif.ve.s.
 		</div>

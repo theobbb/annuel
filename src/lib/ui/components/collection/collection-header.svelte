@@ -2,9 +2,7 @@
 	import { page } from '$app/state';
 	import type { ProgramsRecord } from '$lib/pocketbase.types';
 	import { url_query_param } from '$lib/utils/url';
-	import LinkProgram from '../link-program.svelte';
-	import ProgramLink from '../link-program.svelte';
-	import CollectionHeaderFilters from './collection-filters.svelte';
+	import OverlayProgram from './overlay-program.svelte';
 
 	const { programs }: { programs: ProgramsRecord[] } = $derived(page.data);
 
@@ -32,19 +30,32 @@
 	<div class="col-span-6">
 		<a href="/{page.params.year}">Annuel de design</a>
 	</div>
-	<div class="col-span-6">
+	<div class=" col-span-6">
 		<div
 			class="flex justify-between"
-			role="list"
+			role="navigation"
+			aria-label="Sélection de programme"
 			onmouseleave={() => (pop_visible = false)}
 			onblur={() => (pop_visible = false)}
 		>
-			<a class="-mx-3 -my-1 px-3 py-1" href={url_query_param(page.url.href, { programme: null })}
-				>Tous les programmes</a
+			<div
+				role="none"
+				onmouseenter={() => (pop_visible = false)}
+				onfocus={() => (pop_visible = false)}
 			>
+				<a
+					class={[
+						'-mx-3 -my-1 rounded-full px-3 py-1 whitespace-nowrap ring-black/20',
+						!current ? 'border-b- border-current- ring' : 'text-black/40-'
+					]}
+					href={url_query_param(page.url.href, { programme: null })}
+				>
+					Tous les programmes
+				</a>
+			</div>
+
 			{#each programs as program}
 				<div
-					class="peer"
 					role="listitem"
 					onmouseenter={() => {
 						pop_visible = true;
@@ -56,13 +67,16 @@
 					}}
 				>
 					<a
+						class="no-hover group"
 						href={url_query_param(page.url.href, { programme: program.id })}
 						onclick={() => (pop_visible = false)}
 					>
 						<div
 							class={[
-								'rounded-full- -mx-3 -my-1 px-3 py-1',
-								current == program.id ? 'ring-2- black' : ''
+								'-mx-3 -my-1 border-b px-3 py-1 tracking-wide ring-black/20 group-hover:border-current',
+								current == program.id
+									? 'black- bg-white/30- ring-  border-current-'
+									: 'border-transparent text-black/40'
 							]}
 						>
 							{program.code}
@@ -75,12 +89,12 @@
 </div>
 <div class="mt-24 border-b py-2">
 	<div class="grid-12">
-		<div class="col-span-6 flex whitespace-nowrap">
+		<div class="col-span-6 flex gap-1 whitespace-nowrap">
 			{#each tabs as { name, param, length }}
 				<a
 					class={[
-						'min-w-64- block px-4 py-1.5 pr-2.5 text-center',
-						current_tab === param ? 'ring-2- black' : ''
+						'hover-black block min-w-48 rounded-sm px-4 py-1.5 pr-2.5 text-center font-[430]',
+						current_tab === param ? 'black' : ''
 					]}
 					href={url_query_param(`/${page.params.year}/${param}`, { programme: current || null })}
 				>
@@ -89,35 +103,14 @@
 			{/each}
 		</div>
 		<div class="col-span-3 col-start-10">
-			<input type="text" placeholder="Rechercher" class="w-full border px-2 py-0.5 text-base" />
+			<input
+				type="text"
+				placeholder="Rechercher"
+				class="w-full border px-2.5 py-1 text-base ring-black outline-none focus:placeholder-black/60 focus:ring"
+			/>
 		</div>
 	</div>
 </div>
 
-<div
-	class={[
-		'pointer-events-none fixed top-0 right-0 left-0 z-20 h-20 bg-background mix-blend-difference',
-		pop_visible ? '' : '-translate-y-2 opacity-0',
-		'transition duration-200 ease-in-out'
-	]}
-></div>
-
-<div
-	class={[
-		'pointer-events-none fixed top-20 right-0 left-0 z-20',
-		pop_visible ? '' : '-translate-y-2 opacity-0',
-		'transition duration-200 ease-in-out'
-	]}
->
-	{#if hovered}
-		<div
-			class="grid-12 min-h-[50svh]- grid-rows-[1fr_auto] items-end gap-y-6! bg-black px-8 py-8 pt-16 text-balance text-background"
-		>
-			<div class="col-span-4">
-				{hovered.name}
-			</div>
-			<div class="col-span-5 col-start-7">{hovered.description}</div>
-			<div class="col-span-full border-b-2"></div>
-		</div>
-	{/if}
-</div>
+<OverlayProgram visible={pop_visible} program={hovered} />
+<!-- <OverlayProgram visible={true} program={programs[0]} /> -->

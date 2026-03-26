@@ -1,19 +1,20 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import Image from '$lib/components/image.svelte';
-	import SingleHeader from '$lib/components/layout/single-header.svelte';
+	import { PUBLIC_POCKETBASE_URL } from '$env/static/public';
 	import ProjectRow from '$lib/components/project-row.svelte';
-	import Relations from '$lib/components/relations.svelte';
 	import Student from '$lib/components/student.svelte';
-	import Students from '$lib/components/students.svelte';
 	import type { ProgramsRecord } from '$lib/pocketbase.types';
 	import RecordHeader from '$lib/ui/components/record/record-header.svelte';
 	import Title from '$lib/ui/components/title.svelte';
 	import { string_to_1_8 } from '$lib/utils/seed';
+	import { onMount } from 'svelte';
 
 	const { data } = $props();
 
+	$inspect(data);
 	const { project, program_map } = $derived(data);
+
+	const files = $derived(project.expand['project_files(project)']);
 
 	const n_files = $derived(string_to_1_8(project.name));
 
@@ -45,7 +46,26 @@
 	});
 
 	let lightbox_file: string | null = $state(null);
+
+	onMount(() => {
+		if (project.background) document.documentElement.style.backgroundColor = project.background;
+		else clear_background();
+		return () => {
+			clear_background();
+		};
+	});
+	function clear_background() {
+		document.documentElement.style.removeProperty('background-color');
+	}
 </script>
+
+<svelte:head>
+	<style>
+		html {
+			background-color: {value};
+		}
+	</style>
+</svelte:head>
 
 <RecordHeader back_href="/{page.params.year}/projets">
 	{#snippet title()}
@@ -57,7 +77,7 @@
 		{project.description}
 	{/snippet}
 	<div>
-		<div class="text-right">
+		<div class="text-right-">
 			{#each project.expand.students as student}
 				<div><Student {student} /></div>
 			{/each}
@@ -107,15 +127,21 @@
 		</button>
 	{/each}
 </div> -->
-<div class="h-[100svh]"></div>
+<div class="min-h-svh">
+	<div class="grid grid-cols-4 gap-8">
+		{#each files as { id, file: file_name, col_span, col_start, caption }}
+			<div style="grid-column: {col_start} / span {col_span};">
+				<img src="{PUBLIC_POCKETBASE_URL}/api/files/project_files/{id}/{file_name}" />
+				{#if caption}
+					<div class="mt-1 text-base">{caption}</div>
+				{/if}
+			</div>
+		{/each}
+	</div>
+</div>
+
 {#if related_projects.length}
 	<div class="mt-24">
-		<!-- <div class="pb-gap-y text-xl">
-			<div>Autres projets par</div>
-			<div class="underline">
-				<Students students={project.expand.students} />
-			</div>
-		</div> -->
 		<Title>
 			Autres projets <sup>{related_projects.length}</sup>
 		</Title>

@@ -34,7 +34,7 @@
 		<div class="mb-12 text-4xl">
 			{@render title()}
 		</div>
-		<div class="text-xl/6.5- border-t-2 pt-4">
+		<div class="text-xl/6.5- border-t- pt-4">
 			{@render description()}
 		</div>
 	</div>

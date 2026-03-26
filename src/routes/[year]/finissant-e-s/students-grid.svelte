@@ -8,19 +8,19 @@
 	let hovered: StudentsRecord | null = $state(students[0]);
 </script>
 
-<div class="grid-12">
-	<div class="col-span-8 grid grid-cols-6 gap-8">
-		{#each students as student}
-			<a
-				class=""
-				href="/{page.params.year}/finissant-e-s/{student.id}"
-				onmouseenter={() => (hovered = student)}
-			>
-				<Facecard {student} />
-			</a>
-		{/each}
-	</div>
-	<div class="col-span-4">
+<div class="grid grid-cols-9 gap-8">
+	{#each students as student}
+		<a
+			class=""
+			href="/{page.params.year}/finissant-e-s/{student.id}"
+			onmouseenter={() => (hovered = student)}
+		>
+			<Facecard {student} />
+			<div class="mt-1.5 text-base">{student.first_name} {student.last_name}</div>
+		</a>
+	{/each}
+
+	<!-- <div class="col-span-4">
 		<div class="sticky top-8">
 			{#if hovered}
 				<div class=" mt-4 text-right">
@@ -29,5 +29,5 @@
 				</div>
 			{/if}
 		</div>
-	</div>
+	</div> -->
 </div>
