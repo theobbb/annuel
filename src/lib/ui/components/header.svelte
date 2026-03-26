@@ -39,20 +39,18 @@
 	</div>
 	<div class="col-span-2">
 		<div class="mt-2">
-			{#if !footer || !archive_page}
-				{#if archive_page}
-					<div class="flex flex-col gap-6">
-						{#each years as year}
-							<a href="/{year.id}" class="relative">
-								{@render poster(year)}
-								<div class="absolute -right-4 bottom-0 translate-x-full leading-6">{year.id}</div>
-							</a>
-						{/each}
-					</div>
-				{:else}
+			<!-- {#if footer}
+				{#if !archive_page}
 					{@render poster(year)}
 				{/if}
-			{/if}
+			{:else if archive_page}
+				{#each years as year}
+					<a href="/{year.id}" class="relative">
+						{@render poster(year)}
+						<div class="absolute -right-4 bottom-0 translate-x-full leading-6">{year.id}</div>
+					</a>
+				{/each}
+			{/if} -->
 		</div>
 	</div>
 	<div class="col-span-3">

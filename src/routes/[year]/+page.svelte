@@ -42,22 +42,19 @@
 	});
 </script>
 
-<Banner banner={data.globals.banner} />
+<!-- <Banner banner={data.globals.banner} /> -->
 <div bind:this={sentinel}></div>
 <Header>
-	<div class="mb-8 text-5xl/13">
+	<!-- <div class="mb-8 text-5xl/13">
 		Les projets des finissant.es <br />
 		de l’École de design de l’UQAM.
-
-		<!-- Une diversité de démarches. -->
-	</div>
+	</div> -->
 </Header>
 
 <div class="-mt-36-">
 	<div class="-mx-3x- aspect-video bg-placeholder"></div>
-	<div class="my-1x text-right text-xl/tight">
-		Vidéo par <br />
-		Kathrynf Mills, George Miller, <br />Heather Ruiz, Christina Griffith
+	<div class="my-1x text-right text-sm/4">
+		Vidéo par Kathrynf Mills, George Miller, Heather Ruiz, Christina Griffith
 	</div>
 </div>
 
