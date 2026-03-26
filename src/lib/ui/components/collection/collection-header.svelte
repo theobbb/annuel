@@ -11,8 +11,8 @@
 
 	const current = $derived(page.url.searchParams.get('programme') || '');
 
-	let pop_visible = $state(false);
-	let hovered: ProgramsRecord | null = $state(null);
+	// let pop_visible = $state(false);
+	let hovered_i: number = $state(-1);
 
 	const tabs = $derived([
 		{
@@ -29,81 +29,77 @@
 	const current_tab = $derived(page.route.id?.split('/')[2]);
 </script>
 
+{#snippet program_link(label: string, active: boolean)}
+	<div
+		class={[
+			'group -mx-3 -my-1.5 border-b-2 px-3 py-1.5 whitespace-nowrap ring-black/20 transition group-hover:border-current',
+			active ? 'border-current' : 'border-transparent not-hover:text-black/40'
+		]}
+	>
+		{label}
+	</div>
+{/snippet}
+
 <div class="grid-12">
 	<div class="col-span-6">
 		<a href="/{page.params.year}">Annuel de design</a>
 	</div>
-	<div class=" col-span-6">
+	<div class={['relative z-100 col-span-6']}>
 		<div
-			class="flex justify-between"
+			class="flex justify-between pb-1"
 			role="navigation"
 			aria-label="Sélection de programme"
-			onmouseleave={() => (pop_visible = false)}
-			onblur={() => (pop_visible = false)}
+			onmouseleave={() => (hovered_i = -1)}
+			onblur={() => (hovered_i = -1)}
 		>
-			<div
-				role="none"
-				onmouseenter={() => (pop_visible = false)}
-				onfocus={() => (pop_visible = false)}
-			>
-				<a
-					class={[
-						'-mx-3 -my-1 rounded-full px-3 py-1 whitespace-nowrap ring-black/20',
-						!current ? 'border-b- border-current- ring' : 'text-black/40-'
-					]}
-					href={url_query_param(page.url.href, { programme: null })}
-				>
-					Tous les programmes
+			<div role="none" onmouseenter={() => (hovered_i = -1)} onfocus={() => (hovered_i = -1)}>
+				<a class="no-hover" href={url_query_param(page.url.href, { programme: null })}>
+					{@render program_link('Tous les programmes', !current)}
 				</a>
 			</div>
 
-			{#each programs as program}
+			{#each programs as program, i}
 				<div
 					role="listitem"
 					onmouseenter={() => {
-						pop_visible = true;
-						hovered = program;
+						hovered_i = i;
 					}}
 					onfocus={() => {
-						pop_visible = true;
-						hovered = program;
+						hovered_i = i;
 					}}
 				>
 					<a
-						class="no-hover group"
+						class="no-hover tracking-wide"
 						href={url_query_param(page.url.href, { programme: program.id })}
-						onclick={() => (pop_visible = false)}
+						onclick={() => (hovered_i = -1)}
 					>
-						<div
-							class={[
-								'-mx-3 -my-1 border-b px-3 py-1 tracking-wide ring-black/20 group-hover:border-current',
-								current == program.id
-									? 'black- bg-white/30- ring-  border-current-'
-									: 'border-transparent text-black/40'
-							]}
-						>
-							{program.code}
-						</div>
+						{@render program_link(program.code, current == program.id)}
 					</a>
 				</div>
+				<OverlayProgram {hovered_i} {i} {program} />
 			{/each}
 		</div>
 	</div>
 </div>
-<div class="mt-24 border-b py-2">
-	<div class="grid-12">
-		<div class="col-span-6 flex gap-1 whitespace-nowrap">
-			{#each tabs as { name, param, length }}
-				<a
-					class={[
-						'hover-black block min-w-48 rounded-sm px-4 py-1.5 pr-2.5 text-center font-[430]',
-						current_tab === param ? 'black' : ''
-					]}
-					href={url_query_param(`/${page.params.year}/${param}`, { programme: current || null })}
-				>
-					{name} <sup>{length}</sup>
-				</a>
-			{/each}
+<div class="py-1- sticky top-0 z-20 mt-12 border-b bg-background">
+	<div class="grid-12 items-center">
+		<div class="col-span-6">
+			<div class="flex gap-1 whitespace-nowrap">
+				{#each tabs as { name, param, length }}
+					<a
+						class={[
+							'no-hover block border-b-2 py-2 pr-5.5 pl-6.5 text-center font-[430]',
+							current_tab === param
+								? ' border-black'
+								: 'border-transparent not-hover:text-black/40',
+							'transition'
+						]}
+						href={url_query_param(`/${page.params.year}/${param}`, { programme: current || null })}
+					>
+						{name} <sup>{length}</sup>
+					</a>
+				{/each}
+			</div>
 		</div>
 		<div class="col-span-4 col-start-9">
 			<CollectionFilters {view} />
@@ -111,5 +107,4 @@
 	</div>
 </div>
 
-<OverlayProgram visible={pop_visible} program={hovered} />
-<!-- <OverlayProgram visible={true} program={programs[0]} /> -->
+<!-- <OverlayProgram visible={pop_visible} program={hovered} /> -->

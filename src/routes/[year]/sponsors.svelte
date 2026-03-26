@@ -22,19 +22,16 @@
 			</div>
 		{/each}
 	</div> -->
-	<div class="mr-32 mb-32 flex flex-wrap gap-6 pt-8">
+	<div class="mr-32 mb-32 flex max-w-200 flex-wrap gap-6 pt-8">
 		{#each sponsors as { id, name, size, logo }}
 			<div>
-				<div
-					class={['h-fit rounded border border-black/20 bg-white/20 shadow-xs', sizes[size - 1]]}
-				>
+				<div class={['']}>
 					<img
-						class="h-full w-full"
+						class="max-h-12 w-full"
 						src="{PUBLIC_POCKETBASE_URL}/api/files/sponsors/{id}/{logo}"
 						alt=""
 					/>
 				</div>
-				<div class="mt-1 text-sm">{name}</div>
 			</div>
 		{/each}
 	</div>

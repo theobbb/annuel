@@ -51,22 +51,35 @@
 	</div> -->
 </Header>
 
-<div class="-mt-90">
-	<div class="-mx-3x- aspect-video bg-placeholder"></div>
+<a class="border bg-black/5 px-3 py-1 text-lg font-medium" href="/{page.params.year}/projets"
+	>Projets</a
+>
+<a class="border bg-black/5 px-3 py-1 text-lg font-medium" href="/{page.params.year}/finissant-e-s"
+	>Finissant.e.s</a
+>
+<!-- <div class="-mt-90">
+	<div class="-mx-3x- aspect-video bg-placeholder">
+		<iframe
+			src="https://player.mux.com/P3WEcj3FPpoxgFHcqU16hXo1NpJxUCsi00fcW1GnHNw00?metadata-video-title=VIDEOANNUEL2026_FINAL&video-title=VIDEOANNUEL2026_FINAL"
+			style="width: 100%; border: none; aspect-ratio: 16/9;"
+			allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+			allowfullscreen
+		></iframe>
+	</div>
 	<div class="my-1x text-right text-sm/4">
 		Vidéo par Kathrynf Mills, George Miller, Heather Ruiz, Christina Griffith
 	</div>
-</div>
+</div> -->
 
-<div class="mt-24 mb-64">
+<!-- <div class="mt-24 mb-64">
 	<Programs {programs} {program_types} {program_stats} />
-</div>
+</div> -->
 <div class="mt-24 min-h-[80svh]">
 	<Sponsors />
 </div>
-<div><Members /></div>
+<!-- <div><Members /></div> -->
 
-<div
+<!-- <div
 	class={[
 		'pointer-events-none fixed right-0 bottom-0 left-0',
 		scroll_top ? '' : 'translate-y-59- opacity-0- translate-y-full',
@@ -86,4 +99,4 @@
 			</a>
 		{/each}
 	</div>
-</div>
+</div> -->

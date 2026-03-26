@@ -23,17 +23,17 @@
 			<Facecard />
 		</div>
 	</div>
-	<div class="col-span-7 col-start-6 leading-8">
+	<div class="col-span-7 col-start-6 text-2xl leading-8">
 		{#each groups as { role, children }, i}
 			<div
 				class={[
-					'flex justify-between gap-3 border-b-2 py-0.5',
+					'flex justify-between gap-3 border-b py-0.5',
 					i == groups.length - 1 && 'border-b-0!'
 				]}
 			>
 				<div class="">
 					{#each children as member}
-						<div class="py-1.5 pb-1.5 text-balance hover:bg-black">{member.name}</div>
+						<div class="py-1 pb-1.5 text-balance hover:bg-black">{member.name}</div>
 					{/each}
 				</div>
 				<div class="py-1 pb-1.5">{role.name}</div>

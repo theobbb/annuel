@@ -73,7 +73,7 @@
 				<div
 					class={[
 						archive_page ? 'icon-[ri--contract-up-down-line]' : 'icon-[ri--expand-up-down-line]',
-						' translate-y-0.5 text-3xl'
+						' text-3xl- translate-y-0.5'
 					]}
 				></div>
 			</a>
