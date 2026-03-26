@@ -16,7 +16,7 @@
 
 {#if project_collection}
 	<button
-		class="fixed right-4 bottom-4 z-50 flex items-center rounded-full border bg-background p-2 text-2xl shadow"
+		class="fixed right-4 bottom-5 z-50 flex items-center rounded-full border bg-background p-2 text-lg shadow"
 		title="Mélanger"
 		onclick={() => seed.shuffle()}
 	>

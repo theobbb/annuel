@@ -19,7 +19,7 @@
 <div
 	class={[
 		'pointer-events-none absolute top-11 -right-4 -left-4 z-20 rounded  bg-dark-background text-dark-foreground',
-		i > hovered_i ? 'translate-x-4' : i < hovered_i ? '-translate-x-4' : '',
+		i > hovered_i ? 'translate-x-4-' : i < hovered_i ? '-translate-x-4-' : '',
 		i != hovered_i ? ' opacity-0' : '',
 		'transition duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)] will-change-[opacity,transform]'
 	]}
