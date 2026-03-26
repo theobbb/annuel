@@ -26,7 +26,7 @@
 			<div class="col-span-4">
 				<div class="text-4xl">{program.name}</div>
 			</div>
-			<div class="col-span-5 col-start-7">{program.description}</div>
+			<div class="col-span-4 col-start-7">{program.description}</div>
 			<div class="col-span-full border-b-2"></div>
 		</div>
 	{/if}

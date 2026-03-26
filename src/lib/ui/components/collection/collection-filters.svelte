@@ -3,7 +3,7 @@
 	import { use_seed } from '$lib/store/seed-ctx.svelte';
 	import { url_query_param } from '$lib/utils/url';
 
-	const { view, n_items }: { view: 'grille' | 'liste'; n_items: number } = $props();
+	const { view }: { view: 'grille' | 'liste' } = $props();
 
 	const seed = use_seed();
 	const project_collection = $derived(page.route.id?.split('/')[2] == 'projets');
@@ -14,7 +14,12 @@
 	];
 </script>
 
-<div class="grid-12 items-center py-3.5 text-base">
+<div class="flex items-center gap-8 py-3.5 text-base">
+	<input
+		type="text"
+		placeholder="Rechercher"
+		class="w-full border px-2.5 py-1 text-base ring-black outline-none focus:placeholder-black/60 focus:ring"
+	/>
 	<div class="col-span-7"></div>
 	<div class="col-span-3 col-start-10">
 		<div class="flex items-center justify-end gap-1">

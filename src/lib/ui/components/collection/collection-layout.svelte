@@ -14,7 +14,7 @@
 </script>
 
 <div class="relative mb-36">
-	<CollectionHeader />
-	<CollectionFilters {view} n_items={items.length} />
+	<CollectionHeader {view} n_items={items.length} />
+
 	{@render children()}
 </div>

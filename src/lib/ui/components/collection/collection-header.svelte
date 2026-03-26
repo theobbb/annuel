@@ -2,7 +2,10 @@
 	import { page } from '$app/state';
 	import type { ProgramsRecord } from '$lib/pocketbase.types';
 	import { url_query_param } from '$lib/utils/url';
+	import CollectionFilters from './collection-filters.svelte';
 	import OverlayProgram from './overlay-program.svelte';
+
+	const { view }: { view: 'grille' | 'liste'; n_items: number } = $props();
 
 	const { programs }: { programs: ProgramsRecord[] } = $derived(page.data);
 
@@ -102,12 +105,8 @@
 				</a>
 			{/each}
 		</div>
-		<div class="col-span-3 col-start-10">
-			<input
-				type="text"
-				placeholder="Rechercher"
-				class="w-full border px-2.5 py-1 text-base ring-black outline-none focus:placeholder-black/60 focus:ring"
-			/>
+		<div class="col-span-4 col-start-9">
+			<CollectionFilters {view} />
 		</div>
 	</div>
 </div>
