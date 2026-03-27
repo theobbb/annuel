@@ -1,12 +1,13 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import Header from '$lib/ui/components/header.svelte';
 	import { onMount } from 'svelte';
 	import Members from './members.svelte';
 	import Programs from './programs.svelte';
 	import Sponsors from './sponsors.svelte';
 	import { use_intersection_observer } from '$lib/utils/intersection-observer.js';
 	import Banner from '$lib/ui/components/banner.svelte';
+	import Tabs from '$lib/ui/components/collection/tabs.svelte';
+	import Header from '$lib/ui/components/header.svelte';
 
 	const { data } = $props();
 	const { programs, program_types, program_stats, n_projects, n_students } = $derived(data);
@@ -42,12 +43,24 @@
 	});
 </script>
 
-<header class="grid-12">
-	<a class="col-span-2" href="/{page.params.year}">Annuel de design</a>
-	<a class="col-span-2">2026</a>
-	<a class="col-span-2 col-start-8" href="/{page.params.year}/projets">Projets</a>
-	<a class="col-span-2" href="/{page.params.year}/finissant-e-s">Finissant.e.s</a>
-</header>
+<Header>
+	<a class="col-span-2 col-start-11 text-right" href="/archives">Archives</a>
+</Header>
+
+<div class="grid-12 mt-16">
+	<div class="-mx-3x- col-span-8 col-start-3 aspect-video bg-placeholder"></div>
+	<div class="col-span-2 my-1x flex items-end text-sm/4 text-muted">
+		Vidéo par Kathrynf Mills, George Miller, Heather Ruiz, Christina Griffith
+	</div>
+</div>
+
+<div class="grid-12 mt-24">
+	<div class="col-span-6">
+		L’Annuel de design est une exposition présentant les projets des finissantes et finissants de
+		l’école de design de l’UQAM, mettant en lumière la diversité des démarches et des approches en
+		design.
+	</div>
+</div>
 
 <!-- <Banner banner={data.globals.banner} /> -->
 <!-- <div class="mb-8 text-5xl/13">

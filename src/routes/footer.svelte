@@ -1,13 +1,12 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import Uqam from '$lib/assets/uqam.svelte';
-	import Header from '$lib/ui/components/header.svelte';
 
 	const { year, programs, socials } = $derived(page.data);
 </script>
 
 <footer
-	class="black rounded-t-xl- text-lg- relative z-200 -mx-8 flex flex-col justify-between gap-12 border px-8 py-5 pb-10 font-[370]"
+	class="black rounded-t-xl- text-lg- relative z-200 -mx-8 mt-16 flex flex-col justify-between gap-12 border px-8 py-5 pb-10 font-[370]"
 >
 	<div class="grid-12">
 		<div class="col-span-2">

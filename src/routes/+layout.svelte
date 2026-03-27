@@ -2,7 +2,6 @@
 	import '$lib/style/layout.css';
 	import '$lib/style/fonts.css';
 	import favicon from '$lib/assets/favicon.svg';
-	import Header from '../lib/ui/components/header.svelte';
 	import Footer from './footer.svelte';
 	import {
 		init_store_student_projects,

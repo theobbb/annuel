@@ -8,7 +8,7 @@
 	--spacing-4x: calc(var(--spacing) * 8);
 	--spacing-5x: calc(var(--spacing) * 16);
 
-	--color-background: oklch(93.705% 0.00011 271.152);
+	--color-background: oklch(96.715% 0.00011 271.152);
 	--color-foreground: oklch(28.094% 0.00003 271.152);
 	--color-dark-background: rgb(13, 13, 13);
 	--color-dark-foreground: oklch(95.213% 0.00011 271.152);

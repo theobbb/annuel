@@ -1,15 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { page } from '$app/state';
-	import { use_seed } from '$lib/store/seed-ctx.svelte';
 	import { url_query_param } from '$lib/utils/url';
-
-	const { view }: { view: 'grille' | 'liste' } = $props();
-
-	const views = [
-		{ name: 'Grille', param: 'grille', icon: 'icon-[ri--layout-grid-line]' },
-		{ name: 'Liste', param: 'liste', icon: 'icon-[ri--list-check]' }
-	];
 
 	function on_search_input(event: Event & { currentTarget: EventTarget & HTMLInputElement }) {
 		const value = event.currentTarget.value;
@@ -27,6 +19,6 @@
 		id="search"
 		autocomplete={null}
 		value={page.url.searchParams.get('search') ?? ''}
-		class=" w-full bg-background-2 px-2.5 py-1 text-lg transition outline-none hover:bg-black/10 focus:placeholder-black/60"
+		class="w-full border bg-background-2 px-3.5 py-1 text-lg transition outline-none not-focus:border-transparent hover:bg-black/10 focus:placeholder-black/60"
 	/>
 </div>
