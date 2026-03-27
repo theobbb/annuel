@@ -24,29 +24,32 @@
 <div class="space-y-8- mt-8">
 	{#each programs as { id, name, code, description, type }}
 		{@const stats = program_stats.get(id)}
-		<div class="grid-12 items-center- relative border-b pt-2 pb-12 first:border-t">
-			<a href="/{page.params.year}/projets?programme={id}" class="absolute inset-0"> </a>
+		<a
+			class="grid-12 items-center- border-b pt-2 pb-12 first:border-t"
+			href="/{page.params.year}/projets?programme={id}"
+		>
 			<div class="col-span-2 text-muted">{program_type_map.get(type)?.name}</div>
 
 			<div class="col-span-6 text-3xl">{name}</div>
 
 			<div class="col-span-3">
-				<div class="flex flex-col">
+				<div class="">
 					{#if stats}
-						<a class="block text-muted underline" href="/{page.params.year}/projets?programme={id}">
-							Projets :
-							{stats.project_count}
-						</a>
-						<a class="text-muted underline" href="/{page.params.year}/projets?finissant-e-s={id}">
-							Finissant.e.s :
-							{stats.student_count}
-						</a>
+						<div class="">
+							<span class="inline-block min-w-32 text-muted">projets</span>
+							<span class="font-[450]">{stats.project_count}</span>
+						</div>
+
+						<div>
+							<span class="inline-block min-w-32 text-muted">finissant.e.s</span>
+							<div class="inline-block min-w-8 font-[450]">{stats.student_count}</div>
+						</div>
 					{/if}
 				</div>
 			</div>
 			<!-- <div class="text-base/5">
 										{description}
 									</div> -->
-		</div>
+		</a>
 	{/each}
 </div>
