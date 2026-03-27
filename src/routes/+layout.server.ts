@@ -35,8 +35,11 @@ export async function load() {
 	const program_map: Map<string, ProgramsRecord> = new Map(
 		programs.map((program) => [program.id, program])
 	);
+	const program_type_map: Map<string, ProgramTypesRecord> = new Map(
+		program_types.map((record) => [record.id, record])
+	);
 
 	const seed = Math.random();
 
-	return { programs, program_types, program_map, socials, globals, years, seed };
+	return { programs, program_types, program_type_map, program_map, socials, globals, years, seed };
 }

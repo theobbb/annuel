@@ -25,16 +25,17 @@
 </script>
 
 <Header>
-	<div class="row-start-2">
+	<div class="col-span-8 col-start-1 row-start-2 border-b"></div>
+	<div class="col-start-1 row-start-3">
 		<a href={back_href} onclick={on_back} class="flex items-center gap-1">
 			<div class="icon-[ri--arrow-left-long-line]"></div>
 			Retour
 		</a>
 	</div>
-	<div class="col-span-2 col-start-11 row-span-3">
+	<div class="col-span-2 col-start-11 row-span-4">
 		{@render children()}
 	</div>
-	<div class="col-span-6 col-start-3 mt-16 text-balance">
+	<div class="col-span-6 col-start-3 text-balance">
 		<div class="mb-12 text-4xl">
 			{@render title()}
 		</div>

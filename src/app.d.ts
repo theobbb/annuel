@@ -1,6 +1,11 @@
 // See https://svelte.dev/docs/kit/types#app.d.ts
 
-import type { ProgramsRecord, YearsRecord } from '$lib/pocketbase.types';
+import type {
+	ProgramsRecord,
+	ProgramStatsRecord,
+	ProgramTypesRecord,
+	YearsRecord
+} from '$lib/pocketbase.types';
 
 // for information about these interfaces
 declare global {
@@ -12,6 +17,8 @@ declare global {
 		interface PageData {
 			programs: ProgramsRecord[];
 			program_map: Map<string, ProgramsRecord>;
+			program_type_map: Map<string, ProgramTypesRecord>;
+			program_stats: Map<string, ProgramStatsRecord>;
 			years: YearsRecord[];
 		}
 		// interface PageState {}

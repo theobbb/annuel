@@ -24,22 +24,19 @@
 <div class="space-y-8- mt-8">
 	{#each programs as { id, name, code, description, type }}
 		{@const stats = program_stats.get(id)}
-		<a class="grid-12 items-center border-b py-5 first:border-t">
+		<div class="grid-12 items-center border-b py-5 first:border-t">
 			<div class="col-span-2 text-muted">{program_type_map.get(type)?.name}</div>
 			<div class="col-span-5 text-3xl">{name}</div>
 			<div class="text-right- col-span-2">{code}</div>
-			<div class="col-span-3">
-				<div class="flex items-center gap-4">
-					{#if stats}
-						<div>Projets <sup>{stats.project_count}</sup></div>
-						<div>/</div>
-						<div>Finissant.e.s <sup>{stats.student_count}</sup></div>
-					{/if}
-				</div>
+			<div class="col-span-3 flex gap-8">
+				{#if stats}
+					<div>Projets <sup>{stats.project_count}</sup></div>
+					<div>Finissant.e.s <sup>{stats.student_count}</sup></div>
+				{/if}
 			</div>
 			<!-- <div class="text-base/5">
 										{description}
 									</div> -->
-		</a>
+		</div>
 	{/each}
 </div>

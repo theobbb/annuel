@@ -77,10 +77,27 @@
 		{project.description}
 	{/snippet}
 	<div>
-		<div class="text-right-">
+		<div class="">
 			{#each project.expand.students as student}
 				<div><Student {student} /></div>
 			{/each}
+		</div>
+		<div class="mt-16 space-y-4">
+			<div>
+				<div class="text-base text-muted">Session</div>
+				<div>Automne '26</div>
+			</div>
+
+			<div>
+				<div class="text-base text-muted">Cours</div>
+
+				<div>Synthèse</div>
+			</div>
+			<div>
+				<div class="text-base text-muted">Professeur.e</div>
+
+				<div>Louise Paradis</div>
+			</div>
 		</div>
 	</div>
 	<!-- {#snippet relations()}

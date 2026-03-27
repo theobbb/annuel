@@ -5,9 +5,9 @@
 	import Programs from './programs.svelte';
 	import Sponsors from './sponsors.svelte';
 	import { use_intersection_observer } from '$lib/utils/intersection-observer.js';
-	import Banner from '$lib/ui/components/banner.svelte';
-	import Tabs from '$lib/ui/components/collection/tabs.svelte';
+
 	import Header from '$lib/ui/components/header.svelte';
+	import Banner from '$lib/ui/components/banner.svelte';
 
 	const { data } = $props();
 	const { programs, program_types, program_stats, n_projects, n_students } = $derived(data);
@@ -43,6 +43,7 @@
 	});
 </script>
 
+<!-- <Banner banner={data.globals.banner} /> -->
 <Header>
 	<a class="col-span-2 col-start-11 text-right" href="/archives">Archives</a>
 </Header>
@@ -55,12 +56,19 @@
 </div>
 
 <div class="grid-12 mt-24">
-	<div class="col-span-6">
+	<div class="col-span-4 text-balance">
 		L’Annuel de design est une exposition présentant les projets des finissantes et finissants de
 		l’école de design de l’UQAM, mettant en lumière la diversité des démarches et des approches en
 		design.
 	</div>
 </div>
+<div class="mt-24 mb-64">
+	<Programs {programs} {program_types} {program_stats} />
+</div>
+<div class="mt-24 min-h-[80svh]">
+	<Sponsors />
+</div>
+<!-- <div><Members /></div> -->
 
 <!-- <Banner banner={data.globals.banner} /> -->
 <!-- <div class="mb-8 text-5xl/13">

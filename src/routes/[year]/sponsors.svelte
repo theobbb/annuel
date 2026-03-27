@@ -11,7 +11,7 @@
 </script>
 
 <div>
-	<Title>Commanditaires</Title>
+	<div class="text-center">Commanditaires</div>
 	<!-- <div class="mb-32 grid grid-cols-6 gap-8 pt-8">
 		{#each sponsors as { id, name, size, logo }}
 			<div
@@ -22,7 +22,7 @@
 			</div>
 		{/each}
 	</div> -->
-	<div class="mr-32 mb-32 flex max-w-200 flex-wrap gap-6 pt-8">
+	<div class="mx-auto mb-32 flex max-w-200 flex-wrap justify-center gap-6 pt-8">
 		{#each sponsors as { id, name, size, logo }}
 			<div>
 				<div class={['']}>

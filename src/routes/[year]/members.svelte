@@ -15,15 +15,15 @@
 	});
 </script>
 
-<Title>Équipe de l’Annuel</Title>
+<!-- <Title>Équipe de l’Annuel</Title> -->
 
 <div class="grid-12 mb-8">
-	<div class="col-start-4- col-start-2- relative col-span-2 mt-8">
+	<div class="relative col-span-2 mt-8">
 		<div class="sticky top-8">
 			<Facecard />
 		</div>
 	</div>
-	<div class="col-span-7 col-start-6 text-2xl leading-8">
+	<div class="col-span-6 col-start-4 text-2xl leading-8">
 		{#each groups as { role, children }, i}
 			<div
 				class={[

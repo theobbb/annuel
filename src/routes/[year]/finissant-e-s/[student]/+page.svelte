@@ -26,9 +26,11 @@
 		<div class="">
 			<Facecard {student} />
 		</div>
-		<div>Instagram</div>
-		<div>Behance</div>
-		<div>Youtube</div>
+		<div class="mt-2">
+			<div>Instagram</div>
+			<div>Behance</div>
+			<div>Youtube</div>
+		</div>
 	</div>
 	<!-- {#snippet relations()}
 		<Relations
