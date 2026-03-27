@@ -25,7 +25,7 @@
 </script>
 
 <Header>
-	<div class="col-span-8 col-start-1 row-start-2 border-b"></div>
+	<div class="col-span-9 col-start-1 row-start-2 border-b"></div>
 	<div class="col-start-1 row-start-3">
 		<a href={back_href} onclick={on_back} class="flex items-center gap-1">
 			<div class="icon-[ri--arrow-left-long-line]"></div>

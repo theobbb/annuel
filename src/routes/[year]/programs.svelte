@@ -24,7 +24,7 @@
 <div class="space-y-8- mt-8">
 	{#each programs as { id, name, code, description, type }}
 		{@const stats = program_stats.get(id)}
-		<div class="grid-12 items-center- relative border-b pt-2 pb-12 first:border-t">
+		<div class="grid-12 group items-center- relative border-b pt-2 pb-12 first:border-t">
 			<a href="/{page.params.year}/projets?programme={id}" class="absolute inset-0"> </a>
 			<div class="col-span-2 text-muted">{program_type_map.get(type)?.name}</div>
 
@@ -33,16 +33,21 @@
 			<div class="col-span-3">
 				<div class="flex flex-col">
 					{#if stats}
-						<a class="block text-muted underline" href="/{page.params.year}/projets?programme={id}">
+						<a class="underline- block" href="/{page.params.year}/projets?programme={id}">
 							Projets :
 							{stats.project_count}
 						</a>
-						<a class="text-muted underline" href="/{page.params.year}/projets?finissant-e-s={id}">
+						<a class=" underline-" href="/{page.params.year}/projets?finissant-e-s={id}">
 							Finissant.e.s :
 							{stats.student_count}
 						</a>
 					{/if}
 				</div>
+			</div>
+			<div
+				class="col-start-12 flex justify-end transition not-group-hover:translate-x-4 not-group-hover:opacity-0"
+			>
+				<div class=" icon-[ri--arrow-right-long-line] text-right text-4xl"></div>
 			</div>
 			<!-- <div class="text-base/5">
 										{description}

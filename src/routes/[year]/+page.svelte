@@ -46,23 +46,26 @@
 <!-- <Banner banner={data.globals.banner} /> -->
 <Header>
 	<a class="col-span-2 col-start-11 text-right" href="/archives">Archives</a>
+
+	<div class="col-span-2 col-start-9 row-span-3 row-start-1">
+		<div class="aspect-2/3 bg-placeholder"></div>
+	</div>
+
+	<div class="row col-span-6 row-start-3 text-3xl text-balance">
+		L’Annuel de design est une exposition présentant les projets des finissantes et finissants de
+		l’école de design de l’UQAM, mettant en lumière la diversité des démarches et des approches en
+		design.
+	</div>
 </Header>
 
 <div class="grid-12 mt-16">
-	<div class="-mx-3x- col-span-8 col-start-3 aspect-video bg-placeholder"></div>
+	<div class="-mx-3x- col-span-10 col-start-1 aspect-video bg-placeholder"></div>
 	<div class="col-span-2 my-1x flex items-end text-sm/4 text-muted">
 		Vidéo par Kathrynf Mills, George Miller, Heather Ruiz, Christina Griffith
 	</div>
 </div>
 
-<div class="grid-12 mt-24">
-	<div class="col-span-4 text-balance">
-		L’Annuel de design est une exposition présentant les projets des finissantes et finissants de
-		l’école de design de l’UQAM, mettant en lumière la diversité des démarches et des approches en
-		design.
-	</div>
-</div>
-<div class="mt-24 mb-64">
+<div class="mt-48 mb-64">
 	<Programs {programs} {program_types} {program_stats} />
 </div>
 <div class="mt-24 min-h-[80svh]">

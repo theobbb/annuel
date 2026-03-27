@@ -76,13 +76,8 @@
 	{#snippet description()}
 		{project.description}
 	{/snippet}
-	<div>
-		<div class="">
-			{#each project.expand.students as student}
-				<div><Student {student} /></div>
-			{/each}
-		</div>
-		<div class="mt-16 space-y-4">
+	<div class="mb-16">
+		<div class="mt-16- space-y-2 text-base">
 			<div>
 				<div class="text-base text-muted">Session</div>
 				<div>Automne '26</div>
@@ -98,6 +93,12 @@
 
 				<div>Louise Paradis</div>
 			</div>
+		</div>
+		<div class="mt-12">
+			<div class="mb-1">Finissant.e.s</div>
+			{#each project.expand.students as student}
+				<div><Student {student} /></div>
+			{/each}
 		</div>
 	</div>
 	<!-- {#snippet relations()}

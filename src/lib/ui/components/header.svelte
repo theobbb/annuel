@@ -8,11 +8,11 @@
 </script>
 
 <div class="grid-12 mb-3x">
-	<div class="col-span-2">
+	<div class="col-span-2 row-start-1">
 		<a href="/{page.params.year}">Annuel de design '{page.params.year?.slice(-2)}</a>
 	</div>
 
-	<div class="col-span-4 flex">
+	<div class="col-span-4 row-start-1 flex">
 		<Tabs />
 	</div>
 
