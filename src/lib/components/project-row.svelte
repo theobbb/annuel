@@ -28,14 +28,14 @@
 		aria-label="link to {project.name}"
 	></a>
 	<div class="title col-span-3 text-balance">
-		<div class="pointer-events-none relative mt-1 block pr-16 text-2xl/7.5">
+		<div class="pointer-events-none relative mt-1 block pr-16 text-2xl/7.5 font-[430]">
 			{project.name}
 		</div>
 	</div>
 	<div class="relative col-span-3">
 		<div class="mt-1.5">
 			{#each students as student}
-				<div class="pointer-events-none" role="contentinfo">
+				<div class="pointer-events-none text-muted" role="contentinfo">
 					<Student {student} />
 					<!-- {#if preview?.context_key == props_id && preview.student.id == student.id}
 						<div

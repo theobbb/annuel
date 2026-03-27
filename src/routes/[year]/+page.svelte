@@ -42,21 +42,27 @@
 	});
 </script>
 
+<header class="grid-12">
+	<a class="col-span-2" href="/{page.params.year}">Annuel de design</a>
+	<a class="col-span-2">2026</a>
+	<a class="col-span-2 col-start-8" href="/{page.params.year}/projets">Projets</a>
+	<a class="col-span-2" href="/{page.params.year}/finissant-e-s">Finissant.e.s</a>
+</header>
+
 <!-- <Banner banner={data.globals.banner} /> -->
-<div bind:this={sentinel}></div>
-<Header>
-	<!-- <div class="mb-8 text-5xl/13">
+<!-- <div class="mb-8 text-5xl/13">
 		Les projets des finissant.es <br />
 		de l’École de design de l’UQAM.
 	</div> -->
-</Header>
+<div bind:this={sentinel}></div>
+<!-- <Header></Header> -->
 
-<a class="border bg-black/5 px-3 py-1 text-lg font-medium" href="/{page.params.year}/projets"
+<!-- <a class="border bg-black/5 px-3 py-1 text-lg font-medium" href="/{page.params.year}/projets"
 	>Projets</a
 >
 <a class="border bg-black/5 px-3 py-1 text-lg font-medium" href="/{page.params.year}/finissant-e-s"
 	>Finissant.e.s</a
->
+> -->
 <!-- <div class="-mt-90">
 	<div class="-mx-3x- aspect-video bg-placeholder">
 		<iframe
@@ -74,9 +80,9 @@
 <!-- <div class="mt-24 mb-64">
 	<Programs {programs} {program_types} {program_stats} />
 </div> -->
-<div class="mt-24 min-h-[80svh]">
+<!-- <div class="mt-24 min-h-[80svh]">
 	<Sponsors />
-</div>
+</div> -->
 <!-- <div><Members /></div> -->
 
 <!-- <div

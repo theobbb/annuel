@@ -50,7 +50,7 @@
 	Projets <sup>{projects?.length}</sup>
 </Title>
 
-<div class="">
+<div class="mb-24">
 	{#each projects as project}
 		<ProjectRow {project} students={project.expand.students} />
 		<!-- <ProjectCard {project} /> -->

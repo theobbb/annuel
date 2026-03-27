@@ -9,7 +9,7 @@
 
 export function shuffle_array<T>(array: T[], seed: number): T[] {
 	// 1. Create a shallow copy so we don't mutate the original derived array
-	console.log('shuffling with seed: ', seed);
+
 	const result = [...array];
 
 	// 2. Convert the float seed (0 to 1) into an integer seed for the PRNG

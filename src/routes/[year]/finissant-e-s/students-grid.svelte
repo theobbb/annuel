@@ -16,7 +16,10 @@
 			onmouseenter={() => (hovered = student)}
 		>
 			<Facecard {student} />
-			<div class="mt-1.5 text-base">{student.first_name} {student.last_name}</div>
+			<div class="mt-2.5 px-2 text-center text-base/4.5 tracking-wide">
+				{student.first_name}
+				{student.last_name}
+			</div>
 		</a>
 	{/each}
 

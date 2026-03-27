@@ -40,7 +40,7 @@
 			{#if students}
 				<div class="pointer-events-none relative z-10 text-base/5.5">
 					{#each students as student}
-						<div class="relative font-normal">
+						<div class="relative font-normal text-muted">
 							<Student {student} />
 							<!-- {#if preview?.context_key == props_id && preview.student.id == student.id}
 								<div class={['absolute', preview.anchor[1] == 'left' ? '-left-gap' : 'right-gap']}>

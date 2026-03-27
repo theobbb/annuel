@@ -18,7 +18,7 @@
 	let hovered: StudentsRecord | null = $state(students[0]);
 </script>
 
-<div class="grid-12 mt-24 text-2xl">
+<div class="grid-12 text-2xl-">
 	{#each cols as col}
 		<div class="col-span-4">
 			{#each col as student, i}

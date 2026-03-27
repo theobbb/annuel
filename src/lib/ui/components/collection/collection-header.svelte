@@ -81,14 +81,14 @@
 		</div>
 	</div>
 </div>
-<div class="py-1- sticky top-0 z-20 mt-12 border-b bg-background">
+<div class="py-1- sticky top-0 z-20 mt-12 mb-16 border-b bg-background">
 	<div class="grid-12 items-center">
-		<div class="col-span-6">
+		<div class="col-span-3">
 			<div class="flex gap-1 whitespace-nowrap">
 				{#each tabs as { name, param, length }}
 					<a
 						class={[
-							'no-hover block border-b-2 py-2 pr-5.5 pl-6.5 text-center font-[430]',
+							'no-hover block flex-1 border-b-2 py-2 text-center font-[430]',
 							current_tab === param
 								? ' border-black'
 								: 'border-transparent not-hover:text-black/40',

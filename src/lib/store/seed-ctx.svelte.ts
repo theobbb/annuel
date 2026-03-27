@@ -8,7 +8,6 @@ class Seed {
 	}
 	shuffle() {
 		this.value = Math.random();
-		console.log(this.value);
 	}
 }
 

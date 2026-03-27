@@ -13,6 +13,10 @@
 	--color-dark-background: rgb(13, 13, 13);
 	--color-dark-foreground: oklch(95.213% 0.00011 271.152);
 
+	--color-muted: oklch(62.006% 0.00007 271.152);
+
+	--color-background-2: oklch(90.975% 0.0001 271.152);
+
 	--foreground-muted: oklch(41.716% 0.00003 271.152);
 
 	--color-placeholder: rgb(181, 181, 181);
@@ -20,7 +24,7 @@
 
 @layer base {
 	* {
-		border-color: rgba(0, 0, 0, 0.2);
+		border-color: rgba(0, 0, 0, 0.25);
 	}
 	/* [class*='text-xl'] {
 		font-weight: 430;
