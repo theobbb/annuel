@@ -87,9 +87,9 @@
 <div class="mt-48 mb-64">
 	<Programs />
 </div>
-<div class="mt-24 min-h-[80svh]">
+<!-- <div class="mt-24 min-h-[80svh]">
 	<Sponsors />
-</div>
+</div> -->
 <!-- <div><Members /></div> -->
 
 <!-- <Banner banner={data.globals.banner} /> -->
@@ -149,3 +149,12 @@
 		{/each}
 	</div>
 </div> -->
+
+<svelte:head>
+	<title>Annuel de design {page.params.year}</title>
+	<meta
+		name="description"
+		content="Annuel de design {page.params
+			.year} Les projets des finissantes et finissants de l’école de design de l’UQAM"
+	/>
+</svelte:head>
