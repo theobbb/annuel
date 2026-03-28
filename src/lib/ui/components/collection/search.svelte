@@ -10,7 +10,7 @@
 	}
 </script>
 
-<div class="flex items-center gap-8 text-base">
+<div class="text-base- flex items-center gap-8">
 	<input
 		type="text"
 		placeholder="Rechercher"

@@ -51,15 +51,25 @@
 		<div class="aspect-2/3 bg-placeholder"></div>
 	</div>
 
-	<div class="row col-span-6 row-start-3 text-3xl text-balance">
-		L’Annuel de design est une exposition présentant les projets des finissantes et finissants de
-		l’école de design de l’UQAM, mettant en lumière la diversité des démarches et des approches en
-		design.
+	<div class="row col-start- col-span-6 row-start-3 text-3xl text-balance">
+		Les projets des finissantes et finissants de l’école de design de l’UQAM
+		<!-- L’Annuel de design est une exposition présentant les projets des
+		finissantes et finissants de l’école de design de l’UQAM, mettant en lumière la diversité des
+		démarches et des approches en design. -->
 	</div>
 </Header>
 
 <div class="grid-12 mt-16">
-	<div class="-mx-3x- col-span-10 col-start-1 aspect-video bg-placeholder"></div>
+	<div class="-mx-3x- col-span-10 col-start-1 aspect-video bg-placeholder">
+		<div class="-mx-3x- aspect-video bg-placeholder">
+			<!-- <iframe
+				src="https://player.mux.com/P3WEcj3FPpoxgFHcqU16hXo1NpJxUCsi00fcW1GnHNw00?metadata-video-title=VIDEOANNUEL2026_FINAL&video-title=VIDEOANNUEL2026_FINAL"
+				style="width: 100%; border: none; aspect-ratio: 16/9;"
+				allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+				allowfullscreen
+			></iframe> -->
+		</div>
+	</div>
 	<div class="col-span-2 my-1x flex items-end text-sm/4 text-muted">
 		Vidéo par Kathrynf Mills, George Miller, Heather Ruiz, Christina Griffith
 	</div>

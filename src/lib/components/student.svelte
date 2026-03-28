@@ -42,7 +42,7 @@
 	{#if reverse}
 		{student.last_name}, {student.first_name}
 	{:else}
-		—
+		<span class="mr-0.5 inline-block">/</span>
 		{student.first_name}
 		{student.last_name}
 	{/if}

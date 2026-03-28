@@ -8,13 +8,13 @@
 
 	const current = $derived(page.url.searchParams.get('programme') || '');
 
-	let hovered_i: number = $state(-1);
+	let hovered_i: number = $state(1);
 </script>
 
 {#snippet program_link(label: string, active: boolean)}
 	<div
 		class={[
-			'group rounded-full- border- -m-2 p-2 text-lg font-[420] whitespace-nowrap ring-black/20 transition group-hover:border-current',
+			'group rounded-full- border- text-lg- -m-2 p-2 font-[420] whitespace-nowrap ring-black/20 transition group-hover:border-current',
 			active ? 'border-current-' : 'border-transparent not-hover:text-black/40'
 		]}
 	>
@@ -23,14 +23,14 @@
 {/snippet}
 
 <div
-	class="relative flex items-center justify-end gap-6 pb-1"
+	class="pb-1- relative flex items-center justify-end gap-6"
 	role="navigation"
 	aria-label="Sélection de programme"
 	onmouseleave={() => (hovered_i = -1)}
 	onblur={() => (hovered_i = -1)}
 >
 	<div role="none" onmouseenter={() => (hovered_i = -1)} onfocus={() => (hovered_i = -1)}>
-		<a class="no-hover" href={url_query_param(page.url.href, { programme: null })}>
+		<a class="no-hover mr-0.5 block" href={url_query_param(page.url.href, { programme: null })}>
 			{@render program_link('Tous les programmes', !current)}
 		</a>
 	</div>
