@@ -7,14 +7,16 @@
 	const { children }: { children?: Snippet } = $props();
 </script>
 
-<div class="grid-12 mb-3x">
-	<div class="col-span-2 row-start-1">
+<header class="mb-3x grid grid-cols-12 gap-3 whitespace-nowrap lg:gap-x-8">
+	<div class="col-span-full row-start-1 md:col-span-2">
 		<a href="/{page.params.year}">Annuel de design '{page.params.year?.slice(-2)}</a>
 	</div>
 
-	<div class="col-span-4 col-start-3 row-start-1 flex">
+	<div
+		class="col-span-full row-start-2 flex sm:col-span-6 sm:col-start-7 sm:row-start-1 sm:max-xl:justify-end xl:col-span-4 xl:col-start-3"
+	>
 		<Tabs />
 	</div>
 
 	{@render children?.()}
-</div>
+</header>

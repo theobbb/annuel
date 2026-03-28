@@ -45,13 +45,22 @@
 
 <!-- <Banner banner={data.globals.banner} /> -->
 <Header>
-	<a class="col-span-2 col-start-11 text-right" href="/archives">Archives</a>
+	<a
+		class="col-span-4 col-start-9 row-start-1 text-right sm:col-span-4 sm:col-start-9 sm:row-start-2 lg:col-span-2 lg:col-start-11 lg:row-start-1"
+		href="/archives"
+	>
+		Archives
+	</a>
 
-	<div class="col-span-2 col-start-9 row-span-3 row-start-1">
+	<div
+		class="col-span-8 col-start-3 row-span-2 row-start-3 max-lg:mt-8 sm:col-span-6 sm:col-start-4 md:col-span-4 md:col-start-5 lg:col-span-2 lg:col-start-9 lg:row-start-1"
+	>
 		<div class="aspect-2/3 bg-placeholder"></div>
 	</div>
 
-	<div class="row col-start- col-span-6 row-start-3 text-3xl text-balance">
+	<div
+		class="col-span-full col-start-1 row-start-5 text-2xl text-balance lg:col-span-6 lg:text-3xl"
+	>
 		Les projets des finissantes et finissants de l’école de design de l’UQAM
 		<!-- L’Annuel de design est une exposition présentant les projets des
 		finissantes et finissants de l’école de design de l’UQAM, mettant en lumière la diversité des
@@ -76,7 +85,7 @@
 </div>
 
 <div class="mt-48 mb-64">
-	<Programs {programs} {program_types} {program_stats} />
+	<Programs />
 </div>
 <div class="mt-24 min-h-[80svh]">
 	<Sponsors />

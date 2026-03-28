@@ -8,27 +8,23 @@
 
 	const sponsors: SponsorsRecord[] = $derived(page.data.sponsors);
 
-	const sizes = ['text-[1.2vw]', 'text-[2.5vw]', ' text-[4vw] font-[350]-'];
+	const sizes = ['w-[8vw] p-[1vw]', 'w-[15vw] p-[2vw]', 'w-[28vw] p-[4vw]'];
 
-	//grid-area: row-start / col-start / row-end / col-end
-	const arr = [
-		[1, 1],
-		[5, 1],
-		[2, 4],
-		[5, 5],
-		[1, 7],
-		[3, 7],
-		[4, 7],
-		[6, 7]
-	];
+	const arr = [2, 4, 1, 6, 3, 2, 2, 2, 2];
 </script>
 
 <div class="text-center-">Commanditaires</div>
-<div class="justify-center- flex flex-col gap-4">
+<div class="divide-x- divide-y- mx-100 grid grid-cols-5 border" style="grid-auto-flow: dense;">
 	{#each sponsors as { id, name, size, logo }, i}
-		<div class={['justify-center- flex items-center leading-[100%]', sizes[size - 1]]}>
+		<div
+			class="flex items-center justify-center border"
+			style="grid-column: span {size} / span {size}; "
+		>
 			<!-- <SponsorFile url="{PUBLIC_POCKETBASE_URL}/api/files/sponsors/{id}/{logo}" /> -->
-			/ {name}
+			<img
+				class={['shadow-xl-   p-8 ']}
+				src="{PUBLIC_POCKETBASE_URL}/api/files/sponsors/{id}/{logo}"
+			/>
 		</div>
 
 		<!-- <div>{name}</div> -->

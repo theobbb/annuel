@@ -1,9 +1,7 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
-	import CollectionFooter from './collection-footer.svelte';
 	import type { ProjectsRecord, StudentsRecord } from '$lib/pocketbase.types';
 	import CollectionHeader from './collection-header.svelte';
-	import CollectionFilters from './collection-filters.svelte';
 
 	const {
 		items,

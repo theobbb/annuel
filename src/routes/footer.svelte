@@ -23,7 +23,9 @@
 		</Header>
 	</div>
 	<div class="grid-12 items-end">
-		<div class="text-base/4.5- col-span-6 col-start-1 leading-tight font-normal text-white/50">
+		<div
+			class="col-span-10 col-start-1 leading-tight font-normal text-white/50 max-lg:text-sm/4.5 lg:col-span-6"
+		>
 			© {page.params.year} Annuel de design — Tous droits réservés <br />
 			Les œuvres présentées demeurent la propriété <br /> de leurs auteur.rice.s respectif.ve.s.
 		</div>

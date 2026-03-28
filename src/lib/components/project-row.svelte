@@ -27,15 +27,15 @@
 		href="/{page.params.year}/projets/{project.id}"
 		aria-label="link to {project.name}"
 	></a>
-	<div class="title col-span-3 text-balance">
-		<div class="pointer-events-none relative mt-1 block pr-16 text-2xl/7.5 font-[430]">
+	<div class="title col-span-8 text-balance max-lg:leading-5.5 lg:col-span-3">
+		<div class="pointer-events-none relative mt-1 block pr-16 font-[430] lg:text-2xl/7.5">
 			{project.name}
 		</div>
 	</div>
-	<div class="relative col-span-3">
-		<div class="mt-1.5">
+	<div class="relative col-span-4 lg:col-span-3">
+		<div class="mt-1.5 max-lg:space-y-1">
 			{#each students as student}
-				<div class="pointer-events-none text-muted" role="contentinfo">
+				<div class="pointer-events-none text-muted max-lg:text-sm/3.5" role="contentinfo">
 					<Student {student} />
 					<!-- {#if preview?.context_key == props_id && preview.student.id == student.id}
 						<div
@@ -51,9 +51,11 @@
 			{/each}
 		</div>
 	</div>
-	<div class="col-span-6 grid grid-cols-5 gap-4">
+	<div
+		class="5 col-span-11 grid grid-cols-3 gap-2 max-lg:col-start-2 sm:grid-cols-5 sm:gap-3 lg:col-span-6 lg:gap-4"
+	>
 		{#each { length: Math.min(5, n_files) } as file, i}
-			<div class={[i >= 3 && 'max-lg:hidden-']}>
+			<div class=" nth-[n+4]:max-sm:hidden">
 				<div class="aspect-4/5 bg-placeholder"></div>
 				<!-- <Image id={project.id} index={i} /> -->
 			</div>

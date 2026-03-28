@@ -21,7 +21,7 @@
 </script>
 
 <!-- <Title>Programmes</Title> -->
-<div class="space-y-8- mt-8">
+<div class="mt-8">
 	{#each programs as { id, name, code, description, type }}
 		{@const stats = program_stats.get(id)}
 		<div
@@ -33,11 +33,11 @@
 				aria-label="Programme {name}"
 			>
 			</a>
-			<div class="peer-hover:translate-x-4- col-span-2 text-muted transition">
+			<div class="col-span-8 text-muted transition max-lg:text-base lg:col-span-2">
 				{program_type_map.get(type)?.name}
 			</div>
 
-			<div class="col-span-6 text-3xl">
+			<div class="col-span-10 text-2xl max-lg:font-[430] lg:col-span-6 lg:text-3xl">
 				<div class="relative w-fit">
 					{name}
 					<div class="absolute -right-3 bottom-0 flex translate-x-full justify-end">
@@ -49,7 +49,7 @@
 			</div>
 
 			<!-- <div class="col-span-2">{code}</div> -->
-			<div class="col-span-2 text-right">
+			<div class="col-span-6 text-right max-lg:col-start-3 lg:col-span-2">
 				<div class="flex flex-col">
 					{#if stats}
 						<a class="relative z-10 block w-fit" href="/{page.params.year}/projets?programme={id}">
@@ -66,7 +66,9 @@
 					{/if}
 				</div>
 			</div>
-			<div class="peer-hover:-translate-x-4- col-span-2 text-right transition">
+			<div
+				class="col-span-4 text-right transition max-lg:col-start-10 max-lg:row-start-1 max-lg:text-base lg:col-span-2"
+			>
 				{code}
 			</div>
 

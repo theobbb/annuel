@@ -8,7 +8,7 @@
 	let hovered: StudentsRecord | null = $state(students[0]);
 </script>
 
-<div class="grid grid-cols-7 gap-8">
+<div class="grid grid-cols-3 gap-4 md:grid-cols-5 lg:gap-8 xl:grid-cols-7">
 	{#each students as student}
 		<a
 			class=""
@@ -16,7 +16,7 @@
 			onmouseenter={() => (hovered = student)}
 		>
 			<Facecard {student} />
-			<div class="text-center- px-2- mt-2.5 text-base/4.5 tracking-wide">
+			<div class="mt-1.5 text-sm/4.5 tracking-wide lg:mt-2 lg:text-base/4.5">
 				{student.first_name}
 				{student.last_name}
 			</div>

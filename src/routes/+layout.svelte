@@ -24,7 +24,7 @@
 	init_seed(data.seed);
 </script>
 
-<div class=" mx-8 grid min-h-svh grid-rows-[1fr_auto] pt-5 text-xl">
+<div class=" mx-4 grid min-h-svh grid-rows-[1fr_auto] pt-3 text-xl lg:mx-8 lg:pt-5">
 	<div>
 		{@render children()}
 	</div>

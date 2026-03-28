@@ -3,7 +3,7 @@
 	import ProjectCard from '$lib/components/project-card.svelte';
 	import ProjectRow from '$lib/components/project-row.svelte';
 	import { shuffle_array } from '$lib/utils/shuffle';
-	import DualLayout from '$lib/ui/components/collection/collection-layout.svelte';
+	import CollectionLayout from '$lib/ui/components/collection/collection-layout.svelte';
 	import { use_seed } from '$lib/store/seed-ctx.svelte.js';
 	import { url_query_param } from '$lib/utils/url.js';
 	import CollectionEmpty from '$lib/ui/components/collection/collection-empty.svelte';
@@ -55,8 +55,15 @@
 	}
 </script>
 
-<DualLayout items={data.projects} {view}>
-	<div class={['mt-24-', view == 'grille' ? 'mt-8 grid grid-cols-5 gap-8' : '']}>
+<CollectionLayout items={data.projects} {view}>
+	<div
+		class={[
+			'',
+			view == 'grille'
+				? 'mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 lg:gap-8'
+				: ''
+		]}
+	>
 		{#each visible_projects as project (project.id)}
 			{#if url_search_view == 'liste'}
 				<ProjectRow {project} students={project.expand.students} />
@@ -73,7 +80,7 @@
 	{#if is_empty}
 		<CollectionEmpty />
 	{/if}
-</DualLayout>
+</CollectionLayout>
 
 <button
 	class="fixed right-4 bottom-5 z-50 flex cursor-pointer items-center rounded-full border bg-background p-2.5 text-lg shadow-sm transition not-hover:text-muted"

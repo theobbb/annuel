@@ -18,17 +18,17 @@
 	let hovered: StudentsRecord | null = $state(students[0]);
 </script>
 
-<div class="grid-12 text-2xl-">
+<div class="grid grid-cols-12 lg:gap-8">
 	{#each cols as col}
-		<div class="col-span-4">
+		<div class="col-span-10 lg:col-span-4">
 			{#each col as student, i}
-				<div class="my-0.5 grid grid-cols-4 gap-8">
-					<div class="text-right">
+				<div class="my-0.5 grid grid-cols-12 gap-8">
+					<div class="col-span-2 text-right lg:col-span-4">
 						{#if student.last_name[0] != col[i - 1]?.last_name[0]}
 							<div>{student.last_name[0]}</div>
 						{/if}
 					</div>
-					<div class="col-span-3 flex gap-0.5">
+					<div class="col-span-10 flex gap-0.5 lg:col-span-8">
 						<a
 							onmouseenter={() => (hovered = student)}
 							href="/{page.params.year}/finissant-e-s/{student.id}"
@@ -40,14 +40,10 @@
 			{/each}
 		</div>
 	{/each}
-	<div class="relative col-span-2 col-start-11">
+	<div class="relative col-span-2 col-start-11 row-start-1 max-sm:hidden">
 		<div class="sticky top-8">
 			{#if hovered}
 				<Facecard student={hovered} />
-				<!-- <div class=" mt-4 text-right">
-					{hovered.first_name}
-					{hovered.last_name}
-				</div> -->
 			{/if}
 		</div>
 	</div>

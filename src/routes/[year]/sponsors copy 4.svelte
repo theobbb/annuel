@@ -8,7 +8,7 @@
 
 	const sponsors: SponsorsRecord[] = $derived(page.data.sponsors);
 
-	const sizes = ['text-[1.2vw]', 'text-[2.5vw]', ' text-[4vw] font-[350]-'];
+	const sizes = ['w-[8vw] p-[1vw]', 'w-[15vw] p-[2vw]', 'w-[28vw] p-[4vw]'];
 
 	//grid-area: row-start / col-start / row-end / col-end
 	const arr = [
@@ -24,11 +24,21 @@
 </script>
 
 <div class="text-center-">Commanditaires</div>
-<div class="justify-center- flex flex-col gap-4">
-	{#each sponsors as { id, name, size, logo }, i}
-		<div class={['justify-center- flex items-center leading-[100%]', sizes[size - 1]]}>
+<div
+	class="grid-rows-8- mx-100 grid grid-cols-7 divide-x divide-y border"
+	style="grid-auto-flow: dense; grid-auto-rows-: calc(100vw / 7);"
+>
+	{#each sponsors.slice(0, arr.length) as { id, name, size, logo }, i}
+		<div
+			class="flex items-center justify-center bg-black/5"
+			style="grid-column: {arr[i][0]} / span {size}; grid-row: {arr[i][1]} / span {size};
+	    "
+		>
 			<!-- <SponsorFile url="{PUBLIC_POCKETBASE_URL}/api/files/sponsors/{id}/{logo}" /> -->
-			/ {name}
+			<img
+				class={['shadow-xl-   p-8 ']}
+				src="{PUBLIC_POCKETBASE_URL}/api/files/sponsors/{id}/{logo}"
+			/>
 		</div>
 
 		<!-- <div>{name}</div> -->

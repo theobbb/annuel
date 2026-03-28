@@ -33,12 +33,14 @@
 			></div>
 		</div> -->
 
-		<div class="mt-3 pr-4 text-balance">
-			<div class="font-[430]- pointer-events-none relative mb-2.5 block text-xl/6">
+		<div class="mt-2 pr-4 text-balance lg:mt-3">
+			<div class="font-[430]- pointer-events-none relative mb-2.5 block text-base/4.5 lg:text-xl/6">
 				{project.name}
 			</div>
 			{#if students}
-				<div class="pointer-events-none relative z-10 text-base/5.5">
+				<div
+					class="pointer-events-none relative z-10 max-lg:space-y-1 max-lg:text-sm/3.5 lg:text-base/5.5"
+				>
 					{#each students as student}
 						<div class="relative font-normal text-muted">
 							<Student {student} />

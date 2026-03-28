@@ -8,7 +8,7 @@
 
 	const current = $derived(page.url.searchParams.get('programme') || '');
 
-	let hovered_i: number = $state(1);
+	let hovered_i: number = $state(-1);
 </script>
 
 {#snippet program_link(label: string, active: boolean)}
