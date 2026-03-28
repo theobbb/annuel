@@ -1,6 +1,9 @@
 @import 'tailwindcss';
 @plugin '@iconify/tailwind4';
 
+:root {
+	--muted: oklch(0% 0 0 / 0.5);
+}
 @theme {
 	--spacing-1x: calc(var(--spacing) * 1);
 	--spacing-2x: calc(var(--spacing) * 4);
@@ -13,11 +16,9 @@
 	--color-dark-background: rgb(13, 13, 13);
 	--color-dark-foreground: oklch(95.213% 0.00011 271.152);
 
-	--color-muted: oklch(0% 0 0 / 0.5);
+	--color-background-2: oklch(93.1% 0.00011 271.152);
 
-	--color-background-2: oklch(90.975% 0.0001 271.152);
-
-	--foreground-muted: oklch(41.716% 0.00003 271.152);
+	--color-muted: oklch(0% 0 0 / 0.4);
 
 	--color-placeholder: rgba(0, 0, 0, 0.15);
 }
@@ -30,13 +31,6 @@
 		font-weight: 430;
 	} */
 }
-
-.border-dotted {
-	border-color: rgba(0, 0, 0, 0.2);
-}
-/* [class*='border'] {
-	border-style: dotted;
-} */
 
 html {
 	font-family: 'Switzer';
@@ -69,6 +63,7 @@ html {
 .black {
 	background-color: var(--color-dark-background);
 	color: var(--color-dark-foreground);
+	--color-muted: oklch(100% 0 0 / 0.5);
 }
 .hover-black:hover {
 	background-color: var(--color-dark-background);

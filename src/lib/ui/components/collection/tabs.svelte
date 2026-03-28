@@ -24,7 +24,7 @@
 		<a
 			class={[
 				'no-hover font-[430]- block  text-center',
-				current_tab === param ? '' : ' not-hover:text-black/40',
+				current_tab === param ? '' : ' not-hover:text-muted',
 				'transition'
 			]}
 			href={url_query_param(`/${page.params.year}/${param}`, { programme: current || null })}
