@@ -53,15 +53,15 @@
 	</a>
 
 	<div
-		class="col-span-8 col-start-3 row-span-2 row-start-3 max-lg:mt-8 sm:col-span-6 sm:col-start-4 md:col-span-4 md:col-start-5 lg:col-span-2 lg:col-start-9 lg:row-start-1"
+		class="col-span-8 col-start-3 row-span-3 row-start-3 max-lg:mt-8 sm:col-span-6 sm:col-start-4 md:col-span-4 md:col-start-5 lg:col-span-2 lg:col-start-9 lg:row-start-1"
 	>
 		<div class="aspect-2/3 bg-placeholder"></div>
 	</div>
 
 	<div
-		class="col-span-full col-start-1 row-start-5 text-2xl text-balance lg:col-span-6 lg:text-3xl"
+		class="col-span-full col-start-1 row-start-6 text-2xl text-balance lg:col-span-6 lg:row-start-3 lg:text-3xl"
 	>
-		Les projets des finissantes et finissants de l’école de design de l’UQAM
+		Les projets des finissantes <br /> et finissants de l’école <br /> de design de l’UQAM
 		<!-- L’Annuel de design est une exposition présentant les projets des
 		finissantes et finissants de l’école de design de l’UQAM, mettant en lumière la diversité des
 		démarches et des approches en design. -->
