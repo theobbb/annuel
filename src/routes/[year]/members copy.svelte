@@ -17,17 +17,21 @@
 
 <!-- <Title>Équipe de l’Annuel</Title> -->
 
-<!-- <div class="mb-4">
-	L’équipe de l’Annuel {page.params.year}
-</div> -->
-<div class="grid-12- mb-8">
-	<div class="gap-y-8- grid grid-cols-4 gap-x-8 leading-tight whitespace-nowrap">
+<div class="grid-12 mb-8">
+	<div class="leading-8- col-span-3">
 		{#each groups as { role, children }, i}
-			{#each children as member}
-				<div class="text-balance">
-					{member.name}<span class="ml-2 inline-block text-muted">{role.name}</span>
+			<div class={['flex justify-between gap-3', i == groups.length - 1 && 'border-b-0!']}>
+				<div class="">
+					{#each children as member}
+						<div class="text-balance">{member.name}</div>
+					{/each}
 				</div>
-			{/each}
+				<div class="py-1 pb-1.5">{role.name}</div>
+			</div>
 		{/each}
+		<div class="mt-56 mb-16 text-xl/6">
+			Merci à toutes les personnes qui ont contribué <br /> de près ou de loin à ce projet, par leur
+			regard,<br /> leurs idées et leur présence.
+		</div>
 	</div>
 </div>

@@ -17,7 +17,7 @@
 	setContext('preview_context', props_id);
 </script>
 
-<div class={['relative', preview?.context_key == props_id && 'z-50']}>
+<div class={['relative']}>
 	<div class="relative flex flex-col">
 		<a
 			class="peer absolute inset-0"
@@ -33,8 +33,10 @@
 			></div>
 		</div> -->
 
-		<div class="mt-2 pr-4 text-balance lg:mt-3">
-			<div class="font-[430]- pointer-events-none relative mb-2.5 block text-base/4.5 lg:text-xl/6">
+		<div class="mt-2 pr-4 leading-4.5 text-balance">
+			<div
+				class="font-[430]- text-base/4.5- lg:text-xl/6- pointer-events-none relative mb-0.5 block"
+			>
 				{project.name}
 			</div>
 			{#if students}
@@ -42,7 +44,7 @@
 					class="pointer-events-none relative z-10 max-lg:space-y-1 max-lg:text-sm/3.5 lg:text-base/5.5"
 				>
 					{#each students as student}
-						<div class="relative font-normal text-muted">
+						<div class="relative text-muted">
 							<Student {student} />
 							<!-- {#if preview?.context_key == props_id && preview.student.id == student.id}
 								<div class={['absolute', preview.anchor[1] == 'left' ? '-left-gap' : 'right-gap']}>

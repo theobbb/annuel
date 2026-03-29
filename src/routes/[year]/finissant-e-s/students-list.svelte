@@ -15,7 +15,7 @@
 		return [col_1, col_2];
 	});
 
-	let hovered: StudentsRecord | null = $state(students[0]);
+	let hovered: StudentsRecord | null = $state(null);
 </script>
 
 <div class="grid grid-cols-12 lg:gap-8">

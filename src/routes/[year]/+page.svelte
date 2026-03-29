@@ -8,9 +8,10 @@
 
 	import Header from '$lib/ui/components/header.svelte';
 	import Banner from '$lib/ui/components/banner.svelte';
+	import { PUBLIC_POCKETBASE_URL } from '$env/static/public';
 
 	const { data } = $props();
-	const { programs, program_types, program_stats, n_projects, n_students } = $derived(data);
+	const { programs, program_types, program_stats, n_projects, n_students, year } = $derived(data);
 
 	const buttons = $derived([
 		{ name: 'Projets', param: 'projets', n: n_projects },
@@ -55,29 +56,29 @@
 	<div
 		class="col-span-8 col-start-3 row-span-3 row-start-3 max-lg:mt-8 sm:col-span-6 sm:col-start-4 md:col-span-4 md:col-start-5 lg:col-span-2 lg:col-start-9 lg:row-start-1"
 	>
-		<div class="aspect-2/3 bg-placeholder"></div>
+		<div class="aspect-2/3 bg-placeholder">
+			<img
+				class="h-full w-full"
+				src="{PUBLIC_POCKETBASE_URL}/api/files/years/{year.id}/{year.poster}"
+			/>
+		</div>
 	</div>
-
 	<div
-		class="col-span-full col-start-1 row-start-6 text-2xl text-balance lg:col-span-6 lg:row-start-3 lg:text-3xl"
+		class="text-2xl- text-3xl/9- lg:row-start-4- col-span-full row-start-3 text-balance lg:col-span-5 lg:col-start-1 lg:text-3xl"
 	>
-		Les projets des finissantes <br /> et finissants de l’école <br /> de design de l’UQAM
+		Les projets des finissant.es <br /> de l’École de design <br /> de l’UQAM.
+		<!-- Les projets présentés par les finissant.es <br /> de l’École de design de l’UQAM, <br />
+		révélant la richesse des démarches <br /> et la diversité des approches en design. -->
+
 		<!-- L’Annuel de design est une exposition présentant les projets des
 		finissantes et finissants de l’école de design de l’UQAM, mettant en lumière la diversité des
 		démarches et des approches en design. -->
 	</div>
 </Header>
 
-<div class="grid-12 mt-16">
-	<div class="-mx-3x- col-span-10 col-start-1 aspect-video bg-placeholder">
-		<div class="-mx-3x- aspect-video bg-placeholder">
-			<!-- <iframe
-				src="https://player.mux.com/P3WEcj3FPpoxgFHcqU16hXo1NpJxUCsi00fcW1GnHNw00?metadata-video-title=VIDEOANNUEL2026_FINAL&video-title=VIDEOANNUEL2026_FINAL"
-				style="width: 100%; border: none; aspect-ratio: 16/9;"
-				allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
-				allowfullscreen
-			></iframe> -->
-		</div>
+<div class="grid-12 mt-48">
+	<div class="col-span-6 col-start-4 aspect-video bg-placeholder">
+		<div class="-mx-3x- aspect-video bg-placeholder"></div>
 	</div>
 	<div class="col-span-2 my-1x flex items-end text-sm/4 text-muted">
 		Vidéo par Kathrynf Mills, George Miller, Heather Ruiz, Christina Griffith
@@ -87,6 +88,7 @@
 <div class="mt-48 mb-64">
 	<Programs />
 </div>
+
 <!-- <div class="mt-24 min-h-[80svh]">
 	<Sponsors />
 </div> -->

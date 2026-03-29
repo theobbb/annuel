@@ -4,11 +4,16 @@
 	import type { Snippet } from 'svelte';
 	import Tabs from './collection/tabs.svelte';
 
-	const { children }: { children?: Snippet } = $props();
+	const { sticky, children }: { sticky?: boolean; children?: Snippet } = $props();
 </script>
 
-<header class="mb-3x grid grid-cols-12 gap-3 whitespace-nowrap lg:gap-x-8">
-	<div class="col-span-full row-start-1 md:col-span-2">
+<header
+	class={[
+		' z-100 mb-3x grid grid-cols-10 gap-3 bg-background whitespace-nowrap lg:gap-x-8',
+		sticky && 'sticky top-0 -mt-3 pt-3'
+	]}
+>
+	<div class="text-4xl- col-span-full row-start-1 md:col-span-2">
 		<a href="/{page.params.year}">Annuel de design '{page.params.year?.slice(-2)}</a>
 	</div>
 

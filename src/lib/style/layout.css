@@ -23,6 +23,8 @@
 	--color-placeholder: rgba(0, 0, 0, 0.15);
 
 	--color-accent: yellow;
+
+	--font-serif: 'Signifier';
 }
 
 @layer base {
@@ -35,8 +37,9 @@
 }
 
 html {
-	font-family: 'Switzer';
+	font-family: 'Ivory';
 
+	letter-spacing: -8%;
 	background-color: var(--color-background);
 	color: var(--color-foreground);
 

@@ -15,11 +15,11 @@
 		></div> -->
 	</div>
 
-	<div class="absolute top-0 right-0">
+	<div class="absolute top-0 right-0 z-5">
 		<div
-			class="rounded-bl-sm- rounded-tr-sm border bg-background-2 px-2 py-0.5 text-[9cqw] leading-[12cqw] font-[450] tracking-wide"
+			class="rounded-bl-sm- bg-background px-2 text-[9cqw] leading-[12cqw] font-[450] tracking-wide mix-blend-difference"
 		>
-			<div class="">{program?.code}</div>
+			<div class="translate-x-[1cqw] -translate-y-[1cqw]">{program?.code}</div>
 		</div>
 	</div>
 </div>

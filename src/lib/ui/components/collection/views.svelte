@@ -10,17 +10,17 @@
 	];
 </script>
 
-<div class="flex items-center gap-2 lg:gap-3">
+<div class="flex items-center gap-2 lg:gap-2">
 	{#each views as { name, param, icon }}
 		<a
 			class={[
-				'-m-2 flex items-center justify-center gap-1.5 p-2 text-2xl',
+				'text-lg- -m-2 flex items-center justify-center gap-1.5 p-2',
 				view == param ? '' : ' not-hover:text-black/40',
 				'transition'
 			]}
 			href={url_query_param(page.url.href, { vue: param })}
 		>
-			<div class={[icon, 'translate-y-px']}></div>
+			<div>{name}</div>
 			<!-- <div class="-mt-0.5">{name}</div> -->
 		</a>
 		<div class="text-muted last:hidden">/</div>

@@ -11,7 +11,7 @@
 			length: page.data.n_projects
 		},
 		{
-			name: 'Finissant.e.s',
+			name: 'Finissant.es',
 			param: 'finissant-e-s',
 			length: page.data.n_students
 		}
@@ -19,7 +19,7 @@
 	const current_tab = $derived(page.route.id?.split('/')[2]);
 </script>
 
-<div class="flex items-center gap-3 whitespace-nowrap lg:gap-4">
+<div class="flex items-center gap-3 whitespace-nowrap lg:gap-2">
 	{#each tabs as { name, param, length }}
 		<a
 			class={[

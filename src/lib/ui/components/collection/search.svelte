@@ -10,7 +10,7 @@
 	}
 </script>
 
-<div class="text-base- flex items-center gap-8">
+<div class="flex items-center gap-8">
 	<input
 		type="text"
 		placeholder="Rechercher"
@@ -19,6 +19,6 @@
 		id="search"
 		autocomplete={null}
 		value={page.url.searchParams.get('search') ?? ''}
-		class="w-full border bg-background-2 px-3.5 py-1 text-lg transition outline-none not-focus:border-transparent hover:bg-black/10 focus:placeholder-black/60"
+		class="text-lg- w-full border bg-black/5 px-2.5 py-1 text-sm transition outline-none not-focus:border-transparent hover:bg-black/10 focus:placeholder-black/60"
 	/>
 </div>

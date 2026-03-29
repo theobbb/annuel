@@ -28,7 +28,7 @@
 		aria-label="link to {project.name}"
 	></a>
 	<div class="title col-span-8 text-balance max-lg:leading-5.5 lg:col-span-3">
-		<div class="pointer-events-none relative mt-1 block pr-16 font-[430] lg:text-2xl/7.5">
+		<div class="pointer-events-none relative mt-1 block pr-16 font-[430] lg:text-xl/6.5">
 			{project.name}
 		</div>
 	</div>
