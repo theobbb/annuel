@@ -23,12 +23,12 @@
 	];
 </script>
 
-<div class="text-center-">Commanditaires</div>
+<div class="mb-5 text-center">❤️ Commanditaires ❤️</div>
 <div class="justify-center- flex flex-col gap-4">
 	{#each sponsors as { id, name, size, logo }, i}
-		<div class={['justify-center- flex items-center leading-[100%]', sizes[size - 1]]}>
+		<div class={['flex items-center justify-center leading-[100%]', sizes[size - 1]]}>
 			<!-- <SponsorFile url="{PUBLIC_POCKETBASE_URL}/api/files/sponsors/{id}/{logo}" /> -->
-			/ {name}
+			{name}
 		</div>
 
 		<!-- <div>{name}</div> -->

@@ -37,8 +37,8 @@
 				{program_type_map.get(type)?.name}
 			</div>
 
-			<div class="col-span-10 text-2xl max-lg:font-[430] lg:col-span-6 lg:text-3xl">
-				<div class="relative w-fit">
+			<div class="col-span-10 text-2xl max-lg:font-[430] lg:col-span-6 lg:text-4xl">
+				<div class="relative w-fit uppercase">
 					{name}
 					<div class="absolute -right-3 bottom-0 flex translate-x-full justify-end">
 						<div

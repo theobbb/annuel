@@ -37,9 +37,10 @@
 }
 
 html {
-	font-family: 'Ivory';
+	font-family: Switzer;
+	/* font-family: 'Ivory';
+	letter-spacing: -9%; */
 
-	letter-spacing: -8%;
 	background-color: var(--color-background);
 	color: var(--color-foreground);
 

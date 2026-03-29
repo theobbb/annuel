@@ -10,10 +10,7 @@
 <footer
 	class="black- min-h-svh- relative z-200 -mx-8 mt-16 flex flex-col justify-between px-8 py-5 pb-6 font-[370]"
 >
-	<div>
-		<Members />
-	</div>
-	<div class="border-t- my-36">
+	<div class="border-t- mb-12 hidden">
 		<Header>
 			<!-- <div class="col-span-2 col-start-9 row-span-3 row-start-1">
 				<div class="aspect-2/3 bg-muted/20"></div>
@@ -29,7 +26,7 @@
 
 	<div class="grid-12 items-end">
 		<div
-			class="col-span-10 col-start-1 leading-tight font-normal text-muted max-lg:text-sm/4.5 lg:col-span-6"
+			class="col-span-10 col-start-1 leading-4.5 font-normal text-muted max-lg:text-sm/4 lg:col-span-6"
 		>
 			© {page.params.year} Annuel de design — Tous droits réservés <br />
 			Les œuvres présentées demeurent la propriété <br /> de leurs auteur.rice.s respectif.ve.s.

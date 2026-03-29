@@ -18,7 +18,7 @@
 
 <div
 	class={[
-		'group grid-12 relative flex-col border-t py-4 first:border-t-0',
+		'group grid-12 first:border-t-0- relative flex-col border-t py-4',
 		preview?.context_key == props_id && 'z-50'
 	]}
 >

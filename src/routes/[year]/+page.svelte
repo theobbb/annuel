@@ -47,14 +47,14 @@
 <!-- <Banner banner={data.globals.banner} /> -->
 <Header>
 	<a
-		class="col-span-4 col-start-9 row-start-1 text-right sm:col-span-4 sm:col-start-9 sm:row-start-2 lg:col-span-2 lg:col-start-11 lg:row-start-1"
+		class="col-span-4 col-start-9 row-start-1 text-right sm:col-span-4 sm:col-start-9 sm:row-start-2 lg:col-span-1 lg:col-start-10 lg:row-start-1"
 		href="/archives"
 	>
 		Archives
 	</a>
 
 	<div
-		class="col-span-8 col-start-3 row-span-3 row-start-3 max-lg:mt-8 sm:col-span-6 sm:col-start-4 md:col-span-4 md:col-start-5 lg:col-span-2 lg:col-start-9 lg:row-start-1"
+		class="col-span-8 col-start-3 row-span-4 row-start-3 max-lg:mt-8 sm:col-span-6 sm:col-start-4 md:col-span-4 md:col-start-5 lg:col-span-2 lg:col-start-8 lg:row-start-1"
 	>
 		<div class="aspect-2/3 bg-placeholder">
 			<img
@@ -62,33 +62,55 @@
 				src="{PUBLIC_POCKETBASE_URL}/api/files/years/{year.id}/{year.poster}"
 			/>
 		</div>
+		<div
+			class="col-span-2 col-start-8 row-start-4 my-1x mt-4 flex items-end text-sm/4 whitespace-normal text-muted"
+		>
+			Affiche par Kathrynf Mills, George Miller, Heather Ruiz, Christina Griffith
+		</div>
+	</div>
+
+	<div class="col-span-5 col-start-1 row-span-3 row-start-3 mt-[20svh] aspect-video bg-placeholder">
+		<div class="-mx-3x- aspect-video bg-placeholder">
+			<iframe
+				src="https://player.mux.com/P3WEcj3FPpoxgFHcqU16hXo1NpJxUCsi00fcW1GnHNw00?metadata-video-title=VIDEOANNUEL2026_FINAL&video-title=VIDEOANNUEL2026_FINAL&autoplayy=1&muted=1&controls=false"
+				style="width: 100%; border: none; aspect-ratio: 16/9;"
+				allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+				allowfullscreen
+			></iframe>
+		</div>
 	</div>
 	<div
-		class="text-2xl- text-3xl/9- lg:row-start-4- col-span-full row-start-3 text-balance lg:col-span-5 lg:col-start-1 lg:text-3xl"
+		class="col-span-2 col-start-6 row-start-5 my-1x flex items-end text-sm/4 whitespace-normal text-muted"
+	>
+		Vidéo par Kathrynf Mills, George Miller, Heather Ruiz, Christina Griffith
+	</div>
+
+	<div
+		class="pb-12- tracking-[-12%]- col-span-full row-start-2 mt-16 translate-y-[100px] text-balance lg:col-span-7 lg:col-start-1 lg:text-4xl/10"
 	>
 		Les projets des finissant.es <br /> de l’École de design <br /> de l’UQAM.
-		<!-- Les projets présentés par les finissant.es <br /> de l’École de design de l’UQAM, <br />
-		révélant la richesse des démarches <br /> et la diversité des approches en design. -->
-
-		<!-- L’Annuel de design est une exposition présentant les projets des
-		finissantes et finissants de l’école de design de l’UQAM, mettant en lumière la diversité des
-		démarches et des approches en design. -->
 	</div>
 </Header>
+<!-- Les projets présentés par les finissant.es <br /> de l’École de design de l’UQAM, <br />
+		révélant la richesse des démarches <br /> et la diversité des approches en design. -->
 
-<div class="grid-12 mt-48">
-	<div class="col-span-6 col-start-4 aspect-video bg-placeholder">
+<!-- L’Annuel de design est une exposition présentant les projets des
+		finissantes et finissants de l’école de design de l’UQAM, mettant en lumière la diversité des
+		démarches et des approches en design. -->
+<!-- <div class="mt-48 grid grid-cols-10 gap-8">
+	<div class="col-span-6 col-start-3 aspect-video bg-placeholder">
 		<div class="-mx-3x- aspect-video bg-placeholder"></div>
 	</div>
 	<div class="col-span-2 my-1x flex items-end text-sm/4 text-muted">
 		Vidéo par Kathrynf Mills, George Miller, Heather Ruiz, Christina Griffith
 	</div>
-</div>
+</div> -->
 
 <div class="mt-48 mb-64">
 	<Programs />
 </div>
-
+<div class="mb-48"><Sponsors /></div>
+<div><Members /></div>
 <!-- <div class="mt-24 min-h-[80svh]">
 	<Sponsors />
 </div> -->

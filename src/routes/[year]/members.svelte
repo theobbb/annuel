@@ -21,7 +21,7 @@
 	L’équipe de l’Annuel {page.params.year}
 </div> -->
 <div class="grid-12- mb-8">
-	<div class="gap-y-8- grid grid-cols-4 gap-x-8 leading-tight whitespace-nowrap">
+	<div class="grid grid-cols-4 gap-x-8 leading-5 whitespace-nowrap">
 		{#each groups as { role, children }, i}
 			{#each children as member}
 				<div class="text-balance">
