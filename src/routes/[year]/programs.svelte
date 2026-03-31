@@ -4,7 +4,6 @@
 	const { programs, program_type_map, program_stats } = $derived(page.data);
 </script>
 
-<div>Programmes</div>
 <!-- <Title>Programmes</Title> -->
 <div class="mt-8">
 	{#each programs as { id, name, code, description, type }}

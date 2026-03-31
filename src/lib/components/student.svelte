@@ -58,7 +58,7 @@
 {:else}
 	<a
 		href="/{page.params.year}/finissant-e-s/{student.id}"
-		class={['pointer-events-auto relative z-10']}
+		class={['pointer-events-auto relative z-10 hover:underline']}
 		{onmouseenter}
 		{onmouseleave}
 	>

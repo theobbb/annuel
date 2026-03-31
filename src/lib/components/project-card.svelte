@@ -1,21 +1,13 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import type { ProjectsRecord, StudentsRecord } from '$lib/pocketbase.types';
-	import { use_store_student_projects } from '$lib/store/store-preview-student.svelte';
-	import { setContext } from 'svelte';
-	import PreviewStudent from './preview-student.svelte';
-	import Student from './student.svelte';
-	import Image from './image.svelte';
+
 	import Students from './students.svelte';
 
 	const { project, students }: { project: ProjectsRecord; students: StudentsRecord[] } = $props();
 	const props_id = $props.id();
 
 	const year = $derived(page.params.year);
-
-	const store_student_projects = use_store_student_projects();
-	const preview = $derived(store_student_projects.current);
-	setContext('preview_context', props_id);
 </script>
 
 <div class={['relative']}>

@@ -21,11 +21,16 @@
 	</div>
 </div>
 
-<!-- <div class="grid-12 mt-8 mb-16 items-center">
-	<div class="col-span-4 flex justify-end lg:col-span-2 lg:col-start-8">
+<!-- <Header>
+	<div class="col-span-4 flex justify-end lg:col-span-2 lg:col-start-10 lg:row-start-1">
 		<Views {view} />
 	</div>
-	<div class="col-span-8 lg:col-span-3 lg:col-start-10">
+</Header>
+<div class="grid grid-cols-10 gap-x-6">
+	<div class={['relative z-100 col-span-2 col-start-3 flex']}>
+		<Programs />
+	</div>
+	<div class="col-span-6 col-start-5">
 		<Search />
 	</div>
 </div> -->

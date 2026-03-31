@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { afterNavigate } from '$app/navigation';
+	import { page } from '$app/state';
 	import Header from '$lib/ui/components/header.svelte';
 
 	let last_history_year: string | null = $state(null);
@@ -9,4 +10,11 @@
 	});
 </script>
 
-<Header archive_history_year={last_history_year} />
+<Header>
+	<a
+		class="col-span-4 col-start-9 row-start-1 text-right sm:col-span-4 sm:col-start-9 sm:row-start-2 lg:col-span-1 lg:col-start-10 lg:row-start-1"
+		href="/{last_history_year || page.data.years[0]?.id}"
+	>
+		Archives
+	</a>
+</Header>

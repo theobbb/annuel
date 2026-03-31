@@ -12,7 +12,7 @@
 		},
 		{
 			name: 'Finissant.es',
-			param: 'finissant-e-s',
+			param: 'finissant-es',
 			length: page.data.n_students
 		}
 	]);
@@ -23,7 +23,7 @@
 	{#each tabs as { name, param, length }}
 		<a
 			class={[
-				'no-hover block text-center',
+				'no-hover- block text-center',
 				current_tab === param ? '' : ' not-hover:text-muted',
 				'transition'
 			]}

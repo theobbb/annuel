@@ -13,7 +13,7 @@
 <div class="flex items-center gap-8">
 	<input
 		type="text"
-		placeholder="Rechercher"
+		placeholder="Rechercher…"
 		oninput={on_search_input}
 		name="search"
 		id="search"

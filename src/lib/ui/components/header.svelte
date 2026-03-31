@@ -42,14 +42,19 @@
 	]}
 >
 	<div class="col-span-full row-start-0 md:col-span-2">
-		<a href="/{page.params.year}">Annuel de design ’{page.params.year?.slice(-2)}</a>
+		<a class="hover:underline" href="/{page.params.year}">
+			Annuel de design
+			{#if page.params.year}
+				’{page.params.year?.slice(-2)}
+			{/if}
+		</a>
 	</div>
-
-	<div
-		class="col-span-full row-start-2 flex sm:col-span-6 sm:col-start-7 sm:row-start-1 sm:max-xl:justify-end xl:col-span-4 xl:col-start-3"
-	>
-		<Tabs />
-	</div>
-
+	{#if page.params.year}
+		<div
+			class="col-span-full row-start-2 flex sm:col-span-6 sm:col-start-7 sm:row-start-1 sm:max-xl:justify-end xl:col-span-4 xl:col-start-3"
+		>
+			<Tabs />
+		</div>
+	{/if}
 	{@render children?.()}
 </header>

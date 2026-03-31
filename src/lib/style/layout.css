@@ -48,6 +48,7 @@ html {
 	scrollbar-gutter: stable;
 
 	--cut: 15px;
+	text-underline-offset: 0.4em;
 }
 
 .text-2 {
@@ -69,9 +70,11 @@ html {
 	text-decoration-style: wavy !important;
 	text-decoration-color: rgba(0, 0, 0, 0.2) !important;
 } */
+
 a:not(.no-hover):hover {
 	text-decoration: underline;
-	text-underline-offset: 0.1em;
+	/* text-decoration: underline;
+	text-underline-offset: 0.1em; */
 	/* text-decoration-thickness: 2px; */
 }
 a.active {

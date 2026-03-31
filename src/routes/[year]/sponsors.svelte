@@ -11,7 +11,7 @@
 	const sizes = [
 		'text-[1.2vw] tracking-[-1%]',
 		'text-[2.5vw] tracking-[-2%]',
-		' text-[4vw]  tracking-[-4%] '
+		' text-[4vw]  tracking-[-3%] '
 	];
 
 	//grid-area: row-start / col-start / row-end / col-end
@@ -28,7 +28,7 @@
 </script>
 
 <div class="mb-5 text-center">❤️ Commanditaires ❤️</div>
-<div class="justify-center- flex flex-col gap-6">
+<div id="commanditaires" class="justify-center- flex flex-col gap-6">
 	{#each sponsors as { id, name, size, logo }, i}
 		<div class="flex items-center justify-center">
 			<div
