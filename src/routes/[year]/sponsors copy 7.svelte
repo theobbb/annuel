@@ -28,29 +28,27 @@
 </script>
 
 <div class="mb-5 text-center">❤️ Commanditaires ❤️</div>
-<div class="justify-center- flex flex-col gap-6">
+<div class="space-y-6">
 	{#each sponsors as { id, name, size, logo }, i}
-		<div class="flex items-center justify-center">
+		<div class="group grid flex-col items-center justify-center">
 			<div
 				class={[
-					'peer py-[0.15em]- flex w-fit items-center justify-center px-[0.2em] leading-[100%] transition hover:bg-accent',
+					'py-[0.15em]- flex w-fit items-center justify-center px-[0.2em] leading-[100%] transition hover:bg-accent',
 					sizes[size - 1]
 				]}
 			>
-				<!-- <SponsorFile url="{PUBLIC_POCKETBASE_URL}/api/files/sponsors/{id}/{logo}" /> -->
 				{name}
 			</div>
 			<div
-				class="pointer-events-none fixed inset-32 flex items-center justify-center transition not-peer-hover:opacity-0"
+				class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 group-hover:grid-rows-[1fr]"
 			>
-				<img src="{PUBLIC_POCKETBASE_URL}/api/files/sponsors/{id}/{logo}" />
+				<div class="flex items-center justify-center overflow-hidden">
+					<img
+						class="size-64 object-contain"
+						src="{PUBLIC_POCKETBASE_URL}/api/files/sponsors/{id}/{logo}"
+					/>
+				</div>
 			</div>
 		</div>
-
-		<!-- <div>{name}</div> -->
-
-		<!-- <div class="col-span-3">
-			{name}
-		</div> -->
 	{/each}
 </div>

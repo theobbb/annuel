@@ -19,6 +19,6 @@
 		id="search"
 		autocomplete={null}
 		value={page.url.searchParams.get('search') ?? ''}
-		class="text-lg- w-full border bg-black/5 px-2.5 py-1 text-sm transition outline-none not-focus:border-transparent hover:bg-black/10 focus:placeholder-black/60"
+		class="text-lg- w-full border bg-black/5 px-2.5 py-1 text-base transition outline-none not-focus:border-transparent hover:bg-black/10 focus:placeholder-black/60"
 	/>
 </div>

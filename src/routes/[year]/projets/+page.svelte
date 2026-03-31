@@ -60,7 +60,7 @@
 		class={[
 			'',
 			view == 'grille'
-				? 'mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 lg:gap-6'
+				? 'grid grid-cols-2 gap-4 gap-y-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 lg:gap-x-6 lg:gap-y-8'
 				: ''
 		]}
 	>

@@ -24,26 +24,27 @@
 	}
 </script>
 
-<Header>
-	<div class="border-b- col-span-9 col-start-1 row-start-3 h-12 lg:row-start-2"></div>
-	<div class="col-start-1 row-start-4 lg:row-start-3">
+<Header></Header>
+<div class="grid grid-cols-10 gap-2x">
+	<div class="">
 		<a href={back_href} onclick={on_back} class="flex items-center gap-1">
 			<div class="icon-[ri--arrow-left-long-line]"></div>
 			Retour
 		</a>
 	</div>
-	<div class="col-span-6 col-start-7 row-span-4 lg:col-span-2 lg:col-start-11">
-		{@render children()}
-	</div>
-	<div class="col-span-10 text-balance lg:col-span-6 lg:col-start-3">
-		<div class="mb-12 text-4xl">
+
+	<div class="col-span-10 text-balance lg:col-span-4 lg:col-start-3">
+		<div class="mb-12 text-4xl/10">
 			{@render title()}
 		</div>
-		<div class="text-xl/6.5- border-t- pt-4">
+		<div class=" leading-6.5">
 			{@render description()}
 		</div>
 	</div>
-</Header>
+	<div class="col-span-2 col-start-9">
+		{@render children()}
+	</div>
+</div>
 <!-- <div>
 	<a href={back_href} onclick={on_back} class="flex items-center gap-1">
 		<div class="icon-[ri--arrow-left-long-line]"></div>

@@ -8,13 +8,7 @@ import type {
 } from '$lib/pocketbase.types';
 
 export async function load() {
-	const [years, programs, program_types, socials, globals]: [
-		YearsRecord[],
-		ProgramsRecord[],
-		ProgramTypesRecord[],
-		SocialsRecord[],
-		GlobalsRecord
-	] = await Promise.all([
+	const [years, programs, program_types, socials, globals] = await Promise.all([
 		pocketbase
 			.collection('years')
 			.getFullList<YearsRecord>({ sort: '-id', fields: 'id,poster,video' }),

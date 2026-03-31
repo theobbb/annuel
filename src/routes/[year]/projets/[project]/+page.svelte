@@ -11,7 +11,6 @@
 
 	const { data } = $props();
 
-	$inspect(data);
 	const { project, program_map } = $derived(data);
 
 	const files = $derived(project.expand['project_files(project)']);
@@ -48,24 +47,26 @@
 	let lightbox_file: string | null = $state(null);
 
 	onMount(() => {
-		if (project.background) document.documentElement.style.backgroundColor = project.background;
+		if (project.background)
+			document.documentElement.style.setProperty('--color-background', project.background);
+		//if (project.background) document.documentElement.style.backgroundColor = project.background;
 		else clear_background();
 		return () => {
 			clear_background();
 		};
 	});
 	function clear_background() {
-		document.documentElement.style.removeProperty('background-color');
+		document.documentElement.style.removeProperty('--color-background');
 	}
 </script>
 
-<svelte:head>
+<!-- <svelte:head>
 	<style>
 		html {
 			background-color: {value};
 		}
 	</style>
-</svelte:head>
+</svelte:head> -->
 
 <RecordHeader back_href="/{page.params.year}/projets">
 	{#snippet title()}
@@ -116,35 +117,7 @@
 		/>
 	{/snippet} -->
 </RecordHeader>
-<!-- <SingleHeader>
-	{#snippet title()}
-		{project.name}
-	{/snippet}
-	{#snippet description()}
-		{project.description}
-	{/snippet}
-	{#snippet relations()}
-		<Relations
-			relations={[
-				{ type: 'students', ref: project.expand.students },
-				{ type: 'program', ref: program },
-				{ type: 'tags', ref: tags }
-			]}
-		/>
-	{/snippet}
-</SingleHeader> -->
 
-<!-- <div class="grid-12">
-	{#each { length: n_files } as file, i}
-		<button
-			class="col-span-full aspect-square sm:col-span-6 lg:col-span-4"
-			onclick={() => (lightbox_file = String(i))}
-			aria-label="open lightbox {i}"
-		>
-			<Image id={project.id} index={i} />
-		</button>
-	{/each}
-</div> -->
 <div class="min-h-svh">
 	<div class="grid grid-cols-4 gap-8">
 		{#each files as { id, file: file_name, col_span, col_start, caption }}
@@ -159,10 +132,10 @@
 </div>
 
 {#if related_projects.length}
-	<div class="mt-24">
-		<Title>
+	<div class="mt-48">
+		<div class="mb-2x">
 			Autres projets <sup>{related_projects.length}</sup>
-		</Title>
+		</div>
 		<div>
 			{#each related_projects as related_project}
 				<ProjectRow project={related_project} students={related_project.expand.students} />

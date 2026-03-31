@@ -8,13 +8,15 @@ export type ProjectsRecordExpanded = ProjectsRecord & {
 	};
 };
 
-export async function load({ params, setHeaders }) {
+export async function load({ params }) {
 	const projects: ProjectsRecordExpanded[] = await pocketbase.collection('projects').getFullList({
 		filter: `year = "${params.year}"`,
 		expand: 'students',
 		fields:
-			'files, id, name, students, expand.students.id, expand.students.first_name, expand.students.last_name, expand.students.program'
+			'files, id, name, students, expand.students.id, expand.students.first_name, expand.students.last_name, expand.students.program',
+		requestKey: `projects-${params.year}`
 	});
+	// console.log('loading projects');
 
 	// setHeaders({ca})
 	return { projects };

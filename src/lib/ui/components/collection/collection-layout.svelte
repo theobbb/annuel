@@ -11,8 +11,8 @@
 		$props();
 </script>
 
-<div class="relative mb-36">
+<div class="relative">
 	<CollectionHeader {view} n_items={items.length} />
 
-	{@render children()}
+	<div class="mt-12">{@render children()}</div>
 </div>

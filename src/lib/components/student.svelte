@@ -42,9 +42,13 @@
 	{#if reverse}
 		{student.last_name}, {student.first_name}
 	{:else}
-		<span class="mr-0.5 inline-block">/</span>
-		{student.first_name}
-		{student.last_name}
+		<div class="inline-flex gap-1">
+			<span class="">—</span>
+			<div>
+				{student.first_name}
+				{student.last_name}
+			</div>
+		</div>
 	{/if}
 {/snippet}
 {#if is_student_page}

@@ -6,8 +6,9 @@
 	import PreviewStudent from './preview-student.svelte';
 	import Student from './student.svelte';
 	import Image from './image.svelte';
+	import Students from './students.svelte';
 
-	const { project, students }: { project: ProjectsRecord; students?: StudentsRecord[] } = $props();
+	const { project, students }: { project: ProjectsRecord; students: StudentsRecord[] } = $props();
 	const props_id = $props.id();
 
 	const year = $derived(page.params.year);
@@ -33,28 +34,12 @@
 			></div>
 		</div> -->
 
-		<div class="mt-2 pr-4 leading-4.5 text-balance">
-			<div
-				class="font-[430]- text-base/4.5- lg:text-xl/6- pointer-events-none relative mb-0.5 block"
-			>
+		<div class="mt-1.5 pr-4 leading-5.5 text-balance lg:mt-2.5">
+			<div class="pointer-events-none relative mb-1.5 block max-lg:text-base/5">
 				{project.name}
 			</div>
-			{#if students}
-				<div
-					class="pointer-events-none relative z-10 max-lg:space-y-1 max-lg:text-sm/3.5 lg:text-base/5.5"
-				>
-					{#each students as student}
-						<div class="relative text-muted">
-							<Student {student} />
-							<!-- {#if preview?.context_key == props_id && preview.student.id == student.id}
-								<div class={['absolute', preview.anchor[1] == 'left' ? '-left-gap' : 'right-gap']}>
-									<PreviewStudent student={preview.student} class="w-md" />
-								</div>
-							{/if} -->
-						</div>
-					{/each}
-				</div>
-			{/if}
+
+			<div><Students {students} /></div>
 		</div>
 	</div>
 </div>

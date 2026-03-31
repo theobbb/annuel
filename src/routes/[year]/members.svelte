@@ -20,8 +20,9 @@
 <!-- <div class="mb-4">
 	L’équipe de l’Annuel {page.params.year}
 </div> -->
+<div class="mb-4 border-b pb-2 text-base">L’équipe de l’Annuel '{page.params.year?.slice(2)}</div>
 <div class="grid-12- mb-8">
-	<div class="grid grid-cols-4 gap-x-8 leading-5 whitespace-nowrap">
+	<div class="grid grid-cols-4 gap-x-8 text-base leading-5.5 whitespace-nowrap">
 		{#each groups as { role, children }, i}
 			{#each children as member}
 				<div class="text-balance">

@@ -20,8 +20,8 @@
 			]}
 			href={url_query_param(page.url.href, { vue: param })}
 		>
-			<div>{name}</div>
-			<!-- <div class="-mt-0.5">{name}</div> -->
+			<!-- <div>{name}</div> -->
+			<div class={icon}></div>
 		</a>
 		<div class="text-muted last:hidden">/</div>
 	{/each}

@@ -32,25 +32,11 @@
 			<div>Youtube</div>
 		</div>
 	</div>
-	<!-- {#snippet relations()}
-		<Relations
-			relations={[
-				{ type: 'program', ref: program },
-				{
-					type: 'contact',
-					ref: [
-						{ name: 'Instagram', href: '/' },
-						{ name: 'Facebook', href: '/' }
-					]
-				}
-			]}
-		/>
-	{/snippet} -->
 </RecordHeader>
 
-<Title>
+<div class="mb-2x">
 	Projets <sup>{projects?.length}</sup>
-</Title>
+</div>
 
 <div class="mb-24">
 	{#each projects as project}

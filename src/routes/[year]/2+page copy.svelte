@@ -30,10 +30,10 @@
 	</a>
 </Header>
 <div class="-mt-12 grid grid-cols-10 gap-2x">
-	<div class="col-span-full row-start-1 flex items-end lg:col-span-4 lg:col-start-1">
+	<div class="col-span-full flex items-end lg:col-span-4 lg:col-start-1">
 		<div class="">
 			<!-- <div>École de design de l’UQAM</div> -->
-			<div class="text-[16vw] leading-[100%] font-[250] tracking-[-6%]">
+			<div class="text-[20vw] leading-[100%] font-[250] tracking-[-6%]">
 				’{page.params.year?.slice(2)}
 			</div>
 		</div>
@@ -48,8 +48,8 @@
 	</div>
 
 	<div class="col-span-7 col-start-1 aspect-video">
-		<div class="-mx-3x- aspect-video bg-placeholder">
-			<!-- <Video autoplay playback_id="P3WEcj3FPpoxgFHcqU16hXo1NpJxUCsi00fcW1GnHNw00" /> -->
+		<div class="-mx-3x- bg-placeholder- aspect-video">
+			<Video autoplay playback_id="P3WEcj3FPpoxgFHcqU16hXo1NpJxUCsi00fcW1GnHNw00" />
 		</div>
 	</div>
 	<div class="col-span-2 col-start-6 my-1x text-sm/4 text-muted">

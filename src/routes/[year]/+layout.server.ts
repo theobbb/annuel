@@ -11,21 +11,7 @@ export async function load({ parent, params }) {
 	const year = years.find((y) => y.id == params.year);
 	if (!year) error(404);
 
-	const [members, member_roles, list_projects, list_students, program_stats_arr]: [
-		MembersRecord[],
-		MemberRolesRecord[],
-		ListResult<ProjectsRecord>,
-		ListResult<StudentsRecord>,
-		ProgramStatsRecord[]
-	] = await Promise.all([
-		pocketbase.collection('members').getFullList<MembersRecord>({
-			sort: 'name',
-			filter: `year = "${params.year}"`,
-			fields: 'id,name,role'
-		}),
-		pocketbase
-			.collection('member_roles')
-			.getFullList<MemberRolesRecord>({ sort: 'sort_order', fields: 'id,name' }),
+	const [list_projects, list_students, program_stats_arr] = await Promise.all([
 		pocketbase.collection('projects').getList<ProjectsRecord>(1, 0, {
 			filter: `year = "${params.year}"`,
 			requestKey: `projects-${params.year}`
@@ -47,5 +33,5 @@ export async function load({ parent, params }) {
 		program_stats_arr.map((record) => [record.program || '', record])
 	);
 
-	return { year, members, member_roles, n_projects, n_students, program_stats };
+	return { year, n_projects, n_students, program_stats };
 }

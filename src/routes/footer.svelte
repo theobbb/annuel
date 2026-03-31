@@ -8,7 +8,7 @@
 </script>
 
 <footer
-	class="black- min-h-svh- relative z-200 -mx-8 mt-16 flex flex-col justify-between px-8 py-5 pb-6 font-[370]"
+	class="black font-[370]- relative z-200 -mx-8 mt-16 flex min-h-svh flex-col justify-between px-8 py-5 pb-6"
 >
 	<div class="border-t- mb-12 hidden">
 		<Header>
@@ -26,7 +26,7 @@
 
 	<div class="grid-12 items-end">
 		<div
-			class="col-span-10 col-start-1 leading-4.5 font-normal text-muted max-lg:text-sm/4 lg:col-span-6"
+			class="col-span-10 col-start-1 text-sm leading-4.5 text-muted max-lg:text-sm/4 lg:col-span-6"
 		>
 			© {page.params.year} Annuel de design — Tous droits réservés <br />
 			Les œuvres présentées demeurent la propriété <br /> de leurs auteur.rice.s respectif.ve.s.
