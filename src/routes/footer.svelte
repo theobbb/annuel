@@ -18,7 +18,7 @@
 </script>
 
 <footer
-	class="black font-[370]- min-h-svh- relative z-200 -mx-6 mt-16 flex flex-col justify-between overflow-hidden px-6 py-5 pb-6"
+	class="black font-[370]- min-h-svh- relative z-200 -mx-gap mt-16 flex flex-col justify-between overflow-hidden px-gap py-5 pb-6"
 >
 	<div class="border-t- mb-12 hidden">
 		<Header>
@@ -33,16 +33,7 @@
 			</div> -->
 		</Header>
 	</div>
-	<div class="grid grid-cols-10 gap-2x">
-		<div
-			class="bg-red-100/20- mt-6- @container col-span-full row-start-2 flex items-end lg:col-span-2 lg:col-start-1"
-		>
-			<div
-				class=" -ml-[0.05em] translate-y-[0.2em] text-[87cqw]/[100cqw] font-[250] tracking-[-7%]"
-			>
-				’{page.params.year?.slice(2)}
-			</div>
-		</div>
+	<div class="grid grid-cols-10 gap-gap">
 		<div class="col-span-2">
 			<div class="mb-1 border-b border-white/50 pb-1 text-muted">Médias sociaux</div>
 			{#each socials as { url, name }}

@@ -6,18 +6,22 @@
 	const current_program = $derived(program_map.get(page.url.searchParams.get('programme') || ''));
 </script>
 
-<div class="relative flex items-center justify-end gap-6">
+<div class="flex items-center gap-4">
 	<a
 		class={[
-			'group -m-2 flex items-center gap-1 p-2 whitespace-nowrap  transition group-hover:border-current'
+			'-m-2 flex items-center gap-1 p-2 whitespace-nowrap  transition group-hover:border-current'
 		]}
 		href="/{page.params.year}/programmes?from={encodeURIComponent(page.url.href)}"
 	>
-		{#if current_program}
+		[{#if current_program}
 			{current_program.name}
 		{:else}
 			Tous les programmes
-		{/if}
-		<div class="icon-[ri--expand-up-down-line]"></div>
+		{/if}]
+		<!-- <div class="icon-[ri--expand-up-down-line]"></div> -->
+	</a>
+
+	<a href="">
+		[{page.params.year}]
 	</a>
 </div>

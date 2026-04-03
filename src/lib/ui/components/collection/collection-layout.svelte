@@ -2,9 +2,9 @@
 	import type { Snippet } from 'svelte';
 	import type { ProjectsRecord, StudentsRecord } from '$lib/pocketbase.types';
 	import CollectionHeader from './collection-header.svelte';
+	import CollectionFooter from './collection-footer.svelte';
 
 	const {
-		items,
 		view,
 		children
 	}: { items: (StudentsRecord | ProjectsRecord)[]; view: 'grille' | 'liste'; children: Snippet } =
@@ -12,7 +12,8 @@
 </script>
 
 <div class="relative">
-	<CollectionHeader {view} n_items={items.length} />
+	<CollectionHeader />
 
 	<div class="mt-12">{@render children()}</div>
 </div>
+<CollectionFooter {view} />

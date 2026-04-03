@@ -5,8 +5,7 @@
 	--muted: oklch(0% 0 0 / 0.5);
 }
 @theme {
-	--spacing-1x: calc(var(--spacing) * 3);
-	--spacing-2x: calc(var(--spacing) * 6);
+	--spacing-gap: calc(var(--spacing) * 7);
 
 	--color-background: white;
 	--color-foreground: oklch(28.094% 0.00003 271.152);

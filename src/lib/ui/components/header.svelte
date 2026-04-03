@@ -36,7 +36,7 @@
 <div class="h-px-" bind:this={sentinel}></div>
 <header
 	class={[
-		' sticky top-0 z-100  -mt-3 grid grid-cols-10 gap-x-4 gap-y-2 border-b bg-background py-3 whitespace-nowrap lg:gap-x-8',
+		' sticky top-0 z-100  -mt-4 grid grid-cols-10 gap-x-4 gap-y-2 border-b bg-background py-4 whitespace-nowrap lg:gap-x-8',
 		scroll_top ? 'border-transparent' : '',
 		'transition-[border]'
 	]}
@@ -45,9 +45,9 @@
 		<a class="hover:underline max-md:text-4xl/8 max-md:tracking-tight" href="/{page.params.year}">
 			<span class="max-md:hidden">Annuel de design</span>
 			<span class="md:hidden">A</span>
-			{#if page.params.year}
+			<!-- {#if page.params.year}
 				’{page.params.year?.slice(-2)}
-			{/if}
+			{/if} -->
 		</a>
 	</div>
 	{#if page.params.year}
