@@ -31,7 +31,7 @@
 					<div class="col-span-10 flex gap-0.5 lg:col-span-8">
 						<a
 							onmouseenter={() => (hovered = student)}
-							href="/{page.params.year}/finissant-e-s/{student.id}"
+							href="/{page.params.year}/finissant-es/{student.id}"
 						>
 							{student.last_name}, {student.first_name}
 						</a>

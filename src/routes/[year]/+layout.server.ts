@@ -1,10 +1,7 @@
 import { error } from '@sveltejs/kit';
 import { pocketbase } from '$lib/pocketbase';
 import type { ProjectsRecord, StudentsRecord } from '$lib/pocketbase.types';
-import type { ListResult } from 'pocketbase';
 import type { ProgramStatsRecord } from '$lib/pocketbase.types';
-import type { MembersRecord } from '$lib/pocketbase.types';
-import type { MemberRolesRecord } from '$lib/pocketbase.types';
 
 export async function load({ parent, params }) {
 	const { years } = await parent();

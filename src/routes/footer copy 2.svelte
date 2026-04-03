@@ -66,7 +66,7 @@
 		</div>
 		<div class="hidden">Crédits</div>
 		<div
-			class="col-span-10 col-start-1 row-start-2 flex items-end leading-5.5 text-muted max-lg:text-sm/4 lg:col-span-4 lg:col-start-7"
+			class="col-span-10 col-start-1 row-start-2 flex items-end leading-5.5 text-muted max-lg:text-sm/4 lg:col-span-4 lg:col-start-3"
 		>
 			© Annuel de design {page.params.year} <br />
 			Les œuvres présentées demeurent la propriété <br /> de leurs auteur.rice.s respectif.ve.s.

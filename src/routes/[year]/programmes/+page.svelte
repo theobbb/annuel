@@ -6,11 +6,21 @@
 	import Header from '$lib/ui/components/header.svelte';
 	import CollectionHeader from '$lib/ui/components/collection/collection-header.svelte';
 	import Programs from '../programs.svelte';
+	import { page } from '$app/state';
+	import { url_query_param } from '$lib/utils/url.js';
 
 	const { data } = $props();
 	const { programs } = $derived(data);
+
+	const from_url = $derived(decodeURIComponent(page.url.searchParams.get('from') || ''));
 </script>
 
-<Header></Header>
+<Header>
+	<div class="col-span-2 col-start-9 text-right">
+		<a href={url_query_param(from_url || `/${page.params.year}/projets`, { programme: null })}
+			>Tous les programmes</a
+		>
+	</div>
+</Header>
 
-<div class="mt-24"><Programs /></div>
+<div class="mt-24"><Programs {from_url} /></div>

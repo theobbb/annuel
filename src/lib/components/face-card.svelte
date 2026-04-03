@@ -15,11 +15,9 @@
 		></div> -->
 	</div>
 
-	<div class="absolute top-0 right-0 z-5">
-		<div
-			class="rounded-bl-sm- bg-background px-2 text-[9cqw] leading-[12cqw] font-[450] tracking-wide mix-blend-difference"
-		>
-			<div class="translate-x-[1cqw] -translate-y-[1cqw]">{program?.code}</div>
+	<div class="absolute top-[3cqw] right-[3cqw] z-5">
+		<div class=" black px-[2cqw] py-[1cqw] text-[6cqw] leading-[100%] font-[450] tracking-[0.02em]">
+			{program?.code}
 		</div>
 	</div>
 </div>

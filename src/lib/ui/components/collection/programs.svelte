@@ -1,39 +1,17 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import type { ProgramsRecord } from '$lib/pocketbase.types';
-	import { url_query_param } from '$lib/utils/url';
-	import ProgramOverlay from './program-overlay.svelte';
 
-	const { programs, program_map } = $derived(page.data);
+	const { program_map } = $derived(page.data);
 
 	const current_program = $derived(program_map.get(page.url.searchParams.get('programme') || ''));
-
-	let hovered_i: number = $state(-1);
 </script>
 
-{#snippet program_link(label: string, active: boolean)}
-	<div
-		class={[
-			'group rounded-full- border- text-lg- -m-2 p-2 whitespace-nowrap ring-black/20 transition group-hover:border-current',
-			active ? 'border-current-' : 'border-transparent not-hover:text-black/40'
-		]}
-	>
-		{label}
-	</div>
-{/snippet}
-
-<div
-	class="pb-1- relative flex items-center justify-end gap-6"
-	role="navigation"
-	aria-label="Sélection de programme"
-	onmouseleave={() => (hovered_i = -1)}
-	onblur={() => (hovered_i = -1)}
->
+<div class="relative flex items-center justify-end gap-6">
 	<a
 		class={[
-			'group  border- text-lg- -m-2 flex items-center gap-1 p-2 whitespace-nowrap ring-black/20 transition group-hover:border-current'
+			'group -m-2 flex items-center gap-1 p-2 whitespace-nowrap  transition group-hover:border-current'
 		]}
-		href="/{page.params.year}/programmes"
+		href="/{page.params.year}/programmes?from={encodeURIComponent(page.url.href)}"
 	>
 		{#if current_program}
 			{current_program.name}
@@ -42,30 +20,4 @@
 		{/if}
 		<div class="icon-[ri--expand-up-down-line]"></div>
 	</a>
-	<!-- <div role="none" onmouseenter={() => (hovered_i = -1)} onfocus={() => (hovered_i = -1)}>
-		<a class="no-hover mr-0.5 block" href={url_query_param(page.url.href, { programme: null })}>
-			{@render program_link('Tous les programmes', !current)}
-		</a>
-	</div> -->
-
-	<!-- {#each programs as program, i}
-		<div
-			role="listitem"
-			onmouseenter={() => {
-				hovered_i = i;
-			}}
-			onfocus={() => {
-				hovered_i = i;
-			}}
-		>
-			<a
-				class="no-hover"
-				href={url_query_param(page.url.href, { programme: program.id })}
-				onclick={() => (hovered_i = -1)}
-			>
-				{@render program_link(program.code, current == program.id)}
-			</a>
-		</div>
-		<ProgramOverlay {hovered_i} {i} {program} />
-	{/each} -->
 </div>

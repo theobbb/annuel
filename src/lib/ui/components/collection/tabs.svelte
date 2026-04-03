@@ -19,11 +19,11 @@
 	const current_tab = $derived(page.route.id?.split('/')[2]);
 </script>
 
-<div class="flex items-center gap-3 whitespace-nowrap lg:gap-2">
+<div class="flex gap-3 whitespace-nowrap md:items-center lg:gap-2">
 	{#each tabs as { name, param, length }}
 		<a
 			class={[
-				'no-hover- block text-center',
+				'-my-1 block py-1',
 				current_tab === param ? '' : ' not-hover:text-muted',
 				'transition'
 			]}

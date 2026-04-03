@@ -12,11 +12,11 @@
 	{#each students as student}
 		<a
 			class=""
-			href="/{page.params.year}/finissant-e-s/{student.id}"
+			href="/{page.params.year}/finissant-es/{student.id}"
 			onmouseenter={() => (hovered = student)}
 		>
 			<Facecard {student} />
-			<div class="mt-1.5 text-sm/4.5 tracking-wide lg:mt-2 lg:text-base/4.5">
+			<div class="mt-1.5 lg:mt-1.5">
 				{student.first_name}
 				{student.last_name}
 			</div>

@@ -20,13 +20,15 @@
 <!-- <div class="mb-4">
 	L’équipe de l’Annuel {page.params.year}
 </div> -->
-<div class="text-base- mb-4 border-b pb-2">L’équipe de l’Annuel ’{page.params.year?.slice(2)}</div>
-<div id="equipe" class="grid-12- mb-8">
-	<div class="text-base- grid grid-cols-4 gap-x-8 leading-6 whitespace-nowrap">
+<div class="text-base- mb-4 border-b pb-2">Équipe de l’Annuel ’{page.params.year?.slice(2)}</div>
+<div id="equipe" class="mb-24">
+	<div
+		class="flex flex-wrap justify-between gap-x-12 text-3xl leading-9.5 tracking-[-1%] whitespace-nowrap"
+	>
 		{#each groups as { role, children }, i}
 			{#each children as member}
 				<div class="text-balance">
-					{member.name}<span class="ml-2 inline-block text-muted">{role.name}</span>
+					{member.name}<span class="ml-2 inline-block text-muted">({role.name})</span>
 				</div>
 			{/each}
 		{/each}

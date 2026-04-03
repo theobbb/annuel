@@ -14,7 +14,7 @@
 	{#each views as { name, param, icon }}
 		<a
 			class={[
-				'text-lg- -m-2 flex items-center justify-center gap-1.5 p-2',
+				'-m-2 flex items-center justify-center gap-1.5 p-2 max-lg:text-xl',
 				view == param ? '' : ' not-hover:text-black/40',
 				'transition'
 			]}

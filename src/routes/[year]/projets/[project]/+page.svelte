@@ -5,7 +5,6 @@
 	import Student from '$lib/components/student.svelte';
 	import type { ProgramsRecord } from '$lib/pocketbase.types';
 	import RecordHeader from '$lib/ui/components/record/record-header.svelte';
-	import Title from '$lib/ui/components/title.svelte';
 	import { string_to_1_8 } from '$lib/utils/seed';
 	import { onMount } from 'svelte';
 
@@ -102,23 +101,9 @@
 			{/each}
 		</div>
 	</div>
-	<!-- {#snippet relations()}
-		<Relations
-			relations={[
-				{ type: 'program', ref: program },
-				{
-					type: 'contact',
-					ref: [
-						{ name: 'Instagram', href: '/' },
-						{ name: 'Facebook', href: '/' }
-					]
-				}
-			]}
-		/>
-	{/snippet} -->
 </RecordHeader>
 
-<div class="min-h-svh">
+<div class="">
 	<div class="grid grid-cols-4 gap-8">
 		{#each files as { id, file: file_name, col_span, col_start, caption }}
 			<div style="grid-column: {col_start} / span {col_span};">
@@ -143,18 +128,3 @@
 		</div>
 	</div>
 {/if}
-
-<!-- {#if lightbox_file}
-	<Lightbox file={lightbox_file} onclose={() => (lightbox_file = null)}>
-		<div class="pointer-events-auto">
-			<Relations
-				relations={[
-					{ type: 'project', ref: project },
-					{ type: 'student', ref: project.expand.student },
-					{ type: 'program', ref: program },
-					{ type: 'tags', ref: project.expand.tags }
-				]}
-			/>
-		</div>
-	</Lightbox>
-{/if} -->

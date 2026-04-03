@@ -34,23 +34,14 @@
 		</Header>
 	</div>
 	<div class="grid grid-cols-10 gap-2x">
-		<div
-			class="bg-red-100/20- mt-6- @container col-span-full row-start-2 flex items-end lg:col-span-2 lg:col-start-1"
-		>
-			<div
-				class=" -ml-[0.05em] translate-y-[0.2em] text-[87cqw]/[100cqw] font-[250] tracking-[-7%]"
-			>
-				’{page.params.year?.slice(2)}
-			</div>
-		</div>
 		<div class="col-span-2">
-			<div class="mb-1 border-b border-white/50 pb-1 text-muted">Médias sociaux</div>
+			<div class="mb-1 border-b border-white/30 pb-1 text-muted">Médias sociaux</div>
 			{#each socials as { url, name }}
 				<div><a class="" href={url} target="_blank">{name}</a></div>
 			{/each}
 		</div>
 		<div class="col-start-5- col-span-2">
-			<div class="mb-1 border-b border-white/50 pb-1 text-muted">Menu</div>
+			<div class="mb-1 border-b border-white/30 pb-1 text-muted">Menu</div>
 			<div class="">
 				{#each links as { name, href }}
 					<div>
@@ -60,17 +51,20 @@
 			</div>
 		</div>
 
-		<div class="text-base- col-span-2 col-start-7 leading-6 text-balance">
-			<div>École de design de l’UQAM</div>
-			<div class="text-muted">1440 Rue Sanguinet, Montréal</div>
+		<div class="justify-between- col-span-3 col-start-1 flex flex-col leading-6 text-balance">
+			<div>
+				<div>École de design de l’UQAM</div>
+				<div class="text-muted">1440 Rue Sanguinet, Montréal</div>
+			</div>
+			<!-- <div
+				class="col-span-10 col-start-1 row-start-2 mt-8 flex items-end leading-5.5 text-muted max-lg:text-sm/4 lg:col-span-4 lg:col-start-3"
+			>
+				© Annuel de design {page.params.year} <br />
+				Les œuvres présentées demeurent la propriété <br /> de leurs auteur.rice.s respectif.ve.s.
+			</div> -->
 		</div>
 		<div class="hidden">Crédits</div>
-		<div
-			class="col-span-10 col-start-1 row-start-2 flex items-end leading-5.5 text-muted max-lg:text-sm/4 lg:col-span-4 lg:col-start-7"
-		>
-			© Annuel de design {page.params.year} <br />
-			Les œuvres présentées demeurent la propriété <br /> de leurs auteur.rice.s respectif.ve.s.
-		</div>
+
 		<div class="row-start-2- items-end- col-start-10 flex justify-end">
 			<div class="max-w-24-"><Uqam /></div>
 		</div>

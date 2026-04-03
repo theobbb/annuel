@@ -11,7 +11,7 @@
 	const projects = $derived(student.expand['projects(students)']);
 </script>
 
-<RecordHeader back_href="/{page.params.year}/finissant-e-s">
+<RecordHeader back_href="/{page.params.year}/finissant-es">
 	{#snippet title()}
 		<div>
 			{student.first_name}

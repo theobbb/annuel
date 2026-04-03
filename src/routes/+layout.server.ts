@@ -11,7 +11,7 @@ export async function load() {
 	const [years, programs, program_types, socials, globals] = await Promise.all([
 		pocketbase
 			.collection('years')
-			.getFullList<YearsRecord>({ sort: '-id', fields: 'id,poster,video' }),
+			.getFullList<YearsRecord>({ sort: '-id', fields: 'id,poster,video,accent_color' }),
 		pocketbase
 			.collection('programs')
 			.getFullList<ProgramsRecord>({ sort: 'sort_order', fields: 'id,code,name,type,description' }),

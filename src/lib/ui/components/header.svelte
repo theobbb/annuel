@@ -33,17 +33,18 @@
 	});
 </script>
 
-<div bind:this={sentinel}></div>
+<div class="h-px-" bind:this={sentinel}></div>
 <header
 	class={[
-		' sticky top-0 z-100 -mt-3 grid grid-cols-10 gap-x-4 gap-y-2 border-b bg-background py-3 whitespace-nowrap lg:gap-x-8',
+		' sticky top-0 z-100  -mt-3 grid grid-cols-10 gap-x-4 gap-y-2 border-b bg-background py-3 whitespace-nowrap lg:gap-x-8',
 		scroll_top ? 'border-transparent' : '',
 		'transition-[border]'
 	]}
 >
-	<div class="col-span-full row-start-0 md:col-span-2">
-		<a class="hover:underline" href="/{page.params.year}">
-			Annuel de design
+	<div class="col-span-3 row-start-1 md:col-span-2">
+		<a class="hover:underline max-md:text-4xl/8 max-md:tracking-tight" href="/{page.params.year}">
+			<span class="max-md:hidden">Annuel de design</span>
+			<span class="md:hidden">A</span>
 			{#if page.params.year}
 				’{page.params.year?.slice(-2)}
 			{/if}
@@ -51,7 +52,7 @@
 	</div>
 	{#if page.params.year}
 		<div
-			class="col-span-full row-start-2 flex sm:col-span-6 sm:col-start-7 sm:row-start-1 sm:max-xl:justify-end xl:col-span-4 xl:col-start-3"
+			class="col-span-7 row-start-1 flex max-xl:justify-end sm:col-span-6 sm:col-start-7 sm:row-start-1 xl:col-span-4 xl:col-start-3"
 		>
 			<Tabs />
 		</div>

@@ -256,6 +256,7 @@ export type UsersRecord = {
 }
 
 export type YearsRecord = {
+	accent_color?: string
 	created: IsoAutoDateString
 	draft?: boolean
 	id: string
