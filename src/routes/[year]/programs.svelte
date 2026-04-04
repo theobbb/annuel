@@ -14,7 +14,7 @@
 	{#each programs as { id, name, code, description, type }}
 		{@const stats = program_stats.get(id)}
 		<div
-			class="group relative grid grid-cols-10 gap-1.5 border-b pt-2 pb-5 transition first:border-t hover:bg-accent lg:gap-x-2x lg:pt-1x lg:pb-10"
+			class="group lg:gap-x-2x lg:pt-1x dahs border-b- border-dashed- relative grid grid-cols-10 gap-1.5 pt-2 pb-5 transition first:border-t hover:bg-accent lg:pb-8"
 		>
 			<a
 				class="peer absolute inset-0"
@@ -27,7 +27,7 @@
 			</div>
 
 			<div class="pointer-events-none col-span-10 text-xl/6 text-balance lg:col-span-5 lg:text-3xl">
-				<div class="relative w-fit pr-24">
+				<div class="pr-24- relative w-fit">
 					{name}
 					<div class=" absolute -right-3 bottom-0 flex translate-x-full justify-end">
 						<div
@@ -41,7 +41,7 @@
 				<div class="flex flex-col text-lg whitespace-nowrap">
 					{#if stats}
 						<a
-							class="relative z-10 flex w-fit items-center gap-1x"
+							class="gap-1x relative z-10 flex w-fit items-center"
 							href="/{page.params.year}/projets?programme={id}"
 						>
 							<!-- <div class="size-2 bg-foreground"></div> -->
@@ -51,7 +51,7 @@
 							</span>
 						</a>
 						<a
-							class="relative z-10 flex w-fit items-center gap-1x"
+							class="gap-1x relative z-10 flex w-fit items-center"
 							href="/{page.params.year}/finissant-e-s?programme={id}"
 						>
 							<!-- <div class="size-2 bg-foreground"></div> -->
@@ -68,12 +68,7 @@
 			>
 				{code}
 			</div>
-
-			<!-- <div
-				class="col-start-12 flex justify-end transition not-peer-hover:translate-x-4 not-peer-hover:opacity-0"
-			>
-				<div class=" icon-[ri--arrow-right-long-line] text-right text-2xl"></div>
-			</div> -->
 		</div>
+		<hr />
 	{/each}
 </div>

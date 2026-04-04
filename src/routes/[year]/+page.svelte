@@ -20,35 +20,23 @@
 		class="col-span-4 col-start-9 row-start-1 text-right max-lg:hidden sm:col-span-4 sm:col-start-9 sm:row-start-2 lg:col-span-1 lg:col-start-10 lg:row-start-1"
 		href="/archives"
 	>
-		Archives
+		[{page.params.year}]
 	</a>
 </Header>
-<div class="grid grid-cols-10 gap-2x lg:-mt-10">
-	<div class="col-span-full row-start-1 flex items-end max-lg:hidden lg:col-span-2 lg:col-start-1">
-		<div class="-mb-[0.12em] -ml-[0.05em] text-[14vw] leading-[100%] font-[250] tracking-[-7%]">
-			’{page.params.year?.slice(2)}
-		</div>
-	</div>
-
-	<div class="relative z-200 col-span-6 col-start-2 lg:col-span-2 lg:col-start-8">
+<div class="gap-2x grid min-h-[calc(100svh-5rem)] grid-cols-10 items-center lg:-mt-10">
+	<!-- <div class="relative z-200 col-span-6 col-start-2 lg:col-span-2 lg:col-start-8">
 		<div class="aspect-2/3 bg-placeholder">
 			<img
 				class="h-full w-full"
 				src="{PUBLIC_POCKETBASE_URL}/api/files/years/{year.id}/{year.poster}"
 			/>
 		</div>
-	</div>
+	</div> -->
 
-	<div class="col-span-full col-start-1 aspect-video lg:col-span-7">
-		<div class="-mx-3x- bg-placeholder- aspect-video">
-			<Video autoplay playback_id="P3WEcj3FPpoxgFHcqU16hXo1NpJxUCsi00fcW1GnHNw00" />
+	<div class="col-span-full aspect-video lg:col-span-6 lg:col-start-3">
+		<div class="-mx-3x- aspect-video bg-placeholder">
+			<!-- <Video autoplayy playback_id="P3WEcj3FPpoxgFHcqU16hXo1NpJxUCsi00fcW1GnHNw00" /> -->
 		</div>
-	</div>
-	<div class="col-span-2 col-start-6 my-1x text-sm/4 text-muted">
-		Vidéo par Kathrynf Mills, George Miller, Heather Ruiz, Christina Griffith
-	</div>
-	<div class="col-span-2 col-start-9 my-1x text-sm/4 text-muted">
-		Vidéo par Kathrynf Mills, George Miller, Heather Ruiz, Christina Griffith
 	</div>
 </div>
 <div class="mt-32 mb-32 grid grid-cols-10 gap-6">

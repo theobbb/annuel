@@ -50,6 +50,19 @@ html {
 	text-underline-offset: 0.4em;
 }
 
+hr {
+	border: none;
+	border-bottom: 1px solid transparent;
+	border-image: repeating-linear-gradient(
+			90deg,
+			rgba(0, 0, 0, 0.25) 0,
+			rgba(0, 0, 0, 0.25) 10px,
+			/* dash length */ transparent 0,
+			transparent 18px /* gap */
+		)
+		1;
+}
+
 .text-2 {
 	color: var(--color-text-2);
 }

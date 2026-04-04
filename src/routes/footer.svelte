@@ -7,13 +7,15 @@
 	const { year, programs, socials } = $derived(page.data);
 
 	const links = $derived([
-		{ name: `Accueil ${page.params.year}`, href: `/${page.params.year}` },
-		{ name: `Archives`, href: `/archives` },
-		{ name: `Programmes`, href: `/programmes` },
+		{ name: `Accueil `, href: `/${page.params.year}` },
 		{ name: `Projets`, href: `/${page.params.year}/projets` },
 		{ name: `Finissant.es`, href: `/${page.params.year}/finissant-es` },
+		{ name: `Archives`, href: `/archives` },
+		{ name: `Programmes`, href: `/programmes` },
+
 		{ name: `Commanditaires`, href: `/${page.params.year}#commanditaires` },
-		{ name: `Équipe de l’Annuel`, href: `/${page.params.year}#equipe` }
+		{ name: `Équipe de l’Annuel`, href: `/${page.params.year}#equipe` },
+		{ name: `Crédits`, href: `/${page.params.year}` }
 	]);
 </script>
 
@@ -35,13 +37,11 @@
 	</div>
 	<div class="grid grid-cols-10 gap-gap">
 		<div class="col-span-2">
-			<div class="mb-1 border-b border-white/50 pb-1 text-muted">Médias sociaux</div>
 			{#each socials as { url, name }}
 				<div><a class="" href={url} target="_blank">{name}</a></div>
 			{/each}
 		</div>
 		<div class="col-start-5- col-span-2">
-			<div class="mb-1 border-b border-white/50 pb-1 text-muted">Menu</div>
 			<div class="">
 				{#each links as { name, href }}
 					<div>
@@ -51,19 +51,19 @@
 			</div>
 		</div>
 
-		<div class="text-base- col-span-2 col-start-7 leading-6 text-balance">
+		<div class="col-span-2 col-start-6 leading-6 text-balance">
 			<div>École de design de l’UQAM</div>
 			<div class="text-muted">1440 Rue Sanguinet, Montréal</div>
 		</div>
 		<div class="hidden">Crédits</div>
 		<div
-			class="col-span-10 col-start-1 row-start-2 flex items-end leading-5.5 text-muted max-lg:text-sm/4 lg:col-span-4 lg:col-start-7"
+			class="col-span-10 col-start-1 row-start-2 flex hidden! items-end text-sm leading-4.5 text-muted max-lg:text-sm/4 lg:col-span-4 lg:col-start-7"
 		>
 			© Annuel de design {page.params.year} <br />
 			Les œuvres présentées demeurent la propriété <br /> de leurs auteur.rice.s respectif.ve.s.
 		</div>
 		<div class="row-start-2- items-end- col-start-10 flex justify-end">
-			<div class="max-w-24-"><Uqam /></div>
+			<div class="max-w-24"><Uqam /></div>
 		</div>
 	</div>
 

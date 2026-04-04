@@ -9,7 +9,8 @@
 	const n_files = $derived(string_to_1_8(project.name));
 </script>
 
-<div class={['group relative grid grid-cols-10 flex-col gap-x-2x gap-y-1x border-t py-1x']}>
+<hr />
+<div class={['group border-t- relative grid grid-cols-10 flex-col gap-x-gap gap-y-2 py-4']}>
 	<a
 		class="peer absolute inset-0 z-5"
 		href="/{page.params.year}/projets/{project.id}"
@@ -24,7 +25,7 @@
 		<Students {students} />
 	</div>
 	<div
-		class="max-lg:col-start-2- col-span-full grid grid-cols-3 gap-2 sm:grid-cols-5 sm:gap-4 lg:col-span-5 lg:gap-2x"
+		class="max-lg:col-start-2- lg:gap-2x col-span-full grid grid-cols-3 gap-2 sm:grid-cols-5 sm:gap-4 lg:col-span-5"
 	>
 		{#each { length: Math.min(5, n_files) } as file, i}
 			<div class=" nth-[n+4]:max-sm:hidden">
@@ -38,6 +39,7 @@
 		class="invisible absolute bottom-2 left-2 icon-[ri--arrow-right-up-line] peer-hover:visible"
 	></div> -->
 </div>
+<hr class="not-last:hidden" />
 
 <style>
 	.peer:hover ~ .title > div:first-child {

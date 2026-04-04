@@ -14,12 +14,12 @@
 	const { data, children } = $props();
 
 	const archive_page = $derived(page.route.id == '/archives');
-	init_store_student_projects();
-	const store_student_projects = use_store_student_projects();
+	// init_store_student_projects();
+	// const store_student_projects = use_store_student_projects();
 
-	onNavigate(() => {
-		store_student_projects.current = null;
-	});
+	// onNavigate(() => {
+	// 	store_student_projects.current = null;
+	// });
 
 	init_seed(data.seed);
 </script>

@@ -4,8 +4,8 @@
 	const { programs } = $derived(page.data);
 </script>
 
-<div class="bg-red-500- @container">
-	<div class="text-[7.5cqw] leading-[115%] font-[320] tracking-[-2%]">
+<div class="">
+	<div class="text-[3.5vw] leading-[120%] font-[320] tracking-[-2%]">
 		L’Annuel de design <br /> expose les
 		<div class="relative ml-0.5 inline-block">
 			<div class="absolute -inset-x-2 -inset-y-0.5 -z-10 translate-y-[4%] bg-accent"></div>

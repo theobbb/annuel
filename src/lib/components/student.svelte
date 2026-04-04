@@ -17,25 +17,11 @@
 		trigger_preview?: boolean;
 	} = $props();
 
-	const store_student_projects = use_store_student_projects();
+	// const store_student_projects = use_store_student_projects();
 
-	const preview_context: string | null = getContext('preview_context');
+	// const preview_context: string | null = getContext('preview_context');
 
 	const is_student_page = $derived(page.params.student == student.id);
-
-	function onmouseenter(event: MouseEvent & { currentTarget: EventTarget & HTMLAnchorElement }) {
-		if (!trigger_preview) return;
-		const rect = event.currentTarget.getBoundingClientRect();
-		const anchor = get_anchor_pos(rect);
-		store_student_projects.set_current({
-			student,
-			anchor,
-			context_key: preview_context
-		});
-	}
-	function onmouseleave() {
-		store_student_projects.start_timer();
-	}
 </script>
 
 {#snippet content()}
@@ -59,8 +45,6 @@
 	<a
 		href="/{page.params.year}/finissant-es/{student.id}"
 		class={['pointer-events-auto relative z-10 hover:underline']}
-		{onmouseenter}
-		{onmouseleave}
 	>
 		{@render content()}
 	</a>

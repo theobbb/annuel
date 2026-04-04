@@ -18,7 +18,7 @@
 	}
 </script>
 
-<form class="relative flex items-center gap-4">
+<form class="relative -mr-2 flex items-center gap-4">
 	<input
 		type="text"
 		placeholder="Rechercher…"
@@ -27,9 +27,9 @@
 		id="search"
 		autocomplete={null}
 		value={page.url.searchParams.get('search') ?? ''}
-		class="text-lg- w-full border px-2.5 py-1 pr-8 text-base tracking-wide transition outline-none not-focus:border-transparent hover:bg-black/10 focus:placeholder-black/60"
+		class="w-full border px-2.5 py-1 pr-8 text-base tracking-wide transition outline-none not-focus:border-transparent hover:bg-black/10 focus:placeholder-black/60"
 	/>
-	<div class="absolute top-2 right-0 icon-[ri--search-line]"></div>
+	<div class="absolute top-2 right-2 icon-[ri--search-line]"></div>
 	{#if is_searching}
 		<button
 			class="absolute -left-7 -m-2 flex cursor-pointer items-center justify-center p-2 text-base transition hover:bg-black/10"
