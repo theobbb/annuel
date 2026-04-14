@@ -13,7 +13,6 @@ export type ProjectsRecordExpanded = ProjectsRecord & {
 				})[];
 			};
 		})[];
-		'project_files(project)': ProjectFilesRecord[];
 	};
 };
 
@@ -21,8 +20,9 @@ export async function load({ params, locals }) {
 	const project: ProjectsRecordExpanded = await pocketbase
 		.collection('projects')
 		.getOne(params.project, {
-			expand: 'students, project_files(project), students.projects(students).students',
-			fields: 'id,name,description,students,background,foreground_white,thumbnail,expand'
+			expand: 'students, students.projects(students).students',
+			fields:
+				'id,name,description,students,background,foreground_white,thumbnail,files,meta_files,expand,teacher,session,class'
 		});
 
 	if (!project) error(404);

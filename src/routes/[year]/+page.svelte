@@ -14,34 +14,48 @@
 	const { year, programs } = $derived(data);
 </script>
 
-<!-- <Banner banner={data.globals.banner} /> -->
-<Header>
+<div class="mb-32- grid grid-cols-10 gap-6">
+	<div class="lg:col-span-7- col-span-5">
+		<Description />
+	</div>
+	<div class="col-span-3">
+		<!-- <div class="space-y-4 leading-6">
+			<div>Vernissage le 06 mai 2026 <br /> à partir de 18h</div>
+			<div>Exposition du 1er au 7 mai 2025 <br /> Entrée libre, de 12h à 18h</div>
+			<div>Pavillon de Design (DE) <br /> 1440, rue Sanguinet, Montréal</div>
+		</div> -->
+	</div>
+	<div class="col-span-2">
+		<div class="mb-2 text-right">Archives (+)</div>
+		<img
+			class="h-full w-full"
+			src="{PUBLIC_POCKETBASE_URL}/api/files/years/{year.id}/{year.poster}"
+		/>
+	</div>
+	<!-- <div class="col-span-2 text-right">
+		<div class="text-[3.5vw] leading-[120%] font-[320] tracking-[-2%]">[{page.params.year}]</div>
+	</div> -->
+</div>
+<!-- <div class="fixed right-7 bottom-7 left-7 grid grid-cols-10 gap-7 leading-6">
+	<div class="col-span-3">
+		Vernissage le 06 mai 2026 <br />à partir de 18h
+	</div>
+	<div class="col-span-3">Exposition du 1er au 7 mai 2026 <br /> Entrée libre, de 12h à 18h</div>
+</div> -->
+
+<!-- <Header>
 	<a
 		class="col-span-4 col-start-9 row-start-1 text-right max-lg:hidden sm:col-span-4 sm:col-start-9 sm:row-start-2 lg:col-span-1 lg:col-start-10 lg:row-start-1"
 		href="/archives"
 	>
 		[{page.params.year}]
 	</a>
-</Header>
-<div class="gap-2x grid min-h-[calc(100svh-5rem)] grid-cols-10 items-center lg:-mt-10">
-	<!-- <div class="relative z-200 col-span-6 col-start-2 lg:col-span-2 lg:col-start-8">
-		<div class="aspect-2/3 bg-placeholder">
-			<img
-				class="h-full w-full"
-				src="{PUBLIC_POCKETBASE_URL}/api/files/years/{year.id}/{year.poster}"
-			/>
-		</div>
-	</div> -->
-
+</Header> -->
+<div class="gap-2x min-h-[calc(100svh-5rem)]- grid grid-cols-10 items-center lg:-mt-10">
 	<div class="col-span-full aspect-video lg:col-span-6 lg:col-start-3">
 		<div class="-mx-3x- aspect-video bg-placeholder">
 			<!-- <Video autoplayy playback_id="P3WEcj3FPpoxgFHcqU16hXo1NpJxUCsi00fcW1GnHNw00" /> -->
 		</div>
-	</div>
-</div>
-<div class="mt-32 mb-32 grid grid-cols-10 gap-6">
-	<div class="col-span-full lg:col-span-7">
-		<Description />
 	</div>
 </div>
 
@@ -60,7 +74,7 @@
 	</div>
 </div> -->
 
-<div class="mt-24 mb-64">
+<div class="mt-48 mb-64">
 	<Programs />
 </div>
 <div class="mb-48"><Sponsors /></div>

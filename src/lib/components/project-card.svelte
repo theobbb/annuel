@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import type { ProjectsRecord, StudentsRecord } from '$lib/pocketbase.types';
+	import Thumbnail from '$lib/ui/components/project/thumbnail.svelte';
 
 	import Students from './students.svelte';
 
@@ -17,9 +18,9 @@
 			href="/{year}/projets/{project.id}"
 			aria-label="link to {project.name}"
 		></a>
-		<div class="aspect-3/4 w-full bg-placeholder">
-			<!-- <Image id={project.id} index={1} /> -->
-		</div>
+
+		<Thumbnail {project} />
+
 		<!-- <div class="relative opacity-0 transition peer-hover:opacity-100">
 			<div
 				class="absolute right-0 -bottom-4.5 z-10 icon-[ri--arrow-right-up-line] translate-y-px"

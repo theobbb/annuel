@@ -5,9 +5,10 @@
 	import Tabs from './collection/tabs.svelte';
 	import { use_intersection_observer } from '$lib/utils/intersection-observer';
 
-	const { children }: { children?: Snippet } = $props();
+	let { scroll_top = $bindable(true), children }: { scroll_top?: boolean; children?: Snippet } =
+		$props();
 
-	let scroll_top = $state(true);
+	//let scroll_top = $state(true);
 	let sentinel: HTMLDivElement;
 
 	function on_intersect(entry: IntersectionObserverEntry) {
@@ -33,7 +34,7 @@
 	});
 </script>
 
-<div class="h-px-" bind:this={sentinel}></div>
+<div bind:this={sentinel}></div>
 <header
 	class={[
 		' sticky top-0 z-100  -mt-4 grid grid-cols-10 gap-x-4 gap-y-2 border-b bg-background py-4 whitespace-nowrap lg:gap-x-8',

@@ -182,23 +182,28 @@ export type ProjectFilesRecord = {
 	created: IsoAutoDateString
 	file: FileNameString
 	id: string
-	project: RecordIdString
 	sort_order?: number
 	updated: IsoAutoDateString
 }
 
-export type ProjectsRecord = {
+export type ProjectsRecord<Tmeta_files = unknown> = {
 	background?: string
+	class?: string
 	created: IsoAutoDateString
 	description?: string
+	draft?: boolean
 	draft_of?: RecordIdString
 	draft_version?: number
 	files?: FileNameString[]
 	foreground_white?: boolean
 	id: string
 	is_latest?: boolean
+	meta_files?: null | Tmeta_files
 	name: string
+	project_files?: RecordIdString[]
+	session?: string
 	students: RecordIdString[]
+	teacher?: string
 	thumbnail?: FileNameString
 	updated: IsoAutoDateString
 	year: RecordIdString
@@ -224,12 +229,11 @@ export type SponsorsRecord = {
 	year: RecordIdString
 }
 
-export type StudentsRecord<Tsocials = unknown> = {
+export type StudentsRecord<Tsocials = unknown, Tsort_projects = unknown> = {
 	created: IsoAutoDateString
 	description?: string
 	draft?: boolean
 	draft_of?: RecordIdString
-	draft_version?: number
 	first_name: string
 	headshot?: FileNameString
 	id: string
@@ -238,6 +242,7 @@ export type StudentsRecord<Tsocials = unknown> = {
 	program: RecordIdString
 	pronouns?: string
 	socials?: null | Tsocials
+	sort_projects?: null | Tsort_projects
 	updated: IsoAutoDateString
 	year: RecordIdString
 }
@@ -280,10 +285,10 @@ export type ProgramStatsResponse<Tproject_count = unknown, Tstudent_count = unkn
 export type ProgramTypesResponse<Texpand = unknown> = Required<ProgramTypesRecord> & BaseSystemFields<Texpand>
 export type ProgramsResponse<Texpand = unknown> = Required<ProgramsRecord> & BaseSystemFields<Texpand>
 export type ProjectFilesResponse<Texpand = unknown> = Required<ProjectFilesRecord> & BaseSystemFields<Texpand>
-export type ProjectsResponse<Texpand = unknown> = Required<ProjectsRecord> & BaseSystemFields<Texpand>
+export type ProjectsResponse<Tmeta_files = unknown, Texpand = unknown> = Required<ProjectsRecord<Tmeta_files>> & BaseSystemFields<Texpand>
 export type SocialsResponse<Texpand = unknown> = Required<SocialsRecord> & BaseSystemFields<Texpand>
 export type SponsorsResponse<Texpand = unknown> = Required<SponsorsRecord> & BaseSystemFields<Texpand>
-export type StudentsResponse<Tsocials = unknown, Texpand = unknown> = Required<StudentsRecord<Tsocials>> & BaseSystemFields<Texpand>
+export type StudentsResponse<Tsocials = unknown, Tsort_projects = unknown, Texpand = unknown> = Required<StudentsRecord<Tsocials, Tsort_projects>> & BaseSystemFields<Texpand>
 export type UsersResponse<Texpand = unknown> = Required<UsersRecord> & AuthSystemFields<Texpand>
 export type YearsResponse<Texpand = unknown> = Required<YearsRecord> & BaseSystemFields<Texpand>
 

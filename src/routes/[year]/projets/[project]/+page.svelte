@@ -3,7 +3,10 @@
 	import { PUBLIC_POCKETBASE_URL } from '$env/static/public';
 	import ProjectRow from '$lib/components/project-row.svelte';
 	import Student from '$lib/components/student.svelte';
+	import Students from '$lib/components/students.svelte';
 	import type { ProgramsRecord } from '$lib/pocketbase.types';
+	import Header from '$lib/ui/components/header.svelte';
+	import Image from '$lib/ui/components/image.svelte';
 	import RecordHeader from '$lib/ui/components/record/record-header.svelte';
 	import { string_to_1_8 } from '$lib/utils/seed';
 	import { onMount } from 'svelte';
@@ -12,7 +15,7 @@
 
 	const { project, program_map } = $derived(data);
 
-	const files = $derived(project.expand['project_files(project)']);
+	const { files, meta_files } = $derived(project);
 
 	const n_files = $derived(string_to_1_8(project.name));
 
@@ -57,16 +60,13 @@
 	function clear_background() {
 		document.documentElement.style.removeProperty('--color-background');
 	}
+	$inspect(project);
+	const seed_meta_file = { caption: '', col_start: 2, col_span: 2 };
+
+	const seasons = ['Automne', 'Hiver', 'Été'];
 </script>
 
-<!-- <svelte:head>
-	<style>
-		html {
-			background-color: {value};
-		}
-	</style>
-</svelte:head> -->
-
+<Header></Header>
 <RecordHeader back_href="/{page.params.year}/projets">
 	{#snippet title()}
 		<div>
@@ -78,21 +78,31 @@
 	{/snippet}
 	<div class="mb-16">
 		<div class="mt-16- space-y-2 text-base">
-			<div>
-				<div class="text-base text-muted">Session</div>
-				<div>Automne '26</div>
-			</div>
+			{#if project.session}
+				{@const [session_year, session_season] = project.session.split('.')}
+				<div>
+					<div class="text-base text-muted">Session</div>
+					<div>
+						{seasons[Number(session_season)]}
+						20{session_year}
+					</div>
+				</div>
+			{/if}
 
-			<div>
-				<div class="text-base text-muted">Cours</div>
+			{#if project.class}
+				<div>
+					<div class="text-base text-muted">Cours</div>
 
-				<div>Synthèse</div>
-			</div>
-			<div>
-				<div class="text-base text-muted">Professeur.e</div>
+					<div>{project.class}</div>
+				</div>
+			{/if}
+			{#if project.teacher}
+				<div>
+					<div class="text-base text-muted">Professeur.e</div>
 
-				<div>Louise Paradis</div>
-			</div>
+					<div>{project.teacher}</div>
+				</div>
+			{/if}
 		</div>
 		<div class="mt-12">
 			<div class="mb-1">Finissant.e.s</div>
@@ -102,24 +112,22 @@
 		</div>
 	</div>
 </RecordHeader>
-
-<div class="">
-	<div class="grid grid-cols-4 gap-8">
-		{#each files as { id, file: file_name, col_span, col_start, caption }}
-			<div style="grid-column: {col_start} / span {col_span};">
-				<img src="{PUBLIC_POCKETBASE_URL}/api/files/project_files/{id}/{file_name}" />
-				{#if caption}
-					<div class="mt-1 text-base">{caption}</div>
-				{/if}
-			</div>
-		{/each}
-	</div>
+<div class="grid grid-cols-5 gap-7">
+	{#each files as file, i}
+		{@const meta = meta_files?.[i] || seed_meta_file}
+		<div style="grid-column: {meta.col_start} / span {meta.col_span};">
+			<Image collection="projects" filename={file} record_id={project.id} />
+			{#if meta.caption}
+				<div class="mt-1 text-base italic">{meta.caption}</div>
+			{/if}
+		</div>
+	{/each}
 </div>
 
 {#if related_projects.length}
 	<div class="mt-48">
-		<div class="mb-2x">
-			Autres projets <sup>{related_projects.length}</sup>
+		<div class="mb-4">
+			Projets reliés <sup>{related_projects.length}</sup>
 		</div>
 		<div>
 			{#each related_projects as related_project}
@@ -128,3 +136,37 @@
 		</div>
 	</div>
 {/if}
+
+<div>
+	<a href="">Retour à la liste de projets</a>
+</div>
+
+<!-- <div class=" col-span-3">
+		<div class="sticky top-0">
+			<div class="">
+				<a href="/{page.params.year}/projets" class="flex items-center gap-1">
+					<div class="icon-[ri--arrow-left-long-line]"></div>
+					Retour
+				</a>
+			</div>
+			<div class="mt-24 mb-12 text-3xl/9 tracking-tight">
+				{project.name}
+			</div>
+			<div class=" leading-6.5">
+				{project.description}
+			</div>
+			<div class="mt-12">
+				<div class="mb-1">Finissant.e.s</div>
+				<Students students={project.expand.students} />
+			</div>
+			<div>
+				{project.teacher}
+			</div>
+			<div>
+				{project.class}
+			</div>
+			<div>
+				{project.session}
+			</div>
+		</div>
+	</div> -->

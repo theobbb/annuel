@@ -1,9 +1,11 @@
 <script lang="ts">
 	import Header from '../header.svelte';
 	import Programs from './programs.svelte';
+
+	let scroll_top = $state(true);
 </script>
 
-<Header>
+<Header bind:scroll_top>
 	<div
 		class={['relative z-100 col-span-2 col-start-9 flex justify-end max-lg:hidden lg:row-start-1']}
 	>

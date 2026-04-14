@@ -6,30 +6,21 @@
 
 <div class="">
 	<div class="text-[3.5vw] leading-[120%] font-[320] tracking-[-2%]">
-		L’Annuel de design <br /> expose les
-		<div class="relative ml-0.5 inline-block">
+		L’Annuel de design expose <br /> les
+		<a class="relative ml-0.5 inline-block" href="/{page.params.year}/projets">
 			<div class="absolute -inset-x-2 -inset-y-0.5 -z-10 translate-y-[4%] bg-accent"></div>
 			projets
 			<sup> 458 </sup>
-		</div>
-		<br />
+		</a>
+
 		des
-		<div class="relative ml-0.5 inline-block">
+		<a class="relative ml-0.5 inline-block" href="/{page.params.year}/finissant-es">
 			<div class="absolute -inset-x-2 -inset-y-0.5 -z-10 translate-y-[4%] bg-accent"></div>
 
 			finissant.es
 			<sup> 130 </sup>
-		</div>
-		<br />
-		provenant des
-		<div class="relative ml-0.5 inline-block">
-			<div class="absolute -inset-x-2 -inset-y-0.5 -z-10 translate-y-[4%] bg-accent"></div>
+		</a>
 
-			programmes
-			<sup>
-				{programs.length}
-			</sup>
-		</div>
 		<br /> de l’École de design de l’UQAM.
 	</div>
 </div>

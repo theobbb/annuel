@@ -6,7 +6,7 @@ export type StudentsRecordExpanded = StudentsRecord & {
 };
 export async function load({ params }) {
 	const students: StudentsRecord[] = await pocketbase.collection('students').getFullList({
-		filter: `year = "${params.year}"`,
+		filter: `year = "${params.year}" && draft = false`,
 		sort: 'last_name',
 		fields: 'id,first_name,last_name,pronouns,program,headshot'
 	});
