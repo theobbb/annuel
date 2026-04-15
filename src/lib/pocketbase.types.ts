@@ -144,6 +144,7 @@ export type MembersRecord = {
 	id: string
 	name: string
 	role: RecordIdString
+	student?: RecordIdString
 	updated: IsoAutoDateString
 	year: RecordIdString
 }
@@ -200,7 +201,6 @@ export type ProjectsRecord<Tmeta_files = unknown> = {
 	is_latest?: boolean
 	meta_files?: null | Tmeta_files
 	name: string
-	project_files?: RecordIdString[]
 	session?: string
 	students: RecordIdString[]
 	teacher?: string

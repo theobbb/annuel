@@ -113,11 +113,9 @@
 <div class="mt-48 mb-64">
 	<Programs />
 </div>
-<!-- <div class="mb-48"><Sponsors /></div> -->
+<div class="mb-48"><Sponsors /></div>
 <div><Members /></div>
-<!-- <div class="mt-24 min-h-[80svh]">
-	<Sponsors />
-</div> -->
+
 <!-- <div><Members /></div> -->
 
 <!-- <Banner banner={data.globals.banner} /> -->

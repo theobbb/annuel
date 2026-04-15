@@ -16,6 +16,7 @@ declare global {
 		}
 		interface PageData {
 			programs: ProgramsRecord[];
+			program_types: ProgramTypesRecord[];
 			program_map: Map<string, ProgramsRecord>;
 			program_type_map: Map<string, ProgramTypesRecord>;
 			program_stats: Map<string, ProgramStatsRecord>;

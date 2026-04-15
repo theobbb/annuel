@@ -5,13 +5,12 @@
 		name,
 		i,
 		parent,
-		aside,
 		children
-	}: { name: string; i: number; parent?: boolean; aside?: Snippet; children: Snippet } = $props();
+	}: { name: string; i: number; parent?: boolean; children: Snippet } = $props();
 </script>
 
 <div
-	class=" pointer-events-none relative"
+	class="group pointer-events-none relative"
 	style="--color-tab: white; z-index: {i}; margin: 0 {(7 - i) * 0.3}rem ; "
 >
 	<div class="peer pointer-events-none absolute inset-0 z-20 grid grid-cols-10 gap-22">
@@ -25,7 +24,7 @@
 	</div>
 	<div
 		class={[
-			'group relative -mt-7 grid grid-cols-10 gap-22 transition peer-hover:-translate-y-10 ',
+			'relative -mt-7 grid grid-cols-10 gap-22 transition peer-hover:-translate-y-10 ',
 			parent ? 'text-muted ' : ''
 		]}
 	>
@@ -33,12 +32,11 @@
 		<!-- <div class="h- absolute bottom-0 left-0 w-full border-b border-black"></div> -->
 
 		<div
-			class="bg-tab- absolute right-0 bottom-px left-0 flex h-24 translate-y-full justify-between"
+			class="absolute right-0 bottom-px left-0 flex h-24 translate-y-full justify-between bg-tab"
 		>
 			<div class="relative z-20 h-full">
 				{@render outer_corner()}
 			</div>
-			<div class="flex-1 bg-tab"></div>
 			<div class="relative z-20 h-full -scale-x-100">
 				{@render outer_corner()}
 			</div>
@@ -61,12 +59,7 @@
 				<div class={['flex-1 border-t bg-tab py-3.5', parent ? 'black-' : '']}>
 					<div class="flex w-full origin-center items-center justify-between">
 						<div class="text-xl/6 lg:text-2xl">{name}</div>
-						<div>{@render aside?.()}</div>
-					</div>
-					<div
-						class="pointer-events-auto absolute z-100 mt-2 transition not-group-peer-hover:opacity-0"
-					>
-						{@render children?.()}
+						<div>{@render children()}</div>
 					</div>
 				</div>
 				<div class="absolute top-0 right-0 h-full translate-x-full -scale-x-100">
@@ -91,21 +84,13 @@
 {/snippet}
 
 {#snippet outer_corner()}
-	{@const maskId = `mask-${Math.random().toString(36)}`}
-
-	<svg class="h-full" viewBox="0 -4 3 6" xmlns="http://www.w3.org/2000/svg">
-		<defs>
-			<mask id={maskId}>
-				<rect x="0" y="-4" width="3" height="6" fill="white" />
-				<path d="M3-4Q0-4 1-1L2 2 0 2 0-4Z" fill="black" stroke-width="0" />
-			</mask>
-		</defs>
-
-		<rect x="0" y="-4" width="3" height="6" fill="var(--color-tab)" mask="url(#{maskId})" />
+	<svg class="h-full" viewBox="0 -4 2 4" xmlns="http://www.w3.org/2000/svg">
+		<path d="M2-4Q0-4 1-2L2 0 0 0 0-4Z" class="fill-background" stroke-width="0" />
+		<path d="M2-4Q0-4 1-2L2 0Z" class="fill-tab" stroke-width="0" />
 
 		<path
-			d="M3-4Q0-4 1-1L2 2"
-			class="fill-none"
+			d="M2-4Q0-4 1-2L2 0"
+			class={['fill-none']}
 			stroke="var(--color-border)"
 			stroke-width="1"
 			vector-effect="non-scaling-stroke"

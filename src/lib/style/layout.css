@@ -7,7 +7,7 @@
 @theme {
 	--spacing-gap: calc(var(--spacing) * 7);
 
-	--color-background: white;
+	--color-background: rgb(245, 245, 245);
 	--color-foreground: oklch(28.094% 0.00003 271.152);
 	--color-dark-background: black;
 	--color-dark-foreground: oklch(95.213% 0.00011 271.152);
