@@ -8,42 +8,33 @@
 
 	const sponsors: SponsorsRecord[] = $derived(page.data.sponsors);
 
-	const sizes = [
-		'text-[1.2vw] tracking-[-1%]',
-		'text-[2.5vw] tracking-[-2%]',
-		' text-[4vw]  tracking-[-3%] '
-	];
+	const sizes = ['w-[8vw] p-[1vw]', 'w-[15vw] p-[2vw]', 'w-[28vw] p-[4vw]'];
 
-	//grid-area: row-start / col-start / row-end / col-end
-	const arr = [
-		[1, 1],
-		[5, 1],
-		[2, 4],
-		[5, 5],
-		[1, 7],
-		[3, 7],
-		[4, 7],
-		[6, 7]
+	const blank_areas = [
+		[1, 1, 4, 5],
+		[2, 2, 4, 5]
 	];
+	//grid-area: row-start / col-start / row-end / col-end
 </script>
 
-<div class="mb-5 text-center">❤️ Commanditaires ❤️</div>
-<div id="commanditaires" class="justify-center- flex flex-col gap-6">
+<div class="text-center-">Commanditaires</div>
+<div class="mx-100 grid grid-cols-7 divide-x divide-y border" style="grid-auto-flow: dense;">
+	{#each blank_areas as area}
+		<div style="grid-area: {area[0]} / {area[2]} / {area[1]} / {area[3]};"></div>
+	{/each}
+	<div class="col-span-2 col-start-4"></div>
 	{#each sponsors as { id, name, size, logo }, i}
-		<div class="flex items-center justify-center">
-			<div
-				class={[
-					'peer py-[0.15em]- flex w-fit items-center justify-center px-[0.2em] leading-[100%] transition hover:bg-accent',
-					sizes[size - 1]
-				]}
-			>
-				<!-- <SponsorFile url="{PUBLIC_POCKETBASE_URL}/api/files/sponsors/{id}/{logo}" /> -->
-				{name}
-			</div>
-			<div
-				class="pointer-events-none fixed inset-32 flex items-center justify-center transition not-peer-hover:opacity-0"
-			>
-				<img src="{PUBLIC_POCKETBASE_URL}/api/files/sponsors/{id}/{logo}" />
+		<div
+			class="relative flex items-center justify-center bg-black/5"
+			style="grid-column: span {size} / span {size}; grid-row: span {size} / span {size}; "
+		>
+			<!-- <SponsorFile url="{PUBLIC_POCKETBASE_URL}/api/files/sponsors/{id}/{logo}" /> -->
+			<img
+				class={['shadow-xl-   p-8 ']}
+				src="{PUBLIC_POCKETBASE_URL}/api/files/sponsors/{id}/{logo}"
+			/>
+			<div class="absolute top-0 right-0 z-10">
+				{i}
 			</div>
 		</div>
 
