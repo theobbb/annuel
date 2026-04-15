@@ -9,41 +9,84 @@
 	import { PUBLIC_POCKETBASE_URL } from '$env/static/public';
 	import Video from '$lib/ui/components/video.svelte';
 	import Description from './description.svelte';
+	import { onMount } from 'svelte';
+	import { use_intersection_observer } from '$lib/utils/intersection-observer.js';
 
 	const { data } = $props();
 	const { year, programs } = $derived(data);
+
+	let header_visible = $state(false);
+	let sentinel: HTMLDivElement;
+
+	function on_intersect(entry: IntersectionObserverEntry) {
+		// entry.isIntersecting === true  -> Sentinel is visible (User is at the TOP)
+		// entry.isIntersecting === false -> Sentinel is hidden (User has SCROLLED DOWN)
+
+		if (entry.isIntersecting) {
+			header_visible = false;
+		} else {
+			header_visible = true;
+		}
+	}
+
+	onMount(() => {
+		if (!sentinel) return;
+		const cleanup_observer = use_intersection_observer(sentinel, on_intersect, {
+			root: null, // Use the browser viewport
+			rootMargin: '0px', // Trigger exactly at the edge
+			threshold: [0, 1] // Trigger when the first/last pixel enters/leaves
+		});
+
+		return cleanup_observer;
+	});
 </script>
 
-<div class="mb-32- grid grid-cols-10 gap-6">
-	<div class="lg:col-span-7- col-span-5">
+<div class="mb-32- grid min-h-svh grid-cols-10 grid-rows-[auto_auto_1fr_auto_auto] gap-6 pb-4">
+	<div class="lg:col-span-7- col-span-8">
 		<Description />
+		<div bind:this={sentinel}></div>
 	</div>
-	<div class="col-span-3">
-		<!-- <div class="space-y-4 leading-6">
-			<div>Vernissage le 06 mai 2026 <br /> à partir de 18h</div>
-			<div>Exposition du 1er au 7 mai 2025 <br /> Entrée libre, de 12h à 18h</div>
-			<div>Pavillon de Design (DE) <br /> 1440, rue Sanguinet, Montréal</div>
-		</div> -->
+
+	<div class="col-span-2 row-span-2 flex flex-col">
+		<div class="flex flex-col">
+			<div class="mb-2 text-right">Archives (+)</div>
+			<img
+				class="aspect-4/5- h-full w-full object-contain"
+				src="{PUBLIC_POCKETBASE_URL}/api/files/years/{page.params.year}/{year.poster}"
+				alt="poster-{page.params.year}"
+			/>
+		</div>
 	</div>
-	<div class="col-span-2">
-		<div class="mb-2 text-right">Archives (+)</div>
-		<img
-			class="h-full w-full"
-			src="{PUBLIC_POCKETBASE_URL}/api/files/years/{year.id}/{year.poster}"
-		/>
+
+	<div class="col-span-full row-span-2 flex flex-col justify-end lg:col-span-6 lg:col-start-3">
+		<div class="aspect-video bg-placeholder">
+			<!-- <Video autoplayy playback_id="P3WEcj3FPpoxgFHcqU16hXo1NpJxUCsi00fcW1GnHNw00" /> -->
+		</div>
 	</div>
-	<!-- <div class="col-span-2 text-right">
-		<div class="text-[3.5vw] leading-[120%] font-[320] tracking-[-2%]">[{page.params.year}]</div>
-	</div> -->
-</div>
-<!-- <div class="fixed right-7 bottom-7 left-7 grid grid-cols-10 gap-7 leading-6">
-	<div class="col-span-3">
+	<div class={['col-span-3 leading-6', header_visible ? '' : 'pointer-events-auto']}>
 		Vernissage le 06 mai 2026 <br />à partir de 18h
 	</div>
-	<div class="col-span-3">Exposition du 1er au 7 mai 2026 <br /> Entrée libre, de 12h à 18h</div>
+	<div class={['col-span-3 leading-6', header_visible ? '' : 'pointer-events-auto']}>
+		Exposition du 1er au 7 mai 2026 <br /> Entrée libre, de 12h à 18h
+	</div>
+</div>
+
+<!-- <div
+	class={[
+		'pointer-events-none fixed right-7 bottom-7 left-7 grid grid-cols-10 gap-7 leading-6',
+		header_visible ? 'translate-y-8 opacity-0' : '',
+		'transition'
+	]}
+>
+	<div class={['col-span-3', header_visible ? '' : 'pointer-events-auto']}>
+		Vernissage le 06 mai 2026 <br />à partir de 18h
+	</div>
+	<div class={['col-span-3', header_visible ? '' : 'pointer-events-auto']}>
+		Exposition du 1er au 7 mai 2026 <br /> Entrée libre, de 12h à 18h
+	</div>
 </div> -->
 
-<!-- <Header>
+<!-- <Header class={['lg:-mt-48!', header_visible ? '' : '-translate-y-4 opacity-0']}>
 	<a
 		class="col-span-4 col-start-9 row-start-1 text-right max-lg:hidden sm:col-span-4 sm:col-start-9 sm:row-start-2 lg:col-span-1 lg:col-start-10 lg:row-start-1"
 		href="/archives"
@@ -51,13 +94,6 @@
 		[{page.params.year}]
 	</a>
 </Header> -->
-<div class="gap-2x min-h-[calc(100svh-5rem)]- grid grid-cols-10 items-center lg:-mt-10">
-	<div class="col-span-full aspect-video lg:col-span-6 lg:col-start-3">
-		<div class="-mx-3x- aspect-video bg-placeholder">
-			<!-- <Video autoplayy playback_id="P3WEcj3FPpoxgFHcqU16hXo1NpJxUCsi00fcW1GnHNw00" /> -->
-		</div>
-	</div>
-</div>
 
 <!-- Les projets présentés par les finissant.es <br /> de l’École de design de l’UQAM, <br />
 		révélant la richesse des démarches <br /> et la diversité des approches en design. -->
@@ -77,7 +113,7 @@
 <div class="mt-48 mb-64">
 	<Programs />
 </div>
-<div class="mb-48"><Sponsors /></div>
+<!-- <div class="mb-48"><Sponsors /></div> -->
 <div><Members /></div>
 <!-- <div class="mt-24 min-h-[80svh]">
 	<Sponsors />

@@ -4,9 +4,13 @@
 	import { onMount, type Snippet } from 'svelte';
 	import Tabs from './collection/tabs.svelte';
 	import { use_intersection_observer } from '$lib/utils/intersection-observer';
+	import type { ClassValue } from 'svelte/elements';
 
-	let { scroll_top = $bindable(true), children }: { scroll_top?: boolean; children?: Snippet } =
-		$props();
+	let {
+		scroll_top = $bindable(true),
+		class: cx,
+		children
+	}: { scroll_top?: boolean; class?: ClassValue; children?: Snippet } = $props();
 
 	//let scroll_top = $state(true);
 	let sentinel: HTMLDivElement;
@@ -39,7 +43,8 @@
 	class={[
 		' sticky top-0 z-100  -mt-4 grid grid-cols-10 gap-x-4 gap-y-2 border-b bg-background py-4 whitespace-nowrap lg:gap-x-8',
 		scroll_top ? 'border-transparent' : '',
-		'transition-[border]'
+		'transition',
+		cx
 	]}
 >
 	<div class="col-span-3 row-start-1 md:col-span-2">

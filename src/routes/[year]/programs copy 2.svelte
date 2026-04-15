@@ -16,20 +16,18 @@
 			children: programs.filter((program) => program.type === type.id)
 		}));
 	});
+	$inspect(groups);
 
-	let cursor_tab_i = 0;
+	let cursor_tab_i = -1;
 	function get_tab_i() {
 		cursor_tab_i++;
 		return cursor_tab_i;
 	}
 </script>
 
-<!-- <div class="">Programmes</div> -->
-<ProgramTab name="Tous les programmes" i={get_tab_i()}>
-	{programs.length}
-</ProgramTab>
+<div class="">Programmes</div>
 {#each groups as { type, children }, group_i}
-	<ProgramTab name={`[${type.name}]`} i={get_tab_i()} parent>
+	<ProgramTab name={type.name} i={get_tab_i()} parent>
 		{children.length}
 	</ProgramTab>
 	{#each children as { id, name, code, description, type }, i}

@@ -1,10 +1,13 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import type { StudentsRecord } from '$lib/pocketbase.types';
+	import type { ProgramsRecord, StudentsRecord } from '$lib/pocketbase.types';
+	import ProgramCode from '$lib/ui/components/program-code.svelte';
 
 	const { student }: { student?: StudentsRecord } = $props();
 
-	const program = $derived(student ? page.data.program_map.get(student.program) : null);
+	const program: ProgramsRecord | null | undefined = $derived(
+		student ? page.data.program_map.get(student.program) : null
+	);
 </script>
 
 <div class="group @container relative aspect-2/3 overflow-hidden">
@@ -18,9 +21,7 @@
 		></div> -->
 	</div>
 
-	<div class="absolute top-[3cqw] right-[3cqw] z-5">
-		<div class=" black px-[2cqw] py-[1cqw] text-[6cqw] leading-[100%] font-[450] tracking-[0.02em]">
-			{program?.code}
-		</div>
-	</div>
+	{#if program}
+		<ProgramCode {program} />
+	{/if}
 </div>

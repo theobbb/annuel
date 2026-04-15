@@ -30,7 +30,7 @@
 	{:else}
 		<div class="inline-flex gap-1">
 			<span class="">—</span>
-			<div>
+			<div class="group-hover/student:underline">
 				{student.first_name}
 				{student.last_name}
 			</div>
@@ -44,7 +44,7 @@
 {:else}
 	<a
 		href="/{page.params.year}/finissant-es/{student.id}"
-		class={['pointer-events-auto relative z-10 hover:underline']}
+		class={['group/student pointer-events-auto relative z-10']}
 	>
 		{@render content()}
 	</a>
