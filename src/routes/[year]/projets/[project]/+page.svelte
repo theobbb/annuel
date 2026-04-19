@@ -66,7 +66,6 @@
 	const seasons = ['Automne', 'Hiver', 'Été'];
 </script>
 
-<Header></Header>
 <RecordHeader back_href="/{page.params.year}/projets">
 	{#snippet title()}
 		<div>

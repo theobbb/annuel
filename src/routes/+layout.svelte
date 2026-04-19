@@ -25,7 +25,7 @@
 </script>
 
 <div
-	class="mx-4 grid min-h-svh grid-rows-[1fr_auto] pt-4 font-[370] selection:bg-accent lg:mx-gap lg:text-lg"
+	class="mx-4 grid min-h-svh grid-rows-[1fr_auto] pt-2 font-[370] selection:bg-accent lg:mx-6 lg:text-lg"
 >
 	<div>
 		{@render children()}

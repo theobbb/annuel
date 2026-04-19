@@ -8,13 +8,23 @@
 	const seed = use_seed();
 </script>
 
-<div class="">
-	<div class={['grid grid-cols-10 gap-gap py-4']}>
-		<div class="">
-			<Views {view} />
-		</div>
-		<div class="col-span-3 col-start-8">
-			<Search />
+<div class="fixed- right-6- left-6- pointer-events-none bottom-0 z-100">
+	<div
+		class={[
+			'grid- grid-cols-10 gap-gap',
+			scroll_top ? '' : 'opacity-0- translate-y-full',
+			'ease transition duration-400'
+		]}
+	>
+		<div
+			class="rounded- border-t- px-6- pointer-events-auto col-span-4 col-start-4 flex items-center justify-center gap-8 bg-background py-3"
+		>
+			<div class="">
+				<Views {view} />
+			</div>
+			<div class="flex-1">
+				<Search />
+			</div>
 		</div>
 	</div>
 </div>

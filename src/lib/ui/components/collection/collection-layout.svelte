@@ -28,7 +28,7 @@
 		<Programs />
 	</div>
 </div>
+<div class="mt-24"><CollectionFooter {view} {scroll_top} /></div>
+<div class="mt-32-">{@render children()}</div>
 
-<div class="mt-16">{@render children()}</div>
-
-<CollectionFooter {view} {scroll_top} />
+<!-- <CollectionFooter {view} {scroll_top} /> -->

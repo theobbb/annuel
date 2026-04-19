@@ -5,37 +5,68 @@
 
 	const sponsors: SponsorsRecord[] = $derived(page.data.sponsors);
 
-	const sizes = [
-		'text-[1.2vw] tracking-[-1%]',
-		'text-[2.5vw] tracking-[-2%]',
-		'text-[4vw]  tracking-[-3%] '
+	// Map your 1-3 tiers to Tailwind width classes
+	// Tier 1: Smallest (approx 8 per row) -> w-1/4 to w-1/8
+	// Tier 3: Largest (approx 3 per row) -> w-1/3
+	const itemWidths = [
+		'basis-1/2 md:basis-1/4 lg:basis-1/8', // Tier 1
+		'basis-1/2 md:basis-1/3 lg:basis-1/6', // Tier 2
+		'basis-full md:basis-1/2 lg:basis-1/4' // Tier 3
 	];
+
+	const rotate_loop = [5, -2, 7, 14, -2, 5, 3];
+
+	const tiers = $derived.by(() => {
+		let cursor_i = 0;
+		return sponsors
+			.reduce(
+				(acc, sponsor) => {
+					const tier = acc.find((t) => t.size === sponsor.size);
+					sponsor.i = cursor_i;
+					cursor_i++;
+					if (tier) {
+						tier.children.push(sponsor);
+					} else {
+						acc.push({ size: sponsor.size || 1, children: [sponsor] });
+					}
+					return acc;
+				},
+				[] as { size: number; children: (SponsorsRecord & { i: number })[] }[]
+			)
+			.sort((a, b) => b.size - a.size);
+	});
 </script>
 
-<!-- <div class="mb-5 text-center">❤️ Commanditaires ❤️</div> -->
-<div id="commanditaires" class="justify-center- flex flex-col gap-6">
-	{#each sponsors as { id, name, size, logo }, i}
-		<div class="flex items-center justify-center">
-			<div
-				class={[
-					'peer py-[0.15em]- flex w-fit items-center justify-center px-[0.2em] leading-[100%] transition hover:bg-accent',
-					sizes[size - 1]
-				]}
-			>
-				<!-- <SponsorFile url="{PUBLIC_POCKETBASE_URL}/api/files/sponsors/{id}/{logo}" /> -->
-				{name}
-			</div>
-			<div
-				class="pointer-events-none fixed inset-32 flex items-center justify-center transition not-peer-hover:opacity-0"
-			>
-				<img src="{PUBLIC_POCKETBASE_URL}/api/files/sponsors/{id}/{logo}" />
-			</div>
+<div class="mb-16 text-center">❤️ Commanditaires ❤️</div>
+
+<div id="commanditaires" class="container mx-auto flex flex-col gap-12 px-4">
+	{#each tiers as { size, children }}
+		<div class="flex flex-wrap justify-center gap-8">
+			{#each children as { id, name, logo, i }}
+				<div
+					class={[
+						'relative flex aspect-square items-center justify-center border bg-white p-8',
+						itemWidths[size - 1]
+					]}
+					style="transform: rotate({rotate_loop[i % rotate_loop.length]}deg);"
+				>
+					<div class="pointer-events-none absolute -top-4 right-0 left-0 flex justify-center">
+						<div class="icon-[bi--pin] text-4xl"></div>
+					</div>
+
+					<img
+						class="max-h-full max-w-full object-contain"
+						src="{PUBLIC_POCKETBASE_URL}/api/files/sponsors/{id}/{logo}"
+						alt={name}
+					/>
+
+					<div class="pointer-events-none absolute right-0 bottom-0 left-0 flex justify-end">
+						<div class="px-3 py-1 text-sm text-muted italic backdrop-blur-xs">
+							{name}
+						</div>
+					</div>
+				</div>
+			{/each}
 		</div>
-
-		<!-- <div>{name}</div> -->
-
-		<!-- <div class="col-span-3">
-			{name}
-		</div> -->
 	{/each}
 </div>

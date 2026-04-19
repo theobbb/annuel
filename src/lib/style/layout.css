@@ -5,7 +5,7 @@
 	--muted: oklch(0% 0 0 / 0.5);
 }
 @theme {
-	--spacing-gap: calc(var(--spacing) * 7);
+	--spacing-gap: calc(var(--spacing) * 6);
 
 	--color-background: rgb(245, 245, 245);
 	--color-foreground: oklch(28.094% 0.00003 271.152);
@@ -14,7 +14,7 @@
 
 	--color-background-2: oklch(93.1% 0.00011 271.152);
 
-	--color-border: rgba(0, 0, 0, 0.3);
+	--color-border: rgba(0, 0, 0, 0.4);
 
 	--color-muted: oklch(0% 0 0 / 0.4);
 
@@ -34,7 +34,7 @@
 		font-weight: 430;
 	} */
 	[class*='text-2xl'] {
-		letter-spacing: -1%;
+		letter-spacing: -0.5%;
 	}
 }
 
@@ -100,4 +100,8 @@ a.active::after {
 	content: '>';
 	position: absolute;
 	transform: translate(30%, 5%);
+}
+
+h1 {
+	@apply text-5xl tracking-[-2%] text-black/80;
 }

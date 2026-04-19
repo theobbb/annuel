@@ -18,11 +18,11 @@
 	let hovered: StudentsRecord | null = $state(null);
 </script>
 
-<div class="grid grid-cols-12 lg:gap-8">
+<div class="grid grid-cols-12 lg:gap-gap">
 	{#each cols as col}
 		<div class="col-span-10 lg:col-span-4">
 			{#each col as student, i}
-				<div class="my-0.5 grid grid-cols-12 gap-8">
+				<div class=" grid grid-cols-12 gap-gap">
 					<div class="col-span-2 text-right lg:col-span-4">
 						{#if student.last_name[0] != col[i - 1]?.last_name[0]}
 							<div>{student.last_name[0]}</div>

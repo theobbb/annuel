@@ -24,7 +24,7 @@
 			<div
 				class="not-group-hover/card:translate-x-4- transition- pointer-events-none absolute right-4 bottom-4 not-group-hover/card:opacity-0"
 			>
-				<div class="black flex items-center justify-center border p-0.5">
+				<div class="black flex items-center justify-center p-0.5">
 					<div class="icon-[ri--arrow-right-line] text-xl"></div>
 				</div>
 			</div>
@@ -36,7 +36,7 @@
 			></div>
 		</div> -->
 
-		<div class="mt-1.5 pr-4 leading-6 text-balance lg:mt-2.5">
+		<div class="mt-1.5 pr-4 leading-5.5 text-balance lg:mt-2.5">
 			<div class="pointer-events-none relative block group-hover/card:underline max-lg:text-base/5">
 				{project.name}
 			</div>

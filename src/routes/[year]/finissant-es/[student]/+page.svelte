@@ -15,7 +15,6 @@
 	const socials: Social[] = $derived((student.socials as Social[]) || []);
 </script>
 
-<Header></Header>
 <RecordHeader back_href="/{page.params.year}/finissant-es">
 	{#snippet title()}
 		<div>

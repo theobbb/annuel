@@ -17,17 +17,21 @@
 
 <!-- <Title>Équipe de l’Annuel</Title> -->
 
-<div class="mb-4 text-4xl font-[400]">
+<!-- <div class="mb-4">
 	L’équipe de l’Annuel {page.params.year}
-</div>
-<div class="icon-[game-icons--paper-clip] text-8xl"></div>
-<!-- <div class="text-base- mb-4 border-b pb-2">Équipe de l’Annuel ’{page.params.year?.slice(2)}</div> -->
-<div id="equipe" class="bg- mb-24">
-	<div class="justify-center- font-[320]- gap-x-2 text-xl/6.5 tracking-[-1%] whitespace-nowrap">
+</div> -->
+<div class="text-base- mb-4 border-b pb-2">L’équipe de l’Annuel ’{page.params.year?.slice(2)}</div>
+<div id="equipe" class="grid-12- mb-8">
+	<div class="text-base- grid grid-cols-4 gap-x-8 leading-6 whitespace-nowrap">
 		{#each groups as { role, children }, i}
 			{#each children as member}
 				<div class="text-balance">
-					{member.name}<span class="ml-2 inline-block text-muted">({role.name})</span>
+					{#if member.student}
+						<a href="/{page.params.year}/finissant-es/{member.student}">{member.name}</a>
+					{:else}
+						{member.name}
+					{/if}
+					<span class="ml-2 inline-block text-muted">{role.name}</span>
 				</div>
 			{/each}
 		{/each}

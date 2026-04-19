@@ -2,7 +2,6 @@
 	import { page } from '$app/state';
 	import Uqam from '$lib/assets/uqam.svelte';
 	import Header from '$lib/ui/components/header.svelte';
-	import Members from './[year]/members.svelte';
 
 	const { year, programs, socials } = $derived(page.data);
 
@@ -42,7 +41,7 @@
 			{/each}
 		</div>
 		<div class="col-start-5- col-span-2">
-			<div class="">
+			<div class="leading-7">
 				{#each links as { name, href }}
 					<div>
 						<a {href}>{name}</a>

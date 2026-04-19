@@ -14,7 +14,7 @@
 	{#each programs as { id, name, code, description, type }}
 		{@const stats = program_stats.get(id)}
 		<div
-			class="group lg:gap-x-2x lg:pt-1x dahs border-b- border-dashed- relative grid grid-cols-10 gap-1.5 pt-2 pb-5 transition first:border-t hover:bg-accent lg:pb-8"
+			class="group lg:gap-x-2x lg:pt-1x dahs border-dashed- border-b- relative grid grid-cols-10 gap-1.5 pt-2 pb-5 transition first:border-t lg:pb-8"
 		>
 			<a
 				class="peer absolute inset-0"

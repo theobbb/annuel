@@ -27,7 +27,7 @@
 		id="search"
 		autocomplete={null}
 		value={page.url.searchParams.get('search') ?? ''}
-		class="w-full border px-2.5 py-1 pr-8 text-base tracking-wide transition outline-none not-focus:border-transparent hover:bg-black/10 focus:placeholder-black/60"
+		class="text-base- tracking-wide- w-full border px-2.5 py-0.5 pr-8 transition outline-none not-focus:border-transparent hover:bg-black/10 focus:placeholder-black/60"
 	/>
 	<div class="pointer-events-none absolute top-2 right-2 icon-[ri--search-line]"></div>
 	{#if is_searching}

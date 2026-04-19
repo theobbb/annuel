@@ -7,12 +7,12 @@
 		parent,
 		aside,
 		children
-	}: { name: string; i: number; parent?: boolean; aside?: Snippet; children: Snippet } = $props();
+	}: { name: string; i: number; parent?: boolean; aside?: Snippet; children?: Snippet } = $props();
 </script>
 
 <div
 	class=" pointer-events-none relative"
-	style="--color-tab: white; z-index: {i}; margin: 0 {(7 - i) * 0.3}rem ; "
+	style="--color-tab: var(--color-background); z-index: {i}; margin: 0 {(30 - i) * 0.4}rem ; "
 >
 	<div class="peer pointer-events-none absolute inset-0 z-20 grid grid-cols-10 gap-22">
 		<div
@@ -25,7 +25,7 @@
 	</div>
 	<div
 		class={[
-			'group relative -mt-7 grid grid-cols-10 gap-22 transition peer-hover:-translate-y-10 ',
+			'group ease relative -mt-7 grid grid-cols-10 gap-22 transition duration-200 peer-hover:-translate-y-10 ',
 			parent ? 'text-muted ' : ''
 		]}
 	>
@@ -60,7 +60,7 @@
 
 				<div class={['flex-1 border-t bg-tab py-3.5', parent ? 'black-' : '']}>
 					<div class="flex w-full origin-center items-center justify-between">
-						<div class="text-xl/6 lg:text-2xl">{name}</div>
+						<div class="text-xl/6 lg:text-xl">{name}</div>
 						<div>{@render aside?.()}</div>
 					</div>
 					<div

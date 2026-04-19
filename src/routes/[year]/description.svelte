@@ -5,20 +5,30 @@
 </script>
 
 <div class="">
-	<div class="text-[3.5vw] leading-[120%] font-[320] tracking-[-2%]">
+	<div class="text-muted- text-[3vw] leading-[122%] font-[350] tracking-[-2.5%] text-black/85">
 		L’Annuel de design expose <br /> les
-		<a class="relative ml-0.5 inline-block" href="/{page.params.year}/projets">
-			<div class="absolute -inset-x-2 -inset-y-0.5 -z-10 translate-y-[4%] bg-accent"></div>
+		<a
+			class="relative -mt-1 -mb-2.5 ml-0.5 inline-flex gap-2 rounded bg-black/85 px-2 pb-2.5 leading-[100%] text-white"
+			href="/{page.params.year}/projets"
+		>
+			<!-- <div class="bg-accent- border- absolute -inset-x-2 -inset-y-0.5 -z-10 translate-y-[4%]"></div> -->
 			projets
-			<sup> 458 </sup>
+			<span class="inline-block -translate-y-[0.5em] text-[1.25vw]!"> {page.data.n_projects} </span>
 		</a>
 
 		des
-		<a class="relative ml-0.5 inline-block" href="/{page.params.year}/finissant-es">
-			<div class="absolute -inset-x-2 -inset-y-0.5 -z-10 translate-y-[4%] bg-accent"></div>
+		<a
+			class="relative -mt-1 -mb-2.5 ml-0.5 inline-flex gap-2 rounded bg-black/85 px-2 pt-0.5 pb-2.5 leading-[100%] text-white"
+			href="/{page.params.year}/finissant-es"
+		>
+			<!-- <div
+				class="bg-accent- absolute -inset-x-2 -inset-y-0.5 -z-10 translate-y-[4%] rounded border"
+			></div> -->
 
 			finissant.es
-			<sup> 130 </sup>
+			<span class="inline-block -translate-y-[0.5em] text-[1.25vw]!"> {page.data.n_students} </span>
+
+			<!-- <sup class="text-[1.25vw]!"> 130 </sup> -->
 		</a>
 
 		<br /> de l’École de design de l’UQAM.

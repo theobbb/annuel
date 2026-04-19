@@ -24,7 +24,8 @@
 	}
 </script>
 
-<div class="gap-2x mt-24 mb-32 grid grid-cols-10">
+<Header></Header>
+<div class="gap-2x mt-24 mb-16 grid min-h-[60svh] grid-cols-10">
 	<div class="">
 		<a href={back_href} onclick={on_back} class="flex items-center gap-1">
 			<div class="icon-[ri--arrow-left-long-line]"></div>
@@ -33,10 +34,10 @@
 	</div>
 
 	<div class="col-span-10 text-balance lg:col-span-4 lg:col-start-3">
-		<div class="mb-12 text-5xl/13">
+		<div class="mb-8 lg:text-2xl/7">
 			{@render title()}
 		</div>
-		<div class="leading-6.5">
+		<div class="leading-6">
 			{@render description()}
 		</div>
 	</div>
