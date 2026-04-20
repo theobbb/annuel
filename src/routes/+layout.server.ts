@@ -14,10 +14,10 @@ export async function load() {
 			.getFullList<YearsRecord>({ sort: '-id', fields: 'id,poster,video,accent_color' }),
 		pocketbase
 			.collection('programs')
-			.getFullList<ProgramsRecord>({ sort: 'sort_order', fields: 'id,code,name,type,description' }),
+			.getFullList<ProgramsRecord>({ fields: 'id,code,name,type,description' }),
 		pocketbase
 			.collection('program_types')
-			.getFullList<ProgramTypesRecord>({ sort: 'sort_order', fields: 'id,name' }),
+			.getFullList<ProgramTypesRecord>({ sort: 'sort_order', fields: 'id,name,sort_order' }),
 		pocketbase
 			.collection('socials')
 			.getFullList<SocialsRecord>({ sort: 'sort_order', fields: 'id,name,url' }),

@@ -22,32 +22,34 @@
 	class="black- font-[330]- min-h-[50svh]- relative z-200 mt-64 flex flex-col justify-between overflow-hidden border-t pt-4 pb-6"
 >
 	<div class="grid grid-cols-10 gap-gap">
-		<div class="col-span-2">
+		<div class="col-span-3 col-start-2">
+			<div class="text-muted">Réseaux</div>
+
 			{#each socials as { url, name }}
 				<div><a class="" href={url} target="_blank">{name}</a></div>
 			{/each}
 		</div>
 
 		<div class="col-span-4 pb-6">
+			<div class="text-muted">Pages</div>
 			{#each links as { name, href }}
 				<div>
 					<a {href}>{name}</a>
 				</div>
 			{/each}
 		</div>
-
+		<div class="col-span-6 flex items-end leading-5.5 text-muted">
+			© 2026 Annuel de design — Tous droits réservés <br />Les œuvres présentées demeurent la
+			propriété <br /> de leurs auteur.rice.s respectif.ve.s.
+		</div>
 		<!-- <div class="col-span-2 flex items-end">
 			<div class="">Coliphon</div>
 		</div> -->
-		<div class="col-span-3 col-start-7 flex justify-end leading-6">
-			<div class="text-muted">École de design de l’UQAM <br /> 1440 Rue Sanguinet, Montréal</div>
+		<div class="col-span-3 flex items-end leading-6 text-muted">
+			École de design de l’UQAM <br /> 1440 Rue Sanguinet, Montréal
 		</div>
-		<div class="items-end- col-span-1 flex justify-end">
+		<div class="col-span-1 flex items-end justify-end">
 			<div class="max-w-24"><Uqam /></div>
-		</div>
-		<div class="col-span-full flex items-end leading-5.5 text-muted">
-			© 2026 Annuel de design — Tous droits réservés Les œuvres présentées demeurent la propriété de
-			leurs auteur.rice.s respectif.ve.s.
 		</div>
 	</div>
 </footer>

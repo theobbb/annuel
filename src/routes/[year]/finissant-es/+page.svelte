@@ -40,7 +40,7 @@
 </script>
 
 <CollectionLayout items={data.students} {view}>
-	<div class="mt-16 mb-48">
+	<div class="mt-16- mb-48">
 		{#if filtered_students.length == 0}
 			<CollectionEmpty />
 		{/if}

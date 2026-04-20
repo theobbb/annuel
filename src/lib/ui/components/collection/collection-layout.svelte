@@ -1,10 +1,11 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 	import type { ProjectsRecord, StudentsRecord } from '$lib/pocketbase.types';
-	import CollectionHeader from './collection-header.svelte';
 	import CollectionFooter from './collection-footer.svelte';
 	import Header from '../header.svelte';
 	import Programs from './programs.svelte';
+	import Views from './views.svelte';
+	import Search from './search.svelte';
 
 	const {
 		view,
@@ -23,12 +24,22 @@
 	</div>
 </Header>
 
-<div class="grid grid-cols-10 gap-x-6 gap-y-3 max-md:mt-4">
-	<div class={['col-span-7 flex justify-end lg:hidden']}>
-		<Programs />
+<!-- MOBILE ONLY → so it doesnt stick top -->
+
+<div class={['mt-24 flex justify-end lg:hidden']}>
+	<Programs />
+</div>
+
+<div class="mt-24">
+	<div class="">
+		<div class={['flex grid-cols-10 items-center gap-gap py-4 md:grid']}>
+			<div class="col-span-3">
+				<Views {view} />
+			</div>
+			<div class="col-span-7 flex-1 lg:col-span-3 lg:col-start-8">
+				<Search />
+			</div>
+		</div>
 	</div>
 </div>
-<div class="mt-24"><CollectionFooter {view} {scroll_top} /></div>
-<div class="mt-32-">{@render children()}</div>
-
-<!-- <CollectionFooter {view} {scroll_top} /> -->
+<div>{@render children()}</div>

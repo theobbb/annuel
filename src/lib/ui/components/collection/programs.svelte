@@ -6,7 +6,7 @@
 	const current_program = $derived(program_map.get(page.url.searchParams.get('programme') || ''));
 </script>
 
-<div class="flex items-center gap-4">
+<div class="flex items-center gap-gap">
 	<a
 		class={[
 			'-m-2 flex items-center gap-1 p-2 whitespace-nowrap  transition group-hover:border-current'
@@ -21,7 +21,7 @@
 		<!-- <div class="icon-[ri--expand-up-down-line]"></div> -->
 	</a>
 
-	<a href="">
+	<a href="/archives?from={encodeURIComponent(page.url.href)}">
 		[{page.params.year}]
 	</a>
 </div>

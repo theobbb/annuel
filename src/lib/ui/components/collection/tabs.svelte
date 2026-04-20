@@ -23,7 +23,7 @@
 	{#each tabs as { name, param, length }}
 		<a
 			class={[
-				'-my-1 block py-1',
+				'-mx-2 -my-1 block px-2 py-1',
 				current_tab === param ? '' : ' not-hover:text-muted',
 				'transition'
 			]}

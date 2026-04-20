@@ -13,41 +13,44 @@
 		{ name: `Programmes`, href: `/${page.params.year}/programmes` },
 
 		{ name: `Commanditaires`, href: `/${page.params.year}#commanditaires` },
-		{ name: `Équipe de l’Annuel`, href: `/${page.params.year}#equipe` },
-		{ name: `Crédits`, href: `/${page.params.year}` }
+		{ name: `Équipe de l’Annuel`, href: `/${page.params.year}#equipe` }
+		// { name: `Crédits`, href: `/${page.params.year}` }
 	]);
 </script>
 
 <footer
-	class="black- font-[330]- min-h-[50svh]- relative z-200 mt-64 flex flex-col justify-between overflow-hidden border-t pt-4 pb-6"
+	class="black- relative z-200 -mx-gap mt-16 flex min-h-[50svh] flex-col justify-between overflow-hidden border-t px-gap py-5 pb-6 font-[330]"
 >
 	<div class="grid grid-cols-10 gap-gap">
-		<div class="col-span-2">
+		<div class="col-span-6 pb-12 leading-6 text-muted">
+			<div>Vernissage le 06 mai 2026 <br /> à partir de 18h</div>
+			<br />
+			<div>Exposition du 1er au 7 mai 2026 <br />Entrée libre, de 12h à 18h</div>
+		</div>
+		<div class="col-span-4">
 			{#each socials as { url, name }}
 				<div><a class="" href={url} target="_blank">{name}</a></div>
 			{/each}
 		</div>
-
-		<div class="col-span-4 pb-6">
+		<div class="col-span-6 leading-6 text-muted">
+			École de design de l’UQAM <br /> 1440 Rue Sanguinet, Montréal
+		</div>
+		<div class="col-span-4 pb-64">
 			{#each links as { name, href }}
 				<div>
 					<a {href}>{name}</a>
 				</div>
 			{/each}
 		</div>
-
-		<!-- <div class="col-span-2 flex items-end">
+		<div class="col-span-6 flex items-end leading-5.5 text-muted">
+			© 2026 Annuel de design — Tous droits réservés <br />Les œuvres présentées demeurent la
+			propriété <br /> de leurs auteur.rice.s respectif.ve.s.
+		</div>
+		<div class="col-span-2 flex items-end">
 			<div class="">Coliphon</div>
-		</div> -->
-		<div class="col-span-3 col-start-7 flex justify-end leading-6">
-			<div class="text-muted">École de design de l’UQAM <br /> 1440 Rue Sanguinet, Montréal</div>
 		</div>
-		<div class="items-end- col-span-1 flex justify-end">
+		<div class="col-span-2 flex items-end justify-end">
 			<div class="max-w-24"><Uqam /></div>
-		</div>
-		<div class="col-span-full flex items-end leading-5.5 text-muted">
-			© 2026 Annuel de design — Tous droits réservés Les œuvres présentées demeurent la propriété de
-			leurs auteur.rice.s respectif.ve.s.
 		</div>
 	</div>
 </footer>

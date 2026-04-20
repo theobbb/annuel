@@ -41,7 +41,7 @@
 	});
 </script>
 
-<Header class={['lg:-mt-48!-', header_visible ? '' : 'opacity-0- -translate-y-full']}>
+<Header class={['lg:-mt-48!-']}>
 	<a
 		class="col-span-4 col-start-9 row-start-1 text-right max-lg:hidden sm:col-span-4 sm:col-start-9 sm:row-start-2 lg:col-span-1 lg:col-start-10 lg:row-start-1"
 		href="/archives"
@@ -49,15 +49,15 @@
 		[{page.params.year}]
 	</a>
 </Header>
-<div class="-mt-10 grid min-h-svh grid-cols-10 grid-rows-[auto_auto_1fr_auto_auto] gap-6 pb-1">
+<div class=" grid min-h-svh grid-cols-10 grid-rows-[auto_auto_1fr_auto_auto] gap-6 pb-1">
 	<div class="lg:col-span-7- col-span-8">
-		<Description />
-		<div bind:this={sentinel}></div>
+		<!-- <Description />
+		<div bind:this={sentinel}></div> -->
 	</div>
 
 	<div class="col-span-2 row-span-2 flex flex-col">
 		<div class="flex flex-col">
-			<div class="mb-2 text-right">Archives (+)</div>
+			<!-- <div class="mb-2 text-right">Archives (+)</div> -->
 			<img
 				class="aspect-4/5- h-full w-full object-contain"
 				src="{PUBLIC_POCKETBASE_URL}/api/files/years/{page.params.year}/{year.poster}"

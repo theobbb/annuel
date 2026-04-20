@@ -19,10 +19,10 @@
 	</div>
 </div>
 
-<button
+<!-- <button
 	class="fixed right-4 bottom-5 z-50 flex cursor-pointer items-center rounded-full border bg-background p-2.5 text-lg shadow-sm transition not-hover:text-muted"
 	title="Mélanger"
 	onclick={() => seed.shuffle()}
 >
 	<div class="icon-[ri--shuffle-line]"></div>
-</button>
+</button> -->

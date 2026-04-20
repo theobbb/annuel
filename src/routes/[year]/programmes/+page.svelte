@@ -4,7 +4,6 @@
 	import CollectionLayout from '$lib/ui/components/collection/collection-layout.svelte';
 	import CollectionEmpty from '$lib/ui/components/collection/collection-empty.svelte';
 	import Header from '$lib/ui/components/header.svelte';
-	import CollectionHeader from '$lib/ui/components/collection/collection-header.svelte';
 	import Programs from '../programs.svelte';
 	import { page } from '$app/state';
 	import { url_query_param } from '$lib/utils/url.js';

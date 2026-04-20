@@ -28,9 +28,9 @@
 	{#if reverse}
 		{student.last_name}, {student.first_name}
 	{:else}
-		<div class="inline-flex gap-1">
+		<div class="inline-flex gap-1 leading-5">
 			<span class="">—</span>
-			<div class="group-hover/student:underline">
+			<div class=" group-hover/student:underline">
 				{student.first_name}
 				{student.last_name}
 			</div>

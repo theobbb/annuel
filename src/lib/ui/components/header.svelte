@@ -41,19 +41,20 @@
 <div bind:this={sentinel}></div>
 <header
 	class={[
-		' sticky top-0 z-100  -mt-2 grid grid-cols-10 gap-x-4 gap-y-2 border-b bg-background py-2.5 whitespace-nowrap lg:gap-x-gap',
+		' py-3- sticky top-0 z-100 grid h-13 grid-cols-10 items-center gap-x-4 gap-y-2 border-b bg-background whitespace-nowrap lg:gap-x-gap',
 		scroll_top ? 'border-transparent' : '',
-		'ease transition duration-400',
+		'ease transition-[border] duration-400',
 		cx
 	]}
 >
 	<div class="col-span-3 row-start-1 md:col-span-2">
-		<a class="hover:underline max-md:text-4xl/8 max-md:tracking-tight" href="/{page.params.year}">
+		<a class="hover:underline" href="/{page.params.year}">
 			<span class="max-md:hidden">Annuel de design</span>
-			<span class="md:hidden">A</span>
-			<!-- {#if page.params.year}
-				’{page.params.year?.slice(-2)}
-			{/if} -->
+			<span class="md:hidden">
+				A.{#if page.params.year}
+					{page.params.year?.slice(-2)}
+				{/if}
+			</span>
 		</a>
 	</div>
 	{#if page.params.year}

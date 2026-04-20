@@ -25,9 +25,10 @@
 </script>
 
 <div
-	class="mx-4 grid min-h-svh grid-rows-[1fr_auto] pt-2 font-[370] selection:bg-accent lg:mx-6 lg:text-lg"
+	class="selection:bg-accent- mx-4 grid min-h-svh grid-rows-[1fr_auto] text-base font-[370] lg:mx-6 lg:text-lg"
 >
 	<div>
+		<!-- <div class="h-[4000px]"></div> -->
 		{@render children()}
 	</div>
 	<Footer />
