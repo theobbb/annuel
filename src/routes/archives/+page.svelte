@@ -3,6 +3,8 @@
 	import { page } from '$app/state';
 	import Header from '$lib/ui/components/header.svelte';
 
+	const { data } = $props();
+
 	let last_history_year: string | null = $state(null);
 
 	afterNavigate(({ from }) => {
@@ -18,3 +20,12 @@
 		Archives
 	</a>
 </Header>
+
+<div class="grid-10 mt-24">
+	{#each data.years as year}
+		<a class="-col-end-1" href="/{year.id}">
+			<div class="aspect-4/5 bg-placeholder"></div>
+		</a>
+		<!-- {year.id} -->
+	{/each}
+</div>

@@ -36,11 +36,11 @@
 			></div>
 		</div> -->
 
-		<div class="mt-1.5 pr-4 leading-5.5 text-balance lg:mt-2.5">
-			<div class="pointer-events-none relative block group-hover/card:underline max-lg:text-base/5">
+		<div class="mt-2 pr-4 leading-tight text-balance lg:mt-2.5">
+			<div class="pointer-events-none group-hover/card:underline">
 				{project.name}
 			</div>
 		</div>
 	</div>
-	<div><Students {students} /></div>
+	<div class="mt-1 text-muted lg:mt-1.5"><Students {students} /></div>
 </div>

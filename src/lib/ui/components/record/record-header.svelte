@@ -7,8 +7,15 @@
 		back_href,
 		title,
 		description,
+		aside,
 		children
-	}: { back_href: string; title: Snippet; description: Snippet; children: Snippet } = $props();
+	}: {
+		back_href: string;
+		title: Snippet;
+		description: Snippet;
+		aside: Snippet;
+		children: Snippet;
+	} = $props();
 
 	let has_history = $state(false);
 
@@ -25,8 +32,8 @@
 </script>
 
 <Header></Header>
-<div class="gap-2x mt-24 mb-16 grid min-h-[60svh] grid-cols-10">
-	<div class="">
+<div class="grid-10 mt-16 mb-12 min-h-[60svh] lg:mt-24 lg:mb-16">
+	<div class="col-span-4 lg:col-span-2">
 		<a href={back_href} onclick={on_back} class="flex items-center gap-1">
 			<div class="icon-[ri--arrow-left-long-line]"></div>
 			Retour
@@ -34,34 +41,19 @@
 	</div>
 
 	<div class="col-span-10 text-balance lg:col-span-4 lg:col-start-3">
-		<div class="mb-8 lg:text-2xl/7">
+		<h2 class="mb-8 leading-tight">
 			{@render title()}
-		</div>
-		<div class="leading-6">
+		</h2>
+		<p class="leading-snug">
 			{@render description()}
-		</div>
+		</p>
 	</div>
-	<div class="relative z-200 col-span-2 col-start-9 -mt-34">
-		{@render children()}
+	<div
+		class="relative col-span-6 col-start-5 max-lg:row-start-1 lg:z-200 lg:col-span-2 lg:col-start-9 lg:-mt-34"
+	>
+		{@render aside()}
+	</div>
+	<div class="col-span-8 col-start-3 grid grid-cols-8 gap-gap">
+		{@render children?.()}
 	</div>
 </div>
-<!-- <div>
-	<a href={back_href} onclick={on_back} class="flex items-center gap-1">
-		<div class="icon-[ri--arrow-left-long-line]"></div>
-		Retour
-	</a>
-</div>
-<div class="grid-12 relative mt-24 mb-36">
-	<div class="col-span-6 col-start-3 text-balance">
-		<div class="mb-12 text-4xl">
-			{@render title()}
-		</div>
-		<div class="text-xl/6.5- border-t- pt-4">
-			{@render description()}
-		</div>
-	</div>
-
-	<div class="col-span-2 col-start-11">
-		{@render children()}
-	</div>
-</div> -->

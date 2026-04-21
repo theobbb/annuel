@@ -29,7 +29,7 @@
 			]}
 			href={url_query_param(`/${page.params.year}/${param}`, { programme: current || null })}
 		>
-			{name} <sup>{length}</sup>
+			{name} <sup class="-ml-0.5">{length}</sup>
 		</a>
 		<div class="text-muted last:hidden">/</div>
 	{/each}

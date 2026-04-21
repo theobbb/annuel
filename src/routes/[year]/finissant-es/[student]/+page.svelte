@@ -26,18 +26,18 @@
 	{#snippet description()}
 		{student.description}
 	{/snippet}
-	<div>
-		<div class="">
+	{#snippet aside()}
+		<div class=" mb-16">
 			<Facecard {student} />
 		</div>
-		<div class="mt-4">
-			{#each socials as social}
-				<a href={social.url} target="_blank">{social.name}</a>
-				<!-- <div>Instagram</div>
+	{/snippet}
+	<div class="mt-4">
+		{#each socials as social}
+			<a href={social.url} target="_blank">{social.name}</a>
+			<!-- <div>Instagram</div>
 			<div>Behance</div>
 			<div>Youtube</div> -->
-			{/each}
-		</div>
+		{/each}
 	</div>
 </RecordHeader>
 

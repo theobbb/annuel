@@ -41,7 +41,7 @@
 <div bind:this={sentinel}></div>
 <header
 	class={[
-		' py-3- sticky top-0 z-100 grid h-13 grid-cols-10 items-center gap-x-4 gap-y-2 border-b bg-background whitespace-nowrap lg:gap-x-gap',
+		'sticky top-0 z-100 grid h-11 grid-cols-10 items-center gap-x-4 gap-y-2 border-b bg-background whitespace-nowrap lg:h-13 lg:gap-x-gap',
 		scroll_top ? 'border-transparent' : '',
 		'ease transition-[border] duration-400',
 		cx

@@ -10,35 +10,9 @@
 	import Video from '$lib/ui/components/video.svelte';
 	import Description from './description.svelte';
 	import { onMount } from 'svelte';
-	import { use_intersection_observer } from '$lib/utils/intersection-observer.js';
 
 	const { data } = $props();
-	const { year, programs } = $derived(data);
-
-	let header_visible = $state(false);
-	let sentinel: HTMLDivElement;
-
-	function on_intersect(entry: IntersectionObserverEntry) {
-		// entry.isIntersecting === true  -> Sentinel is visible (User is at the TOP)
-		// entry.isIntersecting === false -> Sentinel is hidden (User has SCROLLED DOWN)
-
-		if (entry.isIntersecting) {
-			header_visible = false;
-		} else {
-			header_visible = true;
-		}
-	}
-
-	onMount(() => {
-		if (!sentinel) return;
-		const cleanup_observer = use_intersection_observer(sentinel, on_intersect, {
-			root: null, // Use the browser viewport
-			rootMargin: '0px', // Trigger exactly at the edge
-			threshold: [0, 1] // Trigger when the first/last pixel enters/leaves
-		});
-
-		return cleanup_observer;
-	});
+	const { year } = $derived(data);
 </script>
 
 <Header class={['lg:-mt-48!-']}>
@@ -46,39 +20,36 @@
 		class="col-span-4 col-start-9 row-start-1 text-right max-lg:hidden sm:col-span-4 sm:col-start-9 sm:row-start-2 lg:col-span-1 lg:col-start-10 lg:row-start-1"
 		href="/archives"
 	>
-		[{page.params.year}]
+		Archives (+)
 	</a>
 </Header>
-<div class=" grid min-h-svh grid-cols-10 grid-rows-[auto_auto_1fr_auto_auto] gap-6 pb-1">
-	<div class="lg:col-span-7- col-span-8">
-		<!-- <Description />
-		<div bind:this={sentinel}></div> -->
-	</div>
-
-	<div class="col-span-2 row-span-2 flex flex-col">
-		<div class="flex flex-col">
-			<!-- <div class="mb-2 text-right">Archives (+)</div> -->
-			<img
-				class="aspect-4/5- h-full w-full object-contain"
-				src="{PUBLIC_POCKETBASE_URL}/api/files/years/{page.params.year}/{year.poster}"
-				alt="poster-{page.params.year}"
-			/>
+<div class="flex min-h-[calc(100svh-5rem)] items-center">
+	<div class="grid-10 pb-1">
+		<div
+			class="row-span-2- mb-12- justify-end- col-span-full flex flex-col lg:col-span-6 lg:col-start-3"
+		>
+			<div class="aspect-video bg-placeholder">
+				<Video autoplay={true} playback_id="14W025RvjQdhvGaDyE4jHmKtWzQcIyA5PJNtRl7dLbmA" />
+			</div>
+		</div>
+		<div class="row-span-2- col-span-1 col-start-10 flex flex-col">
+			<div class="flex flex-col">
+				<!-- <div class="mb-2 text-right">Archives (+)</div> -->
+				<img
+					class="h-full w-full object-contain"
+					src="{PUBLIC_POCKETBASE_URL}/api/files/years/{page.params.year}/{year.poster}"
+					alt="poster-{page.params.year}"
+				/>
+			</div>
 		</div>
 	</div>
+</div>
 
-	<div
-		class="col-span-full row-span-2 mb-12 flex flex-col justify-end lg:col-span-6 lg:col-start-3"
-	>
-		<div class="aspect-video bg-placeholder">
-			<Video autoplayy playback_id="14W025RvjQdhvGaDyE4jHmKtWzQcIyA5PJNtRl7dLbmA" />
-		</div>
-	</div>
-	<div class={['col-span-3 leading-6', header_visible ? '' : 'pointer-events-auto']}>
-		Vernissage le 06 mai 2026 <br />à partir de 18h
-	</div>
-	<div class={['col-span-3 leading-6', header_visible ? '' : 'pointer-events-auto']}>
-		Exposition du 1er au 7 mai 2026 <br /> Entrée libre, de 12h à 18h
-	</div>
+<div class={['col-span-3 leading-6']}>
+	Vernissage le 06 mai 2026 <br />à partir de 18h
+</div>
+<div class={['col-span-3 leading-6']}>
+	Exposition du 1er au 7 mai 2026 <br /> Entrée libre, de 12h à 18h
 </div>
 
 <!-- <div

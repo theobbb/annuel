@@ -10,6 +10,7 @@
 	import RecordHeader from '$lib/ui/components/record/record-header.svelte';
 	import { string_to_1_8 } from '$lib/utils/seed';
 	import { onMount } from 'svelte';
+	import File, { seed_meta_file } from './file.svelte';
 
 	const { data } = $props();
 
@@ -60,8 +61,6 @@
 	function clear_background() {
 		document.documentElement.style.removeProperty('--color-background');
 	}
-	$inspect(project);
-	const seed_meta_file = { caption: '', col_start: 2, col_span: 2 };
 
 	const seasons = ['Automne', 'Hiver', 'Été'];
 </script>
@@ -75,51 +74,52 @@
 	{#snippet description()}
 		{project.description}
 	{/snippet}
-	<div class="mb-16">
-		<div class="mt-16- space-y-2 text-base">
-			{#if project.session}
-				{@const [session_year, session_season] = project.session.split('.')}
-				<div>
-					<div class="text-base text-muted">Session</div>
-					<div>
-						{seasons[Number(session_season)]}
-						20{session_year}
-					</div>
-				</div>
-			{/if}
-
-			{#if project.class}
-				<div>
-					<div class="text-base text-muted">Cours</div>
-
-					<div>{project.class}</div>
-				</div>
-			{/if}
-			{#if project.teacher}
-				<div>
-					<div class="text-base text-muted">Professeur.e</div>
-
-					<div>{project.teacher}</div>
-				</div>
-			{/if}
+	{#snippet aside()}
+		<div class="">
+			<div class="mb-16">
+				<!-- <div class="mb-1">Finissant.e.s</div> -->
+				{#each project.expand.students as student}
+					<div><Student {student} /></div>
+				{/each}
+			</div>
 		</div>
-		<div class="mt-12">
-			<div class="mb-1">Finissant.e.s</div>
-			{#each project.expand.students as student}
-				<div><Student {student} /></div>
-			{/each}
-		</div>
+	{/snippet}
+
+	<!-- <div class="col-span-3">
+		{#if project.session}
+			{@const [session_year, session_season] = project.session.split('.')}
+			<div>
+				<div class=" text-muted">Session</div>
+				<div>
+					{seasons[Number(session_season)]}
+					20{session_year}
+				</div>
+			</div>
+		{/if}
 	</div>
+
+	<div class="col-span-3">
+		{#if project.class}
+			<div>
+				<div class=" text-muted">Cours</div>
+
+				<div>{project.class}</div>
+			</div>
+		{/if}
+	</div>
+	<div class="col-span-3">
+		{#if project.teacher}
+			<div>
+				<div class=" text-muted">Professeur.e</div>
+
+				<div>{project.teacher}</div>
+			</div>
+		{/if}
+	</div> -->
 </RecordHeader>
-<div class="grid grid-cols-5 gap-7">
+<div class="grid grid-cols-5 gap-gap">
 	{#each files as file, i}
-		{@const meta = meta_files?.[i] || seed_meta_file}
-		<div style="grid-column: {meta.col_start} / span {meta.col_span};">
-			<Image collection="projects" filename={file} record_id={project.id} />
-			{#if meta.caption}
-				<div class="mt-1 text-base italic">{meta.caption}</div>
-			{/if}
-		</div>
+		<File {project} {file} meta={meta_files?.[i] || seed_meta_file} />
 	{/each}
 </div>
 

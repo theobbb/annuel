@@ -25,7 +25,7 @@
 </script>
 
 <div
-	class="selection:bg-accent- mx-4 grid min-h-svh grid-rows-[1fr_auto] text-base font-[370] lg:mx-6 lg:text-lg"
+	class="mx-4 grid min-h-svh grid-rows-[1fr_auto] text-base leading-normal font-[370] lg:mx-6 lg:text-lg"
 >
 	<div>
 		<!-- <div class="h-[4000px]"></div> -->

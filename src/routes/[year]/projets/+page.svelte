@@ -5,7 +5,6 @@
 	import { shuffle_array } from '$lib/utils/shuffle';
 	import CollectionLayout from '$lib/ui/components/collection/collection-layout.svelte';
 	import { use_seed } from '$lib/store/seed-ctx.svelte.js';
-	import { url_query_param } from '$lib/utils/url.js';
 	import CollectionEmpty from '$lib/ui/components/collection/collection-empty.svelte';
 
 	const { data } = $props();
@@ -42,7 +41,7 @@
 	});
 	const shuffled_projects = $derived(shuffle_array(filtered_projects, seed.value));
 
-	const CHUNK_SIZE = 72;
+	const CHUNK_SIZE = 50;
 	let visible_count = $state(CHUNK_SIZE);
 
 	const visible_projects = $derived(shuffled_projects.slice(0, visible_count));
@@ -60,7 +59,7 @@
 		class={[
 			'',
 			view == 'grille'
-				? 'grid grid-cols-2 gap-4 gap-y-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 lg:gap-x-gap lg:gap-y-8'
+				? 'grid grid-cols-2 gap-x-gap gap-y-7 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 lg:gap-y-8'
 				: ''
 		]}
 	>
@@ -73,8 +72,8 @@
 		{/each}
 	</div>
 	{#if has_more}
-		<button class="link-hover corner mt-24 w-full cursor-pointer py-2 text-lg" onclick={load_more}>
-			Charger plus <span class="inline-flex translate-y-px">+</span>
+		<button class="mt-32 cursor-pointer py-2 hover:underline" onclick={load_more}>
+			Charger plus <span class="translate-y-px- inline-flex">(+)</span>
 		</button>
 	{/if}
 	{#if is_empty}

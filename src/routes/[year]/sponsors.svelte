@@ -9,9 +9,9 @@
 	// Tier 1: Smallest (approx 8 per row) -> w-1/4 to w-1/8
 	// Tier 3: Largest (approx 3 per row) -> w-1/3
 	const itemWidths = [
-		'basis-1/2 md:basis-1/4 lg:basis-1/8', // Tier 1
+		'basis-2/5 md:basis-1/4 lg:basis-1/8', // Tier 1
 		'basis-1/2 md:basis-1/3 lg:basis-1/6', // Tier 2
-		'basis-full md:basis-1/2 lg:basis-1/4' // Tier 3
+		'basis-4/5 md:basis-1/2 lg:basis-1/4' // Tier 3
 	];
 
 	const rotate_loop = [5, -2, 7, 14, -2, 5, 3];
@@ -39,7 +39,7 @@
 
 <div class="mb-16 text-center">❤️ Commanditaires ❤️</div>
 
-<div id="commanditaires" class="container mx-auto flex flex-col gap-12 px-4">
+<div id="commanditaires" class="container mx-auto flex flex-col gap-10">
 	{#each tiers as { size, children }}
 		<div class="flex flex-wrap justify-center gap-8">
 			{#each children as { id, name, logo, i }}

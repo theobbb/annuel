@@ -5,11 +5,9 @@
 	const { students }: { students: StudentsRecord[] } = $props();
 </script>
 
-<div class="mt-1.5 space-y-0.5 leading-5.5">
+<div class="flex flex-col leading-tight">
 	{#each students as student}
-		<div class=" text-muted max-lg:text-base/4.5" role="contentinfo">
-			<Student {student} />
-		</div>
+		<Student {student} />
 	{/each}
 </div>
 <!-- {#if preview?.context_key == props_id && preview.student.id == student.id}

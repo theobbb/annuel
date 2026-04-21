@@ -18,7 +18,28 @@
 	}
 </script>
 
-<form class="relative -mr-2 flex items-center gap-4">
+<form
+	class="relative flex items-center gap-3.5"
+	onsubmit={(event) => {
+		event.preventDefault();
+		if (event.currentTarget instanceof HTMLFormElement) {
+			(event.currentTarget.querySelector('#search') as HTMLElement)?.blur();
+		}
+	}}
+>
+	<button
+		class={[
+			'absolute- -left-7- -m-2 flex cursor-pointer items-center justify-center p-2 text-base transition hover:bg-black/10',
+			is_searching ? '' : 'opacity-0',
+			'ease transition duration-200'
+		]}
+		onclick={on_reset}
+		title="Réinitialiser la recherche"
+		type="button"
+	>
+		<div class="icon-[ri--reset-right-line]"></div>
+	</button>
+
 	<input
 		type="text"
 		placeholder="Rechercher…"
@@ -30,13 +51,4 @@
 		class="text-base- tracking-wide- w-full border px-2.5 py-0.5 pr-8 transition outline-none not-focus:border-transparent hover:bg-black/10 focus:placeholder-black/60"
 	/>
 	<div class="pointer-events-none absolute top-2 right-2 icon-[ri--search-line]"></div>
-	{#if is_searching}
-		<button
-			class="absolute -left-7 -m-2 flex cursor-pointer items-center justify-center p-2 text-base transition hover:bg-black/10"
-			onclick={on_reset}
-			title="Réinitialiser la recherche"
-		>
-			<div class="icon-[ri--reset-right-line]"></div>
-		</button>
-	{/if}
 </form>

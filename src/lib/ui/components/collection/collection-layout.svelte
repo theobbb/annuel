@@ -25,12 +25,11 @@
 </Header>
 
 <!-- MOBILE ONLY → so it doesnt stick top -->
-
-<div class={['mt-24 flex justify-end lg:hidden']}>
+<div class={['mt-16 flex justify-end lg:hidden']}>
 	<Programs />
 </div>
 
-<div class="mt-24">
+<div class="mt-16">
 	<div class="">
 		<div class={['flex grid-cols-10 items-center gap-gap py-4 md:grid']}>
 			<div class="col-span-3">

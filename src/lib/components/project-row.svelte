@@ -10,20 +10,21 @@
 </script>
 
 <!-- <hr /> -->
-<div class={['group relative grid grid-cols-10 flex-col gap-x-gap gap-y-2 border-t py-4']}>
+<div class={['group grid-10 relative flex-col gap-y-2 border-t py-gap']}>
 	<a
 		class="peer absolute inset-0 z-5"
 		href="/{page.params.year}/projets/{project.id}"
 		aria-label="link to {project.name}"
 	></a>
-	<div class="title col-span-full text-balance max-lg:leading-5.5 lg:col-span-2">
-		<div class="max-w-80- mt-1- pointer-events-none relative block pr-24 lg:text-2xl/7">
+	<div class="group/title col-span-full text-balance lg:col-span-4">
+		<div
+			class="pointer-events-none relative block pr-24 leading-tight group-peer-hover/title:underline"
+		>
 			{project.name}
 		</div>
+		<div class="mt-2 text-muted"><Students {students} /></div>
 	</div>
-	<div class="relative col-span-full lg:col-span-2 lg:col-start-3">
-		<div class="-mt-1"><Students {students} /></div>
-	</div>
+
 	<div
 		class="max-lg:col-start-2- lg:gap-2x col-span-full grid grid-cols-3 gap-2 sm:grid-cols-4 sm:gap-4 lg:col-span-6"
 	>
