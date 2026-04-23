@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import type { ProjectsRecord, StudentsRecord } from '$lib/pocketbase.types';
+	import ArrowHover from '$lib/ui/components/arrow-hover.svelte';
 	import Thumbnail from '$lib/ui/components/project/thumbnail.svelte';
 
 	import Students from './students.svelte';
@@ -21,13 +22,7 @@
 
 		<div class=" pointer-events-none relative">
 			<Thumbnail {project} />
-			<div
-				class="not-group-hover/card:translate-x-4- transition- pointer-events-none absolute right-4 bottom-4 not-group-hover/card:opacity-0"
-			>
-				<div class="black flex items-center justify-center p-0.5">
-					<div class="icon-[ri--arrow-right-line] text-xl"></div>
-				</div>
-			</div>
+			<ArrowHover />
 		</div>
 
 		<!-- <div class="relative opacity-0 transition peer-hover:opacity-100">
@@ -36,11 +31,11 @@
 			></div>
 		</div> -->
 
-		<div class="mt-2 pr-4 leading-tight text-balance lg:mt-2.5">
+		<div class="mt-2 pr-4 leading-tight text-balance lg:mt-2">
 			<div class="pointer-events-none group-hover/card:underline">
 				{project.name}
 			</div>
 		</div>
 	</div>
-	<div class="mt-1 text-muted lg:mt-1.5"><Students {students} /></div>
+	<div class="mt-1 text-muted lg:mt-1"><Students {students} /></div>
 </div>

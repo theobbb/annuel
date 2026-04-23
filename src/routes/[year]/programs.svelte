@@ -24,8 +24,6 @@
 			return countB - countA; // Highest count first
 		})
 	);
-
-	$inspect(sorted_programs, program_type_map, program_stats);
 </script>
 
 <!-- <Title>Programmes</Title> -->
@@ -58,24 +56,16 @@
 				</div>
 			</div>
 
-			<div class="col-span-2 text-right max-lg:hidden">
-				<div class="flex flex-col text-lg whitespace-nowrap">
+			<div class="col-span-2 max-lg:hidden">
+				<div class="flex flex-col whitespace-nowrap">
 					{#if stats}
-						<a
-							class="gap-1x relative z-10 flex w-fit items-center"
-							href="/{page.params.year}/projets?programme={id}"
-						>
-							<!-- <div class="size-2 bg-foreground"></div> -->
+						<a class="relative z-10 w-fit" href="/{page.params.year}/projets?programme={id}">
 							<span>
 								Projets
 								<sup>{stats.project_count}</sup>
 							</span>
 						</a>
-						<a
-							class="gap-1x relative z-10 flex w-fit items-center"
-							href="/{page.params.year}/finissant-es?programme={id}"
-						>
-							<!-- <div class="size-2 bg-foreground"></div> -->
+						<a class="relative z-10 w-fit" href="/{page.params.year}/finissant-es?programme={id}">
 							<span>
 								Finissant.e.s
 								<sup>{stats.student_count}</sup>
