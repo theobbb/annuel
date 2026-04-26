@@ -2,7 +2,7 @@
 	import { pocketbase } from '$lib/pocketbase';
 	import type { ProjectsRecord } from '$lib/pocketbase.types';
 	import { get_media_type } from '$lib/utils/media-type';
-	import Image from '../image.svelte';
+	import Image from '../media/image.svelte';
 
 	const { project }: { project: ProjectsRecord } = $props();
 

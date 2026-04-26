@@ -1,4 +1,13 @@
 @font-face {
+	/*  0.11 400 */
+	font-family: 'EP Programma BETA';
+	src: url('/fonts/jjlVfp6WY17g29Co7R6r9YC5pw.woff2') format('woff2');
+	font-weight: 400;
+	font-display: swap;
+	font-style: normal;
+}
+
+@font-face {
 	font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
 	font-family: 'Temp';
 	font-style: normal;

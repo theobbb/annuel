@@ -171,7 +171,6 @@ export type ProgramsRecord = {
 	description: string
 	id: string
 	name: string
-	sort_order?: number
 	type: RecordIdString
 	updated: IsoAutoDateString
 }
@@ -226,6 +225,7 @@ export type SponsorsRecord = {
 	size?: number
 	sort_order?: number
 	updated: IsoAutoDateString
+	url?: string
 	year: RecordIdString
 }
 
@@ -234,12 +234,13 @@ export type StudentsRecord<Tsocials = unknown, Tsort_projects = unknown> = {
 	description?: string
 	draft?: boolean
 	draft_of?: RecordIdString
+	email?: string
 	first_name: string
 	headshot?: FileNameString
 	id: string
 	is_latest?: boolean
 	last_name: string
-	program: RecordIdString
+	program?: RecordIdString
 	pronouns?: string
 	socials?: null | Tsocials
 	sort_projects?: null | Tsort_projects

@@ -6,7 +6,8 @@ export async function load({ params }) {
 		pocketbase.collection('members').getFullList<MembersRecord>({
 			sort: 'name',
 			filter: `year = "${params.year}"`,
-			fields: 'id,name,role'
+			expand: 'student',
+			fields: 'id,name,role,expand'
 		}),
 		pocketbase
 			.collection('member_roles')

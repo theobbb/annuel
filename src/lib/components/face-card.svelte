@@ -4,14 +4,17 @@
 	import ArrowHover from '$lib/ui/components/arrow-hover.svelte';
 	import ProgramCode from '$lib/ui/components/program-code.svelte';
 
-	const { student }: { student?: StudentsRecord } = $props();
+	const { student }: { student: StudentsRecord } = $props();
 
 	const program: ProgramsRecord | null | undefined = $derived(
 		student ? page.data.program_map.get(student.program) : null
 	);
 </script>
 
-<div class="group group/card @container relative aspect-2/3 overflow-hidden">
+<a
+	class="group group/card @container relative flex aspect-2/3 overflow-hidden"
+	href="/{page.params.year}/finissant-es/{student.id}"
+>
 	<div class="rounded- absolute inset-0 border bg-placeholder">
 		<img
 			src="/temp/head.png"
@@ -26,4 +29,4 @@
 	{#if program}
 		<ProgramCode {program} />
 	{/if}
-</div>
+</a>

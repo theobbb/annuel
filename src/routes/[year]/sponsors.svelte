@@ -37,7 +37,9 @@
 	});
 </script>
 
-<div class="mb-16 text-center">❤️ Commanditaires ❤️</div>
+<div class="mb-16 text-center leading-snug">
+	L’Annuel remercie ses précieux<br /> <span class="">commanditaires.</span> <br />
+</div>
 
 <div id="commanditaires" class="container mx-auto flex flex-col gap-10">
 	{#each tiers as { size, children }}

@@ -18,17 +18,17 @@
 	let hovered: StudentsRecord | null = $state(null);
 </script>
 
-<div class="grid grid-cols-10 gap-x-gap leading-relaxed">
+<div class="grid-10 leading-relaxed lg:gap-gap">
 	{#each cols as col}
-		<div class="col-span-full lg:col-span-3">
-			<div class="grid grid-cols-7 gap-x-gap lg:grid-cols-3">
-				{#each col as student, i}
-					<div class="text-right">
+		<div class="col-span-8 lg:col-span-3">
+			{#each col as student, i}
+				<div class=" grid-10">
+					<div class="col-span-2 text-right lg:col-span-3">
 						{#if student.last_name[0] != col[i - 1]?.last_name[0]}
 							<div>{student.last_name[0]}</div>
 						{/if}
 					</div>
-					<div class="col-span-6 flex lg:col-span-2">
+					<div class="col-span-10 flex gap-0.5 lg:col-span-7">
 						<a
 							onmouseenter={() => (hovered = student)}
 							href="/{page.params.year}/finissant-es/{student.id}"
@@ -37,8 +37,8 @@
 							{student.last_name}, {student.first_name}
 						</a>
 					</div>
-				{/each}
-			</div>
+				</div>
+			{/each}
 		</div>
 	{/each}
 	<div class="relative col-span-2 col-start-9 row-start-1 max-sm:hidden">

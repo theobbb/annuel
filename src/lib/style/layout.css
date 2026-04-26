@@ -51,7 +51,9 @@
 }
 
 html {
+	/* font-family: EP Programma BETA; */
 	font-family: Switzer;
+	/*font-family: Switzer;*/
 	/* font-family: 'Ivory';
 	letter-spacing: -9%; */
 
@@ -118,6 +120,6 @@ a.active::after {
 	@apply grid grid-cols-10 gap-gap;
 }
 h2 {
-	@apply text-xl lg:text-2xl/7;
+	@apply text-xl leading-tight lg:text-2xl;
 	letter-spacing: -0.5%;
 }

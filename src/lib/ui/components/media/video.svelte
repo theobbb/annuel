@@ -2,7 +2,7 @@
 	import { onMount, onDestroy } from 'svelte';
 	import Hls from 'hls.js';
 
-	let {
+	const {
 		playback_id,
 		autoplay = false,
 		loop = true,

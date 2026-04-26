@@ -49,7 +49,7 @@
 		</p>
 	</div>
 	<div
-		class="relative col-span-6 col-start-5 max-lg:row-start-1 lg:z-200 lg:col-span-2 lg:col-start-9 lg:-mt-34"
+		class="relative col-span-6 col-start-5 max-lg:row-start-1 lg:z-200 lg:col-span-2 lg:col-start-9 lg:-mt-32"
 	>
 		{@render aside()}
 	</div>

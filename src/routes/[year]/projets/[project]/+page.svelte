@@ -1,12 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import { PUBLIC_POCKETBASE_URL } from '$env/static/public';
 	import ProjectRow from '$lib/components/project-row.svelte';
 	import Student from '$lib/components/student.svelte';
-	import Students from '$lib/components/students.svelte';
-	import type { ProgramsRecord } from '$lib/pocketbase.types';
-	import Header from '$lib/ui/components/header.svelte';
-	import Image from '$lib/ui/components/image.svelte';
 	import RecordHeader from '$lib/ui/components/record/record-header.svelte';
 	import { string_to_1_8 } from '$lib/utils/seed';
 	import { onMount } from 'svelte';
@@ -19,10 +14,6 @@
 	const { files, meta_files } = $derived(project);
 
 	const n_files = $derived(string_to_1_8(project.name));
-
-	const program: ProgramsRecord = $derived(
-		program_map.get(project.expand.students[0].program)
-	) as ProgramsRecord;
 
 	const related_projects = $derived.by(() => {
 		// 1. Safety check: ensure we have students

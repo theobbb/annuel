@@ -5,17 +5,13 @@
 	import Sponsors from './sponsors.svelte';
 
 	import Header from '$lib/ui/components/header.svelte';
-	import Banner from '$lib/ui/components/banner.svelte';
 	import { PUBLIC_POCKETBASE_URL } from '$env/static/public';
-	import Video from '$lib/ui/components/video.svelte';
-	import Description from './description.svelte';
-	import { onMount } from 'svelte';
+	import Video from '$lib/ui/components/media/video.svelte';
 
 	const { data } = $props();
 	const { year } = $derived(data);
 </script>
 
-<!-- L’Annuel de design expose les projets des finissant-es de l’école de design de l’UQAM -->
 <Header class={['lg:-mt-48!-']}>
 	<a
 		class="col-span-4 col-start-9 row-start-1 text-right max-lg:hidden sm:col-span-4 sm:col-start-9 sm:row-start-2 lg:col-span-1 lg:col-start-10 lg:row-start-1"
@@ -24,46 +20,36 @@
 		Archives (+)
 	</a>
 </Header>
-<!-- <div class="mt-64"><Description /></div> -->
 
-<!-- <div class="mt-32 text-4xl">
-	<span class="text-muted">L’Annuel de design</span> expose <br /> les projets des finissant-es
-	<br /> de l’école de design de l’UQAM.
-</div> -->
-
-<div class="grid-10 min-h-[calc(100svh-5rem)] pb-1">
-	<div class="col-span-full flex h-full flex-col lg:col-span-6 lg:col-start-3">
-		<div class="col-span-6 col-start-3 mt-24">
-			<!-- <h1 class="leading-tight- text-[2vw] leading-[110%]">
-			Une exposition des finissant.es <br /> de l'École de design de l'UQAM
-		</h1> -->
-			<h2 class="leading-tight- leading-[110%]-">
+<div class="grid-10 min-h-[calc(100svh-5rem)] pt-24 pb-1">
+	<div class="col-span-full lg:col-span-6 lg:col-start-3">
+		<div>
+			<div class="col-span-full text-[6vw] leading-[108%] tracking-[-2%] lg:text-[3.3vw]">
 				Une exposition des finissant.es <br /> de l'École de design de l'UQAM
-			</h2>
-			<div class="grid- mt-8 grid-cols-3 gap-gap leading-tight">
-				<div>Vernissage le 06 mai 2026 <br />à partir de 18h</div>
-				<br />
+			</div>
+			<div class="mt-8 grid grid-cols-2 gap-gap leading-snug">
+				<div class="">Vernissage le 06 mai 2026 <br />à partir de 18h</div>
 				<div>Exposition du 1er au 7 mai 2026 <br /> Entrée libre, de 12h à 18h</div>
 			</div>
 		</div>
-		<div class="mt-16 flex aspect-video flex-1 items-center">
-			<Video autoplay={false} playback_id="14W025RvjQdhvGaDyE4jHmKtWzQcIyA5PJNtRl7dLbmA" />
-		</div>
 	</div>
-	<div class="-mt-4- relative z-500 col-span-1 col-start-9 flex flex-col self-start">
+
+	<div class="col-span-2 col-start-9 row-span-2 flex">
 		<img
-			class="opacity-0- h-full w-full -translate-x-44 translate-y-24 object-contain"
+			class="opacity-0- h-full w-full object-contain"
 			src="{PUBLIC_POCKETBASE_URL}/api/files/years/{page.params.year}/{year.poster}"
 			alt="poster-{page.params.year}"
 		/>
 	</div>
+	<div class="items-end- col-span-6 col-start-3 row-start-2 grid grid-cols-2 gap-gap"></div>
+
+	<div class="col-span-3 col-start-6 row-start-2 flex"></div>
+	<div class="col-span-6 col-start-3 mt-8 flex aspect-video flex-1 items-center">
+		<Video autoplay={false} playback_id="14W025RvjQdhvGaDyE4jHmKtWzQcIyA5PJNtRl7dLbmA" />
+	</div>
 </div>
 
-<p class="text-sm- col-span-full mt-12 columns-3 gap-gap text-justify leading-snug">
-	<!-- <span class="-mx-2- -my-1- inline-block px-2 py-1 ring">
-			L’Annuel de design expose les projets des finissant-es de l’école de design de l’UQAM
-		</span> -->
-
+<p class="col-span-full mt-12 gap-gap text-justify leading-snug lg:columns-3">
 	Identité visuelle de l’Annuel de design 2026
 	<br />
 	<br />
@@ -98,7 +84,6 @@
 	Vidéo : @caisermanyacine et @gabrielbelisle Musique : @lb66music DA : @par.charlotte et
 	@emma.chevillotversini
 </p>
-<!-- <div class="mt-64"><Description /></div> -->
 
 <div class="mt-48 mb-64">
 	<Programs />
