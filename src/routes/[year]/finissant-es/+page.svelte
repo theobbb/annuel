@@ -51,3 +51,11 @@
 		{/if}
 	</div>
 </CollectionLayout>
+
+<svelte:head>
+	<title>Annuel {page.params.year} — Finissant.es</title>
+	<meta
+		name="description"
+		content="Annuel de design {page.params.year} — Les finissant.es de l’école de design de l’UQAM"
+	/>
+</svelte:head>

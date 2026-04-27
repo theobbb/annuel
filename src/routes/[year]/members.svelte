@@ -1,25 +1,32 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import Facecard from '$lib/components/face-card.svelte';
-	import type { MemberRolesRecord, MembersRecord } from '$lib/pocketbase.types';
-	import Title from '$lib/ui/components/title.svelte';
+	import type { MemberRolesRecord, MembersRecord, StudentsRecord } from '$lib/pocketbase.types';
 
-	const members: MembersRecord[] = $derived(page.data.members);
+	type MembersRecordExpanded = MembersRecord & {
+		expand: {
+			student?: StudentsRecord;
+		};
+	};
+	const members: MembersRecordExpanded[] = $derived(page.data.members);
 	const member_roles: MemberRolesRecord[] = $derived(page.data.member_roles);
 
-	const groups: { role: MemberRolesRecord; children: MembersRecord[] }[] = $derived.by(() => {
-		return member_roles
-			.map((role) => ({
-				role,
-				children: members.filter((program) => program.role === role.id)
-			}))
-			.filter((g) => g.children.length);
-	});
+	const groups: { role: MemberRolesRecord; children: MembersRecordExpanded[] }[] = $derived.by(
+		() => {
+			return member_roles
+				.map((role) => ({
+					role,
+					children: members.filter((program) => program.role === role.id)
+				}))
+				.filter((g) => g.children.length);
+		}
+	);
 </script>
 
-<div class="text-base- border-b- mb-gap pb-2">L’équipe de l’Annuel <sup>{members.length}</sup></div>
-<div id="equipe" class="mb-8">
-	<div class="leading-relaxed- columns-3 gap-x-gap **:leading-relaxed!">
+<div id="equipe" class="text-base- border-b- mb-gap scroll-mt-32 pb-2">
+	L’équipe de l’Annuel <sup>{members.length}</sup>
+</div>
+<div class="mb-8">
+	<div class="[&_h2]: gap-x-gap **:leading-relaxed! lg:columns-3">
 		{#each groups as { role, children }, i}
 			<div class="break-inside-avoid- inline-block w-full">
 				<h2 class="mb-2- border-b text-muted">{role.name}</h2>
@@ -29,19 +36,25 @@
 						{#if member?.expand?.student?.id}
 							<a
 								href="/{page.params.year}/finissant-es/{member?.expand?.student?.id}"
-								class="block"
+								class="group no-hover relative block"
 							>
 								{member.name}
+								<div
+									class="pointer-events-none absolute top-0 right-6 bottom-0 flex translate-x-full translate-y-px items-center justify-end"
+								>
+									<div
+										class="ease icon-[ri--arrow-right-long-line] -translate-y-px text-right text-2xl transition duration-200 not-group-hover:-translate-x-4 not-group-hover:opacity-0"
+									></div>
+								</div>
 							</a>
 						{:else}
 							<div>
 								{member.name}
 							</div>
 						{/if}
-						<!-- <span class="ml-2 inline-block text-muted">{role.name}</span> -->
 					</h2>
 				{/each}
-				<h2 class="invisible" aria-hidden="true">*</h2>
+				<h2><div class="invisible" aria-hidden="true">*</div></h2>
 			</div>
 		{/each}
 	</div>

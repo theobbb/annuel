@@ -23,3 +23,12 @@
 </Header>
 
 <div class="mt-24"><Programs {from_url} /></div>
+
+<svelte:head>
+	<title>Annuel {page.params.year} — Programmes</title>
+	<meta
+		name="description"
+		content="Les programmes de l’École de design de l’UQAM — Annuel {page.params
+			.year} — L’exposition des finissant.es"
+	/>
+</svelte:head>

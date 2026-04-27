@@ -25,7 +25,7 @@
 </script>
 
 <div
-	class="lg:text-lg- mx-gap grid min-h-svh grid-rows-[1fr_auto] text-base leading-normal font-[370]"
+	class="mx-gap grid min-h-svh grid-rows-[1fr_auto] text-base leading-normal font-[370] antialiased lg:text-lg"
 >
 	<div>
 		<!-- <div class="h-[4000px]"></div> -->

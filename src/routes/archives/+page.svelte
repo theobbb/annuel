@@ -29,3 +29,11 @@
 		<!-- {year.id} -->
 	{/each}
 </div>
+
+<svelte:head>
+	<title>Annuel de design — Archives</title>
+	<meta
+		name="description"
+		content="Les projets des finissant.es de l’école de design de l’UQAM — Archives"
+	/>
+</svelte:head>

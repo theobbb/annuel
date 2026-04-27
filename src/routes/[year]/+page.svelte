@@ -21,35 +21,47 @@
 	</a>
 </Header>
 
-<div class="grid-10 min-h-[calc(100svh-5rem)] pt-24 pb-1">
-	<div class="col-span-full lg:col-span-6 lg:col-start-3">
-		<div>
-			<div class="col-span-full text-[6vw] leading-[108%] tracking-[-2%] lg:text-[3.3vw]">
-				Une exposition des finissant.es <br /> de l'École de design de l'UQAM
-			</div>
-			<div class="mt-8 grid grid-cols-2 gap-gap leading-snug">
-				<div class="">Vernissage le 06 mai 2026 <br />à partir de 18h</div>
-				<div>Exposition du 1er au 7 mai 2026 <br /> Entrée libre, de 12h à 18h</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="col-span-2 col-start-9 row-span-2 flex">
+<div class="grid-10 min-h-[calc(100svh-5rem)] pb-1 lg:pt-24">
+	<div
+		class="col-span-4 col-start-4 row-span-2 row-start-1 flex sm:col-span-2 sm:col-start-5 lg:col-span-2 lg:col-start-9"
+	>
 		<img
 			class="opacity-0- h-full w-full object-contain"
 			src="{PUBLIC_POCKETBASE_URL}/api/files/years/{page.params.year}/{year.poster}"
 			alt="poster-{page.params.year}"
 		/>
 	</div>
+	<div class="col-span-full max-lg:mt-16 lg:col-span-6 lg:col-start-3">
+		<div>
+			<div
+				class="col-span-full -mx-0.5 text-[10vw] leading-[100%] tracking-[-2%] sm:text-[5vw] lg:text-[3.3vw]"
+			>
+				Une exposition
+				<br class="sm:hidden" />
+				des finissant.es
+				<br />
+				<span class="inline-block text-right max-sm:w-full">de l’École de design</span>
+				<br class="sm:hidden" />
+				<span class="inline-block text-right max-sm:w-full">de l'UQAM</span>
+			</div>
+			<div class="mt-8 grid gap-gap leading-snug sm:grid-cols-2">
+				<div class="">Vernissage le 06 mai 2026 <br />à partir de 18h</div>
+				<div>Exposition du 07 au 20 mai 2026 <br /> Entrée libre, de 12h à 18h</div>
+			</div>
+		</div>
+	</div>
+
 	<div class="items-end- col-span-6 col-start-3 row-start-2 grid grid-cols-2 gap-gap"></div>
 
 	<div class="col-span-3 col-start-6 row-start-2 flex"></div>
-	<div class="col-span-6 col-start-3 mt-8 flex aspect-video flex-1 items-center">
+	<div
+		class="col-span-full -mx-gap mt-8 flex aspect-video flex-1 items-center lg:col-span-6 lg:col-start-3"
+	>
 		<Video autoplay={false} playback_id="14W025RvjQdhvGaDyE4jHmKtWzQcIyA5PJNtRl7dLbmA" />
 	</div>
 </div>
 
-<p class="col-span-full mt-12 gap-gap text-justify leading-snug lg:columns-3">
+<p class="col-span-full mt-12 gap-gap leading-snug max-md:hidden lg:columns-3">
 	Identité visuelle de l’Annuel de design 2026
 	<br />
 	<br />

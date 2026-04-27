@@ -1,4 +1,4 @@
-import { error } from '@sveltejs/kit';
+import { error, redirect } from '@sveltejs/kit';
 import { pocketbase } from '$lib/pocketbase';
 import type { ProjectsRecord, StudentsRecord } from '$lib/pocketbase.types';
 import type { ProgramStatsRecord } from '$lib/pocketbase.types';
@@ -6,15 +6,15 @@ import type { ProgramStatsRecord } from '$lib/pocketbase.types';
 export async function load({ parent, params }) {
 	const { years } = await parent();
 	const year = years.find((y) => y.id == params.year);
-	if (!year) error(404);
+	if (!year) redirect(307, `/${years[0]?.id}`);
 
 	const [list_projects, list_students, program_stats_arr] = await Promise.all([
 		pocketbase.collection('projects').getList<ProjectsRecord>(1, 0, {
-			filter: `year = "${params.year}"`,
+			filter: `year = "${params.year}" && draft = false`,
 			requestKey: `projects-${params.year}`
 		}),
 		pocketbase.collection('students').getList<StudentsRecord>(1, 0, {
-			filter: `year = "${params.year}"`,
+			filter: `year = "${params.year}" && draft = false`,
 			requestKey: `students-${params.year}`
 		}),
 		pocketbase.collection('program_stats').getFullList<ProgramStatsRecord>({

@@ -160,3 +160,10 @@
 			</div>
 		</div>
 	</div> -->
+<svelte:head>
+	<title
+		>{project.name}
+		— Annuel {page.params.year}
+	</title>
+	<meta name="description" content={project.description} />
+</svelte:head>

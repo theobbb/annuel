@@ -88,3 +88,12 @@
 >
 	<div class="icon-[ri--shuffle-line]"></div>
 </button>
+
+<svelte:head>
+	<title>Annuel {page.params.year} — Projets</title>
+	<meta
+		name="description"
+		content="Annuel de design {page.params
+			.year} — Les projets des finissant.es de l’école de design de l’UQAM"
+	/>
+</svelte:head>

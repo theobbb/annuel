@@ -9,12 +9,12 @@
 	// Tier 1: Smallest (approx 8 per row) -> w-1/4 to w-1/8
 	// Tier 3: Largest (approx 3 per row) -> w-1/3
 	const itemWidths = [
-		'basis-2/5 md:basis-1/4 lg:basis-1/8', // Tier 1
-		'basis-1/2 md:basis-1/3 lg:basis-1/6', // Tier 2
-		'basis-4/5 md:basis-1/2 lg:basis-1/4' // Tier 3
+		'basis-4/16 md:basis-1/4 lg:basis-1/8', // Tier 1
+		'basis-4/13 md:basis-1/3 lg:basis-1/6', // Tier 2
+		'basis-4/10 md:basis-1/2 lg:basis-1/4' // Tier 3
 	];
 
-	const rotate_loop = [5, -2, 7, 14, -2, 5, 3];
+	const rotate_loop = [5, -2, 7, 10, -2, -5, 3];
 
 	const tiers = $derived.by(() => {
 		let cursor_i = 0;
@@ -37,33 +37,37 @@
 	});
 </script>
 
-<div class="mb-16 text-center leading-snug">
+<div id="commanditaires" class="mb-16 scroll-mt-24 text-center leading-snug">
 	L’Annuel remercie ses précieux<br /> <span class="">commanditaires.</span> <br />
 </div>
 
-<div id="commanditaires" class="container mx-auto flex flex-col gap-10">
+<div class="mx-auto flex flex-col gap-[4vh]">
 	{#each tiers as { size, children }}
-		<div class="flex flex-wrap justify-center gap-8">
+		<div class="flex flex-wrap justify-center gap-[3vw]">
 			{#each children as { id, name, logo, i }}
 				<div
 					class={[
-						'relative flex aspect-square items-center justify-center border bg-white p-8',
+						'@container relative flex  aspect-square flex-col items-center justify-between border bg-white ',
 						itemWidths[size - 1]
 					]}
 					style="transform: rotate({rotate_loop[i % rotate_loop.length]}deg);"
 				>
-					<div class="pointer-events-none absolute -top-4 right-0 left-0 flex justify-center">
-						<div class="icon-[bi--pin] text-4xl"></div>
+					<div class="pointer-events-none flex -translate-y-2.5 justify-center">
+						<div class="icon-[bi--pin] text-2xl"></div>
 					</div>
 
-					<img
-						class="max-h-full max-w-full object-contain"
-						src="{PUBLIC_POCKETBASE_URL}/api/files/sponsors/{id}/{logo}"
-						alt={name}
-					/>
+					<div class="relative flex h-full w-full flex-1 items-center justify-center">
+						<img
+							class="max-h-4/5 max-w-4/5 object-contain"
+							src="{PUBLIC_POCKETBASE_URL}/api/files/sponsors/{id}/{logo}"
+							alt={name}
+						/>
+					</div>
 
-					<div class="pointer-events-none absolute right-0 bottom-0 left-0 flex justify-end">
-						<div class="px-3 py-1 text-sm text-muted italic backdrop-blur-xs">
+					<div class="absolute- pointer-events-none right-0 bottom-0 left-0 flex justify-center">
+						<div
+							class="backdrop-blur-xs- px-2 py-1 text-center text-xs leading-tight text-muted italic lg:text-sm"
+						>
 							{name}
 						</div>
 					</div>

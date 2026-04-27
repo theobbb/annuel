@@ -7,9 +7,7 @@
 	import Title from '$lib/ui/components/title.svelte';
 
 	const { data } = $props();
-	const { student } = $derived(data);
-
-	const projects = $derived(student.expand['projects(students)']);
+	const { student, projects } = $derived(data);
 
 	type Social = { name: string; url: string };
 	const socials: Social[] = $derived((student.socials as Social[]) || []);
@@ -20,7 +18,9 @@
 		<div>
 			{student.first_name}
 			{student.last_name}
-			<sup>elle/ la</sup>
+			{#if student.pronouns}
+				<sup>{student.pronouns}</sup>
+			{/if}
 		</div>
 	{/snippet}
 	{#snippet description()}
@@ -51,3 +51,11 @@
 		<!-- <ProjectCard {project} /> -->
 	{/each}
 </div>
+
+<svelte:head>
+	<title
+		>{student.first_name}
+		{student.last_name} — Annuel {page.params.year}
+	</title>
+	<meta name="description" content={student.description} />
+</svelte:head>
