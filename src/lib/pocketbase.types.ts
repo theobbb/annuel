@@ -19,7 +19,6 @@ export enum Collections {
 	ProgramStats = "program_stats",
 	ProgramTypes = "program_types",
 	Programs = "programs",
-	ProjectFiles = "project_files",
 	Projects = "projects",
 	Socials = "socials",
 	Sponsors = "sponsors",
@@ -175,17 +174,6 @@ export type ProgramsRecord = {
 	updated: IsoAutoDateString
 }
 
-export type ProjectFilesRecord = {
-	caption?: string
-	col_span?: number
-	col_start?: number
-	created: IsoAutoDateString
-	file: FileNameString
-	id: string
-	sort_order?: number
-	updated: IsoAutoDateString
-}
-
 export type ProjectsRecord<Tmeta_files = unknown> = {
 	background?: string
 	class?: string
@@ -285,7 +273,6 @@ export type MembersResponse<Texpand = unknown> = Required<MembersRecord> & BaseS
 export type ProgramStatsResponse<Tproject_count = unknown, Tstudent_count = unknown, Texpand = unknown> = Required<ProgramStatsRecord<Tproject_count, Tstudent_count>> & BaseSystemFields<Texpand>
 export type ProgramTypesResponse<Texpand = unknown> = Required<ProgramTypesRecord> & BaseSystemFields<Texpand>
 export type ProgramsResponse<Texpand = unknown> = Required<ProgramsRecord> & BaseSystemFields<Texpand>
-export type ProjectFilesResponse<Texpand = unknown> = Required<ProjectFilesRecord> & BaseSystemFields<Texpand>
 export type ProjectsResponse<Tmeta_files = unknown, Texpand = unknown> = Required<ProjectsRecord<Tmeta_files>> & BaseSystemFields<Texpand>
 export type SocialsResponse<Texpand = unknown> = Required<SocialsRecord> & BaseSystemFields<Texpand>
 export type SponsorsResponse<Texpand = unknown> = Required<SponsorsRecord> & BaseSystemFields<Texpand>
@@ -309,7 +296,6 @@ export type CollectionRecords = {
 	program_stats: ProgramStatsRecord
 	program_types: ProgramTypesRecord
 	programs: ProgramsRecord
-	project_files: ProjectFilesRecord
 	projects: ProjectsRecord
 	socials: SocialsRecord
 	sponsors: SponsorsRecord
@@ -332,7 +318,6 @@ export type CollectionResponses = {
 	program_stats: ProgramStatsResponse
 	program_types: ProgramTypesResponse
 	programs: ProgramsResponse
-	project_files: ProjectFilesResponse
 	projects: ProjectsResponse
 	socials: SocialsResponse
 	sponsors: SponsorsResponse

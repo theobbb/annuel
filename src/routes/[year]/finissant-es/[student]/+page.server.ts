@@ -20,10 +20,12 @@ export async function load({ params }) {
 
 	if (!student) error(404);
 
-	const projects: ProjectsRecord[] = await pocketbase.collection('projects').getFullList({
-		filter: `students ~ "${params.student}" && draft = false`,
-		expand: 'students'
-	});
+	const projects: (ProjectsRecord & { expand: { students: StudentsRecord[] } })[] = await pocketbase
+		.collection('projects')
+		.getFullList({
+			filter: `students ~ "${params.student}" && draft = false`,
+			expand: 'students'
+		});
 
 	// 1. Normalize sort_projects into an array regardless of input type
 	let sortArray: string[] = [];

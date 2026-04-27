@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import ProjectRow from '$lib/components/project-row.svelte';
+	import ProjectRow from '$lib/ui/components/project/project-row.svelte';
 	import Student from '$lib/components/student.svelte';
 	import RecordHeader from '$lib/ui/components/record/record-header.svelte';
 	import { string_to_1_8 } from '$lib/utils/seed';

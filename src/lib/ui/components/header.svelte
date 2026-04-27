@@ -48,18 +48,21 @@
 	]}
 >
 	<div class="col-span-3 row-start-1 md:col-span-2">
-		<a class="hover:underline" href="/{page.params.year}">
-			<span class="max-md:hidden">Annuel de design</span>
-			<span class="md:hidden">
+		<a class="-mx-2 -my-1 px-2 py-1" href="/{page.params.year}">
+			<span class="">Annuel</span>
+
+			<span class="max-sm:hidden- max-[23rem]:hidden">de design</span>
+			<!-- {page.params.year?.slice(-2)} -->
+			<!-- <span class="md:hidden">
 				A.{#if page.params.year}
 					{page.params.year?.slice(-2)}
 				{/if}
-			</span>
+			</span> -->
 		</a>
 	</div>
 	{#if page.params.year}
 		<div
-			class="col-span-7 row-start-1 flex max-xl:justify-end sm:col-span-6 sm:col-start-7 sm:row-start-1 xl:col-span-4 xl:col-start-3"
+			class="col-span-7 row-start-1 flex max-lg:justify-end sm:col-span-6 sm:col-start-7 sm:row-start-1 lg:col-span-4 lg:col-start-3"
 		>
 			<Tabs />
 		</div>

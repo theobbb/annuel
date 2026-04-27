@@ -14,7 +14,7 @@ export async function load({ params }) {
 			.getFullList<MemberRolesRecord>({ sort: 'sort_order', fields: 'id,name' }),
 		pocketbase
 			.collection('sponsors')
-			.getFullList<SponsorsRecord>({ sort: 'sort_order', fields: 'id,name,size,logo' })
+			.getFullList<SponsorsRecord>({ sort: 'sort_order', fields: 'id,name,size,logo,url' })
 	]);
 
 	return { members, member_roles, sponsors };

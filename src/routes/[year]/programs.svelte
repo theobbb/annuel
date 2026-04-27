@@ -37,9 +37,7 @@
 				aria-label="Programme {name}"
 			>
 			</a>
-			<div
-				class="group lg:gap-x-2x lg:pt-1x grid grid-cols-10 gap-1.5 pt-2 pb-5 transition lg:pb-8"
-			>
+			<div class="group lg:gap-x-2x lg:pt-1x grid-10 gap-y-0.5! pt-2 pb-8 transition lg:pb-8">
 				<div class="col-span-8 text-muted transition max-lg:text-base lg:col-span-2">
 					({program_type_map.get(type)?.name})
 				</div>

@@ -1,7 +1,6 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 	import type { ProjectsRecord, StudentsRecord } from '$lib/pocketbase.types';
-	import CollectionFooter from './collection-footer.svelte';
 	import Header from '../header.svelte';
 	import Programs from './programs.svelte';
 	import Views from './views.svelte';
@@ -31,7 +30,7 @@
 
 <div class="mt-16">
 	<div class="">
-		<div class={['flex grid-cols-10 items-center gap-gap py-4 md:grid']}>
+		<div class={['flex grid-cols-10 items-center gap-gap py-3 md:grid']}>
 			<div class="col-span-3">
 				<Views {view} />
 			</div>
@@ -41,4 +40,4 @@
 		</div>
 	</div>
 </div>
-<div>{@render children()}</div>
+<div class="">{@render children()}</div>

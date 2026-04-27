@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import Facecard from '$lib/components/face-card.svelte';
+	import Facecard from '$lib/ui/components/face-card.svelte';
 	import Student from '$lib/components/student.svelte';
 	import type { StudentsRecord } from '$lib/pocketbase.types';
 
@@ -25,7 +25,7 @@
 		>
 			<Facecard {student} />
 
-			<div class="mt-1 leading-5.5 lg:mt-2">
+			<div class="mt-1 leading-tight lg:mt-2">
 				<Student {student} ref={false} />
 			</div>
 		</a>

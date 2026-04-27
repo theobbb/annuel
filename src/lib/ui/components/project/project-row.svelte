@@ -2,7 +2,7 @@
 	import { page } from '$app/state';
 	import type { ProjectsRecord, StudentsRecord } from '$lib/pocketbase.types';
 	import { string_to_1_8 } from '$lib/utils/seed';
-	import Students from './students.svelte';
+	import Students from '../../../components/students.svelte';
 
 	const { project, students }: { project: ProjectsRecord; students: StudentsRecord[] } = $props();
 
@@ -17,12 +17,12 @@
 		aria-label="link to {project.name}"
 	></a>
 	<div class="group/title col-span-full text-balance lg:col-span-4">
-		<div
-			class="pointer-events-none relative block pr-24 leading-tight group-peer-hover/title:underline"
+		<h2
+			class="pointer-events-none relative -mt-1 block leading-tight group-peer-hover/title:underline lg:pr-24"
 		>
 			{project.name}
-		</div>
-		<div class="mt-2 text-muted"><Students {students} /></div>
+		</h2>
+		<div class="mt-2 text-muted md:mt-3.5"><Students {students} /></div>
 	</div>
 
 	<div

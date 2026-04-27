@@ -34,7 +34,11 @@
 <Header></Header>
 <div class="grid-10 mt-16 mb-12 min-h-[60svh] lg:mt-24 lg:mb-16">
 	<div class="col-span-4 lg:col-span-2">
-		<a href={back_href} onclick={on_back} class="flex items-center gap-1">
+		<a
+			href={back_href}
+			onclick={on_back}
+			class="-mx-2 -my-1 flex w-fit items-center gap-1 px-2 py-1"
+		>
 			<div class="icon-[ri--arrow-left-long-line]"></div>
 			Retour
 		</a>
@@ -47,13 +51,16 @@
 		<p class="leading-snug">
 			{@render description()}
 		</p>
+		<div class="col-span-8 col-start-3 mt-16 grid grid-cols-8 gap-gap">
+			{@render children?.()}
+		</div>
 	</div>
 	<div
 		class="relative col-span-6 col-start-5 max-lg:row-start-1 lg:z-200 lg:col-span-2 lg:col-start-9 lg:-mt-32"
 	>
 		{@render aside()}
 	</div>
-	<div class="col-span-8 col-start-3 grid grid-cols-8 gap-gap">
+	<!-- <div class="col-span-8 col-start-3 grid grid-cols-8 gap-gap">
 		{@render children?.()}
-	</div>
+	</div> -->
 </div>

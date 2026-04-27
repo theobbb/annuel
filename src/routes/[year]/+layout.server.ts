@@ -2,11 +2,12 @@ import { error, redirect } from '@sveltejs/kit';
 import { pocketbase } from '$lib/pocketbase';
 import type { ProjectsRecord, StudentsRecord } from '$lib/pocketbase.types';
 import type { ProgramStatsRecord } from '$lib/pocketbase.types';
+import { dev } from '$app/environment';
 
 export async function load({ parent, params }) {
 	const { years } = await parent();
 	const year = years.find((y) => y.id == params.year);
-	if (!year) redirect(307, `/${years[0]?.id}`);
+	if (!dev) if (!year) redirect(307, `/${years[0]?.id}`);
 
 	const [list_projects, list_students, program_stats_arr] = await Promise.all([
 		pocketbase.collection('projects').getList<ProjectsRecord>(1, 0, {

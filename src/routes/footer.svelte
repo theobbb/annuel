@@ -19,7 +19,7 @@
 </script>
 
 <footer
-	class="relative z-200 mt-48 flex flex-col justify-between overflow-hidden border-t bg-background pt-4 pb-4 leading-relaxed md:pb-5"
+	class="relative z-200 -mx-gap mt-48 flex flex-col justify-between overflow-hidden border-t bg-background px-gap pt-4 pb-4 leading-relaxed md:pb-5"
 >
 	<div class="grid-10">
 		<div class="col-span-4 md:col-span-2">
@@ -48,15 +48,22 @@
 			<div class="max-w-12 md:max-w-24"><Uqam /></div>
 		</div>
 		<div class="col-span-full leading-tight text-muted max-md:mt-8 md:col-span-5">
-			<div>Site web par <a href="https://ecartelement.dev/" target="_blank">ecartelement</a></div>
 			<div>
-				Police de caractère
-				<a href="https://www.instagram.com/p/DXeo0_LkTI8" target="_blank"> [EP Programma] </a>
-				par
-				<a href="https://instagram.com/emilepainchaud.qc.ca/" target="_blank">
-					@emilepainchaud.qc.ca
+				Site web fait par <a href="https://ecartelement.dev/" target="_blank">ecartelement</a>
+			</div>
+			<div>
+				Police de caractères :
+				<a href="https://www.instagram.com/p/DXeo0_LkTI8" target="_blank" class="whitespace-nowrap">
+					EP Programma
 				</a>
-				— <a href="https://collectif1440.xyz/" target="_blank">Collectif 1440</a>
+
+				<a
+					href="https://instagram.com/emilepainchaud.qc.ca/"
+					target="_blank"
+					class="whitespace-nowrap"
+				>
+					(Émile Painchaud)
+				</a>
 			</div>
 		</div>
 		<div class="col-span-full leading-tight text-muted max-md:mt-8 md:col-span-5 md:text-right">

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import ProjectCard from '$lib/components/project-card.svelte';
-	import ProjectRow from '$lib/components/project-row.svelte';
+	import ProjectCard from '$lib/ui/components/project/project-card.svelte';
+	import ProjectRow from '$lib/ui/components/project/project-row.svelte';
 	import { shuffle_array } from '$lib/utils/shuffle';
 	import CollectionLayout from '$lib/ui/components/collection/collection-layout.svelte';
 	import { use_seed } from '$lib/store/seed-ctx.svelte.js';
@@ -82,7 +82,7 @@
 </CollectionLayout>
 
 <button
-	class="fixed right-4 bottom-5 z-50 flex cursor-pointer items-center rounded-full border bg-background p-2.5 text-lg shadow-sm transition not-hover:text-muted"
+	class="fixed right-gap bottom-gap z-10 flex cursor-pointer items-center rounded-full border bg-background p-2.5 text-lg shadow-sm transition not-hover:text-muted"
 	title="Mélanger"
 	onclick={() => seed.shuffle()}
 >

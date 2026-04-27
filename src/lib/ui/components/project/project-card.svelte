@@ -4,7 +4,7 @@
 	import ArrowHover from '$lib/ui/components/arrow-hover.svelte';
 	import Thumbnail from '$lib/ui/components/project/thumbnail.svelte';
 
-	import Students from './students.svelte';
+	import Students from '../../../components/students.svelte';
 
 	const { project, students }: { project: ProjectsRecord; students: StudentsRecord[] } = $props();
 	const props_id = $props.id();

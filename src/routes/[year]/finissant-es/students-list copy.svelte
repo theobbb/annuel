@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import Facecard from '$lib/components/face-card.svelte';
+	import Facecard from '$lib/ui/components/face-card.svelte';
 	import type { StudentsRecord } from '$lib/pocketbase.types';
 
 	const { students }: { students: StudentsRecord[] } = $props();

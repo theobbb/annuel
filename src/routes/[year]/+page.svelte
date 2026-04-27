@@ -7,6 +7,8 @@
 	import Header from '$lib/ui/components/header.svelte';
 	import { PUBLIC_POCKETBASE_URL } from '$env/static/public';
 	import Video from '$lib/ui/components/media/video.svelte';
+	import Image from '$lib/ui/components/media/image.svelte';
+	import { dev } from '$app/environment';
 
 	const { data } = $props();
 	const { year } = $derived(data);
@@ -23,15 +25,26 @@
 
 <div class="grid-10 min-h-[calc(100svh-5rem)] pb-1 lg:pt-24">
 	<div
-		class="col-span-4 col-start-4 row-span-2 row-start-1 flex sm:col-span-2 sm:col-start-5 lg:col-span-2 lg:col-start-9"
+		class="col-span-4 col-start-4 row-span-2 row-start-1 flex max-sm:mt-8 sm:col-span-2 sm:col-start-5 lg:col-span-2 lg:col-start-9"
 	>
-		<img
-			class="opacity-0- h-full w-full object-contain"
-			src="{PUBLIC_POCKETBASE_URL}/api/files/years/{page.params.year}/{year.poster}"
-			alt="poster-{page.params.year}"
-		/>
+		<a href="/archives">
+			{#if year.poster}
+				<Image
+					collection="years"
+					record_id={year.id}
+					filename={year.poster}
+					class="h-full w-full object-contain"
+					alt="poster-{year.id}"
+				/>
+			{:else}
+				<div class="aspect-2/3 bg-placeholder"></div>
+			{/if}
+		</a>
 	</div>
-	<div class="col-span-full max-lg:mt-16 lg:col-span-6 lg:col-start-3">
+	<div class="col-span-2 col-start-8 row-span-2 row-start-1 flex items-end md:hidden">
+		<a href="/archives">Archives(+)</a>
+	</div>
+	<div class="col-span-full max-lg:mt-8 lg:col-span-6 lg:col-start-3">
 		<div>
 			<div
 				class="col-span-full -mx-0.5 text-[10vw] leading-[100%] tracking-[-2%] sm:text-[5vw] lg:text-[3.3vw]"
@@ -42,9 +55,9 @@
 				<br />
 				<span class="inline-block text-right max-sm:w-full">de l’École de design</span>
 				<br class="sm:hidden" />
-				<span class="inline-block text-right max-sm:w-full">de l'UQAM</span>
+				<span class="inline-block text-right max-sm:w-full">de l’UQAM</span>
 			</div>
-			<div class="mt-8 grid gap-gap leading-snug sm:grid-cols-2">
+			<div class="mt-8 grid gap-gap leading-tight sm:grid-cols-2">
 				<div class="">Vernissage le 06 mai 2026 <br />à partir de 18h</div>
 				<div>Exposition du 07 au 20 mai 2026 <br /> Entrée libre, de 12h à 18h</div>
 			</div>
@@ -55,9 +68,9 @@
 
 	<div class="col-span-3 col-start-6 row-start-2 flex"></div>
 	<div
-		class="col-span-full -mx-gap mt-8 flex aspect-video flex-1 items-center lg:col-span-6 lg:col-start-3"
+		class="col-span-full flex aspect-video flex-1 items-center max-lg:-mx-gap md:mt-8 lg:col-span-6 lg:col-start-3"
 	>
-		<Video autoplay={false} playback_id="14W025RvjQdhvGaDyE4jHmKtWzQcIyA5PJNtRl7dLbmA" />
+		<Video autoplay={!dev} playback_id="14W025RvjQdhvGaDyE4jHmKtWzQcIyA5PJNtRl7dLbmA" />
 	</div>
 </div>
 
@@ -97,10 +110,10 @@
 	@emma.chevillotversini
 </p>
 
-<div class="mt-48 mb-64">
+<div class="mt-24 mb-32 md:mt-48 md:mb-64">
 	<Programs />
 </div>
-<div class="mb-48"><Sponsors /></div>
+<div class="mb-36 md:mb-48"><Sponsors /></div>
 <div><Members /></div>
 
 <svelte:head>

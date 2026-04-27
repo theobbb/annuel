@@ -1,10 +1,8 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import Facecard from '$lib/components/face-card.svelte';
-	import ProjectRow from '$lib/components/project-row.svelte';
-	import Header from '$lib/ui/components/header.svelte';
+	import Facecard from '$lib/ui/components/face-card.svelte';
+	import ProjectRow from '$lib/ui/components/project/project-row.svelte';
 	import RecordHeader from '$lib/ui/components/record/record-header.svelte';
-	import Title from '$lib/ui/components/title.svelte';
 
 	const { data } = $props();
 	const { student, projects } = $derived(data);
@@ -27,13 +25,16 @@
 		{student.description}
 	{/snippet}
 	{#snippet aside()}
-		<div class=" mb-16">
+		<div class="mb-16">
 			<Facecard {student} />
 		</div>
 	{/snippet}
-	<div class="mt-4">
+	<div class="leading-relaxed whitespace-nowrap">
+		{#if student.email}
+			<div><a href="mailto:{student.email}" target="_blank">Courriel</a></div>
+		{/if}
 		{#each socials as social}
-			<a href={social.url} target="_blank">{social.name}</a>
+			<div><a href={social.url} target="_blank">{social.name}</a></div>
 			<!-- <div>Instagram</div>
 			<div>Behance</div>
 			<div>Youtube</div> -->
