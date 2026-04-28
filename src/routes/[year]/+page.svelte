@@ -127,8 +127,13 @@
 
 <style>
 	p {
+		column-fill: balance;
+		text-wrap: balance;
+		break-inside: avoid;
+	}
+	/* p {
 		text-align: justify;
 		text-justify: inter-word;
-		hyphens: auto; /* Breaks words to fill gaps naturally */
-	}
+		hyphens: auto;
+	} */
 </style>

@@ -44,33 +44,39 @@
 <div class="mx-auto flex flex-col gap-[6vw] lg:gap-[3vw]">
 	{#each tiers as { size, children }}
 		<div class="flex flex-wrap justify-center gap-[6vw] lg:gap-[3vw]">
-			{#each children as child}
+			{#each children as child, i}
 				{#if child.url}
-					<a class="contents" href={child.url} target="_blank">{@render content(child, size)}</a>
+					<a
+						href={child.url}
+						target="_blank"
+						class="no-hover link-shake block {itemWidths[size - 1]}"
+						style="transform: rotate({rotate_loop[i % rotate_loop.length]}deg);"
+					>
+						<div class="origin-top">{@render content(child)}</div>
+					</a>
 				{:else}
-					{@render content(child, size)}
+					<div
+						class={itemWidths[size - 1]}
+						style="transform: rotate({rotate_loop[i % rotate_loop.length]}deg);"
+					>
+						{@render content(child)}
+					</div>
 				{/if}
 			{/each}
 		</div>
 	{/each}
 </div>
 
-{#snippet content(
-	{
-		id,
-		name,
-		logo,
-		i
-	}: SponsorsRecord & {
-		i: number;
-	},
-	size: number
-)}
-	<div
-		class={['@container relative aspect-square border bg-white ', itemWidths[size - 1]]}
-		style="transform: rotate({rotate_loop[i % rotate_loop.length]}deg);"
-	>
-		<div class="relative flex h-full w-full flex-col items-center justify-between">
+{#snippet content({
+	id,
+	name,
+	logo,
+	i
+}: SponsorsRecord & {
+	i: number;
+})}
+	<div class={[' @container relative aspect-square border bg-white ']}>
+		<div class=" relative flex h-full w-full flex-col items-center justify-between">
 			<div class="pointer-events-none flex -translate-y-2.5 justify-center">
 				<div class="icon-[bi--pin] text-2xl"></div>
 			</div>

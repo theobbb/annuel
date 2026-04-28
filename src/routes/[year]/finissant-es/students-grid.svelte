@@ -23,7 +23,7 @@
 			href="/{page.params.year}/finissant-es/{student.id}"
 			onmouseenter={() => (hovered = student)}
 		>
-			<Facecard {student} />
+			<div class="relative aspect-2/3 w-full"><Facecard {student} link={false} /></div>
 
 			<div class="mt-1 leading-tight lg:mt-2">
 				<Student {student} ref={false} />

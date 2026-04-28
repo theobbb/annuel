@@ -28,7 +28,7 @@
 				<div><a class="" href={url} target="_blank">{name}</a></div>
 			{/each}
 		</div>
-		<div class="col-span-6 pb-6 max-md:mb-16 md:col-span-2">
+		<div class="col-span-6 pb-16 max-md:mb-16 md:col-span-2">
 			{#each links as { name, href }}
 				<div>
 					<a {href}>{name}</a>
@@ -47,13 +47,21 @@
 		<div class="col-span-2 flex justify-end md:col-span-1">
 			<div class="max-w-12 md:max-w-24"><Uqam /></div>
 		</div>
-		<div class="col-span-full leading-tight text-muted max-md:mt-8 md:col-span-5">
+		<div
+			class="col-span-full text-sm leading-tight text-muted max-md:mt-8 md:col-span-5 lg:text-base"
+		>
 			<div>
-				Site web fait par <a href="https://ecartelement.dev/" target="_blank">ecartelement</a>
+				Site web fait par <a href="https://ecartelement.dev/" class="underline" target="_blank"
+					>ecartelement</a
+				>
 			</div>
 			<div>
 				Police de caractères :
-				<a href="https://www.instagram.com/p/DXeo0_LkTI8" target="_blank" class="whitespace-nowrap">
+				<a
+					href="https://www.instagram.com/p/DXeo0_LkTI8"
+					target="_blank"
+					class="whitespace-nowrap underline"
+				>
 					EP Programma
 				</a>
 
@@ -62,11 +70,13 @@
 					target="_blank"
 					class="whitespace-nowrap"
 				>
-					(Émile Painchaud)
+					(<span class="underline">Émile Painchaud</span>)
 				</a>
 			</div>
 		</div>
-		<div class="col-span-full leading-tight text-muted max-md:mt-8 md:col-span-5 md:text-right">
+		<div
+			class="col-span-full text-sm leading-tight text-muted max-md:mt-8 md:col-span-5 md:text-right lg:text-base"
+		>
 			©{page.params.year} Annuel de design — Tous droits réservés
 			<br />
 			Les œuvres présentées demeurent la propriété de leurs auteur.rice.s respectif.ve.s

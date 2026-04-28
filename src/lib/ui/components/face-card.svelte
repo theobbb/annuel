@@ -5,7 +5,7 @@
 	import ProgramCode from '$lib/ui/components/program-code.svelte';
 	import Image from './media/image.svelte';
 
-	const { student }: { student: StudentsRecord } = $props();
+	const { student, link = true }: { student: StudentsRecord; link?: boolean } = $props();
 
 	const program: ProgramsRecord | null | undefined = $derived(
 		student ? page.data.program_map.get(student.program || '') : null
@@ -13,8 +13,10 @@
 </script>
 
 <!-- <div class=" aspect-2/3 bg-placeholder"></div> -->
+
 {#if student.headshot}
-	<a
+	<svelte:element
+		this={link ? 'a' : 'div'}
 		class="group group/card @container relative flex overflow-hidden"
 		href="/{page.params.year}/finissant-es/{student.id}"
 	>
@@ -34,5 +36,5 @@
 		{#if program}
 			<ProgramCode {program} />
 		{/if}
-	</a>
+	</svelte:element>
 {/if}
