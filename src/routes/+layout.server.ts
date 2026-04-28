@@ -12,7 +12,7 @@ export async function load() {
 	const [years, programs, program_types, socials, globals] = await Promise.all([
 		pocketbase.collection('years').getFullList<YearsRecord>({
 			sort: '-id',
-			filter: `${dev ? '' : '&& draft = false'}`,
+			filter: dev ? '' : 'draft = false',
 			fields: 'id,poster,video,accent_color'
 		}),
 		pocketbase
