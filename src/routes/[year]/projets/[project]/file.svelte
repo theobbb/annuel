@@ -59,7 +59,7 @@
 	div {
 		/* Mobile First: default to 2 columns or custom span */
 		/* We use span 1 as a fallback, or span the calculated mobileSpan */
-		grid-column: var(--desktop-start, auto) / span var(--desktop-span, 1);
+		grid-column: span var(--mobile-span) / span var(--mobile-span);
 	}
 
 	@media (min-width: 768px) {

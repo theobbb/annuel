@@ -37,5 +37,5 @@
 			</div>
 		</div>
 	</div>
-	<div class="mt-1 text-muted lg:mt-1.5"><Students {students} /></div>
+	<div class="mt-1.5 text-muted lg:mt-1.5"><Students {students} /></div>
 </div>

@@ -26,7 +26,16 @@
 	);
 </script>
 
-<div class="mb-gap">Programmes <sup>{programs.length}</sup></div>
+<div class="mb-gap flex items-center justify-between gap-2">
+	<div>Programmes <sup>{programs.length}</sup></div>
+	<a
+		href={url_query_param(from_url || `/${page.params.year}/projets`, { programme: null })}
+		class="-mx-2 -my-1 flex w-fit items-center gap-1.5 px-2 py-1 lg:hidden"
+	>
+		<span>Tous les programmes</span>
+		<div class="icon-[ri--arrow-right-long-line] translate-y-px"></div>
+	</a>
+</div>
 <div>
 	{#each sorted_programs as { id, name, code, description, type }}
 		{@const stats = program_stats.get(id)}

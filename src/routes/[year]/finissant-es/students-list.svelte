@@ -1,16 +1,28 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import Facecard from '$lib/ui/components/face-card.svelte';
 	import type { StudentsRecord } from '$lib/pocketbase.types';
+	import FaceCard from '$lib/ui/components/face-card.svelte';
 
 	const { students }: { students: StudentsRecord[] } = $props();
 
 	const cols = $derived.by(() => {
 		const col_1 = [];
 		const col_2 = [];
-		for (const student of students) {
-			if (student.last_name[0].toUpperCase() <= 'M') col_1.push(student);
-			else col_2.push(student);
+
+		// Sort the students properly first to handle lowercase and accents
+		const sortedStudents = [...students].sort((a, b) =>
+			a.last_name.localeCompare(b.last_name, 'fr', { sensitivity: 'base' })
+		);
+
+		for (const student of sortedStudents) {
+			// Use toUpperCase() here so 'd' is treated as 'D'
+			const firstChar = student.last_name[0].toUpperCase();
+
+			if (firstChar <= 'M') {
+				col_1.push(student);
+			} else {
+				col_2.push(student);
+			}
 		}
 		return [col_1, col_2];
 	});
@@ -25,7 +37,7 @@
 				{#each col as student, i}
 					<div class="text-right">
 						{#if student.last_name[0] != col[i - 1]?.last_name[0]}
-							<div>{student.last_name[0]}</div>
+							<div>{student.last_name[0].toUpperCase()}</div>
 						{/if}
 					</div>
 					<div class="col-span-6 flex lg:col-span-2">
@@ -44,7 +56,7 @@
 	<div class="relative col-span-2 col-start-9 row-start-1 max-sm:hidden">
 		<div class="sticky top-8">
 			{#if hovered}
-				<Facecard student={hovered} />
+				<FaceCard student={hovered} />
 			{/if}
 		</div>
 	</div>

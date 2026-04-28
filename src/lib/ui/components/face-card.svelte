@@ -8,17 +8,17 @@
 	const { student }: { student: StudentsRecord } = $props();
 
 	const program: ProgramsRecord | null | undefined = $derived(
-		student ? page.data.program_map.get(student.program) : null
+		student ? page.data.program_map.get(student.program || '') : null
 	);
 </script>
 
-<div class=" aspect-2/3 bg-placeholder"></div>
+<!-- <div class=" aspect-2/3 bg-placeholder"></div> -->
 {#if student.headshot}
 	<a
 		class="group group/card @container relative flex overflow-hidden"
 		href="/{page.params.year}/finissant-es/{student.id}"
 	>
-		<div class="rounded- absolute inset-0 border bg-placeholder">
+		<div class="rounded- inset-0 border bg-placeholder">
 			<Image collection="students" record_id={student.id} filename={student.headshot} />
 
 			<!-- <img

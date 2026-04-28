@@ -8,14 +8,20 @@
 </script>
 
 <Header>
-	<div class="col-span-2 col-start-9 text-right">
-		<a href={url_query_param(from_url || `/${page.params.year}/projets`, { programme: null })}>
-			Tous les programmes
+	<div class="col-span-2 col-start-9 flex justify-end text-right max-lg:hidden">
+		<a
+			href={url_query_param(from_url || `/${page.params.year}/projets`, { programme: null })}
+			class="-mx-2 -my-1 flex w-fit items-center gap-2 px-2 py-1"
+		>
+			<span>Tous les programmes</span>
+			<div class="icon-[ri--arrow-right-long-line] translate-y-px"></div>
 		</a>
 	</div>
 </Header>
 
-<div class="mt-24"><Programs {from_url} /></div>
+<div class="mt-20">
+	<Programs {from_url} />
+</div>
 
 <svelte:head>
 	<title>Annuel {page.params.year} — Programmes</title>

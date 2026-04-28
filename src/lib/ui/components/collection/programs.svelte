@@ -6,7 +6,9 @@
 	const current_program = $derived(program_map.get(page.url.searchParams.get('programme') || ''));
 </script>
 
-<div class="flex flex-col-reverse items-end gap-2 md:flex-row md:items-center md:gap-gap">
+<div
+	class="flex-col-reverse- flex items-end justify-center gap-2 md:flex-row md:items-center md:gap-gap"
+>
 	<a
 		class={[
 			'-m-2 flex items-center gap-1 p-2 whitespace-nowrap  transition group-hover:border-current'

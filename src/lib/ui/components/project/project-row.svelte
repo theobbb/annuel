@@ -30,7 +30,7 @@
 	</div>
 
 	<div
-		class="max-lg:col-start-2- lg:gap-2x col-span-full grid grid-cols-3 gap-2 sm:grid-cols-4 sm:gap-4 lg:col-span-6"
+		class="lg:gap-2x col-span-full grid grid-cols-3 gap-2 max-lg:my-gap sm:grid-cols-4 sm:gap-4 lg:col-span-6"
 	>
 		{#each files as file, i}
 			<div class="nth-[n+4]:max-sm:hidden">
