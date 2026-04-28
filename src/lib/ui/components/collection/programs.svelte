@@ -18,7 +18,6 @@
 		{:else}
 			Tous les programmes
 		{/if}]
-		<!-- <div class="icon-[ri--expand-up-down-line]"></div> -->
 	</a>
 
 	<a href="/archives?from={encodeURIComponent(page.url.href)}">

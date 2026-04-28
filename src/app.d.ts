@@ -13,6 +13,7 @@ declare global {
 		// interface Error {}
 		interface Locals {
 			background: string;
+			foreground_white: boolean;
 		}
 		interface PageData {
 			programs: ProgramsRecord[];

@@ -1,5 +1,5 @@
 import { pocketbase } from '$lib/pocketbase';
-import type { ProjectFilesRecord, ProjectsRecord, StudentsRecord } from '$lib/pocketbase.types';
+import type { ProjectsRecord, StudentsRecord } from '$lib/pocketbase.types';
 import { error } from '@sveltejs/kit';
 
 export type ProjectsRecordExpanded = ProjectsRecord & {
@@ -27,5 +27,6 @@ export async function load({ params, locals }) {
 
 	if (!project) error(404);
 	if (project.background) locals.background = project.background;
+	locals.foreground_white = Boolean(project.foreground_white);
 	return { project };
 }

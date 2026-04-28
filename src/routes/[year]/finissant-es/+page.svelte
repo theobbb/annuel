@@ -16,12 +16,6 @@
 
 	const url_search = $derived(page.url.searchParams.get('search') ?? '');
 
-	// const filtered_students = $derived(
-	// 	url_search_program
-	// 		? students.filter((student) => student.program == url_search_program)
-	// 		: students
-	// );
-
 	const filtered_students = $derived.by(() => {
 		const program = url_program;
 		const query = url_search.toLowerCase().trim();

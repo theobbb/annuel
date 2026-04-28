@@ -8,14 +8,13 @@
 		collection,
 		class: cx = '',
 		thumbnail,
-		sizes_attr = '(min-width: 768px) 50vw, 100vw', // Default fallback
+
 		...props
 	}: {
 		record_id: string;
 		filename: string;
 		collection: string;
 		thumbnail?: boolean;
-		sizes_attr?: string; // Add this to your props
 	} & HTMLImgAttributes = $props();
 
 	let loaded = $state(false);
@@ -24,23 +23,18 @@
 		`${PUBLIC_POCKETBASE_URL}/api/files/${collection}/${record_id}/${filename}?format=webp`
 	);
 
-	// Renamed to image_sizes to avoid confusing it with the HTML sizes attribute
-	const image_sizes = $derived(
+	const sizes = $derived(
 		thumbnail
-			? {
-					400: '400x500',
-					800: '800x1000'
-				}
+			? { 300: '300x375', 500: '500x625' }
 			: {
-					600: '600x0',
-					1200: '1200x0',
-					1920: '1920x0'
+					400: '400x0',
+					800: '800x0',
+					1200: '1200x0'
 				}
 	);
-	// pocketbase sizes : 400x500,800x1000,600x0,1200x0,1920x0
 
 	const srcset = $derived(
-		Object.entries(image_sizes)
+		Object.entries(sizes)
 			.map(([width, thumbParam]) => `${baseUrl}&thumb=${thumbParam} ${width}w`)
 			.join(', ')
 	);
@@ -48,10 +42,10 @@
 
 <img
 	{srcset}
-	sizes={sizes_attr}
+	sizes="(min-width: 1024px) 60vw, 100vw"
 	loading="lazy"
 	alt={props.alt || 'Media content'}
-	class={[cx, 'w-full object-cover', loaded ? '' : 'opacity-0', 'ease transition duration-400']}
+	class={[cx, loaded ? '' : 'opacity-0', 'ease transition duration-400']}
 	onload={() => (loaded = true)}
 	{...props}
 />

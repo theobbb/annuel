@@ -14,9 +14,7 @@ export type Student = StudentsRecord & {
 };
 
 export async function load({ params }) {
-	const student: StudentsRecord = await pocketbase
-		.collection('students')
-		.getOne(params.student, { expand: 'projects(students).students' });
+	const student: StudentsRecord = await pocketbase.collection('students').getOne(params.student);
 
 	if (!student) error(404);
 

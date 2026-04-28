@@ -51,7 +51,7 @@
 		<p class="leading-snug">
 			{@render description()}
 		</p>
-		<div class="col-span-8 col-start-3 mt-16 grid grid-cols-8 gap-gap">
+		<div class="col-span-8 col-start-3 mt-16 grid grid-cols-4 gap-gap">
 			{@render children?.()}
 		</div>
 	</div>

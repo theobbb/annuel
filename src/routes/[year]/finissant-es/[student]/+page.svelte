@@ -29,7 +29,7 @@
 			<Facecard {student} />
 		</div>
 	{/snippet}
-	<div class="leading-relaxed whitespace-nowrap">
+	<div class="leading-snug whitespace-nowrap">
 		{#if student.email}
 			<div><a href="mailto:{student.email}" target="_blank">Courriel</a></div>
 		{/if}

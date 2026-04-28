@@ -23,7 +23,13 @@
 
 <div class="aspect-4/5 w-full bg-placeholder">
 	{#if filename}
-		<Image record_id={project.id} {filename} collection="projects" thumbnail class="" />
+		<Image
+			record_id={project.id}
+			{filename}
+			collection="projects"
+			thumbnail
+			class="h-full w-full object-cover"
+		/>
 	{:else}
 		<div class=""></div>
 	{/if}

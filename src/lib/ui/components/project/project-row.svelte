@@ -1,12 +1,16 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import type { ProjectsRecord, StudentsRecord } from '$lib/pocketbase.types';
+	import { get_media_type } from '$lib/utils/media-type';
 	import { string_to_1_8 } from '$lib/utils/seed';
 	import Students from '../../../components/students.svelte';
+	import Image from '../media/image.svelte';
 
 	const { project, students }: { project: ProjectsRecord; students: StudentsRecord[] } = $props();
 
-	const n_files = $derived(string_to_1_8(project.name));
+	// const n_files = $derived(string_to_1_8(project.name));
+
+	const files = $derived(project.files?.filter((f) => get_media_type(f) == 'image')?.slice(0, 4));
 </script>
 
 <!-- <hr /> -->
@@ -28,10 +32,17 @@
 	<div
 		class="max-lg:col-start-2- lg:gap-2x col-span-full grid grid-cols-3 gap-2 sm:grid-cols-4 sm:gap-4 lg:col-span-6"
 	>
-		{#each { length: Math.min(4, n_files) } as file, i}
+		{#each files as file, i}
 			<div class="nth-[n+4]:max-sm:hidden">
-				<div class="aspect-4/5 bg-placeholder"></div>
-				<!-- <Image id={project.id} index={i} /> -->
+				<div class="aspect-4/5 bg-placeholder">
+					<Image
+						class="h-full w-full object-cover"
+						record_id={project.id}
+						filename={file}
+						collection="projects"
+						thumbnail
+					/>
+				</div>
 			</div>
 		{/each}
 	</div>

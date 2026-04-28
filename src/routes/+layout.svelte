@@ -24,14 +24,14 @@
 	init_seed(data.seed);
 </script>
 
-<div
-	class="mx-gap grid min-h-svh grid-rows-[1fr_auto] text-base leading-normal font-[370] antialiased lg:text-lg"
->
-	<div>
-		<!-- <div class="h-[4000px]"></div> -->
-		{@render children()}
+<div class="mx-gap text-base leading-normal antialiased lg:text-lg">
+	<div class="mx-auto grid min-h-svh w-full max-w-480 grid-rows-[1fr_auto]">
+		<div class="">
+			<!-- <div class="h-[4000px]"></div> -->
+			{@render children()}
+		</div>
+		<Footer />
 	</div>
-	<Footer />
 </div>
 
 <!-- <svelte:head>

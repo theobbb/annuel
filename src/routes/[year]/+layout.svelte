@@ -1,12 +1,12 @@
 <script lang="ts">
-	import Banner from '$lib/ui/components/banner.svelte';
-
 	const { data, children } = $props();
+
+	const accent_color = $derived(data.year?.accent_color || 'black');
 
 	const favicon_svg = $derived(
 		`
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-            <rect width="32" height="32" fill="${data.year.accent_color}" />
+            <rect width="32" height="32" fill="${accent_color}" />
         </svg>
     `.trim()
 	);
@@ -15,7 +15,7 @@
 
 	const accent_style = $derived(`
         :root {
-            --color-accent: ${data.year.accent_color};
+            --color-accent: ${accent_color};
         }
     `);
 </script>
