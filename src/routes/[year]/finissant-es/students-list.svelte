@@ -36,7 +36,7 @@
 			<div class="grid grid-cols-7 gap-x-gap lg:grid-cols-3">
 				{#each col as student, i}
 					<div class="text-right">
-						{#if student.last_name[0] != col[i - 1]?.last_name[0]}
+						{#if student.last_name[0].toUpperCase() != col[i - 1]?.last_name[0].toUpperCase()}
 							<div>{student.last_name[0].toUpperCase()}</div>
 						{/if}
 					</div>
