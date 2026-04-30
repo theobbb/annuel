@@ -54,10 +54,8 @@
 		</div>
 	{/each}
 	<div class="relative col-span-2 col-start-9 row-start-1 max-sm:hidden">
-		<div class="sticky top-8">
-			{#if hovered}
-				<FaceCard student={hovered} />
-			{/if}
+		<div class="sticky top-18">
+			<FaceCard student={hovered} />
 		</div>
 	</div>
 </div>

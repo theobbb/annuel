@@ -82,7 +82,7 @@
 </CollectionLayout>
 
 <button
-	class="fixed right-gap bottom-gap z-10 flex cursor-pointer items-center rounded-full border bg-background p-2.5 text-lg shadow-sm transition not-hover:text-muted"
+	class="fixed right-gap bottom-gap z-10 flex cursor-pointer items-center rounded-full border bg-background p-2 text-base transition not-hover:text-muted"
 	title="Mélanger"
 	onclick={() => seed.shuffle()}
 >

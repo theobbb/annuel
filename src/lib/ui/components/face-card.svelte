@@ -5,41 +5,46 @@
 	import ProgramCode from '$lib/ui/components/program-code.svelte';
 	import Image from './media/image.svelte';
 
-	const { student, link = true }: { student: StudentsRecord; link?: boolean } = $props();
+	const { student, link = true }: { student?: StudentsRecord | null | undefined; link?: boolean } =
+		$props();
 
 	const program: ProgramsRecord | null | undefined = $derived(
 		student ? page.data.program_map.get(student.program || '') : null
 	);
+
+	const year = $derived(page.data.year);
 </script>
 
 <!-- <div class=" aspect-2/3 bg-placeholder"></div> -->
 
-{#if student.headshot}
-	<svelte:element
-		this={link ? 'a' : 'div'}
-		class="group group/card @container relative flex overflow-hidden"
-		href="/{page.params.year}/finissant-es/{student.id}"
-	>
-		<div class="rounded- inset-0 bg-placeholder">
-			<Image
-				collection="students"
-				record_id={student.id}
-				filename={student.headshot}
-				sizes={page.params.student ? '800x0' : '400x0'}
-			/>
+<div class="group group/card @container relative flex overflow-hidden">
+	<div class="rounded- inset-0 bg-placeholder">
+		<Image
+			collection={student?.headshot ? 'students' : 'years'}
+			record_id={student?.headshot ? student.id : year?.id}
+			filename={student?.headshot ? student.headshot : year?.wall}
+			sizes={page.params.student ? '800x0' : '400x0'}
+			reveal
+		/>
 
-			<!-- <img
+		<!-- <img
 			src="/temp/head.png"
 			class="transition- group-hover:scale-2000- h-full w-full object-cover duration-50000"
 		/> -->
-			<ArrowHover />
-			<!-- <div
+		<ArrowHover />
+		<!-- <div
 			class="absolute inset-0 icon-[ri--user-fill] h-full w-full translate-y-1/6 scale-130"
 		></div> -->
-		</div>
+	</div>
+	{#if link}
+		<a
+			href="/{page.params.year}/finissant-es/{student?.id}"
+			class="absolute inset-0"
+			aria-label="page {student?.first_name} {student?.last_name}"
+		></a>
+	{/if}
 
-		{#if program}
-			<ProgramCode {program} />
-		{/if}
-	</svelte:element>
-{/if}
+	{#if program}
+		<ProgramCode {program} />
+	{/if}
+</div>

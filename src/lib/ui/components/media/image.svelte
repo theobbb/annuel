@@ -7,6 +7,7 @@
 		filename,
 		collection,
 		class: cx = '',
+		reveal = false,
 		// These are now required or have sensible empty defaults
 		sizes,
 		sizes_attr = '100vw',
@@ -15,6 +16,7 @@
 		record_id: string;
 		filename: string;
 		collection: string;
+		reveal?: boolean;
 		sizes: string;
 		sizes_attr?: string;
 	} & HTMLImgAttributes = $props();
@@ -67,8 +69,9 @@
 	alt={props.alt || 'Media content'}
 	class={[
 		cx,
-		'w-full object-cover transition-opacity duration-400',
-		loaded ? 'opacity-100' : 'opacity-0'
+		'w-full object-cover transition duration-400',
+		loaded ? 'opacity-100' : 'opacity-0',
+		!loaded && reveal && 'translate-y-2 scale-105 opacity-0'
 	]}
 	onload={() => (loaded = true)}
 	{...props}
