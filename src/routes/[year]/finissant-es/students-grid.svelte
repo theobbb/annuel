@@ -10,7 +10,10 @@
 <div class="grid grid-cols-3 gap-4 gap-y-6 md:grid-cols-5 lg:gap-gap lg:gap-y-12 xl:grid-cols-7">
 	{#each students as student, i}
 		<div class="">
-			<a class="relative aspect-2/3 w-full" href="/{page.params.year}/finissant-es/{student.id}">
+			<a
+				class="relative block aspect-2/3 w-full bg-placeholder"
+				href="/{page.params.year}/finissant-es/{student.id}"
+			>
 				<Facecard {student} link={false} />
 			</a>
 
