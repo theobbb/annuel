@@ -49,17 +49,12 @@
 		</div>
 		<div class="col-span-full leading-snug text-muted max-md:mt-8 md:col-span-5">
 			<div>
-				Site web fait par <a href="https://ecartelement.dev/" class="underline" target="_blank"
-					>ecartelement</a
-				>
+				Site web fait par
+				<a href="https://ecartelement.dev/" class="" target="_blank">ecartelement </a>
 			</div>
 			<div>
 				Police de caractères :
-				<a
-					href="https://www.instagram.com/p/DXeo0_LkTI8"
-					target="_blank"
-					class="whitespace-nowrap underline"
-				>
+				<a href="https://www.instagram.com/p/DXeo0_LkTI8" target="_blank" class="whitespace-nowrap">
 					EP Programma
 				</a>
 
@@ -68,7 +63,7 @@
 					target="_blank"
 					class="whitespace-nowrap"
 				>
-					(<span class="underline">Émile Painchaud</span>)
+					(<span class="">Émile Painchaud</span>)
 				</a>
 			</div>
 		</div>

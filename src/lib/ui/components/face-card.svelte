@@ -20,12 +20,12 @@
 		class="group group/card @container relative flex overflow-hidden"
 		href="/{page.params.year}/finissant-es/{student.id}"
 	>
-		<div class="rounded- inset-0 border bg-placeholder">
+		<div class="rounded- inset-0 bg-placeholder">
 			<Image
 				collection="students"
 				record_id={student.id}
 				filename={student.headshot}
-				sizes="400x0"
+				sizes={page.params.student ? '800x0' : '400x0'}
 			/>
 
 			<!-- <img
