@@ -21,7 +21,12 @@
 		href="/{page.params.year}/finissant-es/{student.id}"
 	>
 		<div class="rounded- inset-0 border bg-placeholder">
-			<Image collection="students" record_id={student.id} filename={student.headshot} />
+			<Image
+				collection="students"
+				record_id={student.id}
+				filename={student.headshot}
+				sizes="400x0"
+			/>
 
 			<!-- <img
 			src="/temp/head.png"

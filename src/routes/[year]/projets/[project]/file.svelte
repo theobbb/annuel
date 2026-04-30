@@ -46,8 +46,9 @@
 			collection="projects"
 			filename={file}
 			record_id={project.id}
-			{sizes_attr}
 			class="w-full"
+			{sizes_attr}
+			sizes="600x0,1200x0,1920x0"
 		/>
 	{/if}
 	{#if meta.caption}

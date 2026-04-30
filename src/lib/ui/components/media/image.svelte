@@ -7,15 +7,16 @@
 		filename,
 		collection,
 		class: cx = '',
-		thumbnail,
-		sizes_attr = '(min-width: 768px) 50vw, 100vw', // Default fallback
+		// These are now required or have sensible empty defaults
+		sizes,
+		sizes_attr = '100vw',
 		...props
 	}: {
 		record_id: string;
 		filename: string;
 		collection: string;
-		thumbnail?: boolean;
-		sizes_attr?: string; // Add this to your props
+		sizes: string;
+		sizes_attr?: string;
 	} & HTMLImgAttributes = $props();
 
 	let loaded = $state(false);
@@ -24,34 +25,51 @@
 		`${PUBLIC_POCKETBASE_URL}/api/files/${collection}/${record_id}/${filename}?format=webp`
 	);
 
-	// Renamed to image_sizes to avoid confusing it with the HTML sizes attribute
-	const image_sizes = $derived(
-		thumbnail
-			? {
-					400: '400x500',
-					800: '800x1000'
+	const screens: Record<string, string> = {
+		'@sm': '(min-width: 640px)',
+		'@md': '(min-width: 768px)',
+		'@lg': '(min-width: 1024px)',
+		'@xl': '(min-width: 1280px)',
+		'@2xl': '(min-width: 1536px)'
+	};
+
+	const parsed_sizes = $derived(
+		sizes_attr
+			.split(',')
+			.map((part) => {
+				const trimmed = part.trim();
+				// Find the @token (e.g., @lg)
+				const match = trimmed.match(/^(@\w+)\s+(.+)$/);
+
+				if (match && screens[match[1]]) {
+					return `${screens[match[1]]} ${match[2]}`;
 				}
-			: {
-					600: '600x0',
-					1200: '1200x0',
-					1920: '1920x0'
-				}
+				return trimmed; // Return as-is if no token found (the default case)
+			})
+			.join(', ')
 	);
-	// pocketbase sizes : 400x500,800x1000,600x0,1200x0,1920x0
 
 	const srcset = $derived(
-		Object.entries(image_sizes)
-			.map(([width, thumbParam]) => `${baseUrl}&thumb=${thumbParam} ${width}w`)
+		sizes
+			.split(',')
+			.map((thumb) => {
+				const width = thumb.trim().split('x')[0];
+				return `${baseUrl}&thumb=${thumb.trim()} ${width}w`;
+			})
 			.join(', ')
 	);
 </script>
 
 <img
 	{srcset}
-	sizes={sizes_attr}
+	sizes={parsed_sizes}
 	loading="lazy"
 	alt={props.alt || 'Media content'}
-	class={[cx, 'w-full object-cover', loaded ? '' : 'opacity-0', 'ease transition duration-400']}
+	class={[
+		cx,
+		'w-full object-cover transition-opacity duration-400',
+		loaded ? 'opacity-100' : 'opacity-0'
+	]}
 	onload={() => (loaded = true)}
 	{...props}
 />

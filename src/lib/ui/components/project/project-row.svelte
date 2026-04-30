@@ -30,7 +30,7 @@
 	</div>
 
 	<div
-		class="lg:gap-2x col-span-full grid grid-cols-3 gap-2 max-lg:my-gap sm:grid-cols-4 sm:gap-4 lg:col-span-6"
+		class="col-span-full grid grid-cols-3 gap-2 max-lg:my-gap sm:grid-cols-4 sm:gap-4 lg:col-span-6"
 	>
 		{#each files as file, i}
 			<div class="nth-[n+4]:max-sm:hidden">
@@ -40,7 +40,8 @@
 						record_id={project.id}
 						filename={file}
 						collection="projects"
-						thumbnail
+						sizes="400x500,800x1000"
+						sizes_attr="@sm 15vw, 30vw"
 					/>
 				</div>
 			</div>

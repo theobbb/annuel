@@ -2,12 +2,10 @@
 	import { page } from '$app/state';
 	import type { ProjectsRecord, StudentsRecord } from '$lib/pocketbase.types';
 	import ArrowHover from '$lib/ui/components/arrow-hover.svelte';
-	import Thumbnail from '$lib/ui/components/project/thumbnail.svelte';
-
+	import ProjectThumbnail from '$lib/ui/components/project/project-thumbnail.svelte';
 	import Students from '../../../components/students.svelte';
 
 	const { project, students }: { project: ProjectsRecord; students: StudentsRecord[] } = $props();
-	const props_id = $props.id();
 
 	const year = $derived(page.params.year);
 </script>
@@ -21,15 +19,9 @@
 		></a>
 
 		<div class=" pointer-events-none relative">
-			<Thumbnail {project} />
+			<ProjectThumbnail {project} />
 			<ArrowHover />
 		</div>
-
-		<!-- <div class="relative opacity-0 transition peer-hover:opacity-100">
-			<div
-				class="absolute right-0 -bottom-4.5 z-10 icon-[ri--arrow-right-up-line] translate-y-px"
-			></div>
-		</div> -->
 
 		<div class="mt-2 pr-4 leading-tight text-balance lg:mt-2">
 			<div class="pointer-events-none group-hover/card:underline">
