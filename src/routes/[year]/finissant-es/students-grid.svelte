@@ -5,29 +5,18 @@
 	import type { StudentsRecord } from '$lib/pocketbase.types';
 
 	const { students }: { students: StudentsRecord[] } = $props();
-
-	let hovered: StudentsRecord | null = $state(students[0]);
-
-	console.log(6 % 6 == 0);
 </script>
 
 <div class="grid grid-cols-3 gap-4 gap-y-6 md:grid-cols-5 lg:gap-gap lg:gap-y-12 xl:grid-cols-7">
 	{#each students as student, i}
-		<!-- {#if students[i - 1]?.last_name[0] != student.last_name[0]}
-			<div class={['col-span-2- text-right ']}>
-				{student.last_name[0]}
-			</div>
-		{/if} -->
-		<a
-			class=""
-			href="/{page.params.year}/finissant-es/{student.id}"
-			onmouseenter={() => (hovered = student)}
-		>
-			<div class="relative aspect-2/3 w-full"><Facecard {student} link={false} /></div>
+		<div class="">
+			<a class="relative aspect-2/3 w-full" href="/{page.params.year}/finissant-es/{student.id}">
+				<Facecard {student} link={false} />
+			</a>
 
 			<div class="mt-1 leading-tight lg:mt-2">
 				<Student {student} ref={false} />
 			</div>
-		</a>
+		</div>
 	{/each}
 </div>

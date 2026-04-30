@@ -47,9 +47,7 @@
 		<div class="col-span-2 flex justify-end md:col-span-1">
 			<div class="max-w-12 md:max-w-24"><Uqam /></div>
 		</div>
-		<div
-			class="col-span-full text-sm leading-tight text-muted max-md:mt-8 md:col-span-5 lg:text-base"
-		>
+		<div class="col-span-full leading-snug text-muted max-md:mt-8 md:col-span-5">
 			<div>
 				Site web fait par <a href="https://ecartelement.dev/" class="underline" target="_blank"
 					>ecartelement</a
@@ -74,9 +72,7 @@
 				</a>
 			</div>
 		</div>
-		<div
-			class="col-span-full text-sm leading-tight text-muted max-md:mt-8 md:col-span-5 md:text-right lg:text-base"
-		>
+		<div class="col-span-full leading-snug text-muted max-md:mt-8 md:col-span-5 md:text-right">
 			©{page.params.year} Annuel de design — Tous droits réservés
 			<br />
 			Les œuvres présentées demeurent la propriété de leurs auteur.rice.s respectif.ve.s

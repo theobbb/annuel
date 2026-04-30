@@ -11,7 +11,7 @@
 	const { data } = $props();
 
 	const { project, program_map } = $derived(data);
-
+	$inspect(project);
 	const { files, meta_files } = $derived(project);
 
 	let from_projects = $state(false);
