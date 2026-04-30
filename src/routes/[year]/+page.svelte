@@ -28,13 +28,14 @@
 		class="col-span-4 col-start-4 row-span-2 row-start-1 flex max-sm:mt-8 sm:col-span-2 sm:col-start-5 lg:col-span-2 lg:col-start-9"
 	>
 		<a href="/archives">
-			{#if year.poster}
+			{#if year?.poster}
 				<Image
 					collection="years"
 					record_id={year.id}
 					filename={year.poster}
 					class="h-full w-full object-contain"
 					alt="poster-{year.id}"
+					sizes="400x0,800x0,1200x0"
 				/>
 			{:else}
 				<div class="aspect-2/3 bg-placeholder"></div>
