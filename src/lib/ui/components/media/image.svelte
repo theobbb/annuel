@@ -8,6 +8,7 @@
 		collection,
 		class: cx = '',
 		reveal = false,
+		nofade = false,
 		// These are now required or have sensible empty defaults
 		sizes,
 		sizes_attr = '100vw',
@@ -17,6 +18,7 @@
 		filename: string;
 		collection: string;
 		reveal?: boolean;
+		nofade?: boolean;
 		sizes: string;
 		sizes_attr?: string;
 	} & HTMLImgAttributes = $props();
@@ -70,7 +72,7 @@
 	class={[
 		cx,
 		'w-full object-cover transition duration-400',
-		loaded ? 'opacity-100' : 'opacity-0',
+		nofade || loaded ? 'opacity-100' : 'opacity-0',
 		!loaded && reveal && 'translate-y-2 scale-105 opacity-0'
 	]}
 	onload={() => (loaded = true)}
