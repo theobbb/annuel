@@ -58,6 +58,7 @@
 					filename={year.poster}
 					class="h-full w-full object-contain"
 					alt="poster-{year.id}"
+					sizes="400x0,800x0,1200x0"
 				/>
 			{:else}
 				<div class="aspect-2/3 bg-placeholder"></div>
