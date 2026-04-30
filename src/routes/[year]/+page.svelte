@@ -5,10 +5,10 @@
 	import Sponsors from './sponsors.svelte';
 
 	import Header from '$lib/ui/components/header.svelte';
-	import { PUBLIC_POCKETBASE_URL } from '$env/static/public';
 	import Video from '$lib/ui/components/media/video.svelte';
 	import Image from '$lib/ui/components/media/image.svelte';
 	import { dev } from '$app/environment';
+	import { PUBLIC_POCKETBASE_URL } from '$env/static/public';
 
 	const { data } = $props();
 	const { year } = $derived(data);
