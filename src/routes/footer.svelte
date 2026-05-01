@@ -3,18 +3,20 @@
 	import Uqam from '$lib/assets/uqam.svelte';
 	import Header from '$lib/ui/components/header.svelte';
 
-	const { year, programs, socials } = $derived(page.data);
+	const { programs, socials } = $derived(page.data);
+
+	const year = $derived(page.params.year || page.data.years[0]?.id || '2026');
 
 	const links = $derived([
-		{ name: `Accueil `, href: `/${page.params.year}` },
-		{ name: `Projets`, href: `/${page.params.year}/projets` },
-		{ name: `Finissant.es`, href: `/${page.params.year}/finissant-es` },
+		{ name: `Accueil `, href: `/${year}` },
+		{ name: `Projets`, href: `/${year}/projets` },
+		{ name: `Finissant.es`, href: `/${year}/finissant-es` },
 		{ name: `Archives`, href: `/archives` },
-		{ name: `Programmes`, href: `/${page.params.year}/programmes` },
+		{ name: `Programmes`, href: `/${year}/programmes` },
 
-		{ name: `Commanditaires`, href: `/${page.params.year}#commanditaires` },
-		{ name: `Équipe de l’Annuel`, href: `/${page.params.year}#equipe` }
-		// { name: `Crédits`, href: `/${page.params.year}` }
+		{ name: `Commanditaires`, href: `/${year}#commanditaires` },
+		{ name: `Équipe de l’Annuel`, href: `/${year}#equipe` }
+		// { name: `Crédits`, href: `/${year}` }
 	]);
 </script>
 
@@ -23,7 +25,7 @@
 >
 	<div class="grid-10">
 		<div class="col-span-4 md:col-span-2">
-			<!-- <h2 class="mb-8">Annuel de design [<a href="/archives">{page.params.year}</a>]</h2> -->
+			<!-- <h2 class="mb-8">Annuel de design [<a href="/archives">{year}</a>]</h2> -->
 			{#each socials as { url, name }}
 				<div><a class="" href={url} target="_blank">{name}</a></div>
 			{/each}
@@ -68,7 +70,7 @@
 			</div>
 		</div>
 		<div class="col-span-full leading-snug text-muted max-md:mt-8 md:col-span-5 md:text-right">
-			©{page.params.year} Annuel de design — Tous droits réservés
+			©{year} Annuel de design — Tous droits réservés
 			<br />
 			Les œuvres présentées demeurent la propriété de leurs auteur.rice.s respectif.ve.s
 		</div>

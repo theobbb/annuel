@@ -23,7 +23,7 @@
 			<ArrowHover />
 		</div>
 
-		<div class="mt-2 pr-4 leading-tight text-balance lg:mt-2">
+		<div class="mt-2 pr-4 leading-tight text-balance lg:mt-2.5">
 			<div class="pointer-events-none group-hover/card:underline">
 				{project.name}
 			</div>

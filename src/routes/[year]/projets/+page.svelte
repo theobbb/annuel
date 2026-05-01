@@ -8,7 +8,7 @@
 	import CollectionEmpty from '$lib/ui/components/collection/collection-empty.svelte';
 
 	const { data } = $props();
-	const { projects, programs } = $derived(data);
+	const { projects } = $derived(data);
 
 	const seed = use_seed();
 
@@ -41,8 +41,13 @@
 	});
 	const shuffled_projects = $derived(shuffle_array(filtered_projects, seed.value));
 
-	const CHUNK_SIZE = 50;
+	const CHUNK_SIZE = $derived(view === 'liste' ? 16 : 50);
 	let visible_count = $state(CHUNK_SIZE);
+
+	$effect(() => {
+		view; // track view changes
+		visible_count = CHUNK_SIZE;
+	});
 
 	const visible_projects = $derived(shuffled_projects.slice(0, visible_count));
 	const has_more = $derived(visible_count < shuffled_projects.length);

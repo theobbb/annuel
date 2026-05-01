@@ -51,10 +51,19 @@
 	* {
 		border-color: var(--color-border);
 	}
+	a,
+	.underline,
+	[class*='underline'] {
+		text-decoration-thickness: 1px !important;
+		text-underline-offset: 0.15em;
+		text-decoration-skip-ink: auto;
+	}
 
-	/* [class*='text-xl'] {
-		font-weight: 430;
-	} */
+	/* 2. For Safari specifically, sometimes 'from-font' or 'auto' 
+          overrides the 1px if not explicitly declared on the element */
+	* {
+		text-decoration-thickness: 1px;
+	}
 }
 
 html {
@@ -105,23 +114,10 @@ hr {
 
 a:not(.no-hover):hover {
 	text-decoration: underline;
+	text-decoration-line: underline;
 	/* text-decoration: underline;
 	text-underline-offset: 0.1em; */
 	/* text-decoration-thickness: 2px; */
-}
-a.active {
-	color: black;
-	font-weight: 500;
-}
-a.active::before {
-	content: '<';
-	position: absolute;
-	transform: translate(-130%, 5%);
-}
-a.active::after {
-	content: '>';
-	position: absolute;
-	transform: translate(30%, 5%);
 }
 
 .grid-10 {

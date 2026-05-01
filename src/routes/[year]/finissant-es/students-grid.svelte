@@ -9,17 +9,16 @@
 
 <div class="grid grid-cols-3 gap-4 gap-y-6 md:grid-cols-5 lg:gap-gap lg:gap-y-8 xl:grid-cols-7">
 	{#each students as student, i}
-		<div class="">
-			<a
-				class="relative block aspect-2/3 w-full bg-placeholder"
-				href="/{page.params.year}/finissant-es/{student.id}"
-			>
-				<Facecard {student} link={false} />
-			</a>
+		<div class="group/student relative">
+			<a class="block w-full no-underline" href="/{page.params.year}/finissant-es/{student.id}">
+				<div class="relative aspect-2/3 w-full bg-placeholder">
+					<Facecard {student} link={false} />
+				</div>
 
-			<div class="mt-1 leading-tight lg:mt-2">
-				<Student {student} ref={false} />
-			</div>
+				<div class="mt-1 leading-tight lg:mt-2">
+					<Student {student} ref={false} no_link={true} />
+				</div>
+			</a>
 		</div>
 	{/each}
 </div>

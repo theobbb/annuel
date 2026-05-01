@@ -2,18 +2,14 @@
 	import { page } from '$app/state';
 	import type { ProjectsRecord, StudentsRecord } from '$lib/pocketbase.types';
 	import { get_media_type } from '$lib/utils/media-type';
-	import { string_to_1_8 } from '$lib/utils/seed';
 	import Students from '../../../components/students.svelte';
 	import Image from '../media/image.svelte';
 
 	const { project, students }: { project: ProjectsRecord; students: StudentsRecord[] } = $props();
 
-	// const n_files = $derived(string_to_1_8(project.name));
-
 	const files = $derived(project.files?.filter((f) => get_media_type(f) == 'image')?.slice(0, 4));
 </script>
 
-<!-- <hr /> -->
 <div class={['group grid-10 relative flex-col gap-y-2 border-t py-gap']}>
 	<a
 		class="peer absolute inset-0 z-5"
@@ -40,23 +36,10 @@
 						record_id={project.id}
 						filename={file}
 						collection="projects"
-						sizes="400x500,800x1000"
-						sizes_attr="@sm 15vw, 30vw"
+						sizes="400x500"
 					/>
 				</div>
 			</div>
 		{/each}
 	</div>
-
-	<!-- <div
-		class="invisible absolute bottom-2 left-2 icon-[ri--arrow-right-up-line] peer-hover:visible"
-	></div> -->
 </div>
-
-<!-- <hr class="not-last:hidden" /> -->
-
-<style>
-	.peer:hover ~ .title > div:first-child {
-		text-decoration: underline;
-	}
-</style>
