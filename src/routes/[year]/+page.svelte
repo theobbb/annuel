@@ -23,7 +23,7 @@
 	</a>
 </Header>
 
-<div class="grid-10 min-h-[calc(100svh-5rem)] pb-1 lg:pt-24">
+<div class="grid-10 min-h-[calc(100svh-3rem)] pb-1 lg:pt-24">
 	<!-- <div
 		class="col-span-4 col-start-4 row-span-2 row-start-1 flex max-sm:mt-8 sm:col-span-2 sm:col-start-5 lg:col-span-2 lg:col-start-9"
 	>
@@ -43,7 +43,7 @@
 			{/if}
 		</a>
 	</div> -->
-	<div class="col-span-2 col-start-8 row-span-2 row-start-1 flex items-end md:hidden">
+	<div class="col-span-full mt-16 text-right md:hidden">
 		<a href="/archives">Archives(+)</a>
 	</div>
 	<div class="col-span-full max-lg:mt-8 lg:col-span-6 lg:col-start-3">
@@ -71,7 +71,7 @@
 
 	<div class="col-span-3 col-start-6 row-start-2 flex"></div>
 	<div
-		class="@container relative col-span-full aspect-video w-full flex-1 items-center overflow-hidden max-lg:-mx-gap md:mt-8 lg:col-span-6 lg:col-start-3"
+		class="@container relative col-span-full aspect-video w-[calc(100%+2*var(--spacing-gap))] flex-1 items-center overflow-hidden max-lg:-mx-gap md:mt-8 lg:col-span-6 lg:col-start-3"
 	>
 		<Video {data} />
 	</div>
