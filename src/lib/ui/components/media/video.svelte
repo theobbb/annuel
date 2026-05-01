@@ -1,19 +1,25 @@
 <script lang="ts">
 	import { onMount, onDestroy } from 'svelte';
 	import Hls from 'hls.js';
+	import type { HTMLVideoAttributes } from 'svelte/elements';
 
-	const {
+	let {
+		video = $bindable(null),
 		playback_id,
 		autoplay = false,
 		loop = true,
 		...props
-	}: { playback_id: string; autoplay?: boolean; loop?: boolean; class?: string } = $props();
+	}: HTMLVideoAttributes & {
+		video?: HTMLVideoElement | null;
+		playback_id: string;
+		autoplay?: boolean;
+		loop?: boolean;
+		class?: string;
+	} = $props();
 
 	// Derived URLs from Mux
 	const src = $derived(`https://stream.mux.com/${playback_id}.m3u8`);
-	const poster = $derived(`https://image.mux.com/${playback_id}/thumbnail.webp`);
 
-	let video: HTMLVideoElement | null = $state(null);
 	let hls: Hls | null = null;
 	let mounted = $state(false);
 
@@ -55,7 +61,6 @@
 
 <video
 	bind:this={video}
-	{...props}
 	{autoplay}
 	{loop}
 	muted
@@ -63,6 +68,7 @@
 	preload="auto"
 	controls
 	onloadeddata={() => (is_ready = true)}
+	{...props}
 	class={[
 		'w-full object-contain  transition-opacity duration-500 ease-out',
 		is_ready ? 'opacity-100' : 'opacity-0',

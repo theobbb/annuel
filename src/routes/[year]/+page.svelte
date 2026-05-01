@@ -5,9 +5,10 @@
 	import Sponsors from './sponsors.svelte';
 
 	import Header from '$lib/ui/components/header.svelte';
-	import Video from '$lib/ui/components/media/video.svelte';
 	import Image from '$lib/ui/components/media/image.svelte';
 	import { dev } from '$app/environment';
+	import Sprite from './sprite.svelte';
+	import Video from './video.svelte';
 
 	const { data } = $props();
 	const { year } = $derived(data);
@@ -72,31 +73,7 @@
 	<div
 		class="@container relative col-span-full aspect-video w-full flex-1 items-center overflow-hidden max-lg:-mx-gap md:mt-8 lg:col-span-6 lg:col-start-3"
 	>
-		<!-- <Video
-			autoplay={!dev}
-			playback_id="14W025RvjQdhvGaDyE4jHmKtWzQcIyA5PJNtRl7dLbmA"
-			class="h-full w-full"
-		/> -->
-		{#if year?.poster}
-			<div class="absolute inset-0 flex">
-				{#each [[-10, 20, -30], [15, -5, 20], [50, 20, -5], [80, -20, 10]] as [left, top, rotate]}
-					<div
-						style="transform: translate({left}cqw, {top}cqh) rotate({rotate}deg);"
-						class="absolute"
-					>
-						<Image
-							collection="years"
-							record_id={year.id}
-							filename={year.poster}
-							class="h-[50cqh] object-contain!"
-							alt="poster-{year.id}"
-							sizes="400x0,800x0,1200x0"
-							nofade
-						/>
-					</div>
-				{/each}
-			</div>
-		{/if}
+		<Video {data} />
 	</div>
 </div>
 
@@ -136,11 +113,15 @@
 	@emma.chevillotversini
 </p>
 
-<div class="mt-24 mb-32 md:mt-48 md:mb-64">
+<div class="mt-24 mb-32 md:mt-48 md:mb-48">
 	<Programs />
 </div>
 <div class="mb-36 md:mb-48"><Sponsors /></div>
 <div><Members /></div>
+
+<!-- <div>
+	<Sprite />
+</div> -->
 
 <svelte:head>
 	<title>Annuel de design {page.params.year}</title>
