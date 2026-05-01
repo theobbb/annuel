@@ -4,6 +4,7 @@
 	import StudentsList from './students-list.svelte';
 	import CollectionLayout from '$lib/ui/components/collection/collection-layout.svelte';
 	import CollectionEmpty from '$lib/ui/components/collection/collection-empty.svelte';
+	import { string_normalize } from '$lib/utils/string.js';
 
 	const { data } = $props();
 
@@ -18,13 +19,13 @@
 
 	const filtered_students = $derived.by(() => {
 		const program = url_program;
-		const query = url_search.toLowerCase().trim();
+		const query = string_normalize(url_search);
 
 		return students.filter((s) => {
 			if (program && s.program != program) return false;
 
 			if (query) {
-				const haystack = `${s.first_name} ${s.last_name}`.toLowerCase();
+				const haystack = string_normalize(`${s.first_name} ${s.last_name}`);
 				return haystack.includes(query);
 			}
 

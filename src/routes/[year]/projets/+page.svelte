@@ -6,6 +6,7 @@
 	import CollectionLayout from '$lib/ui/components/collection/collection-layout.svelte';
 	import { use_seed } from '$lib/store/seed-ctx.svelte.js';
 	import CollectionEmpty from '$lib/ui/components/collection/collection-empty.svelte';
+	import { string_normalize } from '$lib/utils/string.js';
 
 	const { data } = $props();
 	const { projects } = $derived(data);
@@ -21,7 +22,7 @@
 
 	const filtered_projects = $derived.by(() => {
 		const program = url_program;
-		const query = url_search.toLowerCase().trim();
+		const query = string_normalize(url_search);
 
 		return projects.filter((p) => {
 			if (program && !p.expand.students.some((s) => s.program === program)) return false;
@@ -32,7 +33,7 @@
 					.join(' ')
 					.toLowerCase();
 
-				const haystack = `${p.name} ${p.description} ${students_text}`.toLowerCase();
+				const haystack = string_normalize(`${p.name} ${p.description} ${students_text}`);
 				return haystack.includes(query);
 			}
 
