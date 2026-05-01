@@ -33,12 +33,15 @@
 			hls.destroy();
 		}
 
-		if (Hls.isSupported()) {
+		// Safari Hardware Acceleration / Native HLS fix
+		if (video.canPlayType('application/vnd.apple.mpegurl')) {
+			video.src = src;
+			// Safari needs this explicitly set in JS for autoplay to reliably work
+			video.muted = true;
+		} else if (Hls.isSupported()) {
 			hls = new Hls();
 			hls.loadSource(src);
 			hls.attachMedia(video);
-		} else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-			video.src = src;
 		}
 	}
 
@@ -70,7 +73,7 @@
 	onloadeddata={() => (is_ready = true)}
 	{...props}
 	class={[
-		'w-full object-contain  transition-opacity duration-500 ease-out',
+		'w-full object-contain transition-opacity duration-500 ease-out',
 		is_ready ? 'opacity-100' : 'opacity-0',
 		props.class
 	]}

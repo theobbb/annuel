@@ -32,7 +32,7 @@
 </script>
 
 <Header></Header>
-<div class="grid-10 mt-16 mb-12 min-h-[60svh] lg:mt-24 lg:mb-16">
+<div class="grid-10 mt-16 mb-12 min-h-[calc(100svh-27rem)] lg:mt-24 lg:mb-16">
 	<div class="col-span-4 lg:col-span-2">
 		<a
 			href={back_href}
