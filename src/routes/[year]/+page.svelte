@@ -8,7 +8,6 @@
 	import Video from '$lib/ui/components/media/video.svelte';
 	import Image from '$lib/ui/components/media/image.svelte';
 	import { dev } from '$app/environment';
-	import { PUBLIC_POCKETBASE_URL } from '$env/static/public';
 
 	const { data } = $props();
 	const { year } = $derived(data);
@@ -24,7 +23,7 @@
 </Header>
 
 <div class="grid-10 min-h-[calc(100svh-5rem)] pb-1 lg:pt-24">
-	<div
+	<!-- <div
 		class="col-span-4 col-start-4 row-span-2 row-start-1 flex max-sm:mt-8 sm:col-span-2 sm:col-start-5 lg:col-span-2 lg:col-start-9"
 	>
 		<a href="/archives">
@@ -42,14 +41,15 @@
 				<div class="aspect-2/3 bg-placeholder"></div>
 			{/if}
 		</a>
-	</div>
+	</div> -->
 	<div class="col-span-2 col-start-8 row-span-2 row-start-1 flex items-end md:hidden">
 		<a href="/archives">Archives(+)</a>
 	</div>
 	<div class="col-span-full max-lg:mt-8 lg:col-span-6 lg:col-start-3">
 		<div>
 			<div
-				class="col-span-full -mx-0.5 text-[10vw] leading-[100%] tracking-[-2%] sm:text-[5vw] lg:text-[3.3vw]"
+				class="col-span-full -mx-0.5 text-[10vw] leading-[100%] tracking-[-3%] sm:text-[5vw]
+				lg:text-[clamp(2rem,3.8vw,5rem)]"
 			>
 				Une exposition
 				<br class="sm:hidden" />
@@ -70,9 +70,33 @@
 
 	<div class="col-span-3 col-start-6 row-start-2 flex"></div>
 	<div
-		class="col-span-full flex aspect-video flex-1 items-center max-lg:-mx-gap md:mt-8 lg:col-span-6 lg:col-start-3"
+		class="@container relative col-span-full aspect-video w-full flex-1 items-center overflow-hidden max-lg:-mx-gap md:mt-8 lg:col-span-6 lg:col-start-3"
 	>
-		<Video autoplay={!dev} playback_id="14W025RvjQdhvGaDyE4jHmKtWzQcIyA5PJNtRl7dLbmA" />
+		<!-- <Video
+			autoplay={!dev}
+			playback_id="14W025RvjQdhvGaDyE4jHmKtWzQcIyA5PJNtRl7dLbmA"
+			class="h-full w-full"
+		/> -->
+		{#if year?.poster}
+			<div class="absolute inset-0 flex">
+				{#each [[-10, 20, -30], [15, -5, 20], [50, 20, -5], [80, -20, 10]] as [left, top, rotate]}
+					<div
+						style="transform: translate({left}cqw, {top}cqh) rotate({rotate}deg);"
+						class="absolute"
+					>
+						<Image
+							collection="years"
+							record_id={year.id}
+							filename={year.poster}
+							class="h-[50cqh] object-contain!"
+							alt="poster-{year.id}"
+							sizes="400x0,800x0,1200x0"
+							nofade
+						/>
+					</div>
+				{/each}
+			</div>
+		{/if}
 	</div>
 </div>
 

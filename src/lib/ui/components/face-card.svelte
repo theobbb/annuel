@@ -17,14 +17,15 @@
 
 <!-- <div class=" aspect-2/3 bg-placeholder"></div> -->
 
-<div class="group group/card @container relative flex overflow-hidden">
-	<div class="rounded- inset-0 bg-placeholder">
+<div class="group group/card @container relative flex h-full w-full overflow-hidden">
+	<div class="inset-0 h-full w-full bg-placeholder">
 		<Image
 			collection={student?.headshot ? 'students' : 'years'}
 			record_id={student?.headshot ? student.id : year?.id}
 			filename={student?.headshot ? student.headshot : year?.wall}
 			sizes={page.params.student ? '800x0' : '400x0'}
 			reveal
+			class="h-full object-cover"
 		/>
 
 		<!-- <img
