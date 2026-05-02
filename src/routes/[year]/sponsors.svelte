@@ -37,7 +37,7 @@
 	});
 </script>
 
-<div id="commanditaires" class="mb-12 scroll-mt-24 text-center leading-snug md:mb-16">
+<div id="commanditaires" class="mb-12 scroll-mt-24 text-center leading-tight md:mb-16">
 	L’Annuel remercie ses précieux<br /> <span class="">commanditaires.</span> <br />
 </div>
 

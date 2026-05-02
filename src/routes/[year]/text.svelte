@@ -4,7 +4,7 @@
 </script>
 
 <p
-	class="col-span-full mt-12 columns-3 gap-gap gap-x-gap leading-snug whitespace-pre-line max-md:hidden"
+	class="col-span-full mt-12 columns-3 gap-gap gap-x-gap leading-[1.2] whitespace-pre-line max-md:hidden"
 >
 	{text}
 </p>

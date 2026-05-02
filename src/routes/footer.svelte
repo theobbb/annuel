@@ -76,3 +76,9 @@
 		</div>
 	</div>
 </footer>
+
+<style>
+	.leading-snug {
+		line-height: 1.2;
+	}
+</style>
