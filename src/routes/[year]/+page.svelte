@@ -5,10 +5,9 @@
 	import Sponsors from './sponsors.svelte';
 
 	import Header from '$lib/ui/components/header.svelte';
-	import Image from '$lib/ui/components/media/image.svelte';
-	import { dev } from '$app/environment';
 	import Sprite from './sprite.svelte';
 	import Video from './video.svelte';
+	import Text from './text.svelte';
 
 	const { data } = $props();
 	const { year } = $derived(data);
@@ -49,7 +48,7 @@
 	<div class="col-span-full max-lg:mt-8 lg:col-span-6 lg:col-start-3">
 		<div>
 			<div
-				class="col-span-full -mx-0.5 text-[10vw] leading-[100%] tracking-[-3%] sm:text-[5vw]
+				class="col-span-full -mx-0.5 text-[10vw] leading-[98%] tracking-[-3%] sm:text-[5vw]
 				lg:text-[clamp(2rem,3.8vw,5rem)]"
 			>
 				Une exposition
@@ -76,43 +75,7 @@
 		<Video {data} />
 	</div>
 </div>
-
-<p class="col-span-full mt-12 gap-gap leading-snug max-md:hidden lg:columns-3">
-	Identité visuelle de l’Annuel de design 2026
-	<br />
-	<br />
-
-	Inauguré en 1996, le pavillon de l’École de design de l’UQAM, conçu par la firme d’architectes Dan
-	S. Hanganu, constitue le point d’ancrage de l’identité visuelle de cette année. Conçue comme une
-	ode, une célébration du pavillon, celle-ci s’ancre dans la reconnaissance de l’avoir comme lieu de
-	travail, de passage et de création.
-	<br />
-
-	Pensée comme une extension de son langage architectural, l’identité visuelle en reprend les
-	principes fondamentaux. Elle s’inspire directement du bâtiment : structures exposées, ventilation
-	visible dans la faille centrale, marches irrégulières, plomberie apparente, béton brut — et toutes
-	les formes géométriques que ces éléments révèlent. Conçu dès l’origine comme un espace inachevé,
-	le pavillon offre un cadre ouvert, destiné à être habité, approprié et transformé au fil du temps.
-	<br />
-	<br />
-
-	Entre pleins et vides, ombre et lumière, opacité et transparence, l’identité dialogue avec le
-	pavillon, conçu comme un véritable outil pédagogique : un espace qui révèle, questionne et
-	inspire. La palette chromatique renforce cette célébration : le jaune rappelle l’atelier
-	multitechnique et la cage d’escalier du pavillon M, tandis que le gris, omniprésent, évoque la
-	matérialité du lieu, du béton à l’acier.
-	<br />
-	<br />
-
-	Merci à toute l’équipe de l’Annuel pour l’organisation de la soirée de lancement et pour
-	l’élaboration de cette toute nouvelle identité.
-	<br />
-	<br />
-
-	Vidéo : @caisermanyacine et @gabrielbelisle Musique : @lb66music DA : @par.charlotte et
-	@emma.chevillotversini
-</p>
-
+<Text />
 <div class="mt-24 mb-32 md:mt-48 md:mb-48">
 	<Programs />
 </div>
@@ -131,16 +94,3 @@
 			.year} — Les projets des finissant.es de l’école de design de l’UQAM"
 	/>
 </svelte:head>
-
-<style>
-	p {
-		column-fill: balance;
-		text-wrap: balance;
-		break-inside: avoid;
-	}
-	/* p {
-		text-align: justify;
-		text-justify: inter-word;
-		hyphens: auto;
-	} */
-</style>
