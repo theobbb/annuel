@@ -82,15 +82,13 @@
 	const seasons = ['Automne', 'Hiver', 'Été'];
 </script>
 
-<RecordHeader back_href="/{page.params.year}/projets">
+<RecordHeader back_href="/{page.params.year}/projets" description={project.description || ''}>
 	{#snippet title()}
 		<div>
 			{project.name}
 		</div>
 	{/snippet}
-	{#snippet description()}
-		{project.description}
-	{/snippet}
+
 	{#snippet aside()}
 		<div class="">
 			<div class="mb-16">

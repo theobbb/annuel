@@ -11,7 +11,7 @@
 	const socials: Social[] = $derived((student.socials as Social[]) || []);
 </script>
 
-<RecordHeader back_href="/{page.params.year}/finissant-es">
+<RecordHeader back_href="/{page.params.year}/finissant-es" description={student.description || ''}>
 	{#snippet title()}
 		<div>
 			{student.first_name}
@@ -21,9 +21,7 @@
 			{/if}
 		</div>
 	{/snippet}
-	{#snippet description()}
-		{student.description}
-	{/snippet}
+
 	{#snippet aside()}
 		<div class="mb-16">
 			<Facecard {student} />

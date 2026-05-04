@@ -12,10 +12,12 @@
 	}: {
 		back_href: string;
 		title: Snippet;
-		description: Snippet;
+		description: string;
 		aside: Snippet;
 		children: Snippet;
 	} = $props();
+
+	const long_description = $derived(description?.length > 200);
 
 	let has_history = $state(false);
 
@@ -29,6 +31,8 @@
 			window.history.back();
 		}
 	}
+
+	const desc_len = $derived(Math.floor(description?.length / 100));
 </script>
 
 <Header></Header>
@@ -44,12 +48,17 @@
 		</a>
 	</div>
 
-	<div class="col-span-10 text-balance lg:col-span-4 lg:col-start-3">
-		<h2 class="mb-8 leading-tight">
+	<div class={['col-span-10 text-balance lg:col-span-6 lg:col-start-3 xl:col-span-5']}>
+		<h2 class="mb-8 leading-tight lg:pr-44">
 			{@render title()}
 		</h2>
-		<p class="leading-snug">
-			{@render description()}
+		<p
+			class={[
+				'leading-snug',
+				desc_len > 8 ? '' : desc_len > 5 ? 'xl:pr-48' : desc_len > 3 ? 'xl:pr-64' : 'xl:pr-64'
+			]}
+		>
+			{description}
 		</p>
 		<div class="col-span-8 col-start-3 mt-16 grid grid-cols-4 gap-gap">
 			{@render children?.()}
