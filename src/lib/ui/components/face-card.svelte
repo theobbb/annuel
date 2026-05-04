@@ -17,7 +17,7 @@
 
 <!-- <div class=" aspect-2/3 bg-placeholder"></div> -->
 
-<div class="group group/card @container relative flex h-full w-full overflow-hidden">
+<div class="group group/card @container relative flex aspect-2/3 h-full w-full overflow-hidden">
 	<div class="inset-0 h-full w-full bg-placeholder">
 		<Image
 			collection={student?.headshot ? 'students' : 'years'}
@@ -27,15 +27,9 @@
 			reveal
 			class="h-full object-cover"
 		/>
-
-		<!-- <img
-			src="/temp/head.png"
-			class="transition- group-hover:scale-2000- h-full w-full object-cover duration-50000"
-		/> -->
-		<ArrowHover />
-		<!-- <div
-			class="absolute inset-0 icon-[ri--user-fill] h-full w-full translate-y-1/6 scale-130"
-		></div> -->
+		{#if link}
+			<ArrowHover />
+		{/if}
 	</div>
 	{#if link}
 		<a
@@ -46,6 +40,6 @@
 	{/if}
 
 	{#if program}
-		<ProgramCode {program} />
+		<div class="pointer-events-none"><ProgramCode {program} /></div>
 	{/if}
 </div>

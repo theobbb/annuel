@@ -1,62 +1,56 @@
 <script lang="ts">
-	import { onMount, onDestroy } from 'svelte';
+	import { onDestroy } from 'svelte';
 	import Hls from 'hls.js';
 	import type { ClassValue, HTMLVideoAttributes } from 'svelte/elements';
 
 	let {
 		video = $bindable(null),
 		playback_id,
-		autoplay = false,
 		loop = true,
 		...props
 	}: HTMLVideoAttributes & {
 		video?: HTMLVideoElement | null;
 		playback_id: string;
-		autoplay?: boolean;
 		loop?: boolean;
 		class?: ClassValue;
 	} = $props();
 
-	// Derived URLs from Mux
 	const src = $derived(`https://stream.mux.com/${playback_id}.m3u8`);
-
 	let hls: Hls | null = null;
-	let mounted = $state(false);
-
 	let is_ready = $state(false);
 
 	function initHls() {
 		if (!video) return;
 
-		// Clean up existing instance if src changes
+		// Clean up previous instance
 		if (hls) {
 			hls.destroy();
+			hls = null;
 		}
 
-		// Safari Hardware Acceleration / Native HLS fix
+		// 1. Native HLS support (Safari/iOS)
 		if (video.canPlayType('application/vnd.apple.mpegurl')) {
 			video.src = src;
-			// Safari needs this explicitly set in JS for autoplay to reliably work
-		} else if (Hls.isSupported()) {
+			// Safari needs an explicit load() when src changes via JS
+			video.load();
+		}
+		// 2. HLS.js support (Chrome/Firefox/Edge)
+		else if (Hls.isSupported()) {
 			hls = new Hls();
 			hls.loadSource(src);
 			hls.attachMedia(video);
 			hls.on(Hls.Events.MANIFEST_PARSED, (_, data) => {
-				hls!.currentLevel = data.levels.length - 1; // highest quality
+				// Optional: Auto-select highest quality
+				hls!.currentLevel = data.levels.length - 1;
 			});
 		}
 	}
 
-	// Handle initial mount and source changes
+	// React to src or video element changes
 	$effect(() => {
 		if (video && src) {
-			is_ready = false;
 			initHls();
 		}
-	});
-
-	onMount(() => {
-		mounted = true;
 	});
 
 	onDestroy(() => {
@@ -66,16 +60,15 @@
 
 <video
 	bind:this={video}
-	{autoplay}
 	{loop}
-	muted={false}
+	muted
 	playsinline
 	preload="auto"
 	controls
-	onloadeddata={() => (is_ready = true)}
+	onloadedmetadata={() => (is_ready = true)}
 	{...props}
 	class={[
-		'w-full object-contain transition-opacity duration-500 ease-out',
+		'w-full bg-black object-contain transition-opacity duration-500 ease-out',
 		is_ready ? 'opacity-100' : 'opacity-0',
 		props.class
 	]}

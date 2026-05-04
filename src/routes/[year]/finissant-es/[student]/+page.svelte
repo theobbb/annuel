@@ -24,7 +24,7 @@
 
 	{#snippet aside()}
 		<div class="mb-16">
-			<Facecard {student} />
+			<Facecard {student} link={false} />
 		</div>
 	{/snippet}
 	<div class="leading-snug whitespace-nowrap">

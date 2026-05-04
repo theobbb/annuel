@@ -49,19 +49,25 @@
 		</a>
 	</div>
 
-	<div class={['col-span-10 text-balance lg:col-span-6 lg:col-start-3 xl:col-span-5']}>
-		<h2 class="mb-8 max-w-md leading-tight">
+	<div class={['col-span-10  text-pretty lg:col-span-6 lg:col-start-3 xl:col-span-5']}>
+		<h2 class="mb-8 max-w-md leading-tight text-balance">
 			{@render title()}
 		</h2>
 		<div
 			class={[
-				'leading-snug',
-				desc_len > 8 ? '' : desc_len > 5 ? 'xl:pr-48' : desc_len > 3 ? 'xl:pr-64' : 'xl:pr-64'
+				'leading-snug text-pretty sm:max-lg:max-w-lg',
+				desc_len > 8
+					? ''
+					: desc_len > 5
+						? 'xl:pr-24 2xl:pr-48'
+						: desc_len > 3
+							? 'xl:pr-26 2xl:pr-56'
+							: 'xl:pr-32 2xl:pr-64'
 			]}
 		>
 			<Markdown text={description} />
 		</div>
-		<div class="col-span-8 col-start-3 mt-16 grid grid-cols-4 gap-gap">
+		<div class=" col-span-8 col-start-3 mt-16 grid grid-cols-4 gap-gap text-balance">
 			{@render children?.()}
 		</div>
 	</div>

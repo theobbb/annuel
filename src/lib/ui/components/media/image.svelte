@@ -65,6 +65,7 @@
 </script>
 
 <img
+	src={baseUrl}
 	{srcset}
 	sizes={parsed_sizes}
 	loading="lazy"
@@ -73,7 +74,7 @@
 		cx,
 		'w-full object-cover transition duration-400',
 		nofade || loaded ? 'opacity-100' : 'opacity-0',
-		!loaded && reveal && 'translate-y-2 scale-105 opacity-0'
+		!loaded && reveal && 'translate-y-2 scale-105'
 	]}
 	onload={() => (loaded = true)}
 	{...props}
