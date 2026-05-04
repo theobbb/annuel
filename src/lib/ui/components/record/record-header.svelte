@@ -2,6 +2,7 @@
 	import { afterNavigate } from '$app/navigation';
 	import type { Snippet } from 'svelte';
 	import Header from '../header.svelte';
+	import Markdown from '$lib/ui/markdown.svelte';
 
 	const {
 		back_href,
@@ -49,17 +50,17 @@
 	</div>
 
 	<div class={['col-span-10 text-balance lg:col-span-6 lg:col-start-3 xl:col-span-5']}>
-		<h2 class="mb-8 leading-tight lg:pr-44">
+		<h2 class="mb-8 max-w-md leading-tight">
 			{@render title()}
 		</h2>
-		<p
+		<div
 			class={[
 				'leading-snug',
 				desc_len > 8 ? '' : desc_len > 5 ? 'xl:pr-48' : desc_len > 3 ? 'xl:pr-64' : 'xl:pr-64'
 			]}
 		>
-			{description}
-		</p>
+			<Markdown text={description} />
+		</div>
 		<div class="col-span-8 col-start-3 mt-16 grid grid-cols-4 gap-gap">
 			{@render children?.()}
 		</div>

@@ -1,0 +1,26 @@
+/* Simple Markdown Styles */
+
+/* Links */
+.prose a {
+	@apply underline;
+}
+
+.prose a:hover {
+	text-decoration: none;
+}
+
+/* Lists */
+.prose ul,
+.prose ol {
+	padding-left: 1.5rem;
+	margin: 1rem 0;
+}
+
+.prose li {
+	margin-bottom: 0.5rem;
+}
+
+/* Optional: Spacing for paragraphs (the 'p' tags 'marked' creates) */
+.prose p {
+	margin-bottom: 1rem;
+}
