@@ -41,31 +41,39 @@
 <div bind:this={sentinel}></div>
 <header
 	class={[
-		'grid-10 sticky top-0 z-100 -mx-gap mt-1.5 h-8.5 items-center gap-y-2! border-b bg-background px-gap   whitespace-nowrap md:mt-1.5 md:h-11 lg:gap-x-gap',
+		'mt-1.5- sticky top-0 z-100 -mx-gap     bg-background px-gap whitespace-nowrap lg:gap-x-gap',
 		scroll_top ? ' border-transparent' : '',
 		'ease transition-[border,translate] duration-400',
 		cx
 	]}
 >
-	<div class="col-span-3 row-start-1 md:col-span-2">
-		<a class="-mx-2 -my-1 px-2 py-1" href="/{page.params.year}">
-			<span class="">Annuel</span>
+	<div
+		class={[
+			'grid-10 h-11 items-center gap-y-2! border-b',
+			scroll_top ? 'translate-y-2 border-transparent' : '',
+			'ease transition duration-400'
+		]}
+	>
+		<div class="col-span-3 row-start-1 md:col-span-2">
+			<a class="-mx-2 -my-1 px-2 py-1" href="/{page.params.year}">
+				<span class="">Annuel</span>
 
-			<span class="max-sm:hidden- max-[23rem]:hidden">de design</span>
-			<!-- {page.params.year?.slice(-2)} -->
-			<!-- <span class="md:hidden">
+				<span class="max-sm:hidden- max-[23rem]:hidden">de design</span>
+				<!-- {page.params.year?.slice(-2)} -->
+				<!-- <span class="md:hidden">
 					A.{#if page.params.year}
 						{page.params.year?.slice(-2)}
 					{/if}
 				</span> -->
-		</a>
-	</div>
-	{#if page.params.year}
-		<div
-			class="col-span-7 row-start-1 flex tracking-[-0.5%] max-lg:justify-end sm:col-span-6 sm:col-start-7 sm:row-start-1 lg:col-span-4 lg:col-start-3"
-		>
-			<Tabs />
+			</a>
 		</div>
-	{/if}
-	{@render children?.()}
+		{#if page.params.year}
+			<div
+				class="col-span-7 row-start-1 flex max-lg:justify-end sm:col-span-6 sm:col-start-7 sm:row-start-1 lg:col-span-4 lg:col-start-3"
+			>
+				<Tabs />
+			</div>
+		{/if}
+		{@render children?.()}
+	</div>
 </header>

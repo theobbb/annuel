@@ -26,9 +26,9 @@
 	L’équipe de l’Annuel <sup>{members.length}</sup>
 </div>
 <div class="mb-8">
-	<div class="[&_h2]: gap-x-gap **:leading-relaxed! lg:columns-3">
+	<div class="gap-x-gap **:leading-tight! sm:columns-2 lg:columns-3">
 		{#each groups as { role, children }, i}
-			<div class="break-inside-avoid- inline-block w-full">
+			<div class="inline-block w-full *:py-1">
 				<h2 class="mb-2- border-b text-muted">{role.name}</h2>
 
 				{#each children as member}
@@ -60,7 +60,7 @@
 	</div>
 </div>
 
-<div class="mt-64 mb-32 text-center leading-tight">
+<div class="border-b- mt-24 pb-12 text-center leading-tight">
 	Merci à toutes les personnes qui ont contribué <br /> de près ou de loin à ce projet, par leur
 	regard,<br /> leurs idées et leur présence.
 </div>

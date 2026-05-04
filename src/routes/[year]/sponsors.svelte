@@ -75,10 +75,10 @@
 }: SponsorsRecord & {
 	i: number;
 })}
-	<div class={[' @container relative aspect-square border bg-white ']}>
+	<div class={[' @container relative aspect-square border  ']}>
 		<div class=" relative flex h-full w-full flex-col items-center justify-between">
-			<div class="pointer-events-none flex -translate-y-2.5 justify-center">
-				<div class="icon-[bi--pin] text-2xl"></div>
+			<div class="pointer-events-none flex -translate-y-2.5 justify-center md:-translate-y-3">
+				<div class="icon-[bi--pin] text-2xl md:text-3xl"></div>
 			</div>
 
 			<div class="relative flex h-4/5 min-h-0 w-4/5 flex-1 items-center justify-center">

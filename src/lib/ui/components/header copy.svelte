@@ -41,9 +41,9 @@
 <div bind:this={sentinel}></div>
 <header
 	class={[
-		'grid-10 sticky top-0 z-100 -mx-gap mt-1.5 h-8.5 items-center gap-y-2! border-b bg-background px-gap   whitespace-nowrap md:mt-1.5 md:h-11 lg:gap-x-gap',
-		scroll_top ? ' border-transparent' : '',
-		'ease transition-[border,translate] duration-400',
+		'sticky top-0 z-100 -mx-gap grid h-11 grid-cols-10 items-center gap-x-4 gap-y-2 border-b bg-background px-gap whitespace-nowrap lg:h-13 lg:gap-x-gap',
+		scroll_top ? 'border-transparent' : '',
+		'ease transition-[border] duration-400',
 		cx
 	]}
 >
@@ -54,15 +54,15 @@
 			<span class="max-sm:hidden- max-[23rem]:hidden">de design</span>
 			<!-- {page.params.year?.slice(-2)} -->
 			<!-- <span class="md:hidden">
-					A.{#if page.params.year}
-						{page.params.year?.slice(-2)}
-					{/if}
-				</span> -->
+				A.{#if page.params.year}
+					{page.params.year?.slice(-2)}
+				{/if}
+			</span> -->
 		</a>
 	</div>
 	{#if page.params.year}
 		<div
-			class="col-span-7 row-start-1 flex tracking-[-0.5%] max-lg:justify-end sm:col-span-6 sm:col-start-7 sm:row-start-1 lg:col-span-4 lg:col-start-3"
+			class="col-span-7 row-start-1 flex max-lg:justify-end sm:col-span-6 sm:col-start-7 sm:row-start-1 lg:col-span-4 lg:col-start-3"
 		>
 			<Tabs />
 		</div>

@@ -13,7 +13,7 @@ export async function load() {
 		pocketbase.collection('years').getFullList<YearsRecord>({
 			sort: '-id',
 			filter: dev ? '' : 'draft = false',
-			fields: 'id,poster,video,accent_color,wall,text'
+			fields: 'id,poster,video,accent_color,wall,text,posters_0,posters_1'
 		}),
 		pocketbase
 			.collection('programs')

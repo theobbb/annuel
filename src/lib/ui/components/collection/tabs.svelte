@@ -19,7 +19,7 @@
 	const current_tab = $derived(page.route.id?.split('/')[2]);
 </script>
 
-<div class="flex gap-2.5 whitespace-nowrap md:items-center lg:gap-2">
+<div class="flex gap-2 whitespace-nowrap md:items-center lg:gap-2">
 	{#each tabs as { name, param, length }}
 		<a
 			class={[

@@ -41,7 +41,7 @@
 <div bind:this={sentinel}></div>
 <header
 	class={[
-		'grid-10 sticky top-0 z-100 -mx-gap mt-1.5 h-8.5 items-center gap-y-2! border-b bg-background px-gap   whitespace-nowrap md:mt-1.5 md:h-11 lg:gap-x-gap',
+		'grid-10 sticky top-0 z-100 -mx-gap mt-1.5 h-11 items-center gap-y-2! border-b    bg-background px-gap whitespace-nowrap lg:gap-x-gap',
 		scroll_top ? ' border-transparent' : '',
 		'ease transition-[border,translate] duration-400',
 		cx
@@ -62,7 +62,7 @@
 	</div>
 	{#if page.params.year}
 		<div
-			class="col-span-7 row-start-1 flex tracking-[-0.5%] max-lg:justify-end sm:col-span-6 sm:col-start-7 sm:row-start-1 lg:col-span-4 lg:col-start-3"
+			class="col-span-7 row-start-1 flex max-lg:justify-end sm:col-span-6 sm:col-start-7 sm:row-start-1 lg:col-span-4 lg:col-start-3"
 		>
 			<Tabs />
 		</div>

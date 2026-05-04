@@ -255,8 +255,12 @@ export type YearsRecord = {
 	draft?: boolean
 	id: string
 	poster?: FileNameString
+	posters_0?: FileNameString[]
+	posters_1?: FileNameString[]
+	text?: string
 	updated: IsoAutoDateString
 	video?: FileNameString
+	wall?: FileNameString
 }
 
 // Response types include system fields and match responses from the PocketBase API

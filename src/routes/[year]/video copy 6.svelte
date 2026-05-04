@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { PUBLIC_POCKETBASE_URL } from '$env/static/public';
 	import Image from '$lib/ui/components/media/image.svelte';
 	import Video from '$lib/ui/components/media/video.svelte';
 
@@ -9,18 +8,15 @@
 	let video: HTMLVideoElement | null = $state(null);
 	let loading = $state(false);
 
-	let hovered = $state(false);
-
 	// Inner refs — unrotated image elements for accurate size measurement
 	let imageRefs: HTMLDivElement[] = $state([]);
 	let containerRef: HTMLDivElement | null = null;
 
-	const SPEED = 0.01;
-	const FADE_OUT_DISTANCE = 50;
+	const SPEED = 0.05;
 
 	// [startX%, startY%, rotationDeg, dirX, dirY]
 	const posterConfigs: [number, number, number, number, number][] = [
-		[15, 30, -30, 1, 1],
+		[5, 10, -30, 1, 1],
 		[20, 5, 20, -1, 1],
 		[50, 20, -5, 1, -1],
 		[70, 15, 10, -1, -1]
@@ -149,7 +145,7 @@
 			const dy = cy - 50;
 
 			const len = Math.sqrt(dx * dx + dy * dy) || 1;
-			return { x: (dx / len) * FADE_OUT_DISTANCE, y: (dy / len) * FADE_OUT_DISTANCE };
+			return { x: (dx / len) * 130, y: (dy / len) * 130 };
 		});
 	}
 
@@ -178,7 +174,7 @@
 		phaseTimeout = setTimeout(() => {
 			phase = 'bouncing';
 			startBounce();
-		}, 50);
+		}, 650);
 	}
 
 	function mountContainer(node: HTMLDivElement) {
@@ -201,11 +197,7 @@
 	onended={() => pause()}
 	onpause={() => pause()}
 	playback_id="14W025RvjQdhvGaDyE4jHmKtWzQcIyA5PJNtRl7dLbmA"
-	class={[
-		'h-full w-full border',
-		playing ? 'border-transparent' : '',
-		'ease transition duration-200'
-	]}
+	class="h-full w-full"
 />
 
 {#if year?.poster}
@@ -214,7 +206,7 @@
 		use:mountContainer
 		style="container-type: size;"
 		class={[
-			'pointer-events-none absolute inset-[-20%] overflow-hidden ',
+			'pointer-events-none absolute inset-0 overflow-hidden',
 			'transition-opacity duration-300',
 			phase === 'out' ? 'opacity-0' : 'opacity-100'
 		]}
@@ -222,12 +214,14 @@
 		{#each posterConfigs as [, , rotate], i}
 			<!-- Bounce container: handles position + fly vector -->
 			<div
-				style="position: absolute; top: 0; left: 0; 
-				translate: {positions[i].x}cqw {positions[i].y}cqh;"
-				class={[
-					'will-change-transform',
-					(phase === 'flying-out' || phase === 'flying-in') && 'ease transition duration-600'
-				]}
+				style="
+                    position: absolute; top: 0; left: 0;
+                    translate: {positions[i].x}cqw {positions[i].y}cqh;
+                    transition: {phase === 'flying-out' || phase === 'flying-in'
+					? 'translate 600ms ease'
+					: 'none'};
+                "
+				class="will-change-transform"
 			>
 				<!-- Fly container: handles fly offset -->
 				<div
@@ -237,27 +231,22 @@
 					phase === 'flying-in'
 						? `${flyVectors[i].x}cqw ${flyVectors[i].y}cqh`
 						: '0 0'};
-                    
+                        transition: {phase === 'flying-out' || phase === 'flying-in'
+						? 'translate 600ms ease'
+						: 'none'};
                     "
-					class={[hovered ? 'shake' : '', 'ease transition duration-600']}
 				>
 					<!-- Rotate container: static rotation, also the ref for size measurement -->
 					<div bind:this={imageRefs[i]} style="rotate: {rotate}deg;" class="w-max">
-						<img
-							class="h-[60cqh] w-auto border bg-white"
-							src="{PUBLIC_POCKETBASE_URL}/api/files/years/{year.id}/{year.posters_0[i]}"
-							alt="poster {year.id} {i}"
-							style=""
-						/>
-						<!-- <Image
+						<Image
 							collection="years"
 							record_id={year.id}
 							filename={year.poster}
-							class="h-[60cqh] w-auto object-contain!"
+							class="h-[50cqh] w-auto object-contain!"
 							alt="poster-{year.id}"
-							sizes="400x0"
+							sizes="400x0,800x0,1200x0"
 							nofade
-						/> -->
+						/>
 					</div>
 				</div>
 			</div>
@@ -267,26 +256,18 @@
 
 <button
 	onclick={play}
-	onmouseenter={() => {
-		hovered = true;
-		stopBounce();
-	}}
-	onmouseleave={() => {
-		hovered = false;
-		if (phase === 'bouncing') startBounce();
-	}}
 	aria-label="Démarrer la vidéo"
 	class={[
-		'group ease @container absolute inset-0 flex cursor-pointer items-center justify-center transition duration-200 hover:bg-black/10',
+		'group ease absolute inset-0 flex cursor-pointer items-center justify-center transition duration-200 hover:bg-black/10',
 		playing ? 'pointer-events-none opacity-0' : ''
 	]}
 >
 	<div
 		class={[
-			'ease flex items-center justify-center rounded-full bg-foreground p-[1cqw] transition duration-200 group-hover:scale-95',
+			'ease flex items-center justify-center rounded-full bg-foreground p-4 transition duration-200 group-hover:scale-95',
 			playing && 'scale-0'
 		]}
 	>
-		<div class="icon-[ri--play-fill] text-[10cqw] text-background"></div>
+		<div class="icon-[ri--play-fill] text-8xl text-background"></div>
 	</div>
 </button>

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount, onDestroy } from 'svelte';
 	import Hls from 'hls.js';
-	import type { HTMLVideoAttributes } from 'svelte/elements';
+	import type { ClassValue, HTMLVideoAttributes } from 'svelte/elements';
 
 	let {
 		video = $bindable(null),
@@ -14,7 +14,7 @@
 		playback_id: string;
 		autoplay?: boolean;
 		loop?: boolean;
-		class?: string;
+		class?: ClassValue;
 	} = $props();
 
 	// Derived URLs from Mux
@@ -37,11 +37,13 @@
 		if (video.canPlayType('application/vnd.apple.mpegurl')) {
 			video.src = src;
 			// Safari needs this explicitly set in JS for autoplay to reliably work
-			video.muted = true;
 		} else if (Hls.isSupported()) {
 			hls = new Hls();
 			hls.loadSource(src);
 			hls.attachMedia(video);
+			hls.on(Hls.Events.MANIFEST_PARSED, (_, data) => {
+				hls!.currentLevel = data.levels.length - 1; // highest quality
+			});
 		}
 	}
 
@@ -66,7 +68,7 @@
 	bind:this={video}
 	{autoplay}
 	{loop}
-	muted
+	muted={false}
 	playsinline
 	preload="auto"
 	controls

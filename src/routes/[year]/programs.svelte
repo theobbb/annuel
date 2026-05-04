@@ -55,7 +55,7 @@
 					class="pointer-events-none col-span-10 text-xl/6 text-balance lg:col-span-5 lg:text-3xl"
 				>
 					<div class="pr-24- relative w-fit">
-						<h2 class="">{name}</h2>
+						<h2 class="mt-px">{name}</h2>
 
 						<div class="absolute -right-3 bottom-0 flex translate-x-full justify-end">
 							<div
