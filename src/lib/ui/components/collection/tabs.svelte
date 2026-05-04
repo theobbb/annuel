@@ -24,7 +24,8 @@
 		<a
 			class={[
 				'-mx-2 -my-1 block px-2 py-1',
-				current_tab === param ? '' : ' not-hover:text-muted',
+				!current_tab || current_tab === param ? '' : ' not-hover:text-muted',
+
 				'transition'
 			]}
 			href={url_query_param(`/${page.params.year}/${param}`, { programme: current || null })}

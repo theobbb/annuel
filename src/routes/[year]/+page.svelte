@@ -62,8 +62,8 @@
 <div><Members /></div>
 <Posters />
 <Text />
-<!-- 
-<Sprite /> -->
+
+<!-- <Sprite /> -->
 
 <svelte:head>
 	<title>Annuel de design {page.params.year}</title>

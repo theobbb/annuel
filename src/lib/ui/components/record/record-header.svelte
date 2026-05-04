@@ -55,7 +55,7 @@
 		</h2>
 		<div
 			class={[
-				'leading-snug text-pretty sm:max-lg:max-w-lg',
+				'leading-snug text-pretty sm:max-md:max-w-lg',
 				desc_len > 8
 					? ''
 					: desc_len > 5
