@@ -30,9 +30,9 @@
 	let hovered: StudentsRecord | null = $state(null);
 </script>
 
-<div class="grid grid-cols-10 gap-x-gap leading-relaxed">
+<div class="grid-10 gap-y-0! leading-relaxed">
 	{#each cols as col}
-		<div class="col-span-full lg:col-span-3">
+		<div class="col-span-full sm:col-span-6 lg:col-span-3">
 			<div class="grid grid-cols-7 gap-x-gap lg:grid-cols-3">
 				{#each col as student, i}
 					<div class="text-right">

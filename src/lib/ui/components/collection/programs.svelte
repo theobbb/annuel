@@ -7,7 +7,7 @@
 </script>
 
 <div
-	class="flex-col-reverse- flex items-end justify-center gap-2 md:flex-row md:items-center md:gap-gap"
+	class="flex items-end justify-end gap-2 max-lg:w-full max-lg:border-y max-lg:py-1 md:items-center md:gap-gap lg:flex-row lg:justify-center"
 >
 	<a
 		class={[

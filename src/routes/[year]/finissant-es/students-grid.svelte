@@ -7,7 +7,9 @@
 	const { students }: { students: StudentsRecord[] } = $props();
 </script>
 
-<div class="grid grid-cols-3 gap-4 gap-y-6 md:grid-cols-5 lg:gap-gap lg:gap-y-8 xl:grid-cols-7">
+<div
+	class="grid grid-cols-2 gap-4 gap-y-6 sm:grid-cols-3 md:grid-cols-5 lg:gap-gap lg:gap-y-8 xl:grid-cols-7"
+>
 	{#each students as student, i}
 		<div class="group/student relative">
 			<a class="block w-full no-underline" href="/{page.params.year}/finissant-es/{student.id}">

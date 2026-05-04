@@ -202,7 +202,7 @@
 	onpause={() => pause()}
 	playback_id="14W025RvjQdhvGaDyE4jHmKtWzQcIyA5PJNtRl7dLbmA"
 	class={[
-		'h-full w-full border',
+		'h-full w-full max-lg:border-y lg:border',
 		playing ? 'border-transparent' : '',
 		'ease transition duration-200'
 	]}
@@ -277,7 +277,7 @@
 	}}
 	aria-label="Démarrer la vidéo"
 	class={[
-		'group ease @container absolute inset-0 flex cursor-pointer items-center justify-center transition duration-200 hover:bg-black/10',
+		'group ease @container  absolute inset-0 flex cursor-pointer items-center justify-center transition duration-200 hover:bg-black/10',
 		playing ? 'pointer-events-none opacity-0' : ''
 	]}
 >

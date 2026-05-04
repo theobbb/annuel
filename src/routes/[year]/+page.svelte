@@ -49,7 +49,7 @@
 	</div>
 
 	<div
-		class="w-[calc(100%+2*var(--spacing-gap))]- @container relative col-span-full aspect-video overflow-hidden max-lg:-mx-gap md:mt-24 lg:col-span-6 lg:col-start-3"
+		class="@container relative col-span-full aspect-video overflow-hidden max-lg:-mx-gap md:mt-24 lg:col-span-6 lg:col-start-3"
 	>
 		<Video {data} />
 	</div>
