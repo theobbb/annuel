@@ -1,4 +1,4 @@
-import { error, redirect } from '@sveltejs/kit';
+import { redirect } from '@sveltejs/kit';
 import { pocketbase } from '$lib/pocketbase';
 import type { ProjectsRecord, StudentsRecord } from '$lib/pocketbase.types';
 import type { ProgramStatsRecord } from '$lib/pocketbase.types';
