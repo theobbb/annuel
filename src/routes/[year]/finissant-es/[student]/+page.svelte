@@ -23,7 +23,7 @@
 	{/snippet}
 
 	{#snippet aside()}
-		<div class="mb-16">
+		<div class="mt-1.5 mb-16">
 			<Facecard {student} link={false} />
 		</div>
 	{/snippet}

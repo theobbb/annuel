@@ -100,7 +100,7 @@
 		<div class="">
 			<div class="mb-16">
 				<!-- <div class="mb-1">Finissant.e.s</div> -->
-				<div class="mb-0.5 border-b pb-1"><div class="text-muted">Projet par</div></div>
+				<div class="mb-1 border-b pb-1"><div class="text-muted">Projet par</div></div>
 				{#each project.expand.students as student}
 					<div><Student {student} /></div>
 				{/each}
@@ -141,6 +141,7 @@
 		</div>
 	</div>
 </RecordHeader>
+
 <div class="grid grid-cols-5 gap-gap">
 	{#each files as file, i}
 		{@const meta = meta_files?.[i] || seed_meta_file}
