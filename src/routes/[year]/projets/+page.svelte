@@ -42,6 +42,10 @@
 	});
 	const shuffled_projects = $derived(shuffle_array(filtered_projects, seed.value));
 
+	$effect(() => {
+		seed.set_projects(shuffled_projects.map((p) => p.id));
+	});
+
 	const CHUNK_SIZE = $derived(view === 'liste' ? 16 : 50);
 	let visible_count = $state(CHUNK_SIZE);
 

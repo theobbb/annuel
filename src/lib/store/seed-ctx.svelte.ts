@@ -2,12 +2,19 @@ import { getContext, setContext } from 'svelte';
 
 class Seed {
 	value: number = $state(-1);
+	projects: string[] = $state([]);
 
 	constructor(value: number) {
 		this.value = value;
 	}
 	shuffle() {
 		this.value = Math.random();
+	}
+	set_projects(ids: string[]) {
+		// Only update if order actually changed
+		if (ids.length !== this.projects.length || ids.some((id, i) => id !== this.projects[i])) {
+			this.projects = ids;
+		}
 	}
 }
 

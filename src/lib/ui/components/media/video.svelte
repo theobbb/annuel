@@ -15,38 +15,54 @@
 		class?: ClassValue;
 	} = $props();
 
-	const src = $derived(`https://stream.mux.com/${playback_id}.m3u8`);
+	// Request only the highest rendition from Mux — no low-quality levels in manifest
+	const src = $derived(`https://stream.mux.com/${playback_id}.m3u8?max_resolution=1080p`);
+
 	let hls: Hls | null = null;
 	let is_ready = $state(false);
 
 	function initHls() {
 		if (!video) return;
 
-		// Clean up previous instance
 		if (hls) {
 			hls.destroy();
 			hls = null;
 		}
 
-		// 1. Native HLS support (Safari/iOS)
-		if (video.canPlayType('application/vnd.apple.mpegurl')) {
-			video.src = src;
-			// Safari needs an explicit load() when src changes via JS
-			video.load();
-		}
-		// 2. HLS.js support (Chrome/Firefox/Edge)
-		else if (Hls.isSupported()) {
-			hls = new Hls();
+		// Prefer HLS.js when available — gives us quality control
+		// Native HLS (Safari/iOS only — canPlayType is true in Chrome too but we skip it)
+		if (Hls.isSupported()) {
+			hls = new Hls({
+				startLevel: 0,
+				capLevelToPlayerSize: false,
+				maxBufferLength: 30,
+				maxMaxBufferLength: 60
+			});
+
 			hls.loadSource(src);
 			hls.attachMedia(video);
+
 			hls.on(Hls.Events.MANIFEST_PARSED, (_, data) => {
-				// Optional: Auto-select highest quality
+				console.log(
+					'Levels:',
+					data.levels.map(
+						(l, i) => `[${i}] ${l.width}x${l.height} @ ${Math.round(l.bitrate / 1000)}kbps`
+					)
+				);
 				hls!.currentLevel = data.levels.length - 1;
 			});
+
+			hls.on(Hls.Events.LEVEL_SWITCHED, (_, data) => {
+				const l = hls!.levels[data.level];
+				console.log(`Level switched to [${data.level}]: ${l.width}x${l.height}`);
+			});
+		} else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+			// True Safari/iOS fallback only
+			video.src = src;
+			video.load();
 		}
 	}
 
-	// React to src or video element changes
 	$effect(() => {
 		if (video && src) {
 			initHls();
@@ -68,7 +84,7 @@
 	onloadedmetadata={() => (is_ready = true)}
 	{...props}
 	class={[
-		'w-full bg-black object-contain transition-opacity duration-500 ease-out',
+		'w-full bg-placeholder object-contain transition-opacity duration-500 ease-out',
 		is_ready ? 'opacity-100' : 'opacity-0',
 		props.class
 	]}

@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { PUBLIC_POCKETBASE_URL } from '$env/static/public';
-	import Image from '$lib/ui/components/media/image.svelte';
 	import Video from '$lib/ui/components/media/video.svelte';
 
 	const { data } = $props();

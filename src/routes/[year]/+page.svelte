@@ -27,7 +27,7 @@
 	<div class="col-span-full mt-16 text-right md:hidden">
 		<a href="/archives">Archives(+)</a>
 	</div>
-	<div class="col-span-full min-h-[calc(100svh-40rem)] max-lg:mt-8 lg:col-span-6 lg:col-start-3">
+	<div class="min-h-[calc(100svh-40rem)]- col-span-full max-lg:mt-8 lg:col-span-6 lg:col-start-3">
 		<div>
 			<div
 				class="col-span-full -mx-0.5 text-[10vw] leading-[100%] tracking-[-2%] sm:text-[5vw]

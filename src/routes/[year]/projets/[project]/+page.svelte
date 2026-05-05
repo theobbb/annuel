@@ -3,16 +3,23 @@
 	import ProjectRow from '$lib/ui/components/project/project-row.svelte';
 	import Student from '$lib/components/student.svelte';
 	import RecordHeader from '$lib/ui/components/record/record-header.svelte';
-	import { string_to_1_8 } from '$lib/utils/seed';
-	import { onMount } from 'svelte';
 	import File, { seed_meta_file } from './file.svelte';
-	import { afterNavigate } from '$app/navigation';
+	import { afterNavigate, goto } from '$app/navigation';
+	import { use_seed } from '$lib/store/seed-ctx.svelte.js';
 
 	const { data } = $props();
 
-	const { project, program_map } = $derived(data);
+	const { project } = $derived(data);
 	const { files, meta_files } = $derived(project);
 
+	const seed = use_seed();
+	const next_id = $derived.by(() => {
+		if (seed.projects?.length > 0) {
+			const index = seed.projects.indexOf(data.project.id);
+			return seed.projects[(index + 1) % seed.projects.length];
+		}
+		return data.next_random_id;
+	});
 	let from_projects = $state(false);
 
 	afterNavigate(({ from }) => {
@@ -154,15 +161,24 @@
 	</div>
 {/if}
 
-<div class="mt-32">
+<div class="mt-32 flex items-center justify-between gap-gap leading-tight text-balance">
 	<a
 		href="/{page.params.year}/projets"
 		onclick={on_back}
-		class="-mx-2 -my-1 inline-flex w-fit items-center gap-1 px-2 py-1"
+		class="-mx-2 -my-1 inline-flex w-fit gap-1 px-2 py-1"
 	>
-		<div class="icon-[ri--arrow-left-long-line]"></div>
+		<div class="icon-[ri--arrow-left-long-line] translate-y-0.5"></div>
 		<span>Retour à la liste de projets</span>
 	</a>
+	{#if next_id}
+		<a
+			href="/{page.params.year}/projets/{next_id}"
+			class="-mx-2 -my-1 inline-flex w-fit items-center gap-1 px-2 py-1 text-right"
+		>
+			<span>Projet suivant</span>
+			<div class="icon-[ri--arrow-right-long-line] translate-y-0.5"></div>
+		</a>
+	{/if}
 </div>
 
 <!-- <div class=" col-span-3">
@@ -194,6 +210,15 @@
 			</div>
 		</div>
 	</div> -->
+
+<svelte:window
+	onkeydown={(e) => {
+		if (e.key === 'ArrowRight' && next_id) {
+			goto(`/${page.params.year}/projets/${next_id}`);
+		}
+	}}
+/>
+
 <svelte:head>
 	<title
 		>{project.name}

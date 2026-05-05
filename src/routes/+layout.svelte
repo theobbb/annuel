@@ -13,7 +13,9 @@
 	init_seed(data.seed);
 </script>
 
-<div class="mx-gap text-base leading-normal antialiased lg:text-lg">
+<div
+	class="mx-gap text-base leading-normal antialiased selection:bg-accent selection:text-black lg:text-lg"
+>
 	<div class="mx-auto grid min-h-svh w-full max-w-480 grid-rows-[1fr_auto]">
 		<div class="">
 			{@render children()}
