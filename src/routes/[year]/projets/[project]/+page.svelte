@@ -108,7 +108,7 @@
 		</div>
 	{/snippet}
 
-	<div class="col-span-full grid grid-cols-4 gap-gap leading-snug">
+	<div class="meta col-span-full grid grid-cols-4 gap-gap leading-[1.2]">
 		<div class="col-span-2">
 			{#if project.session}
 				{@const [session_year, session_season] = project.session.split('.')}
@@ -227,3 +227,9 @@
 	</title>
 	<meta name="description" content={project.description} />
 </svelte:head>
+
+<style>
+	.meta .text-muted {
+		margin-bottom: 0.05rem;
+	}
+</style>
