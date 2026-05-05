@@ -22,12 +22,12 @@
 		Archives (+)
 	</a>
 </Header>
-
-<div class="grid-10 min-h-[calc(100svh-3rem)] pb-1 lg:pt-24">
+<!-- <Sprite /> -->
+<div class="grid-10 lg:mt-24">
 	<div class="col-span-full mt-16 text-right md:hidden">
 		<a href="/archives">Archives(+)</a>
 	</div>
-	<div class="min-h-[calc(100svh-40rem)]- col-span-full max-lg:mt-8 lg:col-span-6 lg:col-start-3">
+	<div class="col-span-full min-h-[calc(100svh-30rem)] max-lg:mt-8 lg:col-span-6 lg:col-start-3">
 		<div>
 			<div
 				class="col-span-full -mx-0.5 text-[10vw] leading-[100%] tracking-[-2%] sm:text-[5vw]
@@ -62,8 +62,6 @@
 <div><Members /></div>
 <Posters />
 <Text />
-
-<!-- <Sprite /> -->
 
 <svelte:head>
 	<title>Annuel de design {page.params.year}</title>

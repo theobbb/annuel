@@ -47,7 +47,7 @@
 			>
 			</a>
 			<div class="group lg:gap-x-2x lg:pt-1x grid-10 gap-y-0.5! pt-2 pb-8 transition lg:pb-8">
-				<div class="col-span-8 text-muted transition max-lg:text-base lg:col-span-2">
+				<div class="col-span-8 text-muted transition lg:col-span-2">
 					({program_type_map.get(type)?.name})
 				</div>
 
@@ -90,7 +90,7 @@
 					</div>
 				</div>
 				<div
-					class="col-span-4 text-right text-muted transition max-lg:col-start-10 max-lg:row-start-1 max-lg:text-base lg:col-span-1"
+					class="col-span-4 text-right text-muted transition max-lg:col-start-10 max-lg:row-start-1 lg:col-span-1"
 				>
 					{code}
 				</div>

@@ -15,7 +15,7 @@
 }
 
 @theme {
-	--spacing-gap: calc(var(--spacing) * 6);
+	--spacing-gap: calc(var(--spacing) * 6.5);
 
 	--color-background: rgb(255, 255, 255);
 	--color-foreground: var(---foreground);

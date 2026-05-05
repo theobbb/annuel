@@ -15,7 +15,7 @@
 	const ANGLE_DEG_MIN = 15;
 	const ANGLE_DEG_MAX = 55;
 	const SPAWN_INTERVAL_MS = 820;
-	const IMG_H_RATIO = 0.5;
+	const IMG_H_RATIO = 0.7;
 	const PRESEED_COUNT = 6;
 
 	function rand(min: number, max: number) {
@@ -146,7 +146,7 @@
 	}
 </script>
 
-<div use:mount class="relative -mx-gap h-64 overflow-hidden border-y">
+<div use:mount class="relative -mx-gap my-gap h-48 overflow-hidden border-y">
 	{#each items as item (item.key)}
 		<div
 			class="banner-item"
