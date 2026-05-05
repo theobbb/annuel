@@ -91,13 +91,13 @@
 	{/if}
 </CollectionLayout>
 
-<button
-	class="fixed right-gap bottom-gap z-10 flex cursor-pointer items-center rounded-full border bg-background p-2 text-base transition not-hover:text-muted"
+<!-- <button
+	class="fixed right-9 bottom-0 z-10 flex size-gap cursor-pointer items-center justify-center border bg-background text-sm transition not-hover:text-muted"
 	title="Mélanger"
 	onclick={() => seed.shuffle()}
 >
 	<div class="icon-[ri--shuffle-line]"></div>
-</button>
+</button> -->
 
 <svelte:head>
 	<title>Annuel {page.params.year} — Projets</title>

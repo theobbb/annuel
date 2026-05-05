@@ -100,7 +100,7 @@
 		<div class="">
 			<div class="mb-16">
 				<!-- <div class="mb-1">Finissant.e.s</div> -->
-				<div class="mb-1 border-b pb-1"><div class="text-muted">Projet par</div></div>
+				<div class="mb-1 border-b pb-0.5"><div class="text-muted">Projet par</div></div>
 				{#each project.expand.students as student}
 					<div><Student {student} /></div>
 				{/each}
