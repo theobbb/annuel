@@ -77,7 +77,6 @@
 <video
 	bind:this={video}
 	{loop}
-	muted
 	playsinline
 	preload="auto"
 	controls

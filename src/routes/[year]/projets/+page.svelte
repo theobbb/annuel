@@ -46,7 +46,7 @@
 		seed.set_projects(shuffled_projects.map((p) => p.id));
 	});
 
-	const CHUNK_SIZE = $derived(view === 'liste' ? 16 : 50);
+	const CHUNK_SIZE = $derived(view === 'liste' ? 24 : 50);
 	let visible_count = $state(CHUNK_SIZE);
 
 	$effect(() => {
