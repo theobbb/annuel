@@ -10,15 +10,15 @@
 <div class="grid-10 relative gap-y-gap">
 	{#each posters as poster, i}
 		<div class="relative col-span-2 col-start-1 max-md:hidden">
-			<div class="sticky top-17">
+			<div class="sticky top-15 lg:top-17">
 				<img
-					class="svg border bg-white"
+					class="svg max-h-[calc(100svh-5rem)] border bg-white lg:max-h-[calc(100svh-6rem)]"
 					src="{PUBLIC_POCKETBASE_URL}/api/files/years/{year.id}/{poster}"
 					alt="poster {year.id} {i}"
 				/>
 			</div>
 		</div>
-		<div class="col-span-8 col-start-3 h-full">
+		<div class="col-span-8 col-start-2 h-full md:col-span-8 md:col-start-3">
 			<img
 				class="svg border bg-white"
 				src="{PUBLIC_POCKETBASE_URL}/api/files/years/{year.id}/{poster}"
