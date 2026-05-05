@@ -1,7 +1,7 @@
 /**
  * Supported media types for our helper
  */
-type MediaType = 'image' | 'video' | 'unknown';
+type MediaType = 'image' | 'gif' | 'video' | 'unknown';
 
 /**
  * Determines if a filename belongs to an image or video based on its extension.
@@ -13,16 +13,14 @@ export const get_media_type = (filename: string): MediaType => {
 
 	if (!extension) return 'unknown';
 
-	const imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'svg', 'avif'];
-	const videoExtensions = ['mp4', 'webm', 'ogg', 'mov', 'avi', 'mkv'];
+	const image_ext = ['jpg', 'jpeg', 'png', 'webp', 'svg', 'avif'];
+	const gif_ext = ['gif'];
+	const video_ext = ['mp4', 'webm', 'ogg', 'mov', 'avi', 'mkv'];
 
-	if (imageExtensions.includes(extension)) {
-		return 'image';
-	}
+	if (image_ext.includes(extension)) return 'image';
+	if (gif_ext.includes(extension)) return 'gif';
 
-	if (videoExtensions.includes(extension)) {
-		return 'video';
-	}
+	if (video_ext.includes(extension)) return 'video';
 
 	return 'unknown';
 };

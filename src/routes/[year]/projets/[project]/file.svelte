@@ -13,6 +13,7 @@
 
 <script lang="ts">
 	import type { FileNameString, ProjectsRecord } from '$lib/pocketbase.types';
+	import Gif from '$lib/ui/components/media/gif.svelte';
 	import Image from '$lib/ui/components/media/image.svelte';
 	import Video from '$lib/ui/components/media/video.svelte';
 	import { get_media_type } from '$lib/utils/media-type';
@@ -41,6 +42,8 @@
 >
 	{#if meta.mux_playback_id}
 		<Video playback_id={meta.mux_playback_id} />
+	{:else if media_type == 'gif'}
+		<Gif collection="projects" filename={file} record_id={project.id} class="w-full" />
 	{:else if media_type == 'image'}
 		<Image
 			collection="projects"

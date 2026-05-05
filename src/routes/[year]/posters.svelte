@@ -7,19 +7,28 @@
 	const posters = $derived(year?.posters_1 || []);
 </script>
 
-<div class="grid-10 space-y-gap">
-	<div class="col-span-6 col-start-3 space-y-gap">
-		{#each posters as poster, i}
+<div class="grid-10 relative gap-y-gap">
+	{#each posters as poster, i}
+		<div class="relative col-span-2 col-start-1 max-md:hidden">
+			<div class="sticky top-17">
+				<img
+					class="svg border bg-white"
+					src="{PUBLIC_POCKETBASE_URL}/api/files/years/{year.id}/{poster}"
+					alt="poster {year.id} {i}"
+				/>
+			</div>
+		</div>
+		<div class="col-span-8 col-start-3 h-full">
 			<img
-				class="svg border"
+				class="svg border bg-white"
 				src="{PUBLIC_POCKETBASE_URL}/api/files/years/{year.id}/{poster}"
 				alt="poster {year.id} {i}"
 			/>
-		{/each}
-	</div>
+		</div>
+	{/each}
 </div>
 
-<div class="grid-10 mt-24">
+<!-- <div class="grid-10 mt-24">
 	{#each posters as poster, i}
 		<img
 			src="{PUBLIC_POCKETBASE_URL}/api/files/years/{year.id}/{poster}"
@@ -27,4 +36,4 @@
 			class="svg col-span-2 border"
 		/>
 	{/each}
-</div>
+</div> -->
