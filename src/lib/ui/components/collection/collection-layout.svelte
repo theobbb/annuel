@@ -28,7 +28,7 @@
 	<Programs />
 </div>
 
-<div class="mt-gap max-lg:mb-16 lg:mt-16">
+<div class="mt-gap mb-2 max-lg:mb-16 lg:mt-16">
 	<div class="">
 		<div class={['flex grid-cols-10 items-center gap-gap py-3 md:grid']}>
 			<div class="col-span-3">
