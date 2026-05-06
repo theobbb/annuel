@@ -18,6 +18,7 @@
 	import Image from '$lib/ui/components/media/image.svelte';
 	import Video from '$lib/ui/components/media/video.svelte';
 	import { get_media_type } from '$lib/utils/media-type';
+	import Media from './media.svelte';
 
 	const {
 		project,
@@ -52,9 +53,9 @@
            --desktop-span: {col_span};
            --mobile-span: {mob_col_span};"
 >
-	<!-- <div class="text-sm- -mt-3 mb-0.5">{index + 1}</div> -->
+	<!-- <div class="-mt-3 mb-0.5">{index + 1}</div> -->
 	<div
-		class="cursor-zoom-in- inset-ring"
+		class={[' inset-ring', !meta.mux_playback_id && 'cursor-zoom-in']}
 		onclick={() => onclick?.(index)}
 		role="button"
 		tabindex={0}
@@ -64,20 +65,7 @@
 		aria-label="Agrandir le fichier {index + 1}"
 		style={meta.aspect_ratio ? `aspect-ratio: ${meta.aspect_ratio}` : ''}
 	>
-		{#if meta.mux_playback_id}
-			<Video playback_id={meta.mux_playback_id} />
-		{:else if media_type == 'gif'}
-			<Gif collection="projects" filename={file} record_id={project.id} class="w-full" />
-		{:else if media_type == 'image'}
-			<Image
-				collection="projects"
-				filename={file}
-				record_id={project.id}
-				class="w-full"
-				{sizes_attr}
-				sizes="600x0,1200x0,1920x0"
-			/>
-		{/if}
+		<Media {project} {file} {meta} />
 	</div>
 	{#if meta.caption}
 		<div class="mt-1 mb-gap leading-tight lg:mt-1.5">{meta.caption}</div>

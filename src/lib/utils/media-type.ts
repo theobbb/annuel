@@ -13,7 +13,7 @@ export const get_media_type = (filename: string): MediaType => {
 
 	if (!extension) return 'unknown';
 
-	const image_ext = ['jpg', 'jpeg', 'png', 'webp', 'svg', 'avif'];
+	const image_ext = ['jpg', 'jpeg', 'png', 'webp', 'svg', 'avif', 'jfif'];
 	const gif_ext = ['gif'];
 	const video_ext = ['mp4', 'webm', 'ogg', 'mov', 'avi', 'mkv'];
 

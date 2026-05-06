@@ -6,19 +6,20 @@
 	import File, { seed_meta_file } from './file.svelte';
 	import { afterNavigate, goto } from '$app/navigation';
 	import { use_seed } from '$lib/store/seed-ctx.svelte.js';
-	import Lightbox from './lightbox.svelte';
+	import Lightbox, { type LightboxItem } from './lightbox.svelte';
+	import { url_query_param } from '$lib/utils/url.js';
 
 	const { data } = $props();
 
 	const { project } = $derived(data);
 	const { meta_files } = $derived(project);
 
-	const files = $derived(
+	const files: LightboxItem[] = $derived(
 		project.files?.map((file, i) => ({
 			file,
 			meta: meta_files?.[i] || seed_meta_file,
-			index: i
-		}))
+			index: i + 1
+		})) || []
 	);
 	let lightbox_index = $state<number | null>(null);
 
@@ -97,6 +98,12 @@
 	}
 
 	const seasons = ['Automne', 'Hiver', 'Été'];
+
+	function goto_file(index: number | null) {
+		console.log(index);
+		const url = url_query_param(page.url.href, { media: index ? String(index) : null });
+		goto(url, { noScroll: true });
+	}
 </script>
 
 <RecordHeader back_href="/{page.params.year}/projets" description={project.description || ''}>
@@ -154,11 +161,11 @@
 
 <div class="grid grid-cols-5 gap-gap">
 	{#each files as { file, meta, index }}
-		<File {project} {file} {meta} {index} onclick={(index) => (lightbox_index = index)} />
+		<File {project} {file} {meta} {index} onclick={(index) => goto_file(index)} />
 	{/each}
 </div>
 
-<!-- <Lightbox {project} {files} bind:active_index={lightbox_index} /> -->
+<Lightbox {project} {files} />
 
 {#if related_projects.length}
 	<div class="mt-48">

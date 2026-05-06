@@ -1,41 +1,51 @@
-<script lang="ts">
-	import type { MetaFile } from './file.svelte';
-	import type { FileNameString, ProjectsRecord } from '$lib/pocketbase.types';
-	import Gif from '$lib/ui/components/media/gif.svelte';
-	import Image from '$lib/ui/components/media/image.svelte';
-	import Video from '$lib/ui/components/media/video.svelte';
-	import { get_media_type } from '$lib/utils/media-type';
-
-	type LightboxItem = {
+<script module>
+	export type LightboxItem = {
 		file: FileNameString;
 		meta: MetaFile;
 		index: number;
 	};
+</script>
+
+<script lang="ts">
+	import type { MetaFile } from './file.svelte';
+	import type { FileNameString, ProjectsRecord } from '$lib/pocketbase.types';
+	import Image from '$lib/ui/components/media/image.svelte';
+	import { get_media_type } from '$lib/utils/media-type';
+	import { page } from '$app/state';
+	import { url_query_param } from '$lib/utils/url';
+	import { goto } from '$app/navigation';
+	import Media from './media.svelte';
 
 	let {
 		project,
-		files,
-		active_index = $bindable<number | null>(null)
+		files
 	}: {
 		project: ProjectsRecord;
 		files: LightboxItem[];
-		active_index: number | null;
 	} = $props();
 
-	const active_item = $derived(active_index !== null ? (files[active_index] ?? null) : null);
+	const index: number | null = $derived(Number(page.url.searchParams.get('media')) || null);
+
+	const current_item = $derived(index !== null ? (files[index - 1] ?? null) : null);
 
 	function close() {
-		active_index = null;
+		goto_file(null);
 	}
 
-	function prev() {
-		if (active_index === null) return;
-		active_index = (active_index - 1 + files.length) % files.length;
+	function goto_file(index: number | null) {
+		const url = url_query_param(page.url.href, { media: index ? String(index) : null });
+		goto(url, { noScroll: true });
 	}
 
-	function next() {
-		if (active_index === null) return;
-		active_index = (active_index + 1) % files.length;
+	function goto_prev_file() {
+		if (!index) return;
+		goto_file(index == 1 ? files.length : index - 1);
+	}
+
+	function goto_next_file() {
+		if (!index) return;
+
+		goto_file(index == files.length ? 1 : index + 1);
 	}
 
 	function on_backdrop_click(e: MouseEvent) {
@@ -43,141 +53,123 @@
 	}
 
 	function on_keydown(e: KeyboardEvent) {
-		if (active_index === null) return;
+		if (index === null) return;
 		if (e.key === 'Escape') close();
 		if (e.key === 'ArrowLeft') {
 			e.stopPropagation();
-			prev();
+			goto_prev_file();
 		}
 		if (e.key === 'ArrowRight') {
 			e.stopPropagation();
-			next();
+			goto_next_file();
 		}
 	}
 
 	// Scroll active thumbnail into view
 	let strip = $state<HTMLElement>();
 	$effect(() => {
-		if (!strip || active_index === null) return;
-		const thumb = strip.children[active_index] as HTMLElement | undefined;
+		if (!strip || index === null) return;
+		const thumb = strip.children[index] as HTMLElement | undefined;
 		thumb?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
 	});
-
-	const media_type = $derived(active_item ? get_media_type(active_item.file) : null);
 </script>
 
 <svelte:window onkeydown={on_keydown} />
 
-{#if active_item !== null}
+{#if current_item !== null}
 	<!-- svelte-ignore a11y_click_events_have_key_events a11y_no_static_element_interactions -->
 	<div
-		class="lightbox fixed inset-0 z-50 flex flex-col items-center justify-center gap-4 p-4 pb-6"
+		class="lightbox fixed inset-0 z-500 grid h-svh grid-rows-[auto_1fr_auto] gap-gap p-gap pt-1.5"
 		onclick={on_backdrop_click}
 		role="dialog"
 		aria-modal="true"
-		aria-label="Aperçu du fichier {active_item.index + 1}"
+		aria-label="Aperçu du fichier {current_item.index + 1}"
+		tabindex="0"
 	>
 		<!-- Close -->
-		<button
-			onclick={close}
-			aria-label="Fermer"
-			class="absolute top-4 right-5 flex h-8 w-8 cursor-pointer items-center
-			       justify-center border-none bg-transparent text-xl text-inherit
-			       opacity-40 transition-opacity duration-150 hover:opacity-100"
-		>
-			<span class="icon-[ri--close-line]"></span>
-		</button>
+		<div class="grid-10 -mb-2-">
+			<div
+				class="col-span-2 flex text-center
+		            tracking-widest select-none"
+			>
+				<span>{current_item.index}</span>
+				<span class="opacity-40">/</span>
+				<span>{files.length}</span>
+			</div>
+			<!-- Caption -->
+			{#if current_item.meta.caption}
+				<div class="col-span-6 leading-snug">
+					{current_item.meta.caption}
+				</div>
+			{/if}
+			<button
+				onclick={close}
+				aria-label="Fermer"
+				class="-col-end-1 -m-2 flex cursor-pointer items-center justify-end
+				       gap-2 border-none bg-transparent p-2
+				       opacity-40 transition-opacity duration-150 hover:opacity-100"
+			>
+				<span>Fermer (x)</span>
+			</button>
+		</div>
 
 		<!-- Counter -->
-		<div
-			class="pointer-events-none absolute top-5 left-6 flex gap-[0.2em] text-xs
-		            tracking-widest opacity-40 select-none"
-		>
-			<span>{active_item.index + 1}</span>
-			<span class="opacity-50">/</span>
-			<span>{files.length}</span>
-		</div>
 
 		<!-- Media -->
-		<div
-			class="relative flex w-full max-w-[min(90vw,1400px)] items-center justify-center"
-			style="max-height: calc(100vh - 10rem);"
-		>
-			{#key active_index}
-				<div class="animate-media-in w-full">
-					{#if active_item.meta.mux_playback_id}
-						<Video playback_id={active_item.meta.mux_playback_id} />
-					{:else if media_type === 'gif'}
-						<Gif
-							collection="projects"
-							filename={active_item.file}
-							record_id={project.id}
-							class="mx-auto block h-auto w-auto max-w-full object-contain"
-							style="max-height: calc(100vh - 10rem);"
-						/>
-					{:else if media_type === 'image'}
-						<Image
-							collection="projects"
-							filename={active_item.file}
-							record_id={project.id}
-							class="mx-auto block h-auto w-auto max-w-full object-contain"
-							style="max-height: calc(100vh - 10rem);"
-							sizes_attr="(min-width: 768px) 90vw, 100vw"
-							sizes="600x0,1200x0,1920x0,2560x0"
-						/>
-					{/if}
-				</div>
-			{/key}
+		<div class="relative h-full w-full">
+			<div class="absolute flex h-full w-full items-center justify-between gap-gap">
+				{#key index}
+					<div
+						class="animate-media-in h-auto max-h-full w-auto max-w-full inset-ring"
+						style={current_item.meta?.aspect_ratio
+							? `aspect-ratio: ${current_item.meta?.aspect_ratio}`
+							: ''}
+					>
+						<Media {project} file={current_item.file} meta={current_item.meta} lightbox />
+					</div>
+				{/key}
 
-			<!-- Prev / Next — overlaid on media -->
-			{#if files.length > 1}
-				<button
-					onclick={prev}
-					aria-label="Précédent"
-					class="absolute top-1/2 left-0 flex -translate-y-1/2 cursor-pointer items-center
-					       justify-center border-none bg-transparent p-3 text-lg text-inherit
-					       opacity-35 transition-opacity duration-150 hover:opacity-100"
-				>
-					<span class="icon-[ri--arrow-left-long-line]"></span>
-				</button>
-				<button
-					onclick={next}
-					aria-label="Suivant"
-					class="absolute top-1/2 right-0 flex -translate-y-1/2 cursor-pointer items-center
-					       justify-center border-none bg-transparent p-3 text-lg text-inherit
-					       opacity-35 transition-opacity duration-150 hover:opacity-100"
-				>
-					<span class="icon-[ri--arrow-right-long-line]"></span>
-				</button>
-			{/if}
-		</div>
-
-		<!-- Caption -->
-		{#if active_item.meta.caption}
-			<div
-				class="w-full max-w-[min(90vw,1400px)] text-left text-[0.8125rem] leading-snug opacity-55"
-			>
-				{active_item.meta.caption}
+				<!-- Prev / Next — overlaid on media -->
+				{#if files.length > 1}
+					<button
+						onclick={goto_prev_file}
+						aria-label="Précédent"
+						class="-order-1 -m-2 flex -translate-y-1/2 cursor-pointer
+						       items-center justify-center p-2 text-xl
+						       transition-opacity duration-150 not-hover:opacity-35"
+					>
+						<span class="icon-[ri--arrow-left-long-line]"></span>
+					</button>
+					<button
+						onclick={goto_next_file}
+						aria-label="Suivant"
+						class="-m-2 flex -translate-y-1/2 cursor-pointer
+						       items-center justify-center p-2 text-xl
+						       transition-opacity duration-150 not-hover:opacity-35"
+					>
+						<span class="icon-[ri--arrow-right-long-line]"></span>
+					</button>
+				{/if}
 			</div>
-		{/if}
+		</div>
 
 		<!-- Thumbnail strip -->
 		{#if files.length > 1}
 			<div
 				bind:this={strip}
-				class="scrollbar-none flex w-full max-w-[min(90vw,1400px)] gap-2
-				       overflow-x-auto pb-0.5"
+				class="scrollbar-none flex w-full max-w-[min(90vw,1400px)] gap-2.5
+				       overflow-x-auto p-2"
 			>
 				{#each files as item}
 					{@const thumb_media = get_media_type(item.file)}
 					<button
-						onclick={() => (active_index = item.index)}
+						onclick={() => goto_file(item.index)}
 						aria-label="Fichier {item.index + 1}"
-						class="h-14 w-20 shrink-0 cursor-pointer overflow-hidden border-none
+						class="shrink-0 cursor-pointer overflow-hidden border-none
 						       bg-transparent p-0 transition-opacity duration-150
-						       {item.index === active_index
-							? 'opacity-100 outline outline-1 outline-offset-1 outline-current'
-							: 'opacity-35 hover:opacity-70'}"
+						       {item.index === index
+							? 'opacity-100 outline outline-offset-4 outline-current'
+							: 'opacity-35 saturate-50 hover:opacity-70'}"
 					>
 						{#if item.meta.mux_playback_id}
 							<div class="flex h-full w-full items-center justify-center bg-black/10">
@@ -188,9 +180,8 @@
 								collection="projects"
 								filename={item.file}
 								record_id={project.id}
-								class="h-full w-full object-cover"
-								sizes_attr="80px"
-								sizes="160x0"
+								class="size-16! object-contain! object-center!"
+								sizes="80x80f"
 							/>
 						{/if}
 					</button>
@@ -215,7 +206,7 @@
 		display: none;
 	}
 
-	@keyframes lb-in {
+	/* @keyframes lb-in {
 		from {
 			opacity: 0;
 		}
@@ -237,5 +228,5 @@
 			opacity: 1;
 			transform: translateY(0);
 		}
-	}
+	} */
 </style>
