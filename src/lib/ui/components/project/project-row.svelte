@@ -40,7 +40,7 @@
 	>
 		{#each files as file, i}
 			<div class="nth-[n+4]:max-sm:hidden">
-				<div class="aspect-4/5 bg-placeholder">
+				<div class="aspect-4/5 inset-ring">
 					<Image
 						class="h-full w-full object-cover"
 						record_id={project.id}
@@ -52,7 +52,7 @@
 			</div>
 		{/each}
 		{#if files?.length == 0}
-			<div class="aspect-4/5 bg-placeholder"></div>
+			<div class="aspect-4/5 inset-ring"></div>
 		{/if}
 	</div>
 </div>

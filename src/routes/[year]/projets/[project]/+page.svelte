@@ -6,11 +6,21 @@
 	import File, { seed_meta_file } from './file.svelte';
 	import { afterNavigate, goto } from '$app/navigation';
 	import { use_seed } from '$lib/store/seed-ctx.svelte.js';
+	import Lightbox from './lightbox.svelte';
 
 	const { data } = $props();
 
 	const { project } = $derived(data);
-	const { files, meta_files } = $derived(project);
+	const { meta_files } = $derived(project);
+
+	const files = $derived(
+		project.files?.map((file, i) => ({
+			file,
+			meta: meta_files?.[i] || seed_meta_file,
+			index: i
+		}))
+	);
+	let lightbox_index = $state<number | null>(null);
 
 	const seed = use_seed();
 	const next_id = $derived.by(() => {
@@ -143,11 +153,12 @@
 </RecordHeader>
 
 <div class="grid grid-cols-5 gap-gap">
-	{#each files as file, i}
-		{@const meta = meta_files?.[i] || seed_meta_file}
-		<File {project} {file} {meta} />
+	{#each files as { file, meta, index }}
+		<File {project} {file} {meta} {index} onclick={(index) => (lightbox_index = index)} />
 	{/each}
 </div>
+
+<!-- <Lightbox {project} {files} bind:active_index={lightbox_index} /> -->
 
 {#if related_projects.length}
 	<div class="mt-48">
@@ -181,36 +192,6 @@
 		</a>
 	{/if}
 </div>
-
-<!-- <div class=" col-span-3">
-		<div class="sticky top-0">
-			<div class="">
-				<a href="/{page.params.year}/projets" class="flex items-center gap-1">
-					<div class="icon-[ri--arrow-left-long-line]"></div>
-					Retour
-				</a>
-			</div>
-			<div class="mt-24 mb-12 text-3xl/9 tracking-tight">
-				{project.name}
-			</div>
-			<div class=" leading-6.5">
-				{project.description}
-			</div>
-			<div class="mt-12">
-				<div class="mb-1">Finissant.e.s</div>
-				<Students students={project.expand.students} />
-			</div>
-			<div>
-				{project.teacher}
-			</div>
-			<div>
-				{project.class}
-			</div>
-			<div>
-				{project.session}
-			</div>
-		</div>
-	</div> -->
 
 <svelte:window
 	onkeydown={(e) => {

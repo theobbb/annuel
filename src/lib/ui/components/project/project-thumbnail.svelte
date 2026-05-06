@@ -17,7 +17,7 @@
 	});
 </script>
 
-<div class="aspect-4/5 w-full bg-placeholder">
+<div class="aspect-4/5 w-full inset-ring">
 	{#if filename}
 		<Image
 			record_id={project.id}

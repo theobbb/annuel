@@ -61,7 +61,7 @@
 					sizes="400x0,800x0,1200x0"
 				/>
 			{:else}
-				<div class="aspect-2/3 bg-placeholder"></div>
+				<div class="aspect-2/3 inset-ring"></div>
 			{/if}
 		</a>
 	{/each}

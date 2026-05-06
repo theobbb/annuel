@@ -3,6 +3,7 @@
 		caption: string;
 		col_start: number;
 		col_span: number;
+		aspect_ratio?: number;
 		mux_upload_id?: string;
 		mux_playback_id?: string;
 		is_uploading?: boolean;
@@ -18,11 +19,22 @@
 	import Video from '$lib/ui/components/media/video.svelte';
 	import { get_media_type } from '$lib/utils/media-type';
 
-	const { project, file, meta }: { project: ProjectsRecord; file: FileNameString; meta: MetaFile } =
-		$props();
+	const {
+		project,
+		file,
+		meta,
+		index,
+		onclick
+	}: {
+		project: ProjectsRecord;
+		file: FileNameString;
+		meta: MetaFile;
+		index: number;
+		onclick: (index: number) => void;
+	} = $props();
 
-	const col_start = $derived(meta?.col_start || 'auto');
-	const col_span = $derived(meta?.col_span || 1);
+	const col_start = $derived(meta?.col_start || 2);
+	const col_span = $derived(meta?.col_span || 3);
 	const mob_col_span = $derived(Math.min(col_span * 2, 5));
 
 	// Calculate the exact VW (Viewport Width) percentage.
@@ -40,20 +52,33 @@
            --desktop-span: {col_span};
            --mobile-span: {mob_col_span};"
 >
-	{#if meta.mux_playback_id}
-		<Video playback_id={meta.mux_playback_id} />
-	{:else if media_type == 'gif'}
-		<Gif collection="projects" filename={file} record_id={project.id} class="w-full" />
-	{:else if media_type == 'image'}
-		<Image
-			collection="projects"
-			filename={file}
-			record_id={project.id}
-			class="w-full"
-			{sizes_attr}
-			sizes="600x0,1200x0,1920x0"
-		/>
-	{/if}
+	<div class="text-sm- -mt-3 mb-0.5">{index + 1}</div>
+	<div
+		class="cursor-zoom-in- inset-ring"
+		onclick={() => onclick?.(index)}
+		role="button"
+		tabindex={0}
+		onkeydown={(e) => {
+			if (e.key === 'Enter' || e.key === ' ') onclick(index);
+		}}
+		aria-label="Agrandir le fichier {index + 1}"
+		style={meta.aspect_ratio ? `aspect-ratio: ${meta.aspect_ratio}` : ''}
+	>
+		{#if meta.mux_playback_id}
+			<Video playback_id={meta.mux_playback_id} />
+		{:else if media_type == 'gif'}
+			<Gif collection="projects" filename={file} record_id={project.id} class="w-full" />
+		{:else if media_type == 'image'}
+			<Image
+				collection="projects"
+				filename={file}
+				record_id={project.id}
+				class="w-full"
+				{sizes_attr}
+				sizes="600x0,1200x0,1920x0"
+			/>
+		{/if}
+	</div>
 	{#if meta.caption}
 		<div class="mt-1 mb-gap leading-tight lg:mt-1.5">{meta.caption}</div>
 	{/if}

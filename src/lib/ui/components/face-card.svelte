@@ -18,7 +18,7 @@
 <!-- <div class=" aspect-2/3 bg-placeholder"></div> -->
 
 <div class="group group/card @container relative flex aspect-2/3 h-full w-full overflow-hidden">
-	<div class="inset-0 h-full w-full bg-placeholder">
+	<div class="inset-0 h-full w-full inset-ring">
 		<Image
 			collection={student?.headshot ? 'students' : 'years'}
 			record_id={student?.headshot ? student.id : year?.id}
