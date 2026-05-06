@@ -5,7 +5,6 @@
 
 	import Footer from './footer.svelte';
 
-	import { page } from '$app/state';
 	import { init_seed } from '$lib/store/seed-ctx.svelte';
 
 	const { data, children } = $props();

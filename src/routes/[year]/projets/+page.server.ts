@@ -13,7 +13,7 @@ export async function load({ params }) {
 		filter: `year = "${params.year}" && draft = false`,
 		expand: 'students',
 		fields:
-			'files, id, name, thumbnail, files, students, expand.students.id, expand.students.first_name, expand.students.last_name, expand.students.program, collectionId',
+			'files, id, name, thumbnail, files, students, expand.students.id, expand.students.first_name, expand.students.last_name, expand.students.program, meta_files',
 		requestKey: `projects-${params.year}`
 	});
 	// console.log('loading projects');

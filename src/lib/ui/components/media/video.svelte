@@ -43,18 +43,7 @@
 			hls.attachMedia(video);
 
 			hls.on(Hls.Events.MANIFEST_PARSED, (_, data) => {
-				console.log(
-					'Levels:',
-					data.levels.map(
-						(l, i) => `[${i}] ${l.width}x${l.height} @ ${Math.round(l.bitrate / 1000)}kbps`
-					)
-				);
 				hls!.currentLevel = data.levels.length - 1;
-			});
-
-			hls.on(Hls.Events.LEVEL_SWITCHED, (_, data) => {
-				const l = hls!.levels[data.level];
-				console.log(`Level switched to [${data.level}]: ${l.width}x${l.height}`);
 			});
 		} else if (video.canPlayType('application/vnd.apple.mpegurl')) {
 			// True Safari/iOS fallback only

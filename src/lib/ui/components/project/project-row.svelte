@@ -7,7 +7,17 @@
 
 	const { project, students }: { project: ProjectsRecord; students: StudentsRecord[] } = $props();
 
-	const files = $derived(project.files?.filter((f) => get_media_type(f) == 'image')?.slice(0, 4));
+	const files = $derived.by(() => {
+		const arr = project.files
+			?.filter(
+				(f, i) => get_media_type(f) == 'image' && !Boolean(project.meta_files?.[i]?.mux_upload_id)
+			)
+			?.slice(0, 4);
+		if (!arr?.length) {
+			if (project.thumbnail) return [project.thumbnail];
+		}
+		return arr;
+	});
 </script>
 
 <div class={['group grid-10 relative flex-col gap-y-2 border-t py-gap']}>
@@ -41,5 +51,8 @@
 				</div>
 			</div>
 		{/each}
+		{#if files?.length == 0}
+			<div class="aspect-4/5 bg-placeholder"></div>
+		{/if}
 	</div>
 </div>
