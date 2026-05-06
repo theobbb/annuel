@@ -85,6 +85,10 @@ html {
 	text-underline-offset: 0.2em;
 }
 
+body:has(.lightbox) {
+	overflow: hidden;
+}
+
 hr {
 	border: none;
 	border-bottom: 1px solid transparent;
