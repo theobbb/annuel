@@ -5,9 +5,16 @@
 
 	const { project }: { project: ProjectsRecord } = $props();
 
-	const filename = $derived(
-		project.thumbnail || project.files?.find((f) => get_media_type(f) == 'image')
-	);
+	const filename = $derived.by(() => {
+		if (project.thumbnail) return project.thumbnail;
+
+		const image = project.files?.find(
+			(f, i) => get_media_type(f) == 'image' && !Boolean(project.meta_files?.[i]?.mux_upload_id)
+		);
+		if (image) return image;
+
+		return project.files?.find((f, i) => get_media_type(f));
+	});
 </script>
 
 <div class="aspect-4/5 w-full bg-placeholder">
