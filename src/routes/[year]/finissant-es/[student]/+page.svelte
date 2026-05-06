@@ -33,9 +33,6 @@
 		{/if}
 		{#each socials as social}
 			<div><a href={social.url} target="_blank">{social.name}</a></div>
-			<!-- <div>Instagram</div>
-			<div>Behance</div>
-			<div>Youtube</div> -->
 		{/each}
 	</div>
 </RecordHeader>
@@ -47,7 +44,6 @@
 <div class="mb-24">
 	{#each projects as project}
 		<ProjectRow {project} students={project.expand.students} />
-		<!-- <ProjectCard {project} /> -->
 	{/each}
 </div>
 

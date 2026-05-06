@@ -21,7 +21,6 @@
 			index: i + 1
 		})) || []
 	);
-	let lightbox_index = $state<number | null>(null);
 
 	const seed = use_seed();
 	const next_id = $derived.by(() => {
@@ -100,7 +99,6 @@
 	const seasons = ['Automne', 'Hiver', 'Été'];
 
 	function goto_file(index: number | null) {
-		console.log(index);
 		const url = url_query_param(page.url.href, { media: index ? String(index) : null });
 		goto(url, { noScroll: true });
 	}
