@@ -120,7 +120,7 @@
 			<div class="absolute flex h-full w-full items-center justify-between gap-gap">
 				{#key index}
 					<div
-						class="animate-media-in h-auto max-h-full w-auto max-w-full inset-ring"
+						class="h-auto max-h-full w-auto max-w-full inset-ring"
 						style={current_item.meta?.aspect_ratio
 							? `aspect-ratio: ${current_item.meta?.aspect_ratio}`
 							: ''}
