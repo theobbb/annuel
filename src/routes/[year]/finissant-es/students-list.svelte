@@ -54,7 +54,7 @@
 		</div>
 	{/each}
 	<div class="relative col-span-2 col-start-9 row-start-1 max-sm:hidden">
-		<div class="sticky top-18">
+		<div class="sticky top-14 lg:top-16">
 			<FaceCard student={hovered} link={Boolean(hovered)} />
 		</div>
 	</div>

@@ -43,7 +43,7 @@
 @media (max-width: 64rem) {
 	/* md breakpoint */
 	html {
-		--spacing-gap: calc(var(--spacing) * 4);
+		--spacing-gap: calc(var(--spacing) * 4.5);
 	}
 }
 

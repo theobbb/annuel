@@ -41,7 +41,7 @@
 <div bind:this={sentinel}></div>
 <header
 	class={[
-		'grid-10 sticky top-0 z-100 -mx-gap mt-1.5 h-8.5 items-center gap-y-2! border-b bg-background px-gap   whitespace-nowrap md:mt-3 md:h-9.5 lg:gap-x-gap',
+		'grid-10 sticky top-0 z-100 -mx-gap mt-1.5 h-8.5 items-center gap-y-2! border-b bg-background px-gap whitespace-nowrap lg:mt-3 lg:h-9.5 lg:gap-x-gap',
 		scroll_top ? ' border-transparent' : '',
 		'ease transition-[border,translate] duration-400',
 		cx
