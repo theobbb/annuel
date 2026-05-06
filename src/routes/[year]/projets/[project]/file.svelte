@@ -52,7 +52,7 @@
            --desktop-span: {col_span};
            --mobile-span: {mob_col_span};"
 >
-	<div class="text-sm- -mt-3 mb-0.5">{index + 1}</div>
+	<!-- <div class="text-sm- -mt-3 mb-0.5">{index + 1}</div> -->
 	<div
 		class="cursor-zoom-in- inset-ring"
 		onclick={() => onclick?.(index)}
