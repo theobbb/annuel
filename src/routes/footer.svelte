@@ -49,25 +49,8 @@
 		<div class="col-span-2 flex justify-end md:col-span-1">
 			<div class="max-w-12 md:max-w-24"><Uqam /></div>
 		</div>
-		<div class="col-span-full leading-snug text-muted max-md:mt-8 md:col-span-5">
-			<div>
-				Site web fait par
-				<a href="https://ecartelement.dev/" class="" target="_blank">ecartelement </a>
-			</div>
-			<div>
-				Police de caractères :
-				<a href="https://www.instagram.com/p/DXeo0_LkTI8" target="_blank" class="whitespace-nowrap">
-					EP Programma
-				</a>
-
-				<a
-					href="https://instagram.com/emilepainchaud.qc.ca/"
-					target="_blank"
-					class="whitespace-nowrap"
-				>
-					(<span class="">Émile Painchaud</span>)
-				</a>
-			</div>
+		<div class="col-span-full flex items-end leading-snug max-md:mt-8 md:col-span-5">
+			<a href="/credits">Crédits</a>
 		</div>
 		<div class="col-span-full leading-snug text-muted max-md:mt-8 md:col-span-5 md:text-right">
 			©{year} Annuel de design — Tous droits réservés
