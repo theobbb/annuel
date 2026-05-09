@@ -44,15 +44,11 @@
 		<div class="ml-4 pb-0.5 text-muted md:ml-8">Avec l’aide de :</div>
 		<div class="ml-8 md:ml-16">
 			<div>
-				<a href="https://annuel-design.uqam.ca/2026/finissant-es/bczhvgxsbll9p92">
-					Darline Sophie Jocelyn
-				</a>
+				<a href="https://www.darlinesophie.xyz/" target="_blank"> Darline Sophie Jocelyn </a>
 			</div>
 
 			<div>
-				<a href="https://annuel-design.uqam.ca/2026/finissant-es/q5rwuzu2z0hrbas"
-					>Emmanuelle Seguin</a
-				>
+				<a href="https://emmanuelleseguin.com/" target="_blank"> Emmanuelle Seguin </a>
 			</div>
 		</div>
 		<div class="ml-16 md:ml-32">
