@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import Facecard from '$lib/ui/components/face-card.svelte';
-	import Student from '$lib/components/student.svelte';
+	import Student from '$lib/ui/components/student.svelte';
 	import type { StudentsRecord } from '$lib/pocketbase.types';
 
 	const { students }: { students: StudentsRecord[] } = $props();

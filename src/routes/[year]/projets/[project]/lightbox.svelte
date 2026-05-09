@@ -113,10 +113,10 @@
 	>
 		<div class="grid h-svh w-full grid-rows-[auto_1fr_auto] gap-gap p-gap pt-1.5">
 			<!-- Close -->
-			<div class="grid-10 -mb-2-">
+			<div class="grid-10 -mb-2- gap-0!">
 				<div
-					class="col-span-2 flex text-center
-		            tracking-widest select-none"
+					class="col-span-1 col-start-3 flex text-center tracking-widest
+		            text-muted select-none"
 				>
 					<span>{current_item.index}</span>
 					<span class="opacity-40">/</span>
@@ -124,7 +124,7 @@
 				</div>
 				<!-- Caption -->
 				{#if current_item.meta.caption}
-					<div class="col-span-full leading-snug max-lg:order-4 md:col-span-6">
+					<div class="col-span-full leading-snug max-lg:order-4 max-lg:mt-4 md:col-span-6">
 						{current_item.meta.caption}
 					</div>
 				{/if}
@@ -133,7 +133,7 @@
 					aria-label="Fermer"
 					class="-col-end-1 -m-2 flex cursor-pointer justify-end
 				       gap-2 border-none bg-transparent p-2
-				       whitespace-nowrap opacity-40 transition-opacity duration-150 hover:opacity-100"
+				       whitespace-nowrap transition-opacity duration-150 hover:underline hover:opacity-100"
 				>
 					Fermer (x)
 				</button>
@@ -142,20 +142,21 @@
 			<!-- Counter -->
 
 			<!-- Media -->
-			<div class="relative h-full w-full">
-				<div class="absolute flex h-full w-full items-center justify-between gap-gap">
+			<div class="relative -mx-gap h-full">
+				<div class="absolute inset-0 flex items-center justify-center">
 					{#key index}
 						<div
-							class="h-auto max-h-full w-auto max-w-full inset-ring"
-							style={current_item.meta?.aspect_ratio
-								? `aspect-ratio: ${current_item.meta?.aspect_ratio}`
-								: ''}
+							class="overflow-hidden inset-ring"
+							style="
+                aspect-ratio: {current_item.meta?.aspect_ratio ?? 'auto'};
+                height: min(100%, calc(100vw / {current_item.meta?.aspect_ratio ?? 1}));
+                max-width: 100%;
+            "
 						>
 							<Media {project} file={current_item.file} meta={current_item.meta} lightbox />
 						</div>
 					{/key}
-
-					<div class="hidden md:contents">{@render nav()}</div>
+					<!-- <div class="hidden md:contents">{@render nav()}</div> -->
 				</div>
 			</div>
 
@@ -163,8 +164,8 @@
 			{#if files.length > 1}
 				<div
 					bind:this={strip}
-					class="scrollbar-none flex w-full max-w-[min(90vw,1400px)] gap-2.5 overflow-x-auto
-				       p-2 max-md:-mx-2"
+					class="scrollbar-none -mx-gap flex gap-2.5
+				       overflow-x-auto px-gap py-2"
 				>
 					{#each files as item}
 						{@const thumb_media = get_media_type(item.file)}
@@ -175,10 +176,17 @@
 						       bg-transparent p-0 transition-opacity duration-150
 						       {item.index === index
 								? 'opacity-100 outline outline-offset-4 outline-current'
-								: 'opacity-35 saturate-50 hover:opacity-70'}"
+								: 'opacity-50 saturate-50 hover:opacity-70'}"
 						>
 							{#if item.meta.mux_playback_id}
-								<div class="flex h-full w-full items-center justify-center bg-black/10">
+								<div
+									class="flex items-center justify-center overflow-hidden bg-placeholder"
+									style="
+										aspect-ratio: {item.meta?.aspect_ratio ?? 'auto'};
+										height: min(4rem, calc(4rem / {item.meta?.aspect_ratio ?? 1}));
+										max-width: 4rem;
+									"
+								>
 									<span class="icon-[ri--play-line] text-base opacity-60"></span>
 								</div>
 							{:else if thumb_media === 'gif' || thumb_media === 'image'}

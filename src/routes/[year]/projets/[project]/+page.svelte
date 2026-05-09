@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import ProjectRow from '$lib/ui/components/project/project-row.svelte';
-	import Student from '$lib/components/student.svelte';
+	import Student from '$lib/ui/components/student.svelte';
 	import RecordHeader from '$lib/ui/components/record/record-header.svelte';
 	import File, { seed_meta_file } from './file.svelte';
 	import { afterNavigate, goto } from '$app/navigation';

@@ -2,7 +2,7 @@
 	import { page } from '$app/state';
 	import type { ProjectsRecord, StudentsRecord } from '$lib/pocketbase.types';
 	import { get_media_type } from '$lib/utils/media-type';
-	import Students from '../../../components/students.svelte';
+	import Students from '../students.svelte';
 	import Image from '../media/image.svelte';
 
 	const { project, students }: { project: ProjectsRecord; students: StudentsRecord[] } = $props();

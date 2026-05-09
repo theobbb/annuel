@@ -3,7 +3,7 @@
 	import type { ProjectsRecord, StudentsRecord } from '$lib/pocketbase.types';
 	import ArrowHover from '$lib/ui/components/arrow-hover.svelte';
 	import ProjectThumbnail from '$lib/ui/components/project/project-thumbnail.svelte';
-	import Students from '../../../components/students.svelte';
+	import Students from '../students.svelte';
 
 	const { project, students }: { project: ProjectsRecord; students: StudentsRecord[] } = $props();
 
